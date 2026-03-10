@@ -4,69 +4,93 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is Maraya
 
-Maraya (مرايا, "mirrors") is a structural reader for the Qur'an built as a single-file React component (JSX). It visualizes the compositional architecture of each surah — where the text turns, how the two halves balance, and where the structural pivot falls relative to center. The concept is: the Qur'an rendered as architecture.
+Maraya (مرايا, "mirrors") is a structural reader for the Qur'an built with Vite + React. It visualizes the compositional architecture of each surah — where the text turns, how the two halves balance, and where the structural pivot falls relative to center. The concept is: the Qur'an rendered as architecture.
+
+## Commands
+
+- `npm run dev` — start local dev server
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview production build locally
 
 ## Project structure
 
-The entire application lives in `maraya_v1_6.jsx` — a single file (~1180 lines) with 12 clearly marked sections:
+```
+maraya/
+├── index.html          — entry HTML with OG meta tags
+├── package.json
+├── vite.config.js
+├── vercel.json         — SPA rewrite rules for Vercel
+├── src/
+│   ├── main.jsx        — ReactDOM entry point
+│   ├── App.jsx         — the entire application (single file)
+│   └── index.css       — minimal global styles
+├── maraya_v1_6.jsx     — original artifact version (kept for reference)
+└── CLAUDE.md
+```
 
-1. **RAW STRUCTURAL DATASET** — 114 surah records from `quran_structural_dataset_v1.2_final.json`. Generated programmatically, zero hand-typed values.
-2. **PIVOT VERSE TEXT** — Arabic (Tanzil.net Uthmani Minimal) and English (Sahih International) text for each surah's pivot verse(s), keyed by surah number.
-3. **VALIDATION** — Fails hard on load if any dataset entry is missing, malformed, or mismatched. The app will not render if validation fails.
-4. **DATA LAYER** — Single source of truth. All derived values (labels, colors, parsed ranges, stats) computed here. No component touches RAW_DATASET or PIVOT_VERSES directly.
-5. **STRUCTURAL BAR COMPONENT** — The core visual of Maraya. Shows the shape of a surah as a horizontal bar with pre-pivot, pivot zone, post-pivot regions, pivot midpoint, and geometric center.
-6. **STYLES** — All CSS in a single `STYLE` template literal string. Google Fonts loaded via `@import`. CSS custom properties define the palette, typography, and spacing.
-7. **LANDING PAGE** — Hero with Arabic title, three featured surahs (Q.2, Q.18, Q.110), corpus stats strip.
-8. **PANORAMA** — 114 structural bars in a grid. Supports mushaf order and sort-by-length.
-9. **BROWSE PAGE** — Searchable, sortable, filterable grid of all 114 surahs.
-10. **DETAIL PAGE** — Core product surface for a single surah: identity, metadata strip, structural bar (the hero), pivot verse cards with Arabic and English.
-11. **ABOUT** — Provenance, methodology citation, source credits.
-12. **APP SHELL** — Router-like state machine: Landing → Panorama → Browse → Detail → About.
+The application lives in `src/App.jsx` — a single file with 12 clearly marked sections:
+
+1. **RAW STRUCTURAL DATASET** — 114 surah records. Generated programmatically, zero hand-typed values.
+2. **PIVOT VERSE TEXT** — Arabic (Tanzil.net Uthmani Minimal) and English (Sahih International) for each pivot.
+3. **GOLD WORDS** — Curated semantic-structural echoes. Hand-picked Arabic words whose meaning mirrors the structural position.
+4. **VALIDATION** — Fails hard on load if any dataset entry is missing or malformed.
+5. **DATA LAYER** — Single source of truth. All derived values computed here.
+6. **STRUCTURAL BAR COMPONENT** — The core visual. Shows the shape of a surah.
+7. **STYLES** — All CSS in a single `STYLE` template literal. Google Fonts via `@import`.
+8. **LANDING PAGE** — Hero with structural bar assembly animation.
+9. **PANORAMA** — 114 structural bars in a grid with wave reveal and ambient breathing.
+10. **BROWSE PAGE** — Searchable, sortable, filterable grid.
+11. **DETAIL PAGE** — Core product surface with progressive reveal.
+12. **ABOUT** — Provenance, methodology citation, source credits.
+13. **APP SHELL** — URL-based routing via History API (no React Router).
+
+## URL scheme
+
+| URL | View |
+|-----|------|
+| `/` | Landing |
+| `/explore` | Panorama (114-bar grid) |
+| `/browse` | Browse (search/filter) |
+| `/surah/N` | Detail page for surah N (1–114) |
+| `/about` | About |
 
 ## Technical constraints
 
-- **Single JSX file** — keep everything in one file
-- **No build system** — the app runs as a React artifact (e.g. Claude artifact renderer), not via npm/webpack
-- **No Tailwind** — all styling is inline or via the `STYLE` constant
-- **No external state** — no localStorage, no router, no external dependencies beyond React and lucide-react
-- **Dataset integrity is sacred** — never modify RAW_DATASET, PIVOT_VERSES, validation logic, or any data computation
+- **Single source file** — keep all app code in `src/App.jsx`
+- **No React Router** — routing uses History API (`pushState`, `popstate`)
+- **No Tailwind** — all styling via the `STYLE` template literal constant
+- **No external state** — no localStorage, no state management libraries
+- **Dataset integrity is sacred** — never modify RAW_DATASET, PIVOT_VERSES, GOLD_WORDS, validation logic, or any data computation
 - **All Google Fonts** loaded via `@import` in the STYLE string
+
+## Palette (kiswah-inspired)
+
+- Background: `#0a0a0b` (--bg) — warm neutral black
+- Gold: `#d4a843` (--gold) — rich amber, the signal color
+- Gold bright: `#e2c05c` (--gold-bright)
+- Text: `#ebebeb` (--t1), `#9a978f` (--t2), `#5e5c56` (--t3), `#484848` (--t4)
+- Teal: `#6b9dad` (--teal) — post-pivot region tint
 
 ## Fonts
 
-- Cormorant Garamond — headlines
-- Source Sans 3 — body text
-- JetBrains Mono — metadata, labels, mono elements
-- Amiri — Arabic text
-
-## Palette
-
-- Background: `#060608` (--bg) with layered surfaces
-- Gold: `#c9a652` (--gold) — the signal color
-- Text: `#e8e6e1` (--t1), `#9a978f` (--t2), `#504e48` (--t3)
-- Teal: `#6b9dad` (--teal) — post-pivot region tint
-
-## Classification types
-
-Six structural classifications, each with an assigned color:
-- compound_seam, single_concentration, distributed_convergence, refrain_governed, terminal, multi_pivot
+- Cormorant Garamond — headlines (48/28/20px)
+- Source Sans 3 — body text (15px)
+- JetBrains Mono — metadata, labels (16/11/10/9px)
+- Amiri — Arabic text (30/16px)
 
 ## Design direction — core product law
 
 - The structural bar is the hero — it appears before text, above text, larger than text.
 - Arabic text is the emotional anchor.
-- Gold (#c9a652) is the signal.
+- Gold (#d4a843) is the signal.
 - Everything else stays quiet.
 - Structure before language: the user sees the shape, then reads the explanation.
 
-## Target feel
+## Design scales
 
-- Apple-like restraint (one dominant idea per screen, immaculate spacing, restrained motion)
-- Luxury editorial product, not a SaaS dashboard
-- Research-grade precision
-- Cinematic calm — a revelation interface, not a product page
-- Tactile depth — machined object in darkness, not flat dark mode
-- Less app, more instrument
+- **Spacing**: 4px base (4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128)
+- **Motion**: `ease` for entrances, `0.2s` for hovers
+- **One focal point per screen**
 
 ## Hard rules — NEVER do the following
 
@@ -75,26 +99,17 @@ Six structural classifications, each with an assigned color:
 - No decorative Islamic motifs or illustrations
 - No visual clutter around the structural bar
 - No glassmorphism or heavy blur
-- No charts pretending to be premium
 - No heavy drop shadows
 - No bright blue or extra accent colors beyond the existing palette
 - No "SaaS landing page" sections or startup marketing patterns
-- No explanatory overload or extra feature panels
-- If a surface treatment is noticeable to a casual viewer, it's too much — pull it back
 - Do not break dataset integrity, validation, or any data computation
 - Do not remove any existing view or navigation path
 - Preserve the structural bar component logic
 
-## Always prefer
+## Deployment
 
-- Fewer elements with stronger hierarchy
-- More whitespace and vertical breathing room
-- Better motion over more motion
-- More precise typography (larger scale contrast between levels)
-- Clearer focal points (one per screen)
-- Premium restraint over decoration
-- Deeper tonal separation between background layers (not more borders)
+Deployed to Vercel. The `vercel.json` rewrites all paths to `index.html` for SPA routing.
 
 ## Plugin coordination
 
-The frontend-design plugin may be active. It helps with code quality and avoiding generic aesthetics. However, the aesthetic direction for Maraya is ALREADY DECIDED — do not choose a new one. Follow the design direction in this file exactly. The plugin should enhance execution quality, not override the creative brief.
+The frontend-design plugin may be active. The aesthetic direction for Maraya is ALREADY DECIDED — do not choose a new one. Follow the design direction in this file exactly.
