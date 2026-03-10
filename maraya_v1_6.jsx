@@ -296,42 +296,42 @@ const GOLD_WORDS = {
   3: [
     {
       verse: 103,
-      words: ["حَبلِ اللَّهِ"],
+      words: ["حَبلِ اللَّهِ"],
       reason: "Rope of Allah — the command to hold together sits at the hinge between theological and communal halves"
     }
   ],
   12: [
     {
       verse: 36,
-      words: ["السِّجنَ"],
+      words: ["السِّجنَ"],
       reason: "Prison — the narrative nadir, everything before is descent, everything after is ascent"
     }
   ],
   24: [
     {
       verse: 35,
-      words: ["نُورُ"],
+      words: ["نورُ"],
       reason: "Light — at the structural center of the surah named The Light"
     }
   ],
   31: [
     {
       verse: 16,
-      words: ["يٰبُنَىَّ"],
+      words: ["يٰبُنَىَّ"],
       reason: "O my son — Luqman's address to his son at the center of Luqman's surah"
     }
   ],
   47: [
     {
       verse: 19,
-      words: ["لا إِلٰهَ إِلَّا اللَّهُ"],
+      words: ["لا إِلٰهَ إِلَّا اللَّهُ"],
       reason: "The shahada at the dead center (offset 0.0000) of the surah bearing the Prophet's name"
     }
   ],
   55: [
     {
       verse: 26,
-      words: ["فَانٍ"],
+      words: ["فانٍ"],
       reason: "Perishing — one half of the mortality pivot"
     },
     {
