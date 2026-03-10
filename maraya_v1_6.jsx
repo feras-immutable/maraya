@@ -1,6 +1,22 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X, Eye, ArrowUpDown, BookOpen } from "lucide-react";
 
+/*
+ * MARAYA DESIGN RULES
+ * - The structural bar is always the visual hero — it appears before and above text
+ * - Structure before language: show the shape, then explain it
+ * - Arabic text is always white (#fff) at display size
+ * - Gold is reserved for pivot signals, active states, and branding
+ * - No decorative illustrations, icons, or ornaments
+ * - No gradients on backgrounds
+ * - No glassmorphism or heavy blur
+ * - No more than one glowing element per screen
+ * - Borders are a last resort — use tonal depth instead
+ * - Motion must reveal structure, not decorate
+ * - Every screen has exactly one dominant focal point
+ * - Ambient animations must be barely perceptible — if you're sure it's animated, it's too much
+ */
+
 /* ═══════════════════════════════════════════════════════════════════════
    SECTION 1: RAW STRUCTURAL DATASET
    Source: quran_structural_dataset_v1.2_final.json
@@ -248,6 +264,84 @@ const PIVOT_VERSES = {
   114:[{v:4,ar:"مِن شَرِّ الوَسواسِ الخَنّاسِ",en:"From the evil of the retreating whisperer -"}],
 };
 
+/*
+ * GOLD_WORDS — Curated semantic-structural echoes
+ *
+ * These are pivot verses where a specific Arabic word's MEANING
+ * mirrors the surah's STRUCTURAL position.
+ *
+ * Rules for inclusion:
+ * 1. The word must be central to the meaning of the pivot verse
+ * 2. The word must have a real semantic echo with the structural position
+ * 3. A first-time user can feel the connection without explanation
+ *
+ * This is curation, not a feature. Do not label, explain, or draw
+ * attention to these highlights in the UI. Let people discover them.
+ */
+const GOLD_WORDS = {
+  1: [
+    {
+      verse: 5,
+      words: ["إِيّاكَ"],
+      reason: "Grammatical person pivot — shifts from 3rd person to 2nd person addressing Allah directly"
+    }
+  ],
+  2: [
+    {
+      verse: 143,
+      words: ["وَسَطًا"],
+      reason: "Middle/just — the word meaning 'middle' sits at the structural middle of the longest surah"
+    }
+  ],
+  3: [
+    {
+      verse: 103,
+      words: ["حَبلِ اللَّهِ"],
+      reason: "Rope of Allah — the command to hold together sits at the hinge between theological and communal halves"
+    }
+  ],
+  12: [
+    {
+      verse: 36,
+      words: ["السِّجنَ"],
+      reason: "Prison — the narrative nadir, everything before is descent, everything after is ascent"
+    }
+  ],
+  24: [
+    {
+      verse: 35,
+      words: ["نُورُ"],
+      reason: "Light — at the structural center of the surah named The Light"
+    }
+  ],
+  31: [
+    {
+      verse: 16,
+      words: ["يٰبُنَىَّ"],
+      reason: "O my son — Luqman's address to his son at the center of Luqman's surah"
+    }
+  ],
+  47: [
+    {
+      verse: 19,
+      words: ["لا إِلٰهَ إِلَّا اللَّهُ"],
+      reason: "The shahada at the dead center (offset 0.0000) of the surah bearing the Prophet's name"
+    }
+  ],
+  55: [
+    {
+      verse: 26,
+      words: ["فَانٍ"],
+      reason: "Perishing — one half of the mortality pivot"
+    },
+    {
+      verse: 27,
+      words: ["يَبقىٰ"],
+      reason: "Remains/endures — the structural turn between temporal and eternal"
+    }
+  ]
+};
+
 /* ═══════════════════════════════════════════════════════════════════════
    SECTION 3: VALIDATION — fail hard if anything is wrong
    ═══════════════════════════════════════════════════════════════════ */
@@ -292,7 +386,7 @@ const CL_LABELS = {
   terminal: "Terminal", multi_pivot: "Multi-Pivot",
 };
 const CL_COLORS = {
-  compound_seam: "#6b9dad", single_concentration: "#c9a652",
+  compound_seam: "#6b9dad", single_concentration: "#d4a843",
   distributed_convergence: "#a68a6d", refrain_governed: "#8b7bb5",
   terminal: "#c47a6e", multi_pivot: "#5a8db5",
 };
@@ -350,14 +444,14 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
   return (
     <div style={{ width: "100%", position: "relative" }}>
       <div style={{
-        position: "relative", height, borderRadius: 3, overflow: "hidden",
+        position: "relative", height, borderRadius: 4, overflow: "hidden",
         background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)"
       }}>
         {/* Pre-pivot region */}
         <div style={{
           position: "absolute", top: 0, left: 0, height: "100%",
           width: `${pivotStartPct}%`,
-          background: "rgba(201,166,82,0.08)",
+          background: "rgba(212,168,67,0.08)",
         }} />
         {/* Post-pivot region */}
         <div style={{
@@ -370,12 +464,12 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
           style={{
             position: "absolute", top: 0, height: "100%",
             left: `${pivotStartPct}%`, width: `${Math.max(pivotWidth, 2)}%`,
-            background: glowing ? "rgba(201,166,82,0.5)" : "rgba(201,166,82,0.3)",
-            borderLeft: `1.5px solid ${glowing ? "rgba(201,166,82,1)" : "rgba(201,166,82,0.7)"}`,
-            borderRight: `1.5px solid ${glowing ? "rgba(201,166,82,1)" : "rgba(201,166,82,0.7)"}`,
+            background: glowing ? "rgba(212,168,67,0.5)" : "rgba(212,168,67,0.3)",
+            borderLeft: `1.5px solid ${glowing ? "rgba(212,168,67,1)" : "rgba(212,168,67,0.7)"}`,
+            borderRight: `1.5px solid ${glowing ? "rgba(212,168,67,1)" : "rgba(212,168,67,0.7)"}`,
             cursor: onPivotInteract ? "pointer" : "default",
             transition: "background 0.2s, border-color 0.2s",
-            boxShadow: glowing ? "0 0 16px rgba(201,166,82,0.25)" : "none",
+            boxShadow: glowing ? "0 0 16px rgba(212,168,67,0.25)" : "none",
           }}
           onMouseEnter={onPivotInteract ? () => onPivotInteract(true) : undefined}
           onMouseLeave={onPivotInteract ? () => onPivotInteract(false) : undefined}
@@ -385,7 +479,7 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
         <div style={{
           position: "absolute", top: 0, height: "100%",
           left: `${pivotMidPct}%`, width: 2,
-          background: glowing ? "#ddb94e" : "#c9a652",
+          background: glowing ? "#e2c05c" : "#d4a843",
           transition: "background 0.2s",
         }} />
         {/* Geometric center */}
@@ -396,10 +490,10 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
         }} />
       </div>
       {showLabels && !compact && (
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, alignItems: "flex-start" }}>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>v.1</span>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "rgba(200,200,200,0.35)", position: "absolute", left: "50%", transform: "translateX(-50%)" }}>center</span>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>v.{vc}</span>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8, alignItems: "flex-start", position: "relative" }}>
+          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--t3)", letterSpacing: "0.05em", opacity: 0.7 }}>v.1</span>
+          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "rgba(200,200,200,0.25)", position: "absolute", left: "50%", transform: "translateX(-50%)", letterSpacing: "0.05em" }}>center</span>
+          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--t3)", letterSpacing: "0.05em", opacity: 0.7 }}>v.{vc}</span>
         </div>
       )}
     </div>
@@ -412,21 +506,44 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
 const STYLE = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Amiri:wght@400;700&display=swap');
 
+/*
+ * SPACING SCALE (4px base): 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80 · 96 · 128
+ *
+ * TYPOGRAPHY SCALE (locked):
+ *   Cormorant Garamond: 48px (h1) · 28px (section titles) · 20px (card names)
+ *   Amiri:              30px (display Arabic) · 16px (inline Arabic)
+ *   JetBrains Mono:     16px (stat values) · 11px (labels/buttons) · 10px (section labels) · 9px (bar labels)
+ *   Source Sans 3:      15px (body)
+ */
+
+/* — Hero assembly animation keyframes — */
+@keyframes heroMarkFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroBarContainer { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroRegionLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes heroRegionRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes heroPivotZone { from { opacity: 0; box-shadow: 0 0 0 rgba(212,168,67,0); } to { opacity: 1; box-shadow: 0 0 24px rgba(212,168,67,0.12); } }
+@keyframes heroPivotLine { 0% { opacity: 0; } 50% { opacity: 1; box-shadow: 0 0 12px rgba(212,168,67,0.5); } 100% { opacity: 1; box-shadow: none; } }
+@keyframes heroCenterLine { from { opacity: 0; } to { opacity: 1; } }
+@keyframes revealUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes revealFade { from { opacity: 0; } to { opacity: 1; } }
+
 :root {
-  --bg: #08090d;
-  --bg2: #0e1017;
-  --bg3: #14161e;
-  --bg-card: #12141c;
-  --bg-card-h: #181a24;
-  --border: rgba(255,255,255,0.06);
+  --bg: #0a0a0b;
+  --bg2: #0f0f11;
+  --bg3: #141415;
+  --bg-card: #121214;
+  --bg-card-h: #18181b;
+  --border: rgba(255,255,255,0.05);
   --border-h: rgba(255,255,255,0.1);
-  --gold: #c9a652;
-  --gold-dim: rgba(201,166,82,0.5);
-  --gold-glow: rgba(201,166,82,0.12);
+  --gold: #d4a843;
+  --gold-bright: #e2c05c;
+  --gold-dim: rgba(212,168,67,0.5);
+  --gold-glow: rgba(212,168,67,0.15);
   --teal: #6b9dad;
-  --t1: #e8e6e1;
+  --t1: #ebebeb;
   --t2: #9a978f;
   --t3: #5e5c56;
+  --t4: #484848;
   --f-head: 'Cormorant Garamond', Georgia, serif;
   --f-body: 'Source Sans 3', system-ui, sans-serif;
   --f-mono: 'JetBrains Mono', 'Menlo', monospace;
@@ -439,225 +556,337 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .maraya-root { max-width: 1080px; margin: 0 auto; padding: 0 20px; min-height: 100vh; }
 
 /* === LANDING === */
-.landing { padding: 80px 0 40px; }
-.landing-hero { text-align: center; margin-bottom: 64px; }
-.landing-hero h1 {
-  font-family: var(--f-head); font-size: 52px; font-weight: 300; letter-spacing: -0.02em;
-  line-height: 1.15; color: var(--t1); margin-bottom: 4px;
+.landing { padding: 128px 0 48px; }
+.landing-hero { text-align: center; margin-bottom: 96px; }
+
+/* — Mark — */
+.landing-mark {
+  font-family: var(--f-ar); font-size: 20px; color: var(--gold); opacity: 0;
+  direction: rtl; margin-bottom: 24px; font-weight: 400; letter-spacing: 0.02em;
+  animation: heroMarkFade 0.3s ease 0s both;
 }
-.landing-hero h1 .ar-title {
-  font-family: var(--f-ar); font-size: 38px; color: var(--gold); display: block; margin-bottom: 12px;
-  font-weight: 400; direction: rtl;
+
+/* — Hero bar — */
+.hero-bar-wrap {
+  position: relative; max-width: 660px; margin: 0 auto 48px; opacity: 0;
+  animation: heroBarContainer 0.5s ease 0.2s both;
+}
+.hero-bar {
+  position: relative; height: 88px; border-radius: 4px; overflow: hidden;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+}
+.hero-bar .hb-pre {
+  position: absolute; top: 0; height: 100%; opacity: 0;
+  background: rgba(212,168,67,0.07);
+  animation: heroRegionLeft 0.4s ease 0.55s both;
+}
+.hero-bar .hb-post {
+  position: absolute; top: 0; height: 100%; opacity: 0;
+  background: rgba(107,157,173,0.07);
+  animation: heroRegionRight 0.4s ease 0.7s both;
+}
+.hero-bar .hb-pivot {
+  position: absolute; top: 0; height: 100%; opacity: 0;
+  background: rgba(212,168,67,0.3);
+  border-left: 1.5px solid rgba(212,168,67,0.7);
+  border-right: 1.5px solid rgba(212,168,67,0.7);
+  animation: heroPivotZone 0.3s ease 0.95s both;
+}
+.hero-bar .hb-mid {
+  position: absolute; top: 0; height: 100%; width: 2px; opacity: 0;
+  background: #d4a843;
+  animation: heroPivotLine 0.3s ease 1.1s both;
+}
+.hero-bar .hb-center {
+  position: absolute; top: 0; left: 50%; height: 100%; width: 0; opacity: 0;
+  border-left: 1.5px dashed rgba(200,200,200,0.25);
+  animation: heroCenterLine 0.3s ease 0.8s both;
+}
+
+/* — Headline and subtitle below bar — */
+.landing-hero h1 {
+  font-family: var(--f-head); font-size: 48px; font-weight: 300; letter-spacing: -0.025em;
+  line-height: 1.1; color: var(--t1); margin-bottom: 20px; opacity: 0;
+  animation: revealUp 0.4s ease 1.35s both;
 }
 .landing-tagline {
-  font-family: var(--f-head); font-size: 21px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
-  margin-bottom: 40px; font-style: italic;
+  font-family: var(--f-head); font-size: 20px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
+  margin-bottom: 40px; font-style: italic; max-width: 440px; margin-left: auto; margin-right: auto;
+  line-height: 1.65; opacity: 0;
+  animation: revealUp 0.3s ease 1.5s both;
 }
 .landing-cta {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gold); border: 1px solid rgba(201,166,82,0.3); border-radius: 4px;
-  padding: 12px 28px; background: rgba(201,166,82,0.06); cursor: pointer; transition: all 0.2s;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); border: 0.5px solid rgba(212,168,67,0.25); border-radius: 4px;
+  padding: 12px 24px; background: transparent; cursor: pointer; transition: all 0.2s;
+  opacity: 0; animation: revealUp 0.3s ease 1.65s both;
 }
-.landing-cta:hover { background: rgba(201,166,82,0.12); border-color: rgba(201,166,82,0.5); }
+.landing-cta:hover { background: rgba(212,168,67,0.04); box-shadow: 0 0 20px rgba(212,168,67,0.08); border-color: rgba(212,168,67,0.35); }
 
-.feature-surahs { max-width: 680px; margin: 0 auto 64px; }
+/* — Featured surahs — */
+.feature-surahs { max-width: 640px; margin: 0 auto 80px; }
 .feature-label {
-  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--t3); margin-bottom: 20px; text-align: center;
+  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--t3); margin-bottom: 24px; text-align: center;
+  opacity: 0; animation: revealFade 0.3s ease 1.85s both;
 }
 .feature-card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
-  padding: 20px 24px; margin-bottom: 12px; cursor: pointer; transition: all 0.15s;
+  background: var(--bg-card); border: 1px solid transparent; border-radius: 8px;
+  padding: 24px 24px 20px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s;
+  opacity: 0; animation: revealUp 0.4s ease both;
 }
-.feature-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+.feature-card:nth-child(2) { animation-delay: 2.0s; }
+.feature-card:nth-child(3) { animation-delay: 2.15s; }
+.feature-card:nth-child(4) { animation-delay: 2.3s; }
+.feature-card:hover { background: var(--bg-card-h); border-color: rgba(255,255,255,0.04); }
 .feature-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
 .feature-card-name {
   font-family: var(--f-head); font-size: 20px; font-weight: 400; color: var(--t1);
 }
-.feature-card-name .num { color: var(--t3); font-family: var(--f-mono); font-size: 12px; margin-right: 8px; }
-.feature-card-meta { font-family: var(--f-mono); font-size: 11px; color: var(--t3); display: flex; gap: 16px; }
+.feature-card-ar {
+  font-family: var(--f-ar); font-size: 16px; color: var(--t3); direction: rtl; margin-left: 8px;
+}
+.feature-card-name .num { color: var(--t3); font-family: var(--f-mono); font-size: 11px; margin-right: 8px; }
+.feature-card-meta { font-family: var(--f-mono); font-size: 10px; color: var(--t3); display: flex; gap: 16px; letter-spacing: 0.02em; }
 
+/* — Corpus stats — */
 .corpus-strip {
-  display: flex; gap: 32px; justify-content: center; padding: 24px 0; margin: 0 auto;
-  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  display: flex; gap: 40px; justify-content: center; padding: 32px 0; margin: 0 auto;
+  flex-wrap: wrap; opacity: 0; animation: revealFade 0.3s ease 2.4s both;
 }
 .corpus-stat { text-align: center; }
-.corpus-val { font-family: var(--f-mono); font-size: 18px; color: var(--gold); font-weight: 400; }
-.corpus-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); margin-top: 2px; }
+.corpus-val { font-family: var(--f-mono); font-size: 16px; color: var(--gold); font-weight: 400; opacity: 0.8; }
+.corpus-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
 
 /* === BROWSE === */
 .browse { padding: 32px 0; }
 .browse-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-.browse-title { font-family: var(--f-head); font-size: 26px; font-weight: 400; color: var(--t1); }
+.browse-title { font-family: var(--f-head); font-size: 28px; font-weight: 300; color: var(--t1); }
 .browse-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .search-box {
   position: relative; width: 220px;
 }
 .search-box input {
-  width: 100%; padding: 8px 12px 8px 32px; font-family: var(--f-body); font-size: 13px;
+  width: 100%; padding: 8px 12px 8px 32px; font-family: var(--f-body); font-size: 15px;
   border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); color: var(--t1);
-  outline: none; transition: border-color 0.15s;
+  outline: none; transition: border-color 0.2s;
 }
-.search-box input:focus { border-color: rgba(201,166,82,0.4); }
+.search-box input:focus { border-color: rgba(212,168,67,0.4); }
 .search-box input::placeholder { color: var(--t3); }
 .search-box .s-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--t3); }
 
 .sort-btn {
-  font-family: var(--f-mono); font-size: 11px; padding: 7px 14px; border: 1px solid var(--border);
-  border-radius: 4px; background: var(--bg2); color: var(--t3); cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; gap: 5px; letter-spacing: 0.02em; white-space: nowrap;
+  font-family: var(--f-mono); font-size: 10px; padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: 4px; background: transparent; color: var(--t4); cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 4px; letter-spacing: 0.02em; white-space: nowrap;
 }
-.sort-btn:hover, .sort-btn.active { color: var(--gold); border-color: rgba(201,166,82,0.3); background: rgba(201,166,82,0.06); }
+.sort-btn:hover { color: var(--t2); border-color: var(--border-h); }
+.sort-btn.active { color: var(--gold); border-color: rgba(212,168,67,0.3); background: rgba(212,168,67,0.04); }
 
-.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.filter-chips { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 20px; }
 .chip {
-  font-family: var(--f-mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--border);
-  border-radius: 20px; background: transparent; color: var(--t3); cursor: pointer; transition: all 0.15s;
+  font-family: var(--f-mono); font-size: 9px; padding: 4px 8px; border: 1px solid var(--border);
+  border-radius: 20px; background: transparent; color: var(--t4); cursor: pointer; transition: all 0.2s;
   letter-spacing: 0.03em; white-space: nowrap;
 }
 .chip:hover { border-color: var(--border-h); color: var(--t2); }
-.chip.active { border-color: rgba(201,166,82,0.4); color: var(--gold); background: rgba(201,166,82,0.06); }
+.chip.active { border-color: rgba(212,168,67,0.3); color: var(--gold); background: rgba(212,168,67,0.04); }
 
-.surah-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.surah-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; }
 .surah-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px;
-  padding: 16px 18px; cursor: pointer; transition: all 0.15s;
+  padding: 16px; cursor: pointer; transition: all 0.2s;
 }
-.surah-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
-.surah-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-.sc-name { font-family: var(--f-head); font-size: 17px; font-weight: 400; color: var(--t1); }
-.sc-num { font-family: var(--f-mono); font-size: 11px; color: var(--t3); margin-right: 6px; }
-.sc-ar { font-family: var(--f-ar); font-size: 15px; color: var(--t2); direction: rtl; }
+.surah-card:hover { border-color: rgba(212,168,67,0.15); background: var(--bg-card-h); }
+.surah-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.sc-name { font-family: var(--f-head); font-size: 20px; font-weight: 400; color: var(--t1); }
+.sc-num { font-family: var(--f-mono); font-size: 11px; color: var(--t3); margin-right: 8px; }
+.sc-ar { font-family: var(--f-ar); font-size: 16px; color: var(--t2); direction: rtl; }
 .sc-stats { display: flex; gap: 16px; margin-top: 8px; }
 .sc-stat { font-family: var(--f-mono); font-size: 10px; color: var(--t3); letter-spacing: 0.03em; }
 .sc-stat b { color: var(--t2); font-weight: 500; }
 
 /* === DETAIL === */
+@keyframes detailBarReveal {
+  from { opacity: 0; transform: scaleX(0.94); }
+  to { opacity: 1; transform: scaleX(1); }
+}
 .detail { padding: 24px 0; }
-.detail-top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+.detail-top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
 .back-btn {
-  font-family: var(--f-mono); font-size: 12px; color: var(--t3); cursor: pointer;
+  font-family: var(--f-mono); font-size: 11px; color: var(--t3); cursor: pointer;
   display: inline-flex; align-items: center; gap: 4px; background: none; border: none; padding: 0;
-  transition: color 0.15s; letter-spacing: 0.02em;
+  transition: color 0.2s; letter-spacing: 0.03em;
 }
 .back-btn:hover { color: var(--gold); }
-.nav-lr { display: flex; gap: 6px; }
+.nav-lr { display: flex; gap: 8px; }
 .nav-btn {
-  font-family: var(--f-mono); font-size: 11px; color: var(--t3); cursor: pointer;
-  display: inline-flex; align-items: center; gap: 3px; background: none;
-  border: 1px solid var(--border); border-radius: 4px; padding: 5px 10px; transition: all 0.15s;
+  font-family: var(--f-mono); font-size: 10px; color: var(--t3); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; background: none;
+  border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; transition: all 0.2s;
 }
-.nav-btn:hover { color: var(--gold); border-color: rgba(201,166,82,0.3); }
-.nav-btn:disabled { opacity: 0.25; cursor: default; }
+.nav-btn:hover { color: var(--gold); border-color: rgba(212,168,67,0.3); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; }
 
-.detail-identity { margin-bottom: 36px; text-align: center; }
-.detail-identity .di-num { font-family: var(--f-mono); font-size: 12px; color: var(--t3); letter-spacing: 0.06em; margin-bottom: 4px; }
-.detail-identity h2 { font-family: var(--f-head); font-size: 40px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 4px; }
-.detail-identity .di-ar { font-family: var(--f-ar); font-size: 32px; color: var(--gold-dim); direction: rtl; margin-bottom: 24px; }
+/* Identity — immediate, no animation delay */
+.detail-identity { margin-bottom: 48px; text-align: center; }
+.detail-identity .di-num { font-family: var(--f-mono); font-size: 11px; color: var(--t3); letter-spacing: 0.12em; margin-bottom: 8px; }
+.detail-identity h2 { font-family: var(--f-head); font-size: 48px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 8px; }
+.detail-identity .di-ar { font-family: var(--f-ar); font-size: 30px; color: rgba(212,168,67,0.6); direction: rtl; }
 
+/* Scaffold — THE hero object, reveals at 0.4s */
+.scaffold-section {
+  margin-bottom: 48px; opacity: 0;
+  animation: detailBarReveal 0.6s ease 0.4s both;
+}
+.scaffold-label {
+  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--t3); margin-bottom: 16px;
+}
+.detail-bar-object {
+  border-radius: 4px; overflow: hidden;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.scaffold-legend {
+  display: flex; gap: 24px; justify-content: center; margin-top: 16px; flex-wrap: wrap;
+}
+.scaffold-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 10px; color: var(--t3); }
+.legend-swatch { width: 12px; height: 4px; border-radius: 1px; }
+
+/* Metrics strip — settles below bar at 0.6s */
 .detail-strip {
   display: flex; gap: 1px; justify-content: center; flex-wrap: wrap;
-  background: var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 40px;
+  background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; margin-bottom: 48px;
+  opacity: 0; animation: revealUp 0.5s ease 0.6s both;
 }
 .strip-item {
-  background: var(--bg-card); padding: 16px 20px; flex: 1; min-width: 100px; text-align: center;
+  background: var(--bg2); padding: 16px 20px; flex: 1; min-width: 100px; text-align: center;
 }
-.strip-val { font-family: var(--f-mono); font-size: 18px; color: var(--t1); font-weight: 400; }
+.strip-val { font-family: var(--f-mono); font-size: 16px; color: var(--t2); font-weight: 400; }
 .strip-val.gold { color: var(--gold); }
-.strip-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); margin-top: 4px; }
+.strip-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
 
-.scaffold-section { margin-bottom: 40px; }
-.scaffold-label {
-  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--t3); margin-bottom: 14px;
+/* Breakdown text — fades in at 0.8s */
+.scaffold-breakdown {
+  opacity: 0; animation: revealFade 0.4s ease 0.8s both;
 }
 
-.scaffold-legend {
-  display: flex; gap: 20px; justify-content: center; margin-top: 14px; flex-wrap: wrap;
-}
-.scaffold-legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 10px; color: var(--t3); }
-.legend-swatch { width: 14px; height: 3px; border-radius: 1px; }
-
-.pivot-section { margin-bottom: 40px; }
+/* Pivot verse section — cards stagger from 1.0s */
+.pivot-section { margin-bottom: 48px; }
 .pivot-section-title {
-  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--t3); margin-bottom: 18px;
+  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--t3); margin-bottom: 24px;
+  opacity: 0; animation: revealFade 0.3s ease 1.0s both;
 }
 .pivot-card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px;
-  padding: 24px 28px; margin-bottom: 10px;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 32px 40px; margin-bottom: 12px;
+  opacity: 0; animation: revealUp 0.5s ease both;
 }
-.pv-ref { font-family: var(--f-mono); font-size: 11px; color: var(--gold); margin-bottom: 12px; letter-spacing: 0.03em; }
+.pv-ref { font-family: var(--f-mono); font-size: 11px; color: var(--gold); margin-bottom: 16px; letter-spacing: 0.06em; }
 .pv-arabic {
-  font-family: var(--f-ar); font-size: 24px; line-height: 2.2; direction: rtl; text-align: right;
-  color: var(--t1); margin-bottom: 14px;
+  font-family: var(--f-ar); font-size: 30px; line-height: 2.4; direction: rtl; text-align: right;
+  color: #ffffff; margin-bottom: 0; padding-bottom: 20px;
 }
-.pv-english { font-family: var(--f-body); font-size: 15px; line-height: 1.75; color: var(--t2); font-weight: 300; }
+.pv-separator { border: none; border-top: 1px solid var(--border); margin: 0 0 16px; }
+.pv-english { font-family: var(--f-body); font-size: 15px; line-height: 1.8; color: var(--t2); font-weight: 300; }
 
 .cl-badge {
-  font-family: var(--f-mono); font-size: 10px; padding: 3px 10px; border-radius: 3px;
+  font-family: var(--f-mono); font-size: 10px; padding: 4px 8px; border-radius: 4px;
   display: inline-block; letter-spacing: 0.02em; opacity: 0.6;
 }
 
 /* === PANORAMA === */
+@keyframes panCellReveal {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; clip-path: inset(0 0 0% 0); }
+}
+@keyframes panGlow {
+  0% { box-shadow: 0 0 0 rgba(212,168,67,0); }
+  50% { box-shadow: 0 0 14px rgba(212,168,67,0.18); }
+  100% { box-shadow: 0 0 0 rgba(212,168,67,0); }
+}
+@keyframes panSortFade {
+  0% { opacity: 1; }
+  40% { opacity: 0; }
+  60% { opacity: 0; }
+  100% { opacity: 1; }
+}
 .panorama { padding: 32px 0; }
-.panorama-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 12px; }
-.panorama-title { font-family: var(--f-head); font-size: 26px; font-weight: 400; color: var(--t1); }
-.panorama-controls { display: flex; gap: 6px; align-items: center; }
+.panorama-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 12px; }
+.panorama-title { font-family: var(--f-head); font-size: 28px; font-weight: 300; color: var(--t1); letter-spacing: -0.015em; }
+.panorama-controls { display: flex; gap: 8px; align-items: center; }
 .panorama-subtitle {
-  font-family: var(--f-body); font-size: 14px; color: var(--t2); font-weight: 300;
+  font-family: var(--f-body); font-size: 15px; color: var(--t3); font-weight: 300;
   margin-bottom: 32px; letter-spacing: 0.01em;
 }
 .panorama-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 4px;
+  max-width: 1200px;
 }
+.panorama-grid.pan-sorting { animation: panSortFade 0.35s ease-in-out; }
 .pan-cell {
-  position: relative; padding: 6px 6px 8px; border-radius: 4px;
-  border: 1px solid transparent; cursor: pointer; transition: all 0.15s;
+  position: relative; padding: 8px 8px 8px; border-radius: 4px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
   background: transparent;
+  opacity: 0; animation: panCellReveal 0.3s ease both;
 }
-.pan-cell:hover { background: var(--bg-card); border-color: var(--border-h); }
+.pan-cell:hover { background: var(--bg-card); border-color: rgba(255,255,255,0.06); }
 .pan-cell:hover .pan-name { opacity: 1; }
 .pan-cell:hover .pan-num { color: var(--gold); }
+.pan-cell:hover .pan-bar-wrap { border-color: rgba(255,255,255,0.08); }
+.pan-cell:hover .pan-pz { background: rgba(212,168,67,0.5); box-shadow: 0 0 10px rgba(212,168,67,0.15); }
+.pan-cell:hover .pan-pm { background: #e2c05c; box-shadow: 0 0 6px rgba(212,168,67,0.4); }
+.pan-cell:hover .pan-meta { opacity: 1; }
+.pan-cell.breathing .pan-pz { animation: panGlow 3s ease-in-out; }
 .pan-num {
   font-family: var(--f-mono); font-size: 9px; color: var(--t3); letter-spacing: 0.03em;
-  margin-bottom: 4px; transition: color 0.15s;
+  margin-bottom: 4px; transition: color 0.2s;
 }
 .pan-name {
-  font-family: var(--f-mono); font-size: 8px; color: var(--t3); letter-spacing: 0.02em;
-  margin-top: 4px; opacity: 0.4; transition: opacity 0.15s;
+  font-family: var(--f-mono); font-size: 9px; color: var(--t3); letter-spacing: 0.02em;
+  margin-top: 4px; opacity: 0.35; transition: opacity 0.2s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.pan-meta {
+  font-family: var(--f-mono); font-size: 9px; color: var(--t3); letter-spacing: 0.02em;
+  margin-top: 4px; opacity: 0; transition: opacity 0.2s;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .pan-bar-wrap {
-  position: relative; height: 20px; border-radius: 2px; overflow: hidden;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
+  position: relative; height: 32px; border-radius: 2px; overflow: hidden;
+  background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.035);
+  transition: border-color 0.2s;
 }
 .pan-pz {
   position: absolute; top: 0; height: 100%;
-  background: rgba(201,166,82,0.35);
-  border-left: 1px solid rgba(201,166,82,0.7);
-  border-right: 1px solid rgba(201,166,82,0.7);
-  transition: background 0.15s;
+  background: rgba(212,168,67,0.3);
+  border-left: 1px solid rgba(212,168,67,0.6);
+  border-right: 1px solid rgba(212,168,67,0.6);
+  transition: background 0.2s, box-shadow 0.2s;
 }
-.pan-cell:hover .pan-pz { background: rgba(201,166,82,0.55); }
-.pan-pm { position: absolute; top: 0; height: 100%; width: 1.5px; background: #c9a652; }
-.pan-cl { position: absolute; top: 0; left: 50%; height: 100%; width: 0; border-left: 1px dashed rgba(200,200,200,0.18); }
+.pan-pm {
+  position: absolute; top: 0; height: 100%; width: 1.5px; background: #d4a843;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.pan-cl { position: absolute; top: 0; left: 50%; height: 100%; width: 0; border-left: 1px dashed rgba(200,200,200,0.15); }
 
 .pan-view-toggle {
-  font-family: var(--f-mono); font-size: 10px; padding: 5px 12px; border: 1px solid var(--border);
-  border-radius: 3px; background: transparent; color: var(--t3); cursor: pointer; transition: all 0.15s;
+  font-family: var(--f-mono); font-size: 10px; padding: 4px 12px; border: 1px solid var(--border);
+  border-radius: 4px; background: transparent; color: var(--t3); cursor: pointer; transition: all 0.2s;
   letter-spacing: 0.03em;
 }
 .pan-view-toggle:hover { border-color: var(--border-h); color: var(--t2); }
-.pan-view-toggle.active { border-color: rgba(201,166,82,0.3); color: var(--gold); background: rgba(201,166,82,0.06); }
+.pan-view-toggle.active { border-color: rgba(212,168,67,0.25); color: var(--gold); background: rgba(212,168,67,0.04); }
 
 .pan-browse-link {
   font-family: var(--f-mono); font-size: 11px; color: var(--t3); cursor: pointer;
-  display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-  padding: 0; margin-top: 28px; transition: color 0.15s; letter-spacing: 0.02em;
+  display: inline-flex; align-items: center; gap: 4px; background: none; border: none;
+  padding: 0; margin-top: 32px; transition: color 0.2s; letter-spacing: 0.02em;
 }
 .pan-browse-link:hover { color: var(--gold); }
 
@@ -666,71 +895,103 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .about-back { margin-bottom: 32px; }
 .about-title {
   font-family: var(--f-head); font-size: 28px; font-weight: 300; color: var(--t1);
-  margin-bottom: 28px; letter-spacing: -0.01em;
+  margin-bottom: 24px; letter-spacing: -0.01em;
 }
 .about-body p {
   font-family: var(--f-body); font-size: 15px; line-height: 1.8; color: var(--t2);
   font-weight: 300; margin-bottom: 20px;
 }
 .about-body a {
-  color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,166,82,0.3);
-  transition: border-color 0.15s;
+  color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212,168,67,0.3);
+  transition: border-color 0.2s;
 }
 .about-body a:hover { border-color: var(--gold); }
 .about-sources {
-  margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border);
+  margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border);
 }
 .about-sources-title {
   font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--t3); margin-bottom: 14px;
+  color: var(--t3); margin-bottom: 12px;
 }
 .about-source-row {
-  font-family: var(--f-mono); font-size: 12px; color: var(--t3); line-height: 2.2;
+  font-family: var(--f-mono); font-size: 11px; color: var(--t3); line-height: 2.2;
   letter-spacing: 0.02em;
 }
 .about-source-row span { color: var(--t2); }
 .footer-link {
   color: var(--t3); cursor: pointer; border: none; background: none;
   font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.04em;
-  text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.15s;
+  text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;
   padding: 0;
 }
-.footer-link:hover { color: var(--gold); border-bottom-color: rgba(201,166,82,0.3); }
+.footer-link:hover { color: var(--gold); border-bottom-color: rgba(212,168,67,0.3); }
 
 /* === FOOTER === */
 .maraya-footer {
-  border-top: 1px solid var(--border); padding: 32px 0; margin-top: 60px; text-align: center;
+  border-top: 1px solid var(--border); padding: 40px 0 32px; margin-top: 64px; text-align: center;
 }
-.footer-text { font-family: var(--f-mono); font-size: 10px; color: var(--t3); letter-spacing: 0.04em; line-height: 2; }
+.footer-mark { font-family: var(--f-ar); font-size: 16px; color: var(--gold); opacity: 0.4; direction: rtl; margin-bottom: 8px; }
+.footer-credit { font-family: var(--f-mono); font-size: 9px; color: var(--t4); letter-spacing: 0.06em; }
 
 /* === MOBILE === */
 @media (max-width: 640px) {
-  .maraya-root { padding: 0 14px; }
-  .landing { padding: 48px 0 24px; }
-  .landing-hero h1 { font-size: 32px; }
-  .landing-hero h1 .ar-title { font-size: 26px; }
-  .landing-tagline { font-size: 17px; }
-  .corpus-strip { gap: 20px; }
-  .corpus-val { font-size: 15px; }
+  .maraya-root { padding: 0 16px; }
+  .landing { padding: 64px 0 24px; }
+  .landing-mark { font-size: 16px; margin-bottom: 20px; }
+  .hero-bar-wrap { margin-bottom: 32px; }
+  .hero-bar { height: 48px; }
+  .landing-hero h1 { font-size: 28px; }
+  .landing-tagline { font-size: 16px; }
+  .landing-hero { margin-bottom: 48px; }
+  .feature-card { padding: 20px 16px; }
+  .feature-card-head { flex-direction: column; gap: 4px; }
+  .feature-card-meta { gap: 8px; }
+  .feature-card-ar { margin-left: 0; }
+  .corpus-strip { gap: 24px; }
+  .corpus-val { font-size: 16px; }
   .surah-grid { grid-template-columns: 1fr; }
   .browse-header { flex-direction: column; align-items: stretch; }
   .search-box { width: 100%; }
+  .detail-identity { margin-bottom: 32px; }
   .detail-identity h2 { font-size: 28px; }
-  .detail-identity .di-ar { font-size: 24px; }
+  .detail-identity .di-ar { font-size: 20px; }
   .detail-strip { flex-direction: column; }
   .strip-item { min-width: auto; }
-  .pv-arabic { font-size: 20px; }
-  .feature-card-head { flex-direction: column; gap: 4px; }
-  .feature-card-meta { gap: 10px; }
-  .pivot-card { padding: 18px 16px; }
-  .panorama-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 4px; }
-  .pan-bar-wrap { height: 16px; }
+  .pv-arabic { font-size: 20px; line-height: 2.2; }
+  .pivot-card { padding: 24px 20px; }
+  /* Tighter reveal timing on mobile — reduce delays by 40% */
+  .scaffold-section { animation-delay: 0.24s; }
+  .detail-strip { animation-delay: 0.36s; }
+  .scaffold-breakdown { animation-delay: 0.48s; }
+  .pivot-section-title { animation-delay: 0.6s; }
+  .panorama-grid { grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 4px; }
+  .pan-bar-wrap { height: 24px; }
+  .pan-cell { padding: 4px; }
   .pan-name { display: none; }
+  .pan-meta { display: none; }
   .panorama-header { flex-direction: column; align-items: flex-start; }
+  /* Tighter animation timing on mobile — reduce delays by ~30% */
+  .landing-mark { animation-delay: 0s; }
+  .hero-bar-wrap { animation-delay: 0.14s; }
+  .hero-bar .hb-pre { animation-delay: 0.38s; }
+  .hero-bar .hb-post { animation-delay: 0.49s; }
+  .hero-bar .hb-center { animation-delay: 0.56s; }
+  .hero-bar .hb-pivot { animation-delay: 0.66s; }
+  .hero-bar .hb-mid { animation-delay: 0.77s; }
+  .landing-hero h1 { animation-delay: 0.95s; }
+  .landing-tagline { animation-delay: 1.05s; }
+  .landing-cta { animation-delay: 1.15s; }
+  .feature-label { animation-delay: 1.3s; }
+  .feature-card:nth-child(2) { animation-delay: 1.4s; }
+  .feature-card:nth-child(3) { animation-delay: 1.5s; }
+  .feature-card:nth-child(4) { animation-delay: 1.6s; }
+  .corpus-strip { animation-delay: 1.7s; }
 }
 
 @media (max-width: 380px) {
-  .landing-hero h1 { font-size: 26px; }
+  .landing-hero h1 { font-size: 20px; }
+  .landing-mark { font-size: 16px; }
+  .hero-bar { height: 40px; }
   .sc-stats { flex-wrap: wrap; gap: 8px; }
 }
 `;
@@ -744,26 +1005,50 @@ const LandingPage = ({ onExplore, onSelect }) => {
   const stats = useMemo(() => getCorpusStats(), []);
   const featured = useMemo(() => FEATURED.map(n => getSurahByNumber(n)), []);
 
+  // Hero bar uses Al-Baqarah — near-perfect center, the most striking first impression
+  const hero = useMemo(() => getSurahByNumber(2), []);
+  const heroR = hero.pivotRange;
+  const heroVc = hero.verse_count;
+  const heroPivotStartPct = ((heroR.start - 0.5) / heroVc) * 100;
+  const heroPivotEndPct = ((heroR.end + 0.5) / heroVc) * 100;
+  const heroPivotMidPct = (heroR.mid / heroVc) * 100;
+  const heroPivotWidth = Math.max(heroPivotEndPct - heroPivotStartPct, 2);
+
   return (
     <div className="landing">
       <div className="landing-hero">
-        <h1>
-          <span className="ar-title">مرايا</span>
-          See how each surah is built
-        </h1>
-        <p className="landing-tagline">A structural reader for the Qurʾān — 114 surahs, each with a discoverable architecture</p>
+        {/* 1. The mark — quiet, gold, a breath before the object */}
+        <div className="landing-mark">مرايا</div>
+
+        {/* 2. THE object — the hero structural bar */}
+        <div className="hero-bar-wrap">
+          <div className="hero-bar">
+            <div className="hb-pre" style={{ left: 0, width: `${heroPivotStartPct}%` }} />
+            <div className="hb-post" style={{ left: `${heroPivotEndPct}%`, width: `${100 - heroPivotEndPct}%` }} />
+            <div className="hb-center" />
+            <div className="hb-pivot" style={{ left: `${heroPivotStartPct}%`, width: `${heroPivotWidth}%` }} />
+            <div className="hb-mid" style={{ left: `${heroPivotMidPct}%` }} />
+          </div>
+        </div>
+
+        {/* 3. The headline — explains what the user just saw */}
+        <h1>The architecture of revelation</h1>
+
+        {/* 4. The subtitle */}
+        <p className="landing-tagline">
+          Every surah has a shape.<br />
+          Maraya reveals where it turns.
+        </p>
+
+        {/* 5. The CTA — quiet invitation */}
         <button className="landing-cta" onClick={onExplore}>
-          <Eye size={14} /> Explore all 114 surahs
+          <Eye size={13} /> Explore all 114 surahs
         </button>
       </div>
 
       <div className="feature-surahs">
         <div className="feature-label">Three surahs, three shapes</div>
-        <p style={{ fontFamily: "var(--f-body)", fontSize: 14, color: "var(--t2)", textAlign: "center", marginTop: -8, marginBottom: 20, fontWeight: 300, letterSpacing: "0.01em" }}>
-          Each bar shows the shape of a surah. Gold marks the passage where the surah turns.
-        </p>
         {featured.map(s => {
-          // Compute a structural description from the data — no hand-typed labels
           const pivotDesc = s.pivot_center_logic === "terminal" ? "Terminal pivot"
             : s.absOffset <= 0.01 ? "Pivot centered"
             : s.absOffset <= 0.05 ? "Pivot near center"
@@ -773,13 +1058,14 @@ const LandingPage = ({ onExplore, onSelect }) => {
               <div className="feature-card-head">
                 <div className="feature-card-name">
                   <span className="num">Q.{s.surah_number}</span>{s.surah_name_en}
+                  <span className="feature-card-ar">{s.surah_name_ar}</span>
                 </div>
                 <div className="feature-card-meta">
                   <span>{s.verse_count} verses</span>
                   <span>{pivotDesc}</span>
                 </div>
               </div>
-              <StructuralBar surah={s} height={40} />
+              <StructuralBar surah={s} height={48} />
             </div>
           );
         })}
@@ -800,12 +1086,43 @@ const LandingPage = ({ onExplore, onSelect }) => {
    ═══════════════════════════════════════════════════════════════════ */
 const PanoramaPage = ({ onSelect, onBack, onBrowse }) => {
   const [arrangement, setArrangement] = useState("mushaf"); // "mushaf" | "length"
+  const [sorting, setSorting] = useState(false);
+  const [breathingIdx, setBreathingIdx] = useState(-1);
   const data = useMemo(() => getAllSurahs(), []);
+  const gridRef = useRef(null);
 
   const arranged = useMemo(() => {
     if (arrangement === "length") return [...data].sort((a, b) => b.verse_count - a.verse_count);
     return data;
   }, [data, arrangement]);
+
+  // Sort transition: brief crossfade
+  const handleArrangement = useCallback((mode) => {
+    if (mode === arrangement) return;
+    setSorting(true);
+    setTimeout(() => { setArrangement(mode); setSorting(false); }, 180);
+  }, [arrangement]);
+
+  // Ambient breathing — one random pivot glows every 5s, 3s duration
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    if (mq.matches) return;
+    let iv = null;
+    const startDelay = setTimeout(() => {
+      iv = setInterval(() => {
+        const idx = Math.floor(Math.random() * 114);
+        setBreathingIdx(idx);
+        setTimeout(() => setBreathingIdx(-1), 3000);
+      }, 5000);
+    }, 2000);
+    return () => { clearTimeout(startDelay); if (iv) clearInterval(iv); };
+  }, []);
+
+  // Stagger delay per cell: ~1.2s across 114 = ~10.5ms each
+  const staggerMs = 10.5;
+  // Mobile detection for faster wave
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 640;
+  const cellStagger = isMobile ? 5.3 : staggerMs;
 
   return (
     <div className="panorama">
@@ -813,38 +1130,44 @@ const PanoramaPage = ({ onSelect, onBack, onBrowse }) => {
         <button className="back-btn" onClick={onBack}><ChevronLeft size={14} /> Home</button>
       </div>
       <div className="panorama-header">
-        <div className="panorama-title">The Architecture of the Qurʾān</div>
+        <div className="panorama-title">114 Shapes</div>
         <div className="panorama-controls">
           <button className="pan-view-toggle" onClick={onBrowse} style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <Search size={11} /> Browse
           </button>
           <button
             className={`pan-view-toggle ${arrangement === "mushaf" ? "active" : ""}`}
-            onClick={() => setArrangement("mushaf")}>
+            onClick={() => handleArrangement("mushaf")}>
             Muṣḥaf order
           </button>
           <button
             className={`pan-view-toggle ${arrangement === "length" ? "active" : ""}`}
-            onClick={() => setArrangement("length")}>
+            onClick={() => handleArrangement("length")}>
             By length
           </button>
         </div>
       </div>
       <div className="panorama-subtitle">
-        Each bar shows where a surah turns. Gold marks the pivot; the dashed line marks geometric center.
+        Gold marks the pivot. The dashed line marks geometric center.
       </div>
 
-      <div className="panorama-grid">
-        {arranged.map(s => {
+      <div ref={gridRef} className={`panorama-grid${sorting ? " pan-sorting" : ""}`}>
+        {arranged.map((s, i) => {
           const vc = s.verse_count;
           const r = s.pivotRange;
           const pStartPct = ((r.start - 0.5) / vc) * 100;
           const pEndPct = ((r.end + 0.5) / vc) * 100;
           const pMidPct = (r.mid / vc) * 100;
           const pWidth = Math.max(pEndPct - pStartPct, 2);
+          const isBreathing = breathingIdx === i;
 
           return (
-            <div key={s.surah_number} className="pan-cell" onClick={() => onSelect(s.surah_number)}>
+            <div
+              key={s.surah_number}
+              className={`pan-cell${isBreathing ? " breathing" : ""}`}
+              style={{ animationDelay: `${(i * cellStagger).toFixed(0)}ms` }}
+              onClick={() => onSelect(s.surah_number)}
+            >
               <div className="pan-num">{s.surah_number}</div>
               <div className="pan-bar-wrap">
                 <div className="pan-cl" />
@@ -852,6 +1175,7 @@ const PanoramaPage = ({ onSelect, onBack, onBrowse }) => {
                 <div className="pan-pm" style={{ left: `${pMidPct}%` }} />
               </div>
               <div className="pan-name">{s.surah_name_en}</div>
+              <div className="pan-meta">{s.verse_count}v · {s.pivot_offset === 0 ? "centered" : (s.absOffset <= 0.05 ? "near center" : `±${s.absOffset.toFixed(2)}`)}</div>
             </div>
           );
         })}
@@ -974,6 +1298,46 @@ const BrowsePage = ({ onSelect, onBack }) => {
    SECTION 10: DETAIL PAGE
    Core product surface — shows the shape of a single surah.
    ═══════════════════════════════════════════════════════════════════ */
+function getGoldWords(surahNum, verseNum) {
+  const entries = GOLD_WORDS[surahNum];
+  if (!entries) return [];
+  const entry = entries.find(e => e.verse === verseNum);
+  return entry ? entry.words : [];
+}
+
+function renderArabicWithGold(arabicText, goldWords, lit) {
+  if (!goldWords || goldWords.length === 0) {
+    return <span>{arabicText}</span>;
+  }
+
+  let segments = [arabicText];
+  for (const word of goldWords) {
+    const newSegments = [];
+    for (const seg of segments) {
+      if (typeof seg !== 'string') {
+        newSegments.push(seg);
+        continue;
+      }
+      const idx = seg.indexOf(word);
+      if (idx === -1) {
+        newSegments.push(seg);
+        continue;
+      }
+      if (idx > 0) newSegments.push(seg.slice(0, idx));
+      newSegments.push(
+        <span key={word} style={{
+          color: '#d4a843',
+          textShadow: lit ? '0 0 12px rgba(212,168,67,0.4)' : '0 0 8px rgba(212,168,67,0.3)',
+        }}>{word}</span>
+      );
+      if (idx + word.length < seg.length) newSegments.push(seg.slice(idx + word.length));
+    }
+    segments = newSegments;
+  }
+
+  return <>{segments}</>;
+}
+
 const DetailPage = ({ surahNum, onBack, onNavigate }) => {
   const d = useMemo(() => getSurahByNumber(surahNum), [surahNum]);
   const verses = useMemo(() => getPivotVerses(surahNum), [surahNum]);
@@ -990,33 +1354,57 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
   const pivotCount = r.end - r.start + 1;
   const postCount = d.verse_count - r.end;
 
+  // Base delay for pivot cards (1.0s on desktop, reduced on mobile via CSS overrides on .pivot-card)
+  const pivotCardBaseDelay = 1.05;
+
   return (
     <div className="detail">
       <div className="detail-top-nav">
         <button className="back-btn" onClick={onBack}><ChevronLeft size={14} /> All Surahs</button>
         <div className="nav-lr">
           <button className="nav-btn" disabled={!adj.prev} onClick={() => adj.prev && onNavigate(adj.prev)}>
-            <ChevronLeft size={12} /> {adj.prev ? `Q.${adj.prev}` : ""}
+            <ChevronLeft size={11} /> {adj.prev ? `${adj.prev}` : ""}
           </button>
           <button className="nav-btn" disabled={!adj.next} onClick={() => adj.next && onNavigate(adj.next)}>
-            {adj.next ? `Q.${adj.next}` : ""} <ChevronRight size={12} />
+            {adj.next ? `${adj.next}` : ""} <ChevronRight size={11} />
           </button>
         </div>
       </div>
 
+      {/* 1. IDENTITY — immediate, no delay */}
       <div className="detail-identity">
         <div className="di-num">SURAH {d.surah_number} OF 114</div>
         <h2>{d.surah_name_en}</h2>
         <div className="di-ar">{d.surah_name_ar}</div>
       </div>
 
+      {/* 2. STRUCTURAL BAR — THE hero, reveals at 0.4s */}
+      <div className="scaffold-section">
+        <div className="scaffold-label">Structural Blueprint</div>
+        <div className="detail-bar-object">
+          <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
+            onPivotInteract={(action) => {
+              if (action === "toggle") setPivotLit(p => !p);
+              else setPivotLit(action);
+            }}
+          />
+        </div>
+
+        <div className="scaffold-legend">
+          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(212,168,67,0.3)" }} />Pivot zone</div>
+          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4a843" }} />Pivot midpoint</div>
+          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
+        </div>
+      </div>
+
+      {/* 3. METRICS STRIP — settles below bar at 0.6s */}
       <div className="detail-strip">
         <div className="strip-item">
           <div className="strip-val">{d.verse_count}</div>
           <div className="strip-label">Verses</div>
         </div>
         <div className="strip-item">
-          <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 18 : 15 }}>{d.pivot_verse}</div>
+          <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 16 : 14 }}>{d.pivot_verse}</div>
           <div className="strip-label">Pivot</div>
         </div>
         <div className="strip-item">
@@ -1035,49 +1423,37 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
         </div>
       </div>
 
-      {/* STRUCTURAL SCAFFOLD */}
-      <div className="scaffold-section">
-        <div className="scaffold-label">Structural Blueprint</div>
-        <StructuralBar surah={d} height={56} showLabels pivotHighlighted={pivotLit}
-          onPivotInteract={(action) => {
-            if (action === "toggle") setPivotLit(p => !p);
-            else setPivotLit(action);
-          }}
-        />
-
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16, gap: 8, flexWrap: "wrap" }}>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.03em" }}>
+      {/* 4. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
+      <div className="scaffold-breakdown">
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 48, gap: 8, flexWrap: "wrap" }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
             Pre-pivot: <span style={{ color: "var(--t2)" }}>{preCount} verses</span>
           </div>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.03em" }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.04em" }}>
             Pivot zone: <span style={{ color: "var(--t1)" }}>{pivotCount === 1 ? `v.${r.start}` : `v.${r.start}–${r.end}`} ({pivotCount} {pivotCount === 1 ? 'verse' : 'verses'})</span>
           </div>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.03em" }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
             Post-pivot: <span style={{ color: "var(--t2)" }}>{postCount} verses</span>
           </div>
         </div>
-
-        <div className="scaffold-legend">
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(201,166,82,0.3)" }} />Pivot zone</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#c9a652" }} />Pivot midpoint</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
-        </div>
       </div>
 
-      {/* PIVOT VERSES */}
+      {/* 5. PIVOT VERSES — fade up from 1.0s, staggered 0.15s each */}
       {verses.length > 0 && (
         <div className="pivot-section">
           <div className="pivot-section-title">
             Pivot {verses.length === 1 ? "Verse" : "Verses"} — {r.start === r.end ? `${d.surah_number}:${r.start}` : `${d.surah_number}:${r.start}–${r.end}`}
           </div>
-          {verses.map(v => (
+          {verses.map((v, i) => (
             <div key={v.v} className="pivot-card" style={{
-              borderColor: pivotLit ? "rgba(201,166,82,0.35)" : undefined,
-              boxShadow: pivotLit ? "0 0 20px rgba(201,166,82,0.08), inset 0 0 0 1px rgba(201,166,82,0.1)" : "none",
+              animationDelay: `${(pivotCardBaseDelay + i * 0.15).toFixed(2)}s`,
+              borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined,
+              boxShadow: pivotLit ? "0 0 20px rgba(212,168,67,0.06), inset 0 0 0 1px rgba(212,168,67,0.08)" : "none",
               transition: "border-color 0.3s, box-shadow 0.3s",
             }}>
               <div className="pv-ref">{d.surah_number}:{v.v}</div>
-              <div className="pv-arabic">{v.ar}</div>
+              <div className="pv-arabic">{renderArabicWithGold(v.ar, getGoldWords(d.surah_number, v.v), pivotLit)}</div>
+              <hr className="pv-separator" />
               <div className="pv-english">{v.en}</div>
             </div>
           ))}
@@ -1119,6 +1495,7 @@ const AboutPage = ({ onBack }) => {
           No values are hand-typed, copied from prose, or inferred. The dataset is validated on load; if
           any entry is missing or malformed, the application will not render.
         </p>
+        <p>An Ayah Labs research project.</p>
       </div>
       <div className="about-sources">
         <div className="about-sources-title">Sources &amp; Data</div>
@@ -1166,15 +1543,12 @@ export default function App() {
       {view === "landing" && <LandingPage onExplore={handleExplore} onSelect={(n) => handleSelect(n, "panorama")} />}
       {view === "panorama" && <PanoramaPage onSelect={(n) => handleSelect(n, "panorama")} onBack={() => setView("landing")} onBrowse={() => setView("browse")} />}
       {view === "browse" && <BrowsePage onSelect={(n) => handleSelect(n, "browse")} onBack={() => setView("panorama")} />}
-      {view === "detail" && <DetailPage surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} />}
+      {view === "detail" && <DetailPage key={selectedSurah} surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} />}
       {view === "about" && <AboutPage onBack={() => setView(prevView || "landing")} />}
 
       <footer className="maraya-footer">
-        <div className="footer-text">
-          Maraya (مرايا) · Structural Qurʾān Reader · Feras Mansi · <button className="footer-link" onClick={() => { setPrevView(view); setView("about"); }}>About</button><br/>
-          Dataset {DATASET_VERSION} · {stats.n} surahs · {stats.totalVerses.toLocaleString()} verses<br/>
-          Every number and visual is generated directly from the frozen dataset.
-        </div>
+        <div className="footer-mark">مرايا</div>
+        <div className="footer-credit">Ayah Labs · <button className="footer-link" onClick={() => { setPrevView(view); setView("about"); }}>About</button></div>
       </footer>
     </div></>
   );
