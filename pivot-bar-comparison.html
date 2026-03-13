@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maraya — Pivot Bar: Mirror Axis (Variant C)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Amiri&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: #08080b;
+    --bar-base: #1c1a1e;
+    --bar-base-light: #24222a;
+    --warm-tint: rgba(140, 105, 50, 0.17);
+    --cool-tint: rgba(90, 105, 140, 0.09);
+    --gold: #d4b462;
+    --gold-mid: rgba(201, 166, 82, 0.50);
+    --gold-glow: rgba(201, 166, 82, 0.45);
+    --gold-dim: rgba(201, 166, 82, 0.40);
+    --center-mark: rgba(255, 255, 255, 0.25);
+    --edge-highlight: rgba(255, 255, 255, 0.10);
+    --edge-shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-page);
+    color: rgba(255,255,255,0.35);
+    font-family: 'Cormorant Garamond', serif;
+    padding: 48px 32px 96px;
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: 32px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 64px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .size-section {
+    max-width: 1000px;
+    margin: 0 auto 64px;
+  }
+
+  .size-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .bar-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bar-label {
+    margin-top: 10px;
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-align: center;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<h1>Mirror Axis</h1>
+<p class="subtitle">Variant C — five surahs &times; three sizes</p>
+
+<div id="output"></div>
+
+<script>
+const testSurahs = [
+  { number: 1, name: "Al-Fātiḥah", arabicName: "الفاتحة", totalVerses: 7, pivotStart: 4, pivotEnd: 4, pivotMidNorm: 0.571, geometricCenter: 0.5 },
+  { number: 2, name: "Al-Baqarah", arabicName: "البقرة", totalVerses: 286, pivotStart: 142, pivotEnd: 143, pivotMidNorm: 0.498, geometricCenter: 0.5 },
+  { number: 14, name: "Ibrāhīm", arabicName: "إبراهيم", totalVerses: 52, pivotStart: 21, pivotEnd: 27, pivotMidNorm: 0.462, geometricCenter: 0.5 },
+  { number: 18, name: "Al-Kahf", arabicName: "الكهف", totalVerses: 110, pivotStart: 54, pivotEnd: 59, pivotMidNorm: 0.514, geometricCenter: 0.5 },
+  { number: 55, name: "Ar-Raḥmān", arabicName: "الرحمن", totalVerses: 78, pivotStart: 31, pivotEnd: 45, pivotMidNorm: 0.487, geometricCenter: 0.5 }
+];
+
+const sizeConfigs = {
+  card:   { w: 160, h: 20, centerLine: 1.5, flankLine: 1, flankGap: 2, bloomExtend: 5, chevronW: 4, chevronH: 3, chevronGap: 2, zoneFeather: 4 },
+  detail: { w: 700, h: 36, centerLine: 2,   flankLine: 1, flankGap: 3, bloomExtend: 10, chevronW: 6, chevronH: 4, chevronGap: 3, zoneFeather: 8 },
+  hero:   { w: 900, h: 48, centerLine: 2,   flankLine: 1, flankGap: 4, bloomExtend: 12, chevronW: 8, chevronH: 5, chevronGap: 4, zoneFeather: 12 }
+};
+
+const sizes = [
+  { key: 'hero', label: 'Hero (900×48)' },
+  { key: 'detail', label: 'Detail (700×36)' },
+  { key: 'card', label: 'Card (160×20)' }
+];
+
+// ─── Shared computations ───────────────────────────────────────
+
+function computePositions(surah, cfg) {
+  const r = cfg.h / 2;
+  const innerLeft = r;
+  const innerRight = cfg.w - r;
+  const innerW = innerRight - innerLeft;
+  const pivotMidX = innerLeft + surah.pivotMidNorm * innerW;
+  const centerX = innerLeft + surah.geometricCenter * innerW;
+  const zoneStartX = innerLeft + (surah.pivotStart / surah.totalVerses) * innerW;
+  const zoneEndX = innerLeft + (surah.pivotEnd / surah.totalVerses) * innerW;
+  return { r, innerLeft, innerRight, innerW, pivotMidX, centerX, zoneStartX, zoneEndX };
+}
+
+function totalSvgH(cfg) { return cfg.h + cfg.chevronGap + cfg.chevronH; }
+
+// ─── SVG fragments ───────────────────────────────────────────
+
+function sharedDefs(id, surah, cfg, pos) {
+  const { w, h } = cfg;
+  const { r } = pos;
+
+  return `
+    <clipPath id="clip-${id}">
+      <rect x="0" y="0" width="${w}" height="${h}" rx="${r}" ry="${r}"/>
+    </clipPath>
+    <linearGradient id="warm-${id}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgb(140,105,50)" stop-opacity="0.17"/>
+      <stop offset="58%" stop-color="rgb(140,105,50)" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cool-${id}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="42%" stop-color="rgb(90,105,140)" stop-opacity="0"/>
+      <stop offset="100%" stop-color="rgb(90,105,140)" stop-opacity="0.09"/>
+    </linearGradient>`;
+}
+
+function zoneGradient(id, cfg, pos) {
+  const { zoneStartX, zoneEndX } = pos;
+  const zoneW = Math.max(zoneEndX - zoneStartX, 2);
+  const f = cfg.zoneFeather;
+  const totalW = zoneW + f * 2;
+  const fPct = (f / totalW * 100).toFixed(1);
+  const fPctEnd = (100 - f / totalW * 100).toFixed(1);
+
+  return `<linearGradient id="zone-${id}" x1="${zoneStartX - f}" y1="0" x2="${zoneEndX + f}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="white" stop-opacity="0"/>
+      <stop offset="${fPct}%" stop-color="white" stop-opacity="0.04"/>
+      <stop offset="${fPctEnd}%" stop-color="white" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>`;
+}
+
+function bloomGradient(id, cfg, pos) {
+  const { pivotMidX } = pos;
+  const bloom = cfg.bloomExtend;
+  const clusterHalfW = cfg.flankGap + 1;
+  const left = pivotMidX - clusterHalfW - bloom;
+  const right = pivotMidX + clusterHalfW + bloom;
+
+  return `<linearGradient id="bloom-${id}" x1="${left}" y1="0" x2="${right}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgb(201,166,82)" stop-opacity="0"/>
+      <stop offset="30%" stop-color="rgb(201,166,82)" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="rgb(201,166,82)" stop-opacity="0.45"/>
+      <stop offset="70%" stop-color="rgb(201,166,82)" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="rgb(201,166,82)" stop-opacity="0"/>
+    </linearGradient>`;
+}
+
+function amberReflection(id, cfg, pos) {
+  const { pivotMidX } = pos;
+  const spread = cfg.bloomExtend >= 10 ? 20 : 8;
+  const left = pivotMidX - spread;
+  const right = pivotMidX + spread;
+  return `<linearGradient id="amber-${id}" x1="${left}" y1="0" x2="${right}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgb(201,166,82)" stop-opacity="0"/>
+      <stop offset="30%" stop-color="rgb(201,166,82)" stop-opacity="0.05"/>
+      <stop offset="50%" stop-color="rgb(201,166,82)" stop-opacity="0.05"/>
+      <stop offset="70%" stop-color="rgb(201,166,82)" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="rgb(201,166,82)" stop-opacity="0"/>
+    </linearGradient>`;
+}
+
+function goldEdgeKiss(id, cfg, pos) {
+  const { pivotMidX } = pos;
+  return `<linearGradient id="kiss-${id}" x1="${pivotMidX - 1.5}" y1="0" x2="${pivotMidX + 1.5}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgb(212,180,98)" stop-opacity="0"/>
+      <stop offset="50%" stop-color="rgb(212,180,98)" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="rgb(212,180,98)" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="kiss-fade-${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="1"/>
+      <stop offset="15%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="kiss-mask-${id}">
+      <rect x="${pivotMidX - 1.5}" y="0" width="3" height="${cfg.h}" fill="url(#kiss-fade-${id})"/>
+    </mask>`;
+}
+
+function renderBarBase(id, cfg) {
+  const { w, h } = cfg;
+  return `
+    <rect x="0" y="0" width="${w}" height="${h}" fill="#1c1a1e"/>
+    <rect x="0" y="0" width="${w}" height="${h}" fill="url(#warm-${id})"/>
+    <rect x="0" y="0" width="${w}" height="${h}" fill="url(#cool-${id})"/>`;
+}
+
+function renderZone(id, cfg, pos) {
+  const { zoneStartX, zoneEndX } = pos;
+  const zoneW = Math.max(zoneEndX - zoneStartX, 2);
+  const f = cfg.zoneFeather;
+  return `<rect x="${zoneStartX - f}" y="0" width="${zoneW + f * 2}" height="${cfg.h}" fill="url(#zone-${id})"/>`;
+}
+
+function renderBloom(id, cfg, pos) {
+  const { pivotMidX } = pos;
+  const bloom = cfg.bloomExtend;
+  const clusterHalfW = cfg.flankGap + 1;
+  const left = pivotMidX - clusterHalfW - bloom;
+  const right = pivotMidX + clusterHalfW + bloom;
+  const spread = cfg.bloomExtend >= 10 ? 20 : 8;
+  return `<rect x="${pivotMidX - spread}" y="0" width="${spread * 2}" height="${cfg.h}" fill="url(#amber-${id})"/>
+    <rect x="${left}" y="0" width="${right - left}" height="${cfg.h}" fill="url(#bloom-${id})"/>`;
+}
+
+function renderAxisCluster(cfg, pos, sizeKey) {
+  const { pivotMidX } = pos;
+  const { h, centerLine, flankLine, flankGap } = cfg;
+  const leftFlankX = pivotMidX - flankGap;
+  const rightFlankX = pivotMidX + flankGap;
+
+  let kiss = '';
+  if (sizeKey !== 'card') {
+    kiss = `<rect x="${pivotMidX - 1.5}" y="0" width="3" height="${h}" fill="url(#kiss-${cfg._id})" mask="url(#kiss-mask-${cfg._id})"/>`;
+  }
+
+  return `
+    <line x1="${leftFlankX}" y1="0" x2="${leftFlankX}" y2="${h}" stroke="rgba(201,166,82,0.50)" stroke-width="${flankLine}"/>
+    <line x1="${rightFlankX}" y1="0" x2="${rightFlankX}" y2="${h}" stroke="rgba(201,166,82,0.50)" stroke-width="${flankLine}"/>
+    <line x1="${pivotMidX}" y1="0" x2="${pivotMidX}" y2="${h}" stroke="#d4b462" stroke-width="${centerLine}"/>
+    ${kiss}`;
+}
+
+function renderCapsuleOutline(cfg) {
+  const { w, h } = cfg;
+  const r = h / 2;
+  return `<rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="${r}" ry="${r}" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>`;
+}
+
+function renderCenterChevron(cfg, pos) {
+  const { centerX } = pos;
+  const { h, chevronW, chevronH, chevronGap } = cfg;
+  const topY = h + chevronGap;
+  const cx = centerX;
+  const halfW = chevronW / 2;
+  return `<polygon points="${cx - halfW},${topY} ${cx + halfW},${topY} ${cx},${topY + chevronH}" fill="rgba(255,255,255,0.25)"/>`;
+}
+
+// ─── Variant C: Mirror Axis ────────────────────────────────────
+
+function renderBar(surah, sizeKey) {
+  const cfg = { ...sizeConfigs[sizeKey] };
+  const pos = computePositions(surah, cfg);
+  const id = `c-${surah.number}-${sizeKey}`;
+  cfg._id = id;
+  const svgH = totalSvgH(cfg);
+
+  const leftSheenOpacity = sizeKey === 'card' ? 0.03 : 0.03;
+  const rightSheenOpacity = sizeKey === 'card' ? 0.05 : 0.08;
+  const rightEdgeHighlight = sizeKey === 'card' ? 0.08 : 0.12;
+
+  return `<svg width="${cfg.w}" height="${svgH}" viewBox="0 0 ${cfg.w} ${svgH}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    ${sharedDefs(id, surah, cfg, pos)}
+    ${zoneGradient(id, cfg, pos)}
+    ${bloomGradient(id, cfg, pos)}
+    ${amberReflection(id, cfg, pos)}
+    ${sizeKey !== 'card' ? goldEdgeKiss(id, cfg, pos) : ''}
+    <linearGradient id="sheen-left-${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="${leftSheenOpacity}"/>
+      <stop offset="40%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="sheen-right-${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="${rightSheenOpacity}"/>
+      <stop offset="40%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip-left-${id}">
+      <rect x="0" y="0" width="${pos.pivotMidX}" height="${cfg.h}"/>
+    </clipPath>
+    <clipPath id="clip-right-${id}">
+      <rect x="${pos.pivotMidX}" y="0" width="${cfg.w - pos.pivotMidX}" height="${cfg.h}"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-${id})">
+    ${renderBarBase(id, cfg)}
+    ${renderZone(id, cfg, pos)}
+    ${renderBloom(id, cfg, pos)}
+    <g clip-path="url(#clip-left-${id})">
+      <rect x="0" y="0" width="${cfg.w}" height="${cfg.h}" fill="url(#sheen-left-${id})"/>
+      <rect x="0" y="0" width="${cfg.w}" height="1" fill="rgba(255,255,255,0.08)"/>
+    </g>
+    <g clip-path="url(#clip-right-${id})">
+      <rect x="0" y="0" width="${cfg.w}" height="${cfg.h}" fill="url(#sheen-right-${id})"/>
+      <rect x="0" y="0" width="${cfg.w}" height="1" fill="rgba(255,255,255,${rightEdgeHighlight})"/>
+    </g>
+    <rect x="0" y="${cfg.h - 1}" width="${cfg.w}" height="1" fill="rgba(0,0,0,0.4)"/>
+    ${renderAxisCluster(cfg, pos, sizeKey)}
+  </g>
+  ${renderCapsuleOutline(cfg)}
+  ${renderCenterChevron(cfg, pos)}
+</svg>`;
+}
+
+// ─── Render ────────────────────────────────────────────────────
+
+const output = document.getElementById('output');
+let html = '';
+
+sizes.forEach(size => {
+  html += `<div class="size-section">`;
+  html += `<div class="size-label">${size.label}</div>`;
+  html += `<div class="bar-list">`;
+  testSurahs.forEach(surah => {
+    const svg = renderBar(surah, size.key);
+    const pivotLabel = surah.pivotStart === surah.pivotEnd
+      ? `pivot v.${surah.pivotStart}`
+      : `pivot v.${surah.pivotStart}\u2013${surah.pivotEnd}`;
+    html += `<div class="bar-group">${svg}<div class="bar-label">${surah.number}. ${surah.name} \u2014 ${surah.totalVerses}v \u2014 ${pivotLabel}</div></div>`;
+  });
+  html += `</div></div>`;
+});
+
+output.innerHTML = html;
+</script>
+</body>
+</html>

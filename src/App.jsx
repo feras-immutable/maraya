@@ -432,68 +432,151 @@ function getClassificationCounts() {
    The core visual of Maraya — shows the shape of a surah.
    ═══════════════════════════════════════════════════════════════════ */
 const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false, pivotHighlighted = false, onPivotInteract }) => {
+  const containerRef = useRef(null);
+  const [w, setW] = useState(600);
+  const uid = useRef(`sb${Math.random().toString(36).slice(2, 8)}`).current;
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ro = new ResizeObserver(entries => {
+      const rect = entries[0].contentRect;
+      if (rect.width > 0) setW(rect.width);
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   const vc = surah.verse_count;
-  const r = surah.pivotRange;
-  const pivotStartPct = ((r.start - 0.5) / vc) * 100;
-  const pivotEndPct = ((r.end + 0.5) / vc) * 100;
-  const pivotMidPct = (r.mid / vc) * 100;
-  const centerPct = 50;
-  const pivotWidth = pivotEndPct - pivotStartPct;
+  const pr = surah.pivotRange;
+  const h = height;
+  const capR = h / 2;
+  const iL = capR, iR = w - capR, iW = Math.max(iR - iL, 1);
+  // Clamp axis within the straight portion of the capsule (leave capR/3 margin)
+  const pmXRaw = iL + (pr.mid / vc) * iW;
+  const pmX = Math.max(iL + capR * 0.3, Math.min(pmXRaw, iR - capR * 0.3));
+  const cX = iL + 0.5 * iW;
+  const zsX = iL + ((pr.start - 0.5) / vc) * iW;
+  const zeX = iL + ((pr.end + 0.5) / vc) * iW;
+  // Hide chevron when axis and center nearly overlap (avoids visual noise)
+  const showChevron = Math.abs(pmX - cX) > 6;
+
+  const tier = h <= 40 ? 'card' : h <= 56 ? 'detail' : 'hero';
+  const tc = {
+    card:   { cLine: 1.5, fLine: 1, fGap: 2, bloom: 5,  chevW: 4, chevH: 3, chevGap: 2, zf: 4,  kiss: false },
+    detail: { cLine: 2,   fLine: 1, fGap: 3, bloom: 10, chevW: 6, chevH: 4, chevGap: 3, zf: 8,  kiss: true },
+    hero:   { cLine: 2,   fLine: 1, fGap: 4, bloom: 12, chevW: 8, chevH: 5, chevGap: 4, zf: 12, kiss: true },
+  }[tier];
+
   const glowing = pivotHighlighted;
+  const totalH = h + tc.chevGap + tc.chevH;
+  const zoneW = Math.max(zeX - zsX, 2);
+  const bloomHalf = tc.fGap + 1;
+  const bloomL = pmX - bloomHalf - tc.bloom;
+  const bloomR = pmX + bloomHalf + tc.bloom;
+  const amberS = tc.bloom >= 10 ? 20 : 8;
+  const bloomOp = glowing ? 0.6 : 0.45;
+  const flankOp = glowing ? 0.7 : 0.5;
+  const centerCol = glowing ? '#e8d06c' : '#d4b462';
+  const rightSheen = tier === 'card' ? 0.05 : 0.08;
+  const rightEdge = tier === 'card' ? 0.08 : 0.12;
+  const zfPct = (tc.zf / (zoneW + tc.zf * 2) * 100).toFixed(1);
+  const zfPctEnd = (100 - tc.zf / (zoneW + tc.zf * 2) * 100).toFixed(1);
 
   return (
-    <div style={{ width: "100%", position: "relative" }}>
-      <div style={{
-        position: "relative", height, borderRadius: 4, overflow: "hidden",
-        background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)"
-      }}>
-        {/* Pre-pivot region */}
-        <div style={{
-          position: "absolute", top: 0, left: 0, height: "100%",
-          width: `${pivotStartPct}%`,
-          background: "rgba(212,168,67,0.08)",
-        }} />
-        {/* Post-pivot region */}
-        <div style={{
-          position: "absolute", top: 0, left: `${pivotEndPct}%`, height: "100%",
-          width: `${100 - pivotEndPct}%`,
-          background: "rgba(107,157,173,0.08)",
-        }} />
-        {/* Pivot zone — interactive when handler provided */}
-        <div
-          style={{
-            position: "absolute", top: 0, height: "100%",
-            left: `${pivotStartPct}%`, width: `${Math.max(pivotWidth, 2)}%`,
-            background: glowing ? "rgba(212,168,67,0.5)" : "rgba(212,168,67,0.3)",
-            borderLeft: `1.5px solid ${glowing ? "rgba(212,168,67,1)" : "rgba(212,168,67,0.7)"}`,
-            borderRight: `1.5px solid ${glowing ? "rgba(212,168,67,1)" : "rgba(212,168,67,0.7)"}`,
-            cursor: onPivotInteract ? "pointer" : "default",
-            transition: "background 0.2s, border-color 0.2s",
-            boxShadow: glowing ? "0 0 16px rgba(212,168,67,0.25)" : "none",
-          }}
-          onMouseEnter={onPivotInteract ? () => onPivotInteract(true) : undefined}
-          onMouseLeave={onPivotInteract ? () => onPivotInteract(false) : undefined}
-          onClick={onPivotInteract ? (e) => { e.stopPropagation(); onPivotInteract("toggle"); } : undefined}
-        />
-        {/* Pivot midpoint */}
-        <div style={{
-          position: "absolute", top: 0, height: "100%",
-          left: `${pivotMidPct}%`, width: 2,
-          background: glowing ? "#e2c05c" : "#d4a843",
-          transition: "background 0.2s",
-        }} />
-        {/* Geometric center */}
-        <div style={{
-          position: "absolute", top: 0, height: "100%",
-          left: `${centerPct}%`, width: 1,
-          borderLeft: "1.5px dashed rgba(200,200,200,0.3)",
-        }} />
-      </div>
+    <div ref={containerRef} style={{ width: '100%', position: 'relative' }}>
+      <svg width={w} height={totalH} viewBox={`0 0 ${w} ${totalH}`} style={{ display: 'block' }}>
+        <defs>
+          <clipPath id={`clip-${uid}`}><rect x={0} y={0} width={w} height={h} rx={capR} ry={capR} /></clipPath>
+          <linearGradient id={`warm-${uid}`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="rgb(140,105,50)" stopOpacity="0.17" />
+            <stop offset="58%" stopColor="rgb(140,105,50)" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`cool-${uid}`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="42%" stopColor="rgb(90,105,140)" stopOpacity="0" />
+            <stop offset="100%" stopColor="rgb(90,105,140)" stopOpacity="0.09" />
+          </linearGradient>
+          <linearGradient id={`zone-${uid}`} x1={zsX - tc.zf} y1="0" x2={zeX + tc.zf} y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="white" stopOpacity="0" />
+            <stop offset={`${zfPct}%`} stopColor="white" stopOpacity="0.04" />
+            <stop offset={`${zfPctEnd}%`} stopColor="white" stopOpacity="0.04" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`bloom-${uid}`} x1={bloomL} y1="0" x2={bloomR} y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+            <stop offset="30%" stopColor="rgb(201,166,82)" stopOpacity={bloomOp} />
+            <stop offset="50%" stopColor="rgb(201,166,82)" stopOpacity={bloomOp} />
+            <stop offset="70%" stopColor="rgb(201,166,82)" stopOpacity={bloomOp} />
+            <stop offset="100%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`amber-${uid}`} x1={pmX - amberS} y1="0" x2={pmX + amberS} y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+            <stop offset="30%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+            <stop offset="50%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+            <stop offset="70%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+            <stop offset="100%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`sl-${uid}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity="0.03" />
+            <stop offset="40%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`sr-${uid}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity={rightSheen} />
+            <stop offset="40%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <clipPath id={`cl-${uid}`}><rect x={0} y={0} width={pmX} height={h} /></clipPath>
+          <clipPath id={`cr-${uid}`}><rect x={pmX} y={0} width={w - pmX} height={h} /></clipPath>
+          {tc.kiss && <>
+            <linearGradient id={`kiss-${uid}`} x1={pmX - 1.5} y1="0" x2={pmX + 1.5} y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="rgb(212,180,98)" stopOpacity="0" />
+              <stop offset="50%" stopColor="rgb(212,180,98)" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="rgb(212,180,98)" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id={`kf-${uid}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="white" stopOpacity="1" />
+              <stop offset="15%" stopColor="white" stopOpacity="0" />
+            </linearGradient>
+            <mask id={`km-${uid}`}><rect x={pmX - 1.5} y={0} width={3} height={h} fill={`url(#kf-${uid})`} /></mask>
+          </>}
+        </defs>
+        <g clipPath={`url(#clip-${uid})`}>
+          <rect x={0} y={0} width={w} height={h} fill="#1c1a1e" />
+          <rect x={0} y={0} width={w} height={h} fill={`url(#warm-${uid})`} />
+          <rect x={0} y={0} width={w} height={h} fill={`url(#cool-${uid})`} />
+          <rect x={zsX - tc.zf} y={0} width={zoneW + tc.zf * 2} height={h} fill={`url(#zone-${uid})`} />
+          <rect x={pmX - amberS} y={0} width={amberS * 2} height={h} fill={`url(#amber-${uid})`} />
+          <rect x={bloomL} y={0} width={bloomR - bloomL} height={h} fill={`url(#bloom-${uid})`} />
+          <g clipPath={`url(#cl-${uid})`}>
+            <rect x={0} y={0} width={w} height={h} fill={`url(#sl-${uid})`} />
+            <rect x={0} y={0} width={w} height={1} fill="rgba(255,255,255,0.08)" />
+          </g>
+          <g clipPath={`url(#cr-${uid})`}>
+            <rect x={0} y={0} width={w} height={h} fill={`url(#sr-${uid})`} />
+            <rect x={0} y={0} width={w} height={1} fill={`rgba(255,255,255,${rightEdge})`} />
+          </g>
+          <rect x={0} y={h - 1} width={w} height={1} fill="rgba(0,0,0,0.4)" />
+          <line x1={pmX - tc.fGap} y1={0} x2={pmX - tc.fGap} y2={h} stroke={`rgba(201,166,82,${flankOp})`} strokeWidth={tc.fLine} />
+          <line x1={pmX + tc.fGap} y1={0} x2={pmX + tc.fGap} y2={h} stroke={`rgba(201,166,82,${flankOp})`} strokeWidth={tc.fLine} />
+          <line x1={pmX} y1={0} x2={pmX} y2={h} stroke={centerCol} strokeWidth={tc.cLine} style={{ transition: 'stroke 0.2s' }} />
+          {tc.kiss && <rect x={pmX - 1.5} y={0} width={3} height={h} fill={`url(#kiss-${uid})`} mask={`url(#km-${uid})`} />}
+          {onPivotInteract && (
+            <rect x={zsX} y={0} width={Math.max(zeX - zsX, 4)} height={h} fill="transparent"
+              style={{ cursor: 'pointer' }}
+              onMouseEnter={() => onPivotInteract(true)}
+              onMouseLeave={() => onPivotInteract(false)}
+              onClick={(e) => { e.stopPropagation(); onPivotInteract('toggle'); }}
+            />
+          )}
+        </g>
+        <rect x={0.5} y={0.5} width={w - 1} height={h - 1} rx={capR} ry={capR} fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth={1} />
+        {showChevron && (
+          <polygon points={`${cX - tc.chevW / 2},${h + tc.chevGap} ${cX + tc.chevW / 2},${h + tc.chevGap} ${cX},${h + tc.chevGap + tc.chevH}`} fill="rgba(255,255,255,0.25)" />
+        )}
+      </svg>
       {showLabels && !compact && (
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8, alignItems: "flex-start", position: "relative" }}>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--t3)", letterSpacing: "0.05em", opacity: 0.7 }}>v.1</span>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "rgba(200,200,200,0.25)", position: "absolute", left: "50%", transform: "translateX(-50%)", letterSpacing: "0.05em" }}>center</span>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--t3)", letterSpacing: "0.05em", opacity: 0.7 }}>v.{vc}</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, alignItems: 'flex-start', position: 'relative' }}>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: 9, color: 'var(--t3)', letterSpacing: '0.05em', opacity: 0.7 }}>v.1</span>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: 9, color: 'rgba(200,200,200,0.25)', position: 'absolute', left: '50%', transform: 'translateX(-50%)', letterSpacing: '0.05em' }}>center</span>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: 9, color: 'var(--t3)', letterSpacing: '0.05em', opacity: 0.7 }}>v.{vc}</span>
         </div>
       )}
     </div>
@@ -519,11 +602,8 @@ const STYLE = `
 /* — Hero assembly animation keyframes — */
 @keyframes heroMarkFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroBarContainer { from { opacity: 0; } to { opacity: 1; } }
-@keyframes heroRegionLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes heroRegionRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes heroPivotZone { from { opacity: 0; box-shadow: 0 0 0 rgba(212,168,67,0); } to { opacity: 1; box-shadow: 0 0 24px rgba(212,168,67,0.12); } }
-@keyframes heroPivotLine { 0% { opacity: 0; } 50% { opacity: 1; box-shadow: 0 0 12px rgba(212,168,67,0.5); } 100% { opacity: 1; box-shadow: none; } }
-@keyframes heroCenterLine { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroAxisReveal { 0% { opacity: 0; } 60% { opacity: 1.2; } 100% { opacity: 1; } }
 @keyframes revealUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes revealFade { from { opacity: 0; } to { opacity: 1; } }
 
@@ -571,37 +651,11 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   position: relative; max-width: 660px; margin: 0 auto 48px; opacity: 0;
   animation: heroBarContainer 0.5s ease 0.2s both;
 }
-.hero-bar {
-  position: relative; height: 88px; border-radius: 4px; overflow: hidden;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
-}
-.hero-bar .hb-pre {
-  position: absolute; top: 0; height: 100%; opacity: 0;
-  background: rgba(212,168,67,0.07);
-  animation: heroRegionLeft 0.4s ease 0.55s both;
-}
-.hero-bar .hb-post {
-  position: absolute; top: 0; height: 100%; opacity: 0;
-  background: rgba(107,157,173,0.07);
-  animation: heroRegionRight 0.4s ease 0.7s both;
-}
-.hero-bar .hb-pivot {
-  position: absolute; top: 0; height: 100%; opacity: 0;
-  background: rgba(212,168,67,0.3);
-  border-left: 1.5px solid rgba(212,168,67,0.7);
-  border-right: 1.5px solid rgba(212,168,67,0.7);
-  animation: heroPivotZone 0.3s ease 0.95s both;
-}
-.hero-bar .hb-mid {
-  position: absolute; top: 0; height: 100%; width: 2px; opacity: 0;
-  background: #d4a843;
-  animation: heroPivotLine 0.3s ease 1.1s both;
-}
-.hero-bar .hb-center {
-  position: absolute; top: 0; left: 50%; height: 100%; width: 0; opacity: 0;
-  border-left: 1.5px dashed rgba(200,200,200,0.25);
-  animation: heroCenterLine 0.3s ease 0.8s both;
-}
+.hero-bar-wrap .hb-warm { opacity: 0; animation: heroFadeIn 0.4s ease 0.55s both; }
+.hero-bar-wrap .hb-cool { opacity: 0; animation: heroFadeIn 0.4s ease 0.7s both; }
+.hero-bar-wrap .hb-chev { opacity: 0; animation: heroFadeIn 0.3s ease 0.8s both; }
+.hero-bar-wrap .hb-zone { opacity: 0; animation: heroFadeIn 0.3s ease 0.95s both; }
+.hero-bar-wrap .hb-axis { opacity: 0; animation: heroAxisReveal 0.3s ease 1.1s both; }
 
 /* — Headline and subtitle below bar — */
 .landing-hero h1 {
@@ -742,14 +796,13 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 }
 .scaffold-label {
   font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--t3); margin-bottom: 16px;
+  color: var(--t3); margin-bottom: 24px;
 }
 .detail-bar-object {
-  border-radius: 4px; overflow: hidden;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.03);
+  padding: 0 4px;
 }
 .scaffold-legend {
-  display: flex; gap: 24px; justify-content: center; margin-top: 16px; flex-wrap: wrap;
+  display: flex; gap: 24px; justify-content: center; margin-top: 24px; flex-wrap: wrap;
 }
 .scaffold-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 10px; color: var(--t3); }
 .legend-swatch { width: 12px; height: 4px; border-radius: 1px; }
@@ -858,8 +911,8 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .pan-bar-wrap {
-  position: relative; height: 32px; border-radius: 2px; overflow: hidden;
-  background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.035);
+  position: relative; height: 32px; border-radius: 16px; overflow: hidden;
+  background: #1c1a1e; border: 1px solid rgba(255,255,255,0.04);
   transition: border-color 0.2s;
 }
 .pan-pz {
@@ -939,7 +992,6 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   .landing { padding: 64px 0 24px; }
   .landing-mark { font-size: 16px; margin-bottom: 20px; }
   .hero-bar-wrap { margin-bottom: 32px; }
-  .hero-bar { height: 48px; }
   .landing-hero h1 { font-size: 28px; }
   .landing-tagline { font-size: 16px; }
   .landing-hero { margin-bottom: 48px; }
@@ -973,11 +1025,11 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   /* Tighter animation timing on mobile — reduce delays by ~30% */
   .landing-mark { animation-delay: 0s; }
   .hero-bar-wrap { animation-delay: 0.14s; }
-  .hero-bar .hb-pre { animation-delay: 0.38s; }
-  .hero-bar .hb-post { animation-delay: 0.49s; }
-  .hero-bar .hb-center { animation-delay: 0.56s; }
-  .hero-bar .hb-pivot { animation-delay: 0.66s; }
-  .hero-bar .hb-mid { animation-delay: 0.77s; }
+  .hero-bar-wrap .hb-warm { animation-delay: 0.38s; }
+  .hero-bar-wrap .hb-cool { animation-delay: 0.49s; }
+  .hero-bar-wrap .hb-chev { animation-delay: 0.56s; }
+  .hero-bar-wrap .hb-zone { animation-delay: 0.66s; }
+  .hero-bar-wrap .hb-axis { animation-delay: 0.77s; }
   .landing-hero h1 { animation-delay: 0.95s; }
   .landing-tagline { animation-delay: 1.05s; }
   .landing-cta { animation-delay: 1.15s; }
@@ -991,7 +1043,6 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 @media (max-width: 380px) {
   .landing-hero h1 { font-size: 20px; }
   .landing-mark { font-size: 16px; }
-  .hero-bar { height: 40px; }
   .sc-stats { flex-wrap: wrap; gap: 8px; }
 }
 `;
@@ -1007,12 +1058,35 @@ const LandingPage = ({ onExplore, onSelect }) => {
 
   // Hero bar uses Al-Baqarah — near-perfect center, the most striking first impression
   const hero = useMemo(() => getSurahByNumber(2), []);
-  const heroR = hero.pivotRange;
-  const heroVc = hero.verse_count;
-  const heroPivotStartPct = ((heroR.start - 0.5) / heroVc) * 100;
-  const heroPivotEndPct = ((heroR.end + 0.5) / heroVc) * 100;
-  const heroPivotMidPct = (heroR.mid / heroVc) * 100;
-  const heroPivotWidth = Math.max(heroPivotEndPct - heroPivotStartPct, 2);
+  const heroBarRef = useRef(null);
+  const [heroW, setHeroW] = useState(660);
+  useEffect(() => {
+    if (!heroBarRef.current) return;
+    const ro = new ResizeObserver(entries => {
+      const rect = entries[0].contentRect;
+      if (rect.width > 0) setHeroW(rect.width);
+    });
+    ro.observe(heroBarRef.current);
+    return () => ro.disconnect();
+  }, []);
+  const hH = 88; // hero bar height (CSS overrides for mobile handled by container)
+  const hCapR = hH / 2;
+  const hIL = hCapR, hIR = heroW - hCapR, hIW = Math.max(hIR - hIL, 1);
+  const hPr = hero.pivotRange, hVc = hero.verse_count;
+  const hPmX = hIL + (hPr.mid / hVc) * hIW;
+  const hCX = hIL + 0.5 * hIW;
+  const hZsX = hIL + ((hPr.start - 0.5) / hVc) * hIW;
+  const hZeX = hIL + ((hPr.end + 0.5) / hVc) * hIW;
+  const hZoneW = Math.max(hZeX - hZsX, 2);
+  const hBloomHalf = 5; // fGap + 1 for hero
+  const hBloomL = hPmX - hBloomHalf - 12;
+  const hBloomR = hPmX + hBloomHalf + 12;
+  const hChevGap = 4, hChevH = 5, hChevW = 8;
+  const hShowChev = Math.abs(hPmX - hCX) > 6;
+  const hTotalH = hH + hChevGap + hChevH;
+  const hZf = 12; // zone feather
+  const hZfPct = (hZf / (hZoneW + hZf * 2) * 100).toFixed(1);
+  const hZfPctEnd = (100 - hZf / (hZoneW + hZf * 2) * 100).toFixed(1);
 
   return (
     <div className="landing">
@@ -1021,14 +1095,103 @@ const LandingPage = ({ onExplore, onSelect }) => {
         <div className="landing-mark">مرايا</div>
 
         {/* 2. THE object — the hero structural bar */}
-        <div className="hero-bar-wrap">
-          <div className="hero-bar">
-            <div className="hb-pre" style={{ left: 0, width: `${heroPivotStartPct}%` }} />
-            <div className="hb-post" style={{ left: `${heroPivotEndPct}%`, width: `${100 - heroPivotEndPct}%` }} />
-            <div className="hb-center" />
-            <div className="hb-pivot" style={{ left: `${heroPivotStartPct}%`, width: `${heroPivotWidth}%` }} />
-            <div className="hb-mid" style={{ left: `${heroPivotMidPct}%` }} />
-          </div>
+        <div className="hero-bar-wrap" ref={heroBarRef}>
+          <svg width={heroW} height={hTotalH} viewBox={`0 0 ${heroW} ${hTotalH}`} style={{ display: 'block' }}>
+            <defs>
+              <clipPath id="hb-clip"><rect x={0} y={0} width={heroW} height={hH} rx={hCapR} ry={hCapR} /></clipPath>
+              <linearGradient id="hb-warm" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="rgb(140,105,50)" stopOpacity="0.17" />
+                <stop offset="58%" stopColor="rgb(140,105,50)" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-cool" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="42%" stopColor="rgb(90,105,140)" stopOpacity="0" />
+                <stop offset="100%" stopColor="rgb(90,105,140)" stopOpacity="0.09" />
+              </linearGradient>
+              <linearGradient id="hb-zone-g" x1={hZsX - hZf} y1="0" x2={hZeX + hZf} y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="white" stopOpacity="0" />
+                <stop offset={`${hZfPct}%`} stopColor="white" stopOpacity="0.04" />
+                <stop offset={`${hZfPctEnd}%`} stopColor="white" stopOpacity="0.04" />
+                <stop offset="100%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-bloom-g" x1={hBloomL} y1="0" x2={hBloomR} y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+                <stop offset="30%" stopColor="rgb(201,166,82)" stopOpacity="0.45" />
+                <stop offset="50%" stopColor="rgb(201,166,82)" stopOpacity="0.45" />
+                <stop offset="70%" stopColor="rgb(201,166,82)" stopOpacity="0.45" />
+                <stop offset="100%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-amber-g" x1={hPmX - 20} y1="0" x2={hPmX + 20} y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+                <stop offset="30%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+                <stop offset="50%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+                <stop offset="70%" stopColor="rgb(201,166,82)" stopOpacity="0.05" />
+                <stop offset="100%" stopColor="rgb(201,166,82)" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-sl" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="white" stopOpacity="0.03" />
+                <stop offset="40%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-sr" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="white" stopOpacity="0.08" />
+                <stop offset="40%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <clipPath id="hb-cl"><rect x={0} y={0} width={hPmX} height={hH} /></clipPath>
+              <clipPath id="hb-cr"><rect x={hPmX} y={0} width={heroW - hPmX} height={hH} /></clipPath>
+              <linearGradient id="hb-kiss" x1={hPmX - 1.5} y1="0" x2={hPmX + 1.5} y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="rgb(212,180,98)" stopOpacity="0" />
+                <stop offset="50%" stopColor="rgb(212,180,98)" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="rgb(212,180,98)" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="hb-kf" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="white" stopOpacity="1" />
+                <stop offset="15%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <mask id="hb-km"><rect x={hPmX - 1.5} y={0} width={3} height={hH} fill="url(#hb-kf)" /></mask>
+            </defs>
+            <g clipPath="url(#hb-clip)">
+              {/* Base fill — visible immediately */}
+              <rect x={0} y={0} width={heroW} height={hH} fill="#1c1a1e" />
+              {/* Warm tint — fades in from left */}
+              <g className="hb-warm">
+                <rect x={0} y={0} width={heroW} height={hH} fill="url(#hb-warm)" />
+              </g>
+              {/* Cool tint — fades in from right */}
+              <g className="hb-cool">
+                <rect x={0} y={0} width={heroW} height={hH} fill="url(#hb-cool)" />
+              </g>
+              {/* Zone brightness */}
+              <g className="hb-zone">
+                <rect x={hZsX - hZf} y={0} width={hZoneW + hZf * 2} height={hH} fill="url(#hb-zone-g)" />
+              </g>
+              {/* Sheens */}
+              <g clipPath="url(#hb-cl)">
+                <rect x={0} y={0} width={heroW} height={hH} fill="url(#hb-sl)" />
+                <rect x={0} y={0} width={heroW} height={1} fill="rgba(255,255,255,0.08)" />
+              </g>
+              <g clipPath="url(#hb-cr)">
+                <rect x={0} y={0} width={heroW} height={hH} fill="url(#hb-sr)" />
+                <rect x={0} y={0} width={heroW} height={1} fill="rgba(255,255,255,0.12)" />
+              </g>
+              <rect x={0} y={hH - 1} width={heroW} height={1} fill="rgba(0,0,0,0.4)" />
+              {/* Axis cluster — bloom + lines, final reveal */}
+              <g className="hb-axis">
+                <rect x={hPmX - 20} y={0} width={40} height={hH} fill="url(#hb-amber-g)" />
+                <rect x={hBloomL} y={0} width={hBloomR - hBloomL} height={hH} fill="url(#hb-bloom-g)" />
+                <line x1={hPmX - 4} y1={0} x2={hPmX - 4} y2={hH} stroke="rgba(201,166,82,0.50)" strokeWidth={1} />
+                <line x1={hPmX + 4} y1={0} x2={hPmX + 4} y2={hH} stroke="rgba(201,166,82,0.50)" strokeWidth={1} />
+                <line x1={hPmX} y1={0} x2={hPmX} y2={hH} stroke="#d4b462" strokeWidth={2} />
+                <rect x={hPmX - 1.5} y={0} width={3} height={hH} fill="url(#hb-kiss)" mask="url(#hb-km)" />
+              </g>
+            </g>
+            {/* Capsule outline */}
+            <rect x={0.5} y={0.5} width={heroW - 1} height={hH - 1} rx={hCapR} ry={hCapR} fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth={1} />
+            {/* Center chevron — hidden when axis ≈ center */}
+            {hShowChev && (
+              <g className="hb-chev">
+                <polygon points={`${hCX - hChevW / 2},${hH + hChevGap} ${hCX + hChevW / 2},${hH + hChevGap} ${hCX},${hH + hChevGap + hChevH}`} fill="rgba(255,255,255,0.25)" />
+              </g>
+            )}
+          </svg>
         </div>
 
         {/* 3. The headline — explains what the user just saw */}
@@ -1391,9 +1554,9 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
         </div>
 
         <div className="scaffold-legend">
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(212,168,67,0.3)" }} />Pivot zone</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4a843" }} />Pivot midpoint</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
+          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4b462" }} />Pivot axis</div>
+          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(201,166,82,0.45)" }} />Pivot bloom</div>
+          <div className="scaffold-legend-item"><svg width={12} height={6} style={{ flexShrink: 0 }}><polygon points="2,0 10,0 6,5" fill="rgba(255,255,255,0.25)" /></svg>Geometric center</div>
         </div>
       </div>
 
