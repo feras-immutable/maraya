@@ -343,6 +343,896 @@ const GOLD_WORDS = {
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
+   SECTION 2B: BLOCK MAP DATA
+   Source: quran_structural_dataset_v1.2_final.json → block_map field
+   99 surahs with structured ring/block architecture. 15 surahs pending.
+   Each block: id, v[start,end], role, label
+   ═══════════════════════════════════════════════════════════════════ */
+const BLOCK_MAP_DATA = {
+  2: [
+    {id:"A",v:[1,20],role:"frame",label:"الم · no doubt · guidance for the righteous · those who succeed"},
+    {id:"B",v:[21,39],role:"body",label:"O Mankind: worship · disbeliever / hypocrite / believer portraits"},
+    {id:"C",v:[40,103],role:"body",label:"O Children of Israel · covenant · blessings · violations"},
+    {id:"C₀",v:[104,141],role:"body",label:"Abrogation · qiblah controversy begins"},
+    {id:"D",v:[142,152],role:"pivot",label:"PIVOT — median community · witness over people · qiblah established · remember Me"},
+    {id:"C₀′",v:[153,177],role:"body",label:"Martyrs alive · trial in fear/hunger · patience · Safa/Marwa"},
+    {id:"C′",v:[178,253],role:"body",label:"Qiṣāṣ · fasting · pilgrimage · fighting · spending · marriage laws"},
+    {id:"B′",v:[254,260],role:"body",label:"Āyat al-Kursī · no compulsion · parable of the one who gives"},
+    {id:"A′",v:[261,286],role:"frame",label:"Spending: seed → 700 · usury forbidden · debt legislation · closing du'ā"},
+  ],
+  3: [
+    {id:"A",v:[1,32],role:"frame",label:"الم · the Living, the Sustaining · family of Imrān chosen · Mary's birth"},
+    {id:"B",v:[33,63],role:"body",label:"Chosen families: Imrān / Mary / Zachariah / John / Jesus · table dispute"},
+    {id:"C",v:[64,99],role:"body",label:"Common word with People of Book · Abraham not Jew nor Christian"},
+    {id:"D",v:[100,108],role:"pivot",label:"PIVOT — hold to God's rope · do not divide · median community rises"},
+    {id:"C′",v:[109,120],role:"body",label:"Best community · enjoin right · forbid wrong · the Faithful ones"},
+    {id:"B′",v:[121,175],role:"body",label:"Uḥud · Badr recalled · angels in ranks · hypocrites exposed"},
+    {id:"A′",v:[176,200],role:"frame",label:"Every soul tastes death · worldly life = deception · final counsel"},
+  ],
+  4: [
+    {id:"A",v:[1,14],role:"frame",label:"O Mankind: from one soul · orphans' rights · inheritance legislation"},
+    {id:"B",v:[15,43],role:"body",label:"Women's rights · marriage limits · do not approach prayer while intoxicated"},
+    {id:"C",v:[44,81],role:"body",label:"Shirk ① unforgivable · hypocrites exposed · obey the Messenger"},
+    {id:"D",v:[82,95],role:"pivot",label:"PIVOT — only zero-offset in 114 surahs · Quran's non-contradiction · four hypocrite categories"},
+    {id:"C′",v:[96,134],role:"body",label:"Shirk ② · killing believers forbidden · do not take disbelievers as allies"},
+    {id:"B′",v:[135,152],role:"body",label:"Justice against self · witnesses for God even against yourselves"},
+    {id:"A′",v:[153,176],role:"frame",label:"People of Book demand a book from heaven · crucifixion denied"},
+  ],
+  5: [
+    {id:"A",v:[1,11],role:"frame",label:"Fulfill the contracts · game forbidden in iḥrām · God's favor remembered"},
+    {id:"B",v:[12,50],role:"body",label:"Two covenants: Israel (broke → cursed) + Christians (forgot → animosity)"},
+    {id:"D",v:[51,69],role:"pivot",label:"PIVOT — do not take disbelievers as allies · the Messenger delivers · no fear for believers"},
+    {id:"B′",v:[70,100],role:"body",label:"Israel: denied messengers · Jesus denied divinity · People of Book dispute"},
+    {id:"A′",v:[101,120],role:"frame",label:"Day: messengers questioned · all-knowing God · Jesus disavows worship"},
+  ],
+  6: [
+    {id:"A",v:[1,35],role:"frame",label:"Praise God · created darknesses and light · disbelievers equate with God"},
+    {id:"B",v:[36,73],role:"body",label:"Communities like you · nothing neglected in the Book · tightest center-offset in project"},
+    {id:"D",v:[74,90],role:"pivot",label:"PIVOT — Abraham's break from idols · prophetic lineage · follow their guidance"},
+    {id:"B′",v:[91,135],role:"body",label:"God revealed nothing? Moses given the Book as light · food customs refuted"},
+    {id:"A′",v:[136,165],role:"frame",label:"Food customs challenged · do not follow desires · God's straight path"},
+  ],
+  7: [
+    {id:"A",v:[1,10],role:"frame",label:"المص · Book revealed · warn and remind · established you on earth"},
+    {id:"B",v:[11,58],role:"body",label:"Adam and Iblīs: created / formed / prostrate / Iblīs refused · reprieve sought"},
+    {id:"C",v:[59,93],role:"body",label:"Five-nation cycle: Noah → Hūd → Ṣāliḥ → Lot → Shuʿayb"},
+    {id:"D",v:[94,102],role:"pivot",label:"PIVOT — trial sent to every town · they pleaded then punishment came"},
+    {id:"C′",v:[103,171],role:"body",label:"Moses extended: Pharaoh → magicians prostrate → plagues → sea crossing → Sinai"},
+    {id:"B′",v:[172,198],role:"body",label:"Covenant of the progeny: Am I not your Lord? — Yes, we testify"},
+    {id:"A′",v:[199,206],role:"frame",label:"Take the easy way · command the good · turn from the ignorant"},
+  ],
+  8: [
+    {id:"A",v:[1,19],role:"frame",label:"Spoils for God and Messenger · answer what gives you life"},
+    {id:"B",v:[20,40],role:"body",label:"Respond to what gives you life · God intervenes at Badr"},
+    {id:"D",v:[41,44],role:"pivot",label:"PIVOT — one fifth of spoils · God's support at the day of distinction"},
+    {id:"B′",v:[45,71],role:"body",label:"Stand firm · God with the patient · do not betray God"},
+    {id:"A′",v:[72,75],role:"frame",label:"Walāya legislation: believers are allies of one another"},
+  ],
+  9: [
+    {id:"A",v:[1,28],role:"frame",label:"Barā'a — no basmalah · disavowal of treaty-breakers · pilgrimage announced"},
+    {id:"B",v:[29,37],role:"body",label:"Fight People of Book until jizyah · sacred months controversy"},
+    {id:"C",v:[38,72],role:"body",label:"Tabuk campaign: cling to earth? · hypocrites exposed ①"},
+    {id:"D",v:[73,80],role:"pivot",label:"PIVOT — strive against hypocrites · their hearts are sealed by God"},
+    {id:"C′",v:[81,110],role:"body",label:"Tabuk aftermath · hypocrites exposed ② · the Mosque of Harm"},
+    {id:"A′",v:[111,129],role:"frame",label:"God purchased lives and wealth → Paradise · closing blessing on the Prophet"},
+  ],
+  10: [
+    {id:"A",v:[1,25],role:"frame",label:"الر · verses of the wise Book · God created in six days · then rose over the Throne"},
+    {id:"B",v:[26,56],role:"body",label:"Al-Ḥusnā and more · cosmic signs · God's assurance to believers"},
+    {id:"D",v:[57,70],role:"pivot",label:"PIVOT — O Mankind: healing has come · God's grace is better than what they accumulate"},
+    {id:"B′",v:[71,103],role:"body",label:"Noah compressed · Moses and Pharaoh · Jonah · God's promise true"},
+    {id:"A′",v:[104,109],role:"frame",label:"O Mankind: truth has come to you · follow what is revealed"},
+  ],
+  11: [
+    {id:"A",v:[1,24],role:"frame",label:"الر · verses perfected then detailed · worship none but God · the two who are not equal"},
+    {id:"N1",v:[25,49],role:"narrative_1",label:"Noah (25v): clear warner · ark built · every pair · flood"},
+    {id:"N2",v:[50,60],role:"narrative_2",label:"Hūd / ʿĀd: no creature but He holds its forelock"},
+    {id:"D",v:[61,83],role:"pivot",label:"PIVOT — Ṣāliḥ / Thamūd / Abraham's guests / Lot · pivot of the six-nation cycle"},
+    {id:"N3",v:[84,99],role:"narrative_3",label:"Shuʿayb / Madyan: give full measure · do not corrupt the land"},
+    {id:"A′",v:[100,123],role:"frame",label:"Wretched and blessed · be steadfast · God misses nothing"},
+  ],
+  12: [
+    {id:"A",v:[1,7],role:"frame",label:"الر · the best of narratives · Joseph's dream: eleven stars and sun and moon"},
+    {id:"B",v:[8,18],role:"body",label:"Brothers' plot · thrown in the well · shirt with false blood"},
+    {id:"C",v:[19,35],role:"body",label:"Sold for few dirhams · Potiphar's wife · beautiful patience"},
+    {id:"D",v:[36,57],role:"pivot",label:"PIVOT — prison companions' dreams · king's dream · Joseph's exoneration"},
+    {id:"C′",v:[58,82],role:"body",label:"Brothers arrive in Egypt · Joseph recognizes, they do not · Benjamin kept"},
+    {id:"B′",v:[83,98],role:"body",label:"Beautiful patience again · Jacob's grief · scent of the shirt"},
+    {id:"A′",v:[99,111],role:"frame",label:"Parents prostrate · this is the interpretation of my dream · best of stories confirmed"},
+  ],
+  13: [
+    {id:"A",v:[1,7],role:"frame",label:"المر · revealed truth · God created in six days · the unseen known to Him"},
+    {id:"B",v:[8,18],role:"body",label:"God knows what every female carries · everything by measure · foam vanishes"},
+    {id:"C",v:[19,29],role:"pivot",label:"PIVOT — one who knows vs. the blind · hearts find rest in God's remembrance"},
+    {id:"B′",v:[30,37],role:"body",label:"Sent among a community before whom communities have passed · al-Raḥmān"},
+    {id:"A′",v:[38,43],role:"frame",label:"Messengers before you had wives · the Book that wipes and confirms"},
+  ],
+  14: [
+    {id:"A",v:[1,12],role:"frame",label:"الر · from darknesses to light · Moses brought the same message to his people"},
+    {id:"B",v:[13,20],role:"body",label:"Drive you out · Lord will destroy the wrongdoers and replace them"},
+    {id:"C",v:[21,27],role:"pivot",label:"PIVOT — on the Day all disavow each other · the firm word stands"},
+    {id:"B′",v:[28,34],role:"body",label:"Exchanged God's favor for disbelief · home of ruin · cannot enumerate favors"},
+    {id:"A′",v:[35,52],role:"frame",label:"Abraham's prayers: secure city · gratitude / ingratitude · Day of reckoning"},
+  ],
+  15: [
+    {id:"A",v:[1,25],role:"frame",label:"الر · clear Quran · disbelievers wish they had submitted · created from clay"},
+    {id:"B",v:[26,44],role:"body",label:"Iblīs: from dried clay · prostrate to Adam · refused · the cursed one"},
+    {id:"C",v:[45,50],role:"pivot",label:"PIVOT — the righteous in gardens and springs · My mercy encompasses all things"},
+    {id:"B′",v:[51,84],role:"body",label:"Abraham's guests · Lot · Thamūd and the Ḥijr people destroyed"},
+    {id:"A′",v:[85,99],role:"frame",label:"Created with truth · the seven oft-repeated · do not grieve"},
+  ],
+  16: [
+    {id:"A",v:[1,25],role:"frame",label:"God's command has come · sent angels with the spirit · cattle made for you"},
+    {id:"B",v:[26,50],role:"body",label:"Day: partners disavow · prostrates what is in heavens and earth"},
+    {id:"C",v:[51,60],role:"body",label:"One God · all that is in night and day belongs to Him"},
+    {id:"D",v:[61,70],role:"pivot",label:"PIVOT — if God punished for wrongdoing, no creature would remain · the bee"},
+    {id:"C′",v:[71,83],role:"body",label:"God gave you mates · provision differences · favor exchanged for disbelief"},
+    {id:"B′",v:[84,100],role:"body",label:"Day: witness from every nation · Muhammad as witness over them"},
+    {id:"A′",v:[101,128],role:"frame",label:"Verse substitution attacked · tongue of the one they point to is foreign"},
+  ],
+  17: [
+    {id:"A",v:[1,21],role:"frame",label:"Night Journey · Children of Israel warned twice · this Quran guides to what is right"},
+    {id:"B",v:[22,39],role:"body",label:"Wisdom decalogue: worship none but God · parents · relatives · do not kill"},
+    {id:"C",v:[40,44],role:"body",label:"Daughters for God? · seven heavens and earth and all in them glorify Him"},
+    {id:"D",v:[45,52],role:"pivot",label:"PIVOT — when you recite the Quran, a veil between you and those who do not believe"},
+    {id:"C′",v:[53,60],role:"body",label:"Say what is best · signs withheld · the cursed tree"},
+    {id:"B′",v:[61,77],role:"body",label:"Iblīs: prostrate to Adam · refused · I will incite · My servants protected"},
+    {id:"A′",v:[78,111],role:"frame",label:"Prayer times · night prayer · glorify and praise · spirit is from my Lord's command"},
+  ],
+  18: [
+    {id:"A",v:[1,8],role:"frame",label:"Praise God · Book on His servant · no crookedness · earth's adornment = test"},
+    {id:"N1",v:[9,26],role:"narrative_1",label:"Cave Sleepers (Faith / Time): youths → cave → 309 years · إِنْ شَاءَ اللَّهُ command"},
+    {id:"T1",v:[27,31],role:"transition_1",label:"Be patient with those calling their Lord · truth is from your Lord"},
+    {id:"N2",v:[32,44],role:"narrative_2",label:"Two Gardens (Wealth): rich man's pride · why not say مَا شَاءَ اللَّهُ · garden destroyed"},
+    {id:"T2",v:[45,53],role:"transition_2",label:"World like rain: vegetation rises then scattered · wealth and children = adornment of this life"},
+    {id:"D",v:[54,54],role:"pivot",label:"PIVOT — We have diversified in this Quran every kind of example · man is most argumentative"},
+    {id:"T3",v:[55,59],role:"transition_3",label:"Nothing prevents belief except the precedent of the ancients · God is forgiving"},
+    {id:"N3",v:[60,82],role:"narrative_3",label:"Moses + Khiḍr (Knowledge): junction of two seas · three acts · three explanations of hidden mercy"},
+    {id:"N4",v:[83,98],role:"narrative_4",label:"Dhul-Qarnayn (Power / Space): West → East → Yaʾjūj and Maʾjūj · iron dam · this is my Lord's mercy"},
+    {id:"A′",v:[99,110],role:"frame",label:"Eyes covered from remembrance · greatest losers: effort lost · sea as ink exhausted · I am human"},
+  ],
+  19: [
+    {id:"A",v:[1,15],role:"frame",label:"كهيعص · Zachariah's prayer · John given wisdom and purity as a child"},
+    {id:"B",v:[16,40],role:"body",label:"Mary withdrew east · spirit appeared as a man · pure boy · tree trunk"},
+    {id:"C",v:[41,50],role:"body",label:"Abraham the truthful prophet · father's rebuke rejected gently"},
+    {id:"D",v:[51,58],role:"pivot",label:"PIVOT — Moses called from the right side of the mountain · prophetic chain"},
+    {id:"C′",v:[59,65],role:"body",label:"Successors neglected prayer and followed desires · all pass through Hell"},
+    {id:"B′",v:[66,82],role:"body",label:"Man: when I die will I be raised? · all enter Hell · then saved are those who feared"},
+    {id:"A′",v:[83,98],role:"frame",label:"The righteous delegated to al-Raḥmān · it is not for God to take a son"},
+  ],
+  20: [
+    {id:"A",v:[1,8],role:"frame",label:"Ṭā Hā · not revealed to cause you distress · nine names of God"},
+    {id:"B",v:[9,76],role:"body",label:"Moses Part I: fire → I am your Lord → sandals → no god but Me → staff/hand → Pharaoh"},
+    {id:"C",v:[77,82],role:"body",label:"Strike the sea · Israel delivered from the enemy · do not fear"},
+    {id:"D",v:[83,98],role:"pivot",label:"PIVOT — What made you hasten from your people? · the Golden Calf · Aaron's warning ignored"},
+    {id:"C′",v:[99,112],role:"body",label:"Day of Judgment: Horn blown · faces humbled before the Living"},
+    {id:"B′",v:[113,123],role:"body",label:"Arabic Quran · we made covenant with Adam but he forgot · Satan as enemy"},
+    {id:"A′",v:[124,135],role:"frame",label:"Whoever turns from My remembrance → constricted life · raise me with the righteous"},
+  ],
+  21: [
+    {id:"A",v:[1,29],role:"frame",label:"Their reckoning has drawn near · we have not sent you except as mercy to the worlds"},
+    {id:"B",v:[30,47],role:"body",label:"Heavens and earth were one mass then split · We made water every living thing"},
+    {id:"C",v:[48,50],role:"body",label:"Moses and Aaron given the Criterion · this Quran is a blessed reminder"},
+    {id:"D",v:[51,73],role:"pivot",label:"PIVOT — Abraham smashes the idols · We saved him from the fire · it became cool"},
+    {id:"C′",v:[74,91],role:"body",label:"Lot · Noah · David/Solomon · Job · Ishmael/Idrees · Dhul-Kifl · Dhul-Nūn"},
+    {id:"B′",v:[92,103],role:"body",label:"This community of yours is one · We are writing · this Day they will not be wronged"},
+    {id:"A′",v:[104,112],role:"frame",label:"Fold the sky like a scroll · as We began creation, We repeat it"},
+  ],
+  22: [
+    {id:"A",v:[1,17],role:"frame",label:"O Mankind ①②: earthquake of the Hour · every nursing mother will be distracted"},
+    {id:"B",v:[18,24],role:"body",label:"Everything prostrates: heavens / earth / sun / moon / stars / mountains / trees"},
+    {id:"C",v:[25,37],role:"body",label:"Ḥajj legislation: Abraham designated the House · the animal sacrifice"},
+    {id:"D",v:[38,41],role:"pivot",label:"PIVOT — God defends those who believe · piety, not blood or meat, reaches God"},
+    {id:"C′",v:[42,48],role:"body",label:"Nations who denied before you · how many cities I respited then seized"},
+    {id:"B′",v:[49,62],role:"body",label:"O Mankind ③: only a clear warner · God is the Truth"},
+    {id:"A′",v:[63,78],role:"frame",label:"O Mankind ④: the fly parable · strive for God as He deserves"},
+  ],
+  23: [
+    {id:"A",v:[1,22],role:"frame",label:"Believers have succeeded · in prayer / turning away from vanity / giving zakāh · created from clay"},
+    {id:"B",v:[23,50],role:"body",label:"Noah: just a man wanting precedence · ship carried them · Mary and her son"},
+    {id:"C",v:[51,56],role:"body",label:"O messengers: eat of the good things · your community is one community"},
+    {id:"D",v:[57,61],role:"pivot",label:"PIVOT — those who give what they give while their hearts are fearful · they hasten to good"},
+    {id:"C′",v:[62,77],role:"body",label:"We do not burden a soul beyond its capacity · the record speaks truth"},
+    {id:"B′",v:[78,100],role:"body",label:"Hearing / sight / hearts given · little gratitude · behind them is a barrier"},
+    {id:"A′",v:[101,118],role:"frame",label:"Heavy scales · light scales · Garden of Firdaws their home · they have succeeded"},
+  ],
+  24: [
+    {id:"A",v:[1,10],role:"frame",label:"A surah We have sent down and made obligatory · the flogging legislation"},
+    {id:"B",v:[11,26],role:"body",label:"The slander: had God's grace not been upon you · the innocent are declared pure"},
+    {id:"C",v:[27,34],role:"body",label:"Do not enter houses without permission · the chaste woman guarded"},
+    {id:"D",v:[35,40],role:"pivot",label:"PIVOT — God is the Light of the heavens and earth · light upon light · those of darkness"},
+    {id:"C′",v:[41,46],role:"body",label:"Everything glorifies God · birds with wings spread · God created from water"},
+    {id:"B′",v:[47,57],role:"body",label:"We obey · then a party turns away · disease in their hearts"},
+    {id:"A′",v:[58,64],role:"frame",label:"Permission at three times · lower your gaze · God knows what you conceal"},
+  ],
+  25: [
+    {id:"A",v:[1,10],role:"frame",label:"Blessed is He who sent down the Criterion upon His servant · warner to the worlds"},
+    {id:"B",v:[11,20],role:"body",label:"Hour denied · they see the blaze · every wrongdoer will bite his hands"},
+    {id:"C",v:[21,34],role:"body",label:"Why were no angels sent? · arrogant · companions of the garden that day"},
+    {id:"D",v:[35,44],role:"pivot",label:"PIVOT — We sent Moses with brother Aaron · those who have taken their desire as god"},
+    {id:"C′",v:[45,60],role:"body",label:"Your Lord's shadow extends · signs of creation · blessed is He who placed constellations"},
+    {id:"B′",v:[61,71],role:"body",label:"Servants of al-Raḥmān: walk humbly · do not kill · do not commit immorality"},
+    {id:"A′",v:[72,77],role:"frame",label:"Do not witness falsehood · when reminded do not fall deaf and blind"},
+  ],
+  26: [
+    {id:"A",v:[1,9],role:"frame",label:"Ṭā Sīn Mīm · verses of the clear Book · perhaps you will destroy yourself with grief"},
+    {id:"N1",v:[10,68],role:"narrative_1",label:"Moses / Pharaoh (59v): called · signs · magicians prostrate · the sea crossing"},
+    {id:"N2",v:[69,104],role:"narrative_2",label:"Abraham (36v): what do you worship? · I am free of what you worship"},
+    {id:"N3",v:[105,122],role:"pivot",label:"PIVOT — Noah's people denied · the faithful messenger template begins"},
+    {id:"N4",v:[123,140],role:"narrative_4",label:"Hūd / ʿĀd (18v): the faithful messenger template repeats"},
+    {id:"N5",v:[141,159],role:"narrative_5",label:"Ṣāliḥ / Thamūd (19v): the faithful messenger template repeats"},
+    {id:"N6",v:[160,175],role:"narrative_6",label:"Lot (16v): the faithful messenger template repeats"},
+    {id:"N7",v:[176,191],role:"narrative_7",label:"Shuʿayb / People of the Thicket (16v): the faithful messenger template repeats"},
+    {id:"A′",v:[192,227],role:"frame",label:"Revealed by the Lord of the Worlds · in the clear Arabic tongue · the poets follow every valley"},
+  ],
+  27: [
+    {id:"A",v:[1,6],role:"frame",label:"Ṭā Sīn · verses of the Quran and a clear Book · guidance for believers"},
+    {id:"B",v:[7,14],role:"body",label:"Moses: fire · I am God, the Mighty, the Wise · hand white · nine signs to Pharaoh"},
+    {id:"C",v:[15,44],role:"body",label:"David and Solomon: praise God · Solomon's army of jinn/men/birds · Bilqīs and the throne"},
+    {id:"D",v:[45,58],role:"pivot",label:"PIVOT — Ṣāliḥ / Thamūd · Lot and the people of wickedness · wisdom rejected"},
+    {id:"B′",v:[59,75],role:"body",label:"Say: praise God and peace upon His servants · who created? five divine proofs"},
+    {id:"A′",v:[76,93],role:"frame",label:"This Quran relates to the Children of Israel most of what they differ over"},
+  ],
+  28: [
+    {id:"A",v:[1,6],role:"frame",label:"Ṭā Sīn Mīm · verses of the clear Book · We recite to you the news of Moses in truth"},
+    {id:"B",v:[7,21],role:"body",label:"Inspired Moses' mother: cast him in the river · Pharaoh's household took him"},
+    {id:"C",v:[22,28],role:"body",label:"Moses directed toward Madyan · the two daughters · ten-year contract"},
+    {id:"D",v:[29,35],role:"pivot",label:"NARRATIVE PIVOT — Moses sees the fire · I am God · your Lord's command"},
+    {id:"C′",v:[36,43],role:"body",label:"Moses came with Our signs · Pharaoh: I thought you bewitched · We gave the Book to Moses"},
+    {id:"B′",v:[44,55],role:"body",label:"You were not on the western side · We sent mercy from your Lord · those given the Book before"},
+    {id:"A′",v:[56,88],role:"frame",label:"The forbidden sanctuary · Qārūn's destruction · do not call upon another god"},
+  ],
+  29: [
+    {id:"A",v:[1,13],role:"frame",label:"الم · do people think they will say we believe without being tested?"},
+    {id:"B",v:[14,27],role:"body",label:"Noah: 950 years · the flood · Abraham and his people"},
+    {id:"C",v:[28,35],role:"body",label:"Lot: immorality unprecedented in the worlds · destroyed"},
+    {id:"D",v:[36,44],role:"pivot",label:"PIVOT — Shuʿayb / Midian · spider web: the most frail of houses · God knows what they make"},
+    {id:"C′",v:[45,51],role:"body",label:"Recite the Book · prayer forbids immorality · the Quran is sufficient as a sign"},
+    {id:"B′",v:[52,63],role:"body",label:"God sufficient as witness · this life is nothing but play and amusement"},
+    {id:"A′",v:[64,69],role:"frame",label:"Those who strive for Us — We will guide them our ways · God with the doers of good"},
+  ],
+  30: [
+    {id:"A",v:[1,10],role:"frame",label:"الم · Byzantines defeated · in a few years they will overcome · God's promise · disbelievers unaware"},
+    {id:"B",v:[11,20],role:"body",label:"God begins and repeats creation · created you from dust · then from a clinging clot"},
+    {id:"C",v:[21,27],role:"body",label:"Among His signs: mates · love and mercy · colors · sleep · lightning"},
+    {id:"D",v:[28,32],role:"pivot",label:"PIVOT — parable of a slave shared among partners vs. one master · the primordial nature"},
+    {id:"C′",v:[33,40],role:"body",label:"When adversity touches people they call their Lord · then when He gives mercy they associate"},
+    {id:"B′",v:[41,53],role:"body",label:"Corruption has appeared in land and sea · God's promise true · We sent messengers"},
+    {id:"A′",v:[54,60],role:"frame",label:"Hour: criminals will swear they waited only an hour · be patient · God's promise true"},
+  ],
+  31: [
+    {id:"A",v:[1,11],role:"frame",label:"الم · verses of the wise Book · guidance and mercy for the doers of good"},
+    {id:"B",v:[12,15],role:"body",label:"Luqmān given wisdom · be grateful to God · parents' right even if they pressure to shirk"},
+    {id:"D",v:[16,19],role:"pivot",label:"PIVOT — Luqmān's counsel: O my son · prayer · command good · forbid evil · walk modestly"},
+    {id:"B′",v:[20,24],role:"body",label:"God subjected for you all in heavens and earth · lavished favors · some dispute about God"},
+    {id:"A′",v:[25,34],role:"frame",label:"If all trees were pens and the sea ink: God's words would not be exhausted · hour's knowledge"},
+  ],
+  32: [
+    {id:"A",v:[1,9],role:"frame",label:"الم · sending down of the Book · no doubt · God created heavens and earth in six days"},
+    {id:"B",v:[10,14],role:"body",label:"Will we really be in a new creation? · they see Hell · wish we could go back"},
+    {id:"D",v:[15,17],role:"pivot",label:"PIVOT — those who believe in Our signs: they fall prostrate · they glorify · they are not arrogant"},
+    {id:"B′",v:[18,22],role:"body",label:"One who believes not like one who disobeys · the Gardens of refuge for them"},
+    {id:"A′",v:[23,30],role:"frame",label:"We gave Moses the Book · is one who believes like one who disobeys? · ask them: when does the victory come?"},
+  ],
+  33: [
+    {id:"A",v:[1,8],role:"frame",label:"O Prophet ①: fear God · do not obey disbelievers or hypocrites · the covenant of the prophets"},
+    {id:"B",v:[9,27],role:"body",label:"Battle of the Trench: armies came · winds · God's forces · hypocrites exposed"},
+    {id:"C",v:[28,34],role:"body",label:"Wives' choice: this life or God and His Messenger · obey God and His Messenger"},
+    {id:"D",v:[35,40],role:"pivot",label:"PIVOT — Muslim men and women · God has prepared forgiveness and a great reward · Seal of the Prophets"},
+    {id:"C′",v:[41,48],role:"body",label:"Remember God much · glorify Him · He and His angels send blessings upon the Prophet"},
+    {id:"B′",v:[49,62],role:"body",label:"Divorce before consummation · Prophet's special provisions · veil behind a screen"},
+    {id:"A′",v:[63,73],role:"frame",label:"Hour with God · We offered the Trust to heavens and earth · the hypocrites will be punished"},
+  ],
+  34: [
+    {id:"A",v:[1,9],role:"frame",label:"Praise God · to Him belongs what is in heavens and earth · the All-Wise the All-Aware"},
+    {id:"B",v:[10,21],role:"body",label:"David: mountains and birds echoed · Solomon: wind and jinn · Sabaʾ: two gardens"},
+    {id:"C",v:[22,27],role:"body",label:"Say ×5: invoke your partners · do not own an atom · intercession only by permission"},
+    {id:"D",v:[28,30],role:"pivot",label:"PIVOT — We sent you only as a giver of good news and a warner to all mankind"},
+    {id:"C′",v:[31,42],role:"body",label:"We will not believe in this Quran · wrongdoers will wish they had not associated"},
+    {id:"B′",v:[43,50],role:"body",label:"Signs recited upon them · they say: this is only fabricated magic · sent as warner"},
+    {id:"A′",v:[51,54],role:"frame",label:"If you could see when they are terrified · no escape · seized from close by"},
+  ],
+  35: [
+    {id:"A",v:[1,8],role:"frame",label:"Praise God, Creator of the heavens and earth · Maker of the angels · God increases in creation"},
+    {id:"B",v:[9,14],role:"body",label:"Winds drive the clouds · dead land brought to life · from water every living thing"},
+    {id:"C",v:[15,18],role:"body",label:"O Mankind: you are the needy before God · God is the Rich, the Praised"},
+    {id:"D",v:[19,22],role:"pivot",label:"PIVOT — the blind and the seeing are not equal · the living and the dead are not equal"},
+    {id:"C′",v:[23,26],role:"body",label:"Sent only as a giver of good news and a warner · every community has had a warner"},
+    {id:"B′",v:[27,38],role:"body",label:"Rain then varied fruits · those who recite God's Book and establish prayer"},
+    {id:"A′",v:[39,45],role:"frame",label:"You are vicegerents on earth · disbelief upon disbeliever only · God holds the heavens"},
+  ],
+  36: [
+    {id:"A",v:[1,12],role:"frame",label:"Yā Sīn · by the wise Quran · you are among the messengers · We record what they send ahead"},
+    {id:"B",v:[13,32],role:"body",label:"Parable of the town: two messengers + third · the man running from the city"},
+    {id:"C",v:[33,44],role:"body",label:"Three signs: dead earth → grain / night → day / ark carrying their descendants"},
+    {id:"D",v:[45,47],role:"pivot",label:"PIVOT — when told: fear what is before and after you · signs come but they turn away · refusal to spend"},
+    {id:"C′",v:[48,54],role:"body",label:"When is this promise? · a single blast · they come out of their graves toward their Lord"},
+    {id:"B′",v:[55,68],role:"body",label:"Companions of Paradise · spouses · fruits · peace"},
+    {id:"A′",v:[69,83],role:"frame",label:"Not taught poetry · this is only a reminder · to Him who has the dominion of all things"},
+  ],
+  37: [
+    {id:"A",v:[1,10],role:"frame",label:"Oath × 3: those who line up in rows / those who drive / those who recite"},
+    {id:"B",v:[11,40],role:"body",label:"Were they harder to create? · clay · those who obeyed God: Gardens of delight"},
+    {id:"C",v:[41,74],role:"body",label:"Paradise: fruits / wine / women · they will look down at Hell · greeting: peace upon you"},
+    {id:"D",v:[75,113],role:"pivot",label:"PIVOT — Noah called Us · Abraham most balanced flanks in corpus · the sacrifice of the son"},
+    {id:"C′",v:[114,148],role:"body",label:"Moses and Aaron · Elias · Lot · Jonah swallowed by the whale"},
+    {id:"B′",v:[149,170],role:"body",label:"Daughters for God and sons for you? · they will know · our servants the messengers will win"},
+    {id:"A′",v:[171,182],role:"frame",label:"Our word has preceded for Our messenger-servants: they will be the victors"},
+  ],
+  38: [
+    {id:"A",v:[1,16],role:"frame",label:"Ṣād · by the Quran of remembrance · the disbelievers are in false pride and opposition"},
+    {id:"B",v:[17,29],role:"body",label:"Be patient · remember David, the returnee · mountains and birds echoed his glorification"},
+    {id:"C",v:[30,40],role:"body",label:"Solomon: excellent the servant, the returnee · horses · wind · copper spring"},
+    {id:"D",v:[41,44],role:"pivot",label:"PIVOT — Job: adversity touched me · We responded · stamp with your foot · this is a cool washing"},
+    {id:"C′",v:[45,48],role:"body",label:"Abraham / Isaac / Jacob: people of strength and vision · Ishmael / Elisha / Dhul-Kifl"},
+    {id:"B′",v:[49,64],role:"body",label:"This is a reminder · for the righteous: Gardens · for the transgressors: a terrible return"},
+    {id:"A′",v:[65,88],role:"frame",label:"Say: I am only a warner · Iblīs: you honored him over me · I will mislead them all"},
+  ],
+  39: [
+    {id:"A",v:[1,8],role:"frame",label:"Sending down of the Book from God, the Mighty, the Wise · worship God in sincere devotion"},
+    {id:"B",v:[9,18],role:"body",label:"The night worshipper vs. the ignorant · those given knowledge · obey their Lord"},
+    {id:"C",v:[19,35],role:"body",label:"Is one for whom the decree of punishment has been justified · those who fear God"},
+    {id:"D",v:[36,40],role:"pivot",label:"PIVOT — Is God not sufficient for His servant? · if you associate, your deed will come to nothing"},
+    {id:"C′",v:[41,52],role:"body",label:"We sent down the Book in truth for people · those who do wrong will know"},
+    {id:"B′",v:[53,66],role:"body",label:"O My servants who have transgressed · do not despair of God's mercy · return to your Lord"},
+    {id:"A′",v:[67,75],role:"frame",label:"They have not appraised God His true appraisal · the earth entirely in His grip · the angels glorify"},
+  ],
+  40: [
+    {id:"A",v:[1,9],role:"frame",label:"Ḥā Mīm · sending down from God · forgiver of sin · those who carry the Throne glorify God"},
+    {id:"B",v:[10,22],role:"body",label:"Disbelievers in Hell: God's hatred of you is greater than your hatred of yourselves"},
+    {id:"C",v:[23,27],role:"body",label:"Moses sent with signs to Pharaoh / Hāmān / Qārūn · I take refuge in my Lord"},
+    {id:"D",v:[28,44],role:"pivot",label:"PIVOT — the believing man from Pharaoh's family defends Moses · follow me I will guide you"},
+    {id:"C′",v:[45,50],role:"body",label:"God protected him from the evils of what they plotted · Hell presented to Pharaoh's people"},
+    {id:"B′",v:[51,68],role:"body",label:"We will support Our messengers in this life and on the Day · God turns hearts"},
+    {id:"A′",v:[69,85],role:"frame",label:"Have you not seen those who dispute about God's signs? · how they will be turned away"},
+  ],
+  41: [
+    {id:"A",v:[1,8],role:"frame",label:"Ḥā Mīm · sending down from the Most Merciful, Most Compassionate"},
+    {id:"B",v:[9,18],role:"body",label:"Created the earth in two days · mountains / sustenance in four days · seven heavens in two days"},
+    {id:"C",v:[19,25],role:"body",label:"Day when God's enemies are gathered to the Fire · their hearing and sight testify against them"},
+    {id:"D",v:[26,29],role:"pivot",label:"PIVOT — do not listen to this Quran · We made companions for them to lead them astray"},
+    {id:"C′",v:[30,36],role:"body",label:"Those who say our Lord is God then are upright · angels descend: do not fear"},
+    {id:"B′",v:[37,46],role:"body",label:"Among His signs: night and day / sun and moon · prostrate to God who created them"},
+    {id:"A′",v:[47,54],role:"frame",label:"Knowledge of the Hour is with Him · no fruit emerges except by His knowledge"},
+  ],
+  42: [
+    {id:"A",v:[1,9],role:"frame",label:"Ḥā Mīm · ʿAyn Sīn Qāf · God the Mighty, the Wise reveals to you and those before you"},
+    {id:"B",v:[10,18],role:"body",label:"God judges all disagreements · the disbelievers who dispute about God"},
+    {id:"C",v:[19,26],role:"body",label:"God kind to His servants · who desires harvest of the Hereafter / this world"},
+    {id:"D",v:[27,29],role:"pivot",label:"PIVOT — if God extended provision to all His servants they would transgress · He sends rain"},
+    {id:"C′",v:[30,35],role:"body",label:"Whatever disaster befalls you is by what your hands have earned"},
+    {id:"B′",v:[36,46],role:"body",label:"What you have is an enjoyment of this life · what God has is better"},
+    {id:"A′",v:[47,53],role:"frame",label:"Respond to your Lord before a day comes with no turning back from God"},
+  ],
+  43: [
+    {id:"A",v:[1,14],role:"frame",label:"Ḥā Mīm · by the clear Book · We made it an Arabic Quran · it is with Us · Mother of the Book"},
+    {id:"B",v:[15,25],role:"body",label:"Idol polemic: daughters attributed · ask your fathers · the custom of the ancestors"},
+    {id:"C",v:[26,44],role:"body",label:"Abraham disavociates · worship of God made a lasting word among his descendants"},
+    {id:"D",v:[45,45],role:"pivot",label:"PIVOT — Ask those of Our messengers We sent before you: did We appoint gods besides al-Raḥmān?"},
+    {id:"C′",v:[46,65],role:"body",label:"Moses sent to Pharaoh · Pharaoh boasts rivers of Egypt · Jesus and the clear proofs"},
+    {id:"B′",v:[66,78],role:"body",label:"Are they waiting for the Hour? · it will come upon them suddenly · friends become enemies"},
+    {id:"A′",v:[79,89],role:"frame",label:"Have they contrived an affair? We are contriving · say: if al-Raḥmān had a son I would worship first"},
+  ],
+  44: [
+    {id:"A",v:[1,8],role:"frame",label:"Ḥā Mīm · by the clear Book · revealed on a blessed night · every precise matter decided"},
+    {id:"B",v:[9,16],role:"body",label:"In doubt, at play · the day the sky brings a visible smoke · taste the punishment"},
+    {id:"C",v:[17,29],role:"body",label:"Pharaoh's people tested: a noble messenger came · Moses' signs rejected · drowned"},
+    {id:"D",v:[30,33],role:"pivot",label:"PIVOT — We delivered the Children of Israel from the humiliating punishment · chosen over the worlds"},
+    {id:"C′",v:[34,42],role:"body",label:"Quraysh deny resurrection · if it could be averted from anyone it would have been averted from them"},
+    {id:"B′",v:[43,50],role:"body",label:"The Zaqqūm tree: food for the sinful · boiling water · taste the mighty punishment"},
+    {id:"A′",v:[51,59],role:"frame",label:"The righteous in a secure place · gardens and springs · wed to fair ones · they call for every fruit"},
+  ],
+  45: [
+    {id:"A",v:[1,6],role:"frame",label:"Ḥā Mīm · sending down from God the Mighty, the Wise · signs in the heavens and earth"},
+    {id:"B",v:[7,11],role:"body",label:"Woe to every sinful liar · behind them is Hell · little is the benefit"},
+    {id:"C",v:[12,15],role:"body",label:"God subjected the sea for you · signs for all who are patient, grateful"},
+    {id:"D",v:[16,20],role:"pivot",label:"PIVOT — We gave the Children of Israel the Book · then We placed you on a clear path"},
+    {id:"C′",v:[21,26],role:"body",label:"Do evildoers equal believers in life and death? · every soul will be fully repaid"},
+    {id:"B′",v:[27,35],role:"body",label:"To God belongs the dominion of the heavens and earth · the Day the Hour is established"},
+    {id:"A′",v:[36,37],role:"frame",label:"To God belongs all praise · Lord of the heavens and the Lord of the earth · Lord of all worlds"},
+  ],
+  46: [
+    {id:"A",v:[1,6],role:"frame",label:"Ḥā Mīm · God the Mighty, the Wise created the heavens and earth with truth"},
+    {id:"B",v:[7,12],role:"body",label:"When clear signs recited · this is clear magic · before it the Book of Moses as guide"},
+    {id:"C",v:[13,16],role:"body",label:"Those who say our Lord is God and remain upright · their good deeds accepted"},
+    {id:"D",v:[17,19],role:"pivot",label:"PIVOT — one who says to parents: ugh to you! Will I be raised? · do not grieve"},
+    {id:"C′",v:[20,25],role:"body",label:"Day: the pleasures you exhausted in your worldly life · a devastating wind sent to ʿĀd"},
+    {id:"B′",v:[26,32],role:"body",label:"Given hearing / sight / hearts · those faculties availed nothing · jinn listened to the Quran"},
+    {id:"A′",v:[33,35],role:"frame",label:"God created the heavens and earth without failing · able to give life to the dead"},
+  ],
+  47: [
+    {id:"A",v:[1,6],role:"frame",label:"Disbelievers' deeds are wasted · believers' misdeeds removed · He will rectify their condition"},
+    {id:"B",v:[7,11],role:"body",label:"O believers: if you support God He will support you · God protects believers"},
+    {id:"C",v:[12,15],role:"body",label:"Gardens vs. Fire · rivers of water / milk / wine / honey · boiling water"},
+    {id:"D",v:[16,19],role:"pivot",label:"PIVOT — some listen then ask those given knowledge: what did he say? · know there is no god but God"},
+    {id:"C′",v:[20,24],role:"body",label:"Believers asked: if only a surah were sent down · do they not reflect on the Quran?"},
+    {id:"B′",v:[25,31],role:"body",label:"Those who turned back after guidance · Satan enticed them · We will test you"},
+    {id:"A′",v:[32,38],role:"frame",label:"Deeds wasted · if you turn away He will replace you with another people · He will not be like you"},
+  ],
+  48: [
+    {id:"A",v:[1,3],role:"frame",label:"We have given you a clear conquest · God may forgive your past and future · a mighty victory"},
+    {id:"B",v:[4,7],role:"body",label:"Tranquility sent into believers' hearts · forces of heavens and earth · paradise and hell binary"},
+    {id:"C",v:[8,10],role:"body",label:"Prophet sent as witness / bearer of glad tidings / warner · the pledge is pledging God"},
+    {id:"D",v:[11,17],role:"pivot",label:"PIVOT — the Bedouins who stayed behind · God's army against those who oppose Him"},
+    {id:"C′",v:[18,21],role:"body",label:"God pleased at the pledge under the tree · tranquility sent down · near conquest given"},
+    {id:"B′",v:[22,26],role:"body",label:"If disbelievers had fought · they would have found no ally · God's custom unchanged"},
+    {id:"A′",v:[27,29],role:"frame",label:"Vision fulfilled · a near conquest · Muḥammad the Messenger · their mark on their faces"},
+  ],
+  49: [
+    {id:"A",v:[1,5],role:"frame",label:"O believers: do not precede God and His Messenger · lower your voices · those behind walls"},
+    {id:"B",v:[6,8],role:"body",label:"If a fāsiq brings news, verify it · God made faith dear to you and made disbelief hateful"},
+    {id:"C",v:[9,10],role:"pivot",label:"PIVOT — if two groups of believers fight: make peace · believers are brothers · make peace"},
+    {id:"B′",v:[11,12],role:"body",label:"Do not mock others · do not insult · do not spy · do not backbite · fear God"},
+    {id:"A′",v:[13,18],role:"frame",label:"O Mankind: We created you from male and female · most noble is most righteous"},
+  ],
+  50: [
+    {id:"A",v:[1,5],role:"frame",label:"Qāf · by the glorious Quran · they were amazed that a warner came from among them"},
+    {id:"B",v:[6,11],role:"body",label:"Heaven / earth / rain / gardens / grain · dead land revived: likewise the resurrection"},
+    {id:"C",v:[12,14],role:"body",label:"Eight destroyed nations in three verses: Noah / the Rass / Thamūd / ʿĀd / Pharaoh / Lot / thicket / Tubbaʿ"},
+    {id:"D",v:[15,29],role:"pivot",label:"PIVOT — were We unable from the first creation? · the two angels record · death's stupor"},
+    {id:"C′",v:[30,37],role:"body",label:"Hell asked: are you full? · Paradise brought near · a reminder for anyone who has a heart"},
+    {id:"B′",v:[38,40],role:"body",label:"We created heavens and earth in six days without weariness · be patient · glorify"},
+    {id:"A′",v:[41,45],role:"frame",label:"Listen for the Day · the earth will split from them quickly · We know what they say"},
+  ],
+  51: [
+    {id:"A",v:[1,6],role:"frame",label:"Four cosmic oaths · the promise is true · the judgment will occur"},
+    {id:"B",v:[7,14],role:"body",label:"Second oath by the heaven · deniers in differing speech · taste your trial"},
+    {id:"C",v:[15,23],role:"body",label:"Righteous in gardens · night prayer · dawn seeking forgiveness · signs in earth and selves"},
+    {id:"D",v:[24,37],role:"pivot",label:"PIVOT — Abraham's noble guests · they brought a fattened calf · Lot's people destroyed"},
+    {id:"C′",v:[38,49],role:"body",label:"Signs in Moses / Pharaoh / ʿĀd / Thamūd / Noah · We created everything in pairs"},
+    {id:"B′",v:[50,55],role:"body",label:"Flee to God · I am a clear warner to you from Him · remind: the reminder benefits believers"},
+    {id:"A′",v:[56,60],role:"frame",label:"Created jinn and humans only to worship Me · I am the Provider, the Powerful"},
+  ],
+  52: [
+    {id:"A",v:[1,8],role:"frame",label:"Five cosmic oaths · the punishment will occur · the sky swaying · mountains passing"},
+    {id:"B",v:[9,16],role:"body",label:"Day the sky sways in motion · taste: you are not wronged · this is what you used to deny"},
+    {id:"C",v:[17,24],role:"body",label:"Righteous in gardens and bliss · God removed torment from them · they will be served"},
+    {id:"D",v:[25,28],role:"pivot",label:"PIVOT — they will turn to one another · we used to be anxious · God was gracious to us"},
+    {id:"C′",v:[29,34],role:"body",label:"Remind: by your Lord's grace you are not a soothsayer or a madman"},
+    {id:"B′",v:[35,43],role:"body",label:"Were they created from nothing or were they the creators? · the 15-question am-chain"},
+    {id:"A′",v:[44,49],role:"frame",label:"If they see a piece of sky falling · be patient for your Lord's judgment"},
+  ],
+  53: [
+    {id:"A",v:[1,18],role:"frame",label:"By the star · your companion has not strayed · two visions of the descent"},
+    {id:"B",v:[19,25],role:"body",label:"Have you seen al-Lāt and al-ʿUzzā? · you have only names you named"},
+    {id:"C",v:[26,28],role:"body",label:"Many angels intercede: only by God's permission · they follow conjecture"},
+    {id:"D",v:[29,32],role:"pivot",label:"PIVOT — turn away from those who turn from Our remembrance · do not praise yourselves"},
+    {id:"C′",v:[33,42],role:"body",label:"The scrolls of Moses and Abraham: the laden soul bears nothing of another's load"},
+    {id:"B′",v:[43,54],role:"body",label:"He causes laughter and weeping · He causes death and gives life · He created the two spouses"},
+    {id:"A′",v:[55,62],role:"frame",label:"Which of your Lord's favors do you doubt? · prostrate to God and worship"},
+  ],
+  54: [
+    {id:"OPEN",v:[1,8],role:"frame",label:"The Hour has drawn near · the moon was split · they see a sign then turn away"},
+    {id:"NOAH",v:[9,17],role:"body",label:"Noah's people denied · they called him mad · he prayed · We opened the gates of heaven"},
+    {id:"AAD",v:[18,22],role:"body",label:"ʿĀd denied · We sent a freezing wind · We have made the Quran easy for remembrance"},
+    {id:"THAMUD",v:[23,32],role:"pivot",label:"PIVOT CENTER — Thamūd denied · the she-camel of God · one day of total disaster"},
+    {id:"LOT",v:[33,40],role:"body",label:"Lot's people denied · We sent a storm of stones · We have made the Quran easy"},
+    {id:"PHARAOH",v:[41,42],role:"body",label:"Pharaoh's people denied · they called the signs magic · We seized them"},
+    {id:"BRIDGE",v:[43,45],role:"body",label:"Are your disbelievers better than those? · the gathering will be defeated"},
+    {id:"HOUR_DECREE",v:[46,53],role:"body",label:"The Hour is their appointed time · will it be more catastrophic and more bitter?"},
+    {id:"CLOSE",v:[54,55],role:"frame",label:"The righteous in gardens and rivers · in a seat of honor before a Sovereign"},
+  ],
+  55: [
+    {id:"OPEN",v:[1,1],role:"frame",label:"Al-Raḥmān — the Most Merciful"},
+    {id:"BOUNTY_WORLD",v:[2,12],role:"body",label:"Taught the Quran · created man · taught eloquence · sun and moon · balance set"},
+    {id:"DUAL_CREATION",v:[14,15],role:"body",label:"Man from clay like pottery · jinn from smokeless flame"},
+    {id:"COSMIC_DUALS",v:[17,24],role:"body",label:"Lord of the two sunrises and two sunsets · released the two seas · pearls and coral"},
+    {id:"PIVOT",v:[26,27],role:"pivot",label:"PIVOT — all that is on earth will perish · and the Face of your Lord full of majesty will remain"},
+    {id:"UNIVERSAL_DEPENDENCE",v:[29,30],role:"body",label:"Whoever is in the heavens and earth asks Him · every day He is in a matter"},
+    {id:"ESCHATOLOGICAL_CENTER",v:[31,45],role:"body",label:"We will attend to you · guilty known by their marks · seized by forelocks and feet"},
+    {id:"PARADISE_UPPER",v:[46,61],role:"body",label:"For one who fears the station of his Lord: two gardens · lush branches · flowing springs"},
+    {id:"PARADISE_LOWER",v:[62,77],role:"body",label:"And below them two more gardens · dark green · two springs gushing forth"},
+    {id:"CLOSE",v:[78,78],role:"frame",label:"Blessed is the name of your Lord, full of majesty and honor"},
+  ],
+  56: [
+    {id:"OPEN",v:[1,7],role:"frame",label:"When the Occurrence occurs · no denial of its occurring · it will bring down and raise up"},
+    {id:"COSMIC_A",v:[8,26],role:"body",label:"Companions of the Right · Companions of the Left · the Foremost — three ranks announced"},
+    {id:"COSMIC_B",v:[27,40],role:"body",label:"Companions of the Right: thornless lote trees · spread shade · flowing water · houris"},
+    {id:"COSMIC_C",v:[41,56],role:"body",label:"Companions of the Left: in scorching wind · boiling water · shade of black smoke"},
+    {id:"BRIDGE_1",v:[57,74],role:"pivot",label:"PIVOT BRIDGE — We created you: why do you not affirm? · We bring forth a Quran · glorify"},
+    {id:"BRIDGE_2",v:[75,82],role:"body",label:"I swear by the positions of the stars · in a preserved Book · touched only by the purified"},
+    {id:"BRIDGE_3",v:[83,87],role:"body",label:"Why when it reaches the throat · can you not bring it back if you are truthful?"},
+    {id:"DEATH_A",v:[88,89],role:"body",label:"If he was of those brought near: gardens of pleasure"},
+    {id:"DEATH_B",v:[90,91],role:"body",label:"If he was of the companions of the right · peace for you · companions of the right"},
+    {id:"DEATH_C",v:[92,94],role:"body",label:"If he was of those who denied and strayed · a welcome of scalding water"},
+    {id:"CLOSE",v:[95,96],role:"frame",label:"Indeed this is the truth of certainty · so glorify the name of your Lord the Mighty"},
+  ],
+  57: [
+    {id:"A",v:[1,6],role:"frame",label:"Everything glorifies God · His is the dominion · He is the First and the Last"},
+    {id:"B",v:[7,10],role:"body",label:"Believe and spend · those who spent and fought before the conquest are not equal to later"},
+    {id:"C",v:[11,15],role:"body",label:"Beautiful loan to God · a barrier on the Day · the light of the hypocrites extinguished"},
+    {id:"CTR",v:[16,18],role:"pivot",label:"PIVOT — has the time not come for believers' hearts to humble? · know that God revives the earth"},
+    {id:"C_prime",v:[19,21],role:"body",label:"The truthful and the witnesses · their light runs before them · race to forgiveness"},
+    {id:"B_prime",v:[22,24],role:"body",label:"Every disaster is in a register before We bring it · God does not love the arrogant boaster"},
+    {id:"A_prime",v:[25,27],role:"frame",label:"We sent messengers with evidence · We sent down iron · God's support only by the unseen"},
+    {id:"CLOSE",v:[28,29],role:"close",label:"O believers: fear God and believe in His Messenger"},
+  ],
+  58: [
+    {id:"A",v:[1,1],role:"frame",label:"God has heard the woman who argues about her husband · God hears your dialogue"},
+    {id:"B",v:[2,4],role:"body",label:"Ẓihār legislation: their mothers are not their mothers · expiation required"},
+    {id:"C",v:[5,6],role:"body",label:"Those who oppose God and His Messenger · God will raise all on the Day"},
+    {id:"D",v:[7,7],role:"body",label:"Have you not seen that God knows what is in the heavens and earth · He is with them wherever"},
+    {id:"CTR",v:[8,10],role:"pivot",label:"PIVOT — the private conversations forbidden · do not hold secret talks of sin · God is sufficient"},
+    {id:"D_prime",v:[11,13],role:"body",label:"O believers: rise when told to rise in assemblies · free a slave before private consultation"},
+    {id:"C_prime",v:[14,16],role:"body",label:"Those who take as allies a people God has angered · they have become a boundary"},
+    {id:"B_prime",v:[17,19],role:"body",label:"Their wealth and their children will not avail them · they are the companions of the Fire"},
+    {id:"A_prime",v:[20,22],role:"frame",label:"Those who oppose God and His Messenger · God and His Messenger will overcome"},
+  ],
+  59: [
+    {id:"A",v:[1,1],role:"frame",label:"Everything glorifies God · He is the Mighty, the Wise (opening tasbīḥ)"},
+    {id:"B",v:[2,5],role:"body",label:"He who expelled the People of the Book · Banū Naḍīr · their houses destroyed"},
+    {id:"C",v:[6,7],role:"body",label:"Spoils God gave His Messenger · whatever the Messenger gives you, take it"},
+    {id:"D",v:[8,10],role:"body",label:"Emigrants · Anṣār who love those who emigrated · those who came after"},
+    {id:"SEAM",v:[12,13],role:"seam",label:"GEOMETRIC CENTER — if expelled they will not go with them · you are more feared in their chests"},
+    {id:"D_",v:[11,14],role:"body",label:"The hypocrites and the People of Book · they do not fight together · they fight from fortresses"},
+    {id:"C_",v:[15,17],role:"body",label:"Like those before them tasted the consequence · like Satan who said disbelieve then disavowed"},
+    {id:"B_",v:[18,21],role:"body",label:"O believers: fear God · if We had sent this Quran down on a mountain it would have humbled"},
+    {id:"A_",v:[22,24],role:"frame",label:"He is God · there is no god but Him · the Most Merciful, Most Compassionate (closing divine names)"},
+  ],
+  60: [
+    {id:"A",v:[1,1],role:"frame",label:"O believers — do not take My enemies and your enemies as allies"},
+    {id:"B",v:[2,3],role:"body",label:"If they gain dominance over you they will be enemies · your wealth and children will not benefit you"},
+    {id:"C",v:[4,6],role:"body",label:"Excellent pattern in Abraham: I am free of you and what you worship · I have put hope in my Lord"},
+    {id:"PIVOT",v:[7,7],role:"pivot",label:"PIVOT — perhaps God will put between you and your enemies affection · God is Forgiving, Merciful"},
+    {id:"C_",v:[8,10],role:"body",label:"God does not forbid you from those who did not fight you · deal justly with them"},
+    {id:"B_",v:[11,12],role:"body",label:"If your wives have gone to the disbelievers · give to those whose wives have departed"},
+    {id:"A_",v:[13,13],role:"frame",label:"O believers — do not take as allies a people God has angered · they have despaired of the Hereafter"},
+  ],
+  61: [
+    {id:"A",v:[1,1],role:"frame",label:"Everything glorifies God · He is the Mighty, the Wise"},
+    {id:"B",v:[2,3],role:"body",label:"O believers: why do you say what you do not do? · God hates that you say what you do not do"},
+    {id:"C",v:[4,4],role:"body",label:"God loves those who fight in His cause in a row as if they were a solid structure"},
+    {id:"D",v:[5,7],role:"pivot",label:"PIVOT — Moses said: O my people, why do you harm me? · Jesus: I am the Messenger of God"},
+    {id:"D_",v:[8,9],role:"body",label:"They want to extinguish God's light with their mouths · He sent His Messenger with guidance"},
+    {id:"B_",v:[10,13],role:"body",label:"O believers: shall I guide you to a transaction that saves you? · God's victory is near"},
+    {id:"A_",v:[14,14],role:"frame",label:"O believers: be supporters of God as Jesus son of Mary said to the disciples"},
+  ],
+  62: [
+    {id:"A",v:[1,4],role:"frame",label:"Everything glorifies God · the King, the Holy · sent among the unlettered a messenger"},
+    {id:"B",v:[5,5],role:"body",label:"Those who were given the Torah then did not carry it: like a donkey carrying books"},
+    {id:"CTR",v:[6,6],role:"pivot",label:"PIVOT — Say: O you who are Jewish, if you claim to be the allies of God · wish for death"},
+    {id:"B_",v:[7,8],role:"body",label:"They will never wish for it because of what their hands have sent before them"},
+    {id:"A_",v:[9,11],role:"frame",label:"O believers: when the call to prayer on Friday is made · hasten to the remembrance of God"},
+  ],
+  63: [
+    {id:"A",v:[1,1],role:"frame",label:"When the hypocrites come to you · they say: we testify you are the Messenger · they are liars"},
+    {id:"B",v:[2,4],role:"body",label:"Their oaths as a cover · turned people from God's way · their hearts are sealed"},
+    {id:"CTR",v:[5,6],role:"pivot",label:"PIVOT — when told: come the Messenger will seek forgiveness · they turn away · God will not forgive them"},
+    {id:"B_",v:[7,8],role:"body",label:"They say: do not spend on those with the Messenger until they leave · to God belong the treasures"},
+    {id:"A_",v:[9,11],role:"frame",label:"O believers: let not your wealth or children distract you from remembrance of God"},
+  ],
+  64: [
+    {id:"A",v:[1,4],role:"frame",label:"Everything glorifies God · to Him belongs the dominion · He knows the secret"},
+    {id:"B",v:[5,6],role:"body",label:"Has not the news of those who disbelieved before reached you? · they denied"},
+    {id:"C",v:[7,7],role:"body",label:"Disbelievers claim they will not be resurrected · say: yes by my Lord you will"},
+    {id:"D",v:[8,8],role:"body",label:"Believe in God and His Messenger and the light We revealed"},
+    {id:"CTR",v:[9,10],role:"pivot",label:"PIVOT — the Day He gathers you for the Day of Assembly · God forgives whom He wills"},
+    {id:"D_",v:[11,11],role:"body",label:"No disaster occurs except by God's permission · one who believes: God guides his heart"},
+    {id:"C_",v:[12,13],role:"body",label:"Obey God and obey the Messenger · if you turn away · only clear delivery upon Our Messenger"},
+    {id:"B_",v:[14,15],role:"body",label:"O believers: among your spouses and children are enemies to you · beware them · your wealth and children are a trial"},
+    {id:"A_",v:[16,18],role:"frame",label:"Fear God as much as you are able · listen and obey · whoever is protected from his soul's greed"},
+  ],
+  65: [
+    {id:"A",v:[1,1],role:"frame",label:"O Prophet: when you divorce women · divorce them for their waiting period · count the waiting period"},
+    {id:"B",v:[2,3],role:"body",label:"When they reach their term: retain them or part from them in kindness · whoever fears God"},
+    {id:"C",v:[4,5],role:"body",label:"Post-menopausal women · those who have not menstruated · pregnant women"},
+    {id:"CTR",v:[6,7],role:"pivot",label:"PIVOT — house them where you live · do not harm them to distress them · let the wealthy spend"},
+    {id:"C_",v:[8,9],role:"body",label:"Many a city defied the command of its Lord and His messengers · We called it to terrible account"},
+    {id:"B_",v:[10,11],role:"body",label:"God has prepared for them a severe punishment · a messenger who recites God's clear signs"},
+    {id:"A_",v:[12,12],role:"frame",label:"God created seven heavens and of the earth similar · the command descends through them all"},
+  ],
+  66: [
+    {id:"A",v:[1,2],role:"frame",label:"O Prophet: why do you prohibit what God has made lawful? · God has ordained dissolving your oaths"},
+    {id:"B",v:[3,5],role:"body",label:"The Prophet told a secret to one of his wives · she disclosed it · God informed him"},
+    {id:"CTR",v:[6,8],role:"pivot",label:"PIVOT — O believers: protect yourselves and your families from a fire · angels are severe · repent"},
+    {id:"A_",v:[9,12],role:"frame",label:"O Prophet: strive against the disbelievers and hypocrites · two women as examples and two as examples"},
+  ],
+  67: [
+    {id:"A",v:[1,2],role:"frame",label:"Blessed is He in whose hand is the dominion · who created death and life to test you"},
+    {id:"B",v:[3,5],role:"body",label:"Created seven heavens in layers · no flaw · shooting stars for the demons"},
+    {id:"C",v:[6,11],role:"body",label:"For those who disbelieved in their Lord: the punishment of Hell · they will confess"},
+    {id:"CTR",v:[12,15],role:"pivot",label:"PIVOT — those who fear their Lord unseen: forgiveness and a great reward · He made earth subservient"},
+    {id:"C_",v:[16,22],role:"body",label:"Do you feel secure against Him sending on you a violent storm? · walk upright on earth"},
+    {id:"B_",v:[23,27],role:"body",label:"He produced you and gave you hearing and sight and hearts · little you are grateful"},
+    {id:"A_",v:[28,30],role:"frame",label:"Say: whether God destroys me or shows mercy · your water sinking into the earth"},
+  ],
+  68: [
+    {id:"A",v:[1,4],role:"frame",label:"Nūn · by the pen and what they inscribe · you are not by God's grace a madman"},
+    {id:"B",v:[5,7],role:"body",label:"You will see and they will see · which of you is the afflicted"},
+    {id:"C",v:[8,16],role:"body",label:"Do not obey every worthless habitual swearer · many who obstruct good · cruel and wicked"},
+    {id:"CTR",v:[17,32],role:"pivot",label:"PIVOT CENTER — garden parable: those who swore to harvest without exception"},
+    {id:"C_",v:[33,34],role:"body",label:"Such is the punishment · the punishment of the Hereafter is greater"},
+    {id:"B_",v:[35,43],role:"body",label:"Shall We make the Muslims like the criminals? · the Day the shin is uncovered"},
+    {id:"D_",v:[44,47],role:"body",label:"Leave Me with the one who denies this message · We will progressively lead them"},
+    {id:"A_",v:[48,52],role:"frame",label:"Be patient for your Lord's judgment · do not be like the companion of the whale"},
+  ],
+  69: [
+    {id:"A",v:[1,3],role:"frame",label:"The Inevitable Reality · what is the Inevitable Reality? · what will make you realize?"},
+    {id:"B",v:[4,10],role:"body",label:"Thamūd and ʿĀd denied the Striking Calamity · Pharaoh and those before him · the water surge"},
+    {id:"C",v:[11,12],role:"body",label:"We carried you in the sailing ship · to make it a reminder for you"},
+    {id:"D",v:[13,18],role:"body",label:"When the Horn is blown · the sky will crack · the angels on its borders · the Throne is carried"},
+    {id:"CTR",v:[19,29],role:"pivot",label:"PIVOT CENTER — binary direct speech: one given record in right hand / one wishes death"},
+    {id:"D_",v:[30,34],role:"body",label:"Divine command chain: seize him / shackle him / burn him / drive him into Hell"},
+    {id:"C_",v:[35,37],role:"body",label:"No devoted friend here today · no food except the discharge of wounds"},
+    {id:"B_",v:[38,47],role:"body",label:"I swear by what you see and what you do not see · this is the word of a noble messenger"},
+    {id:"A_",v:[48,52],role:"frame",label:"It is a reminder for the righteous · it is grief for the disbelievers · it is the truth of certainty"},
+  ],
+  70: [
+    {id:"A",v:[1,4],role:"frame",label:"A questioner asked about a punishment to fall · for the disbelievers: no repeller of it"},
+    {id:"B",v:[5,7],role:"body",label:"Be patient with gracious patience · they see it as distant · We see it as near"},
+    {id:"C",v:[8,14],role:"body",label:"The day the sky is like molten copper · mountains like fluffed wool · one wishes to ransom"},
+    {id:"D",v:[15,18],role:"body",label:"No indeed: it is a Flame · it removes the skin · it calls those who turned away"},
+    {id:"D_",v:[19,21],role:"body",label:"Indeed man was created anxious · when evil touches him, he is distressed"},
+    {id:"H",v:[22,35],role:"pivot",label:"PIVOT CENTER — except those who pray · those who give a known right · those who guard their chastity"},
+    {id:"C_",v:[36,38],role:"body",label:"What is the matter with those who disbelieve · they rush toward you with eyes wide"},
+    {id:"B_",v:[39,41],role:"body",label:"No indeed: We created them from what they know · We are able to replace them with better"},
+    {id:"A_",v:[42,44],role:"frame",label:"Leave them to converse vainly and play · until they meet their Day which they are promised"},
+  ],
+  71: [
+    {id:"A",v:[1,4],role:"frame",label:"We sent Noah to his people: warn your people before a painful punishment comes"},
+    {id:"B",v:[5,9],role:"body",label:"First complaint: called them night and day but calling only increased their flight"},
+    {id:"C",v:[10,12],role:"body",label:"Seek your Lord's forgiveness · He will send rain on you in abundance · give you wealth and children"},
+    {id:"D",v:[13,15],role:"pivot",label:"PIVOT — what is the matter with you that you do not hope for dignity in God?"},
+    {id:"D_",v:[16,18],role:"pivot",label:"He made the moon a light and the sun a lamp · God caused you to grow from the earth"},
+    {id:"C_",v:[19,20],role:"body",label:"So that you travel in its wide pathways"},
+    {id:"B_",v:[21,24],role:"body",label:"Second complaint: they disobeyed me and followed those whose wealth and children increased their loss"},
+    {id:"X",v:[25,25],role:"hinge",label:"HINGE — they were drowned and put into the Fire · they found no helpers besides God"},
+    {id:"A_",v:[26,28],role:"frame",label:"Noah's prayer: do not leave on earth any of the disbelievers · Lord forgive me and my parents"},
+  ],
+  72: [
+    {id:"A",v:[1,2],role:"frame",label:"Say: it was revealed that a group of jinn listened · they said: we heard a wondrous Quran"},
+    {id:"B",v:[3,7],role:"body",label:"Our Lord is exalted · has not taken a companion or a son · the foolish one among us used to say lies"},
+    {id:"C",v:[8,10],role:"body",label:"We reached the heaven but found it full of guards · we used to sit in positions to listen"},
+    {id:"D",v:[11,15],role:"pivot",label:"CENTER — binary division: among us are the righteous and those less than that"},
+    {id:"C_",v:[16,17],role:"body",label:"If they remain straight on the path We will give them abundant water"},
+    {id:"B_",v:[18,23],role:"body",label:"The mosques are for God · do not invoke anyone alongside God · whoever does not respond to God"},
+    {id:"A_",v:[24,28],role:"frame",label:"Until they see what they have been promised they will know who is weaker and fewer"},
+  ],
+  73: [
+    {id:"A",v:[1,4],role:"frame",label:"O you who wraps himself · arise the night except a little · half of it or a little less"},
+    {id:"B",v:[5,7],role:"body",label:"We will cast upon you a heavy word · the hours of the night are more suitable for rising"},
+    {id:"C",v:[8,9],role:"body",label:"Remember the name of your Lord · devote yourself to Him completely"},
+    {id:"D",v:[10,11],role:"pivot",label:"SEAM — be patient over what they say · leave Me with those of ease and deny a little"},
+    {id:"C_",v:[12,13],role:"body",label:"Indeed with Us are shackles and a burning Fire and food that chokes"},
+    {id:"B_",v:[14,16],role:"body",label:"The day the earth and mountains will be shaken · it will be a harsh day"},
+    {id:"A_",v:[17,19],role:"frame",label:"How will you guard yourselves if you disbelieve a day that turns children white-haired"},
+    {id:"ADD",v:[20,20],role:"addendum",label:"Medinan addendum: God knows you cannot maintain the night prayer · He has forgiven you"},
+  ],
+  74: [
+    {id:"A",v:[1,7],role:"frame",label:"O you who covers himself · arise and warn · magnify your Lord · purify your garments"},
+    {id:"B",v:[8,10],role:"body",label:"When the trumpet is blown · it will be a difficult day · for the disbelievers not easy"},
+    {id:"C",v:[11,17],role:"body",label:"Leave Me with the one I created alone · wealth spread out · sons in attendance"},
+    {id:"D",v:[18,25],role:"body",label:"He deliberated and calculated · perish he how he calculated · then looked · frowned and scowled"},
+    {id:"E",v:[26,31],role:"pivot",label:"SAQAR CENTER — I will drive him into Saqar · what will make you realize what Saqar is?"},
+    {id:"F",v:[32,37],role:"body",label:"No indeed · by the moon / by the night / by the morning · it is one of the greatest"},
+    {id:"B_",v:[38,48],role:"body",label:"Every soul is held for what it earned · the companions of the right hand in gardens · asking the criminals"},
+    {id:"D_",v:[49,53],role:"body",label:"What is the matter with them that they turn from the reminder · like frightened donkeys"},
+    {id:"A_",v:[49,56],role:"frame",label:"They will not remember unless God wills · He is the One Deserving of Reverential Fear"},
+  ],
+  75: [
+    {id:"A",v:[1,6],role:"frame",label:"I swear by the Day of Resurrection · I swear by the reproaching soul · does man think?"},
+    {id:"B",v:[3,6],role:"body",label:"Does man think We cannot reassemble his bones? · he asks: when is the Day of Resurrection?"},
+    {id:"C",v:[7,10],role:"body",label:"When the sight is dazzled · the moon darkens · the sun and moon are joined"},
+    {id:"D",v:[11,15],role:"body",label:"No indeed: there is no refuge · to your Lord that Day is the settlement"},
+    {id:"E",v:[16,19],role:"body",label:"Do not move your tongue to hasten it · its collection and recitation are upon Us"},
+    {id:"F",v:[20,21],role:"pivot",label:"SEAM — no indeed: you love the immediate and leave the Hereafter"},
+    {id:"G",v:[22,25],role:"body",label:"Faces that day will be radiant · faces that day will be gloomy · destruction will be wreaked"},
+    {id:"H",v:[26,30],role:"body",label:"No indeed: when it reaches the throat · who is the healer? · the drive that day is to your Lord"},
+    {id:"B_",v:[31,35],role:"body",label:"He did not affirm and did not pray · he denied and turned away · then went to his family swaggering"},
+    {id:"A_",v:[36,40],role:"frame",label:"Does man think he will be left neglected? · is He not able to give life to the dead?"},
+  ],
+  76: [
+    {id:"A",v:[1,3],role:"frame",label:"Has there come upon man a period of time? · We created man from a sperm-drop to test him"},
+    {id:"B",v:[4,4],role:"body",label:"We have prepared for the disbelievers chains and shackles and a blazing fire"},
+    {id:"C",v:[5,22],role:"body",label:"The righteous drink from a cup mixed with camphor · a spring from which servants drink"},
+    {id:"X",v:[22,23],role:"pivot",label:"PIVOT — this is a reward for you · your efforts have been appreciated · We revealed the Quran"},
+    {id:"C_",v:[24,26],role:"body",label:"Be patient for your Lord's judgment · do not obey the sinner or disbeliever · prostrate to Him"},
+    {id:"B_",v:[27,27],role:"body",label:"These disbelievers love the immediate life and leave behind a heavy Day"},
+    {id:"A_",v:[28,31],role:"frame",label:"We created them and strengthened their forms · whoever wills let him take a path to his Lord"},
+  ],
+  77: [
+    {id:"A",v:[1,7],role:"frame",label:"By those sent one after another · and those that move violently · and those that stir"},
+    {id:"B",v:[8,14],role:"body",label:"When the stars are obliterated · when the Judgment Day is set"},
+    {id:"X_refrain",v:[15,49],role:"pivot",label:"REFRAIN SPINE — woe that Day to those who deny (×10 through the surah)"},
+    {id:"D",v:[16,18],role:"body",label:"Did We not destroy the former peoples? Then We made the others follow them"},
+    {id:"E",v:[20,23],role:"body",label:"Did We not create you from a contemptible water? · then We placed it in a firm resting place"},
+    {id:"F",v:[25,27],role:"pivot",label:"EARTH CENTER — did We not make the earth a container for the living and the dead?"},
+    {id:"G",v:[29,33],role:"body",label:"Proceed to what you used to deny · proceed to a shade of three columns"},
+    {id:"H",v:[35,39],role:"body",label:"This is a Day they will not speak · nor will it be permitted for them to make excuses"},
+    {id:"D_",v:[41,44],role:"body",label:"The righteous will be in shades and springs · eat and drink in health"},
+    {id:"A_",v:[48,50],role:"frame",label:"When it is said to them: bow down, they do not bow down · in what statement after this will they believe?"},
+  ],
+  78: [
+    {id:"A",v:[1,5],role:"frame",label:"About what do they ask one another? · about the great news · in which they differ"},
+    {id:"B",v:[6,16],role:"body",label:"Did We not make the earth a resting place · the mountains pegs · sleep as rest · provision"},
+    {id:"C",v:[17,20],role:"body",label:"The Day of Decision is an appointed time · the Day the Trumpet is blown"},
+    {id:"X",v:[21,30],role:"pivot",label:"PIVOT — Hell lies in ambush · a refuge for the transgressors · they will not taste coolness"},
+    {id:"C′",v:[31,36],role:"body",label:"For the righteous there is a place of security · gardens and grapevines · what was sufficient reward"},
+    {id:"B′",v:[37,38],role:"body",label:"The Lord of the heavens and the earth · the Day when the Spirit and angels stand in rows"},
+    {id:"A′",v:[39,40],role:"frame",label:"That Day is the truth · whoever wills let him take a path back to his Lord"},
+  ],
+  79: [
+    {id:"A",v:[1,5],role:"frame",label:"By those who extract with violence · by those who remove with gentleness · by those who glide"},
+    {id:"B",v:[6,14],role:"body",label:"The Day the shaking quakes · followed by the subsequent · hearts that Day are pounding"},
+    {id:"C",v:[15,26],role:"body",label:"Moses narrative: the fire · Pharaoh's denial · God seized him as an example"},
+    {id:"X",v:[26,27],role:"pivot",label:"SEAM PIVOT — in that is a lesson for whoever fears · are you harder to create or is the sky?"},
+    {id:"C′",v:[27,33],role:"body",label:"Creation enumerated: sky raised · earth spread · water brought forth · benefit made"},
+    {id:"B′",v:[34,41],role:"body",label:"When the Greatest Calamity comes · the Day man will remember what he strove for"},
+    {id:"A′",v:[42,46],role:"frame",label:"They ask you about the Hour: when is its arrival? · only God knows · perhaps it is near"},
+  ],
+  80: [
+    {id:"A",v:[1,10],role:"frame",label:"He frowned and turned away · when the blind man came to him · what would tell you he might be purified"},
+    {id:"B",v:[11,16],role:"body",label:"No indeed: it is a reminder · in honored manuscripts · exalted and purified · in the hands of scribes"},
+    {id:"C",v:[17,22],role:"body",label:"Perish man · from what did He create him? · from a sperm-drop He created him"},
+    {id:"X",v:[23,23],role:"pivot",label:"PIVOT — no indeed: he has not fulfilled what He commanded him"},
+    {id:"C′",v:[24,32],role:"body",label:"Let man look at his food · We poured water abundantly · We split the earth · grains and grapes"},
+    {id:"B′",v:[33,37],role:"body",label:"When the Deafening Blast comes · the Day man flees from his brother and mother and father"},
+    {id:"A′",v:[38,42],role:"frame",label:"Faces that Day will be bright · and faces that Day will be covered in dust · they are the disbelievers"},
+  ],
+  81: [
+    {id:"A",v:[1,2],role:"frame",label:"When the sun is wrapped up · when the stars fall dispersed"},
+    {id:"X",v:[14,15],role:"pivot",label:"PIVOT SEAM — a soul will know what it has brought · I swear by those that recede"},
+    {id:"B",v:[15,16],role:"body",label:"By those that run on their courses · by those that push and move"},
+    {id:"C",v:[19,20],role:"body",label:"This is the word of a noble messenger · possessor of power · honored before the Lord of the Throne"},
+    {id:"D",v:[22,23],role:"body",label:"Your companion is not mad · he certainly saw him on the clear horizon"},
+    {id:"X2",v:[26,26],role:"pivot",label:"SECONDARY PIVOT — then where are you going?"},
+    {id:"E",v:[27,28],role:"frame",label:"It is only a reminder to the worlds · for whoever among you wills to go straight"},
+  ],
+  83: [
+    {id:"A",v:[1,2],role:"frame",label:"Woe to those who defraud · those who when they take from people demand in full"},
+    {id:"B",v:[7,8],role:"body",label:"The book of the wicked is in Sijjīn · what will make you realize what Sijjīn is?"},
+    {id:"C",v:[10,11],role:"body",label:"Woe that Day to those who deny · those who deny the Day of Recompense"},
+    {id:"X",v:[17,18],role:"pivot",label:"PIVOT SEAM — no indeed: they will be veiled from their Lord that Day · the book of the righteous is in ʿIlliyyūn"},
+    {id:"C′",v:[18,19],role:"body",label:"What will make you realize what ʿIlliyyūn is? · a written record · witnessed by those brought near"},
+    {id:"B′",v:[22,23],role:"body",label:"The righteous are in bliss · on adorned couches looking · the glow of bliss on their faces"},
+    {id:"A′",v:[29,30],role:"frame",label:"Indeed those who committed crimes used to laugh · when they passed by they would wink"},
+  ],
+  84: [
+    {id:"A",v:[1,2],role:"frame",label:"When the sky has split · and has responded to its Lord and was obligated to"},
+    {id:"B",v:[6,6],role:"body",label:"O mankind: you are laboring toward your Lord with exertion and you will meet Him"},
+    {id:"C",v:[7,8],role:"body",label:"As for one given his record in his right hand · he will be judged with an easy account"},
+    {id:"D",v:[10,11],role:"body",label:"As for one given his record behind his back · he will cry out for destruction"},
+    {id:"X",v:[13,14],role:"pivot",label:"PIVOT — indeed he had been among his people in happiness · he thought he would never return to God"},
+    {id:"C′",v:[16,17],role:"body",label:"I swear by the twilight glow · and the night · and what it envelops"},
+    {id:"B′",v:[20,21],role:"body",label:"What is the matter with them that they do not believe? · when the Quran is recited they do not prostrate"},
+    {id:"A′",v:[22,23],role:"frame",label:"Those who disbelieve deny · God is most knowing of what they keep within themselves"},
+  ],
+  87: [
+    {id:"A",v:[1,1],role:"frame",label:"Glorify the name of your Lord, the Most High"},
+    {id:"B",v:[2,3],role:"body",label:"Who created and proportioned · who determined and guided"},
+    {id:"C",v:[6,7],role:"body",label:"We will make you recite · you will not forget · except what God wills"},
+    {id:"X",v:[9,10],role:"pivot",label:"PIVOT + CENTER — remind: the reminder benefits · the wretched will avoid it"},
+    {id:"C′",v:[14,15],role:"body",label:"He has succeeded who purifies himself · and remembers the name of his Lord and prays"},
+    {id:"B′",v:[16,17],role:"body",label:"But you prefer the immediate life · while the Hereafter is better and more enduring"},
+    {id:"A′",v:[18,19],role:"frame",label:"Indeed this is in the former scriptures · the scriptures of Abraham and Moses"},
+  ],
+  88: [
+    {id:"A",v:[1,1],role:"frame",label:"Has there reached you the report of the Overwhelming Event?"},
+    {id:"B1",v:[2,3],role:"body",label:"Faces that Day will be humbled · laboring and exhausted"},
+    {id:"C",v:[8,9],role:"body",label:"Faces that Day will be joyful · satisfied with their effort"},
+    {id:"D",v:[17,18],role:"pivot",label:"PIVOT ZONE — do they not look at the camel: how it was created? · the sky: how it was raised?"},
+    {id:"B2",v:[21,22],role:"body",label:"You are only a reminder · you are not over them a controller"},
+    {id:"B3",v:[23,24],role:"body",label:"Except for one who turns away and disbelieves · God will punish him with the greatest punishment"},
+    {id:"A′",v:[25,26],role:"frame",label:"Indeed to Us is their return · then indeed upon Us is their account"},
+  ],
+  89: [
+    {id:"A1",v:[1,2],role:"frame",label:"By the dawn · by the ten nights"},
+    {id:"A2",v:[5,5],role:"frame",label:"Is there in that an oath for one of perception?"},
+    {id:"B",v:[6,7],role:"body",label:"Have you not considered how your Lord dealt with ʿĀd · Iram with the pillars · Thamūd"},
+    {id:"C",v:[15,16],role:"body",label:"As for man · when his Lord tests him and is generous he says: my Lord has honored me"},
+    {id:"X",v:[17,18],role:"pivot",label:"PIVOT — no indeed: you do not honor the orphan · you do not encourage one another to feed the poor"},
+    {id:"Y",v:[21,22],role:"body",label:"No indeed: when the earth is shaken level by level · your Lord comes and the angels rank by rank"},
+    {id:"A′",v:[27,28],role:"frame",label:"O reassured soul · return to your Lord pleased and pleasing to Him"},
+  ],
+  90: [
+    {id:"A",v:[1,2],role:"frame",label:"I swear by this city · and you are free in this city"},
+    {id:"B",v:[4,4],role:"body",label:"We created man into hardship"},
+    {id:"C",v:[5,6],role:"body",label:"Does he think no one has power over him? · he says: I have spent abundant wealth"},
+    {id:"D",v:[8,9],role:"body",label:"Did We not make for him two eyes · a tongue and two lips?"},
+    {id:"X",v:[11,12],role:"pivot",label:"PIVOT — but he has not attempted the difficult path · what will make you realize the difficult path?"},
+    {id:"E",v:[13,14],role:"body",label:"Freeing a slave · or feeding on a day of severe hunger"},
+    {id:"F",v:[17,17],role:"body",label:"And being of those who believe and advise each other to patience and advise each other to compassion"},
+    {id:"G",v:[18,19],role:"frame",label:"Those are the companions of the right · those who disbelieve in Our signs: companions of the left"},
+  ],
+  91: [
+    {id:"A1",v:[1,2],role:"frame",label:"By the sun and its morning brightness · by the moon when it follows it"},
+    {id:"A2",v:[5,6],role:"frame",label:"By the sky and He who built it · by the earth and He who spread it"},
+    {id:"A3",v:[7,7],role:"frame",label:"By the soul and He who proportioned it"},
+    {id:"B",v:[8,8],role:"body",label:"And inspired it with its wickedness and its righteousness"},
+    {id:"X",v:[9,10],role:"pivot",label:"PIVOT — he has succeeded who purifies it · and he has failed who buries it"},
+    {id:"C",v:[11,12],role:"body",label:"Thamūd denied in their transgression · when the most wretched of them was sent forth"},
+    {id:"A′",v:[15,15],role:"frame",label:"And God does not fear its consequence"},
+  ],
+  92: [
+    {id:"A",v:[1,2],role:"frame",label:"By the night when it covers · by the day when it shines"},
+    {id:"B",v:[4,4],role:"body",label:"Indeed your efforts are diverse"},
+    {id:"C",v:[5,6],role:"body",label:"As for one who gives and fears God · We will ease him toward ease"},
+    {id:"D",v:[8,9],role:"body",label:"As for one who withholds and considers himself without need · We will ease him toward difficulty"},
+    {id:"X",v:[11,11],role:"pivot",label:"PIVOT — his wealth will not avail him when he falls"},
+    {id:"B′",v:[12,13],role:"body",label:"Indeed upon Us is guidance · and indeed to Us belongs the Hereafter and the first life"},
+    {id:"D′",v:[14,15],role:"body",label:"I have warned you of a blazing Fire · none will enter it except the most wretched"},
+    {id:"C′",v:[17,18],role:"body",label:"The most righteous will avoid it · who gives his wealth to purify himself"},
+  ],
+  93: [
+    {id:"A",v:[1,2],role:"frame",label:"By the morning brightness · by the night when it covers"},
+    {id:"B",v:[3,4],role:"body",label:"Your Lord has not taken leave of you · the Hereafter is better for you than the first"},
+    {id:"C",v:[6,7],role:"body",label:"Did He not find you an orphan and give shelter? · did He not find you lost and guide you?"},
+    {id:"X",v:[8,9],role:"pivot",label:"SEAM — did He not find you in need and make you self-sufficient? · as for the orphan: do not oppress"},
+    {id:"B′",v:[9,10],role:"body",label:"As for the one who asks: do not repel him · and as for the favor of your Lord: proclaim it"},
+    {id:"A′",v:[11,11],role:"frame",label:"And of your Lord's favor: speak"},
+  ],
+  94: [
+    {id:"A",v:[1,1],role:"frame",label:"Did We not expand for you your breast?"},
+    {id:"B",v:[2,3],role:"body",label:"And We removed from you your burden · which had weighed upon your back"},
+    {id:"C",v:[4,4],role:"body",label:"And We raised high for you your repute"},
+    {id:"X",v:[5,6],role:"pivot",label:"PIVOT — for indeed with hardship will be ease · indeed with hardship will be ease"},
+    {id:"B′",v:[7,7],role:"body",label:"So when you have finished your duties then stand up for worship"},
+    {id:"A′",v:[8,8],role:"frame",label:"And to your Lord direct your longing"},
+  ],
+  95: [
+    {id:"A",v:[1,2],role:"frame",label:"By the fig and the olive · by Mount Sinai"},
+    {id:"B",v:[4,4],role:"body",label:"We created man in the best of forms"},
+    {id:"X",v:[5,5],role:"pivot",label:"PIVOT — then We returned him to the lowest of the low"},
+    {id:"B′",v:[6,6],role:"body",label:"Except those who believe and do righteous deeds: for them is a reward uninterrupted"},
+    {id:"A′",v:[7,8],role:"frame",label:"So what yet causes you to deny the Recompense? · Is God not the most just of judges?"},
+  ],
+  96: [
+    {id:"A",v:[1,2],role:"frame",label:"Recite in the name of your Lord who created · created man from a clinging clot"},
+    {id:"D",v:[6,7],role:"body",label:"No indeed: man transgresses · because he sees himself self-sufficient"},
+    {id:"E",v:[9,10],role:"center",label:"Have you seen the one who forbids a servant when he prays?"},
+    {id:"D′",v:[15,16],role:"body",label:"No indeed: if he does not desist We will drag him by the forelock"},
+    {id:"A′",v:[19,19],role:"frame",label:"No indeed: do not obey him and prostrate and draw near"},
+  ],
+  97: [
+    {id:"A",v:[1,1],role:"frame",label:"We sent it down on the Night of Decree"},
+    {id:"B",v:[2,2],role:"body",label:"And what will make you realize what the Night of Decree is?"},
+    {id:"X",v:[3,3],role:"pivot",label:"PIVOT — the Night of Decree is better than a thousand months"},
+    {id:"B′",v:[4,4],role:"body",label:"The angels and the Spirit descend by permission of their Lord for every matter"},
+    {id:"A′",v:[5,5],role:"frame",label:"Peace it is until the emergence of dawn"},
+  ],
+  98: [
+    {id:"A",v:[1,2],role:"frame",label:"Those who disbelieved among the People of the Book · would not be released until the clear evidence came"},
+    {id:"B",v:[4,4],role:"body",label:"Those given the Book did not differ until after the clear evidence came to them"},
+    {id:"X",v:[5,5],role:"pivot",label:"PIVOT — they were not commanded except to worship God sincerely · to establish prayer and give zakāh"},
+    {id:"C",v:[6,7],role:"body",label:"Those who disbelieved are the worst of creatures · those who believed are the best of creatures"},
+    {id:"A′",v:[8,8],role:"frame",label:"Their reward: gardens of perpetual residence · God pleased with them and they pleased with Him"},
+  ],
+  99: [
+    {id:"A",v:[1,2],role:"frame",label:"When the earth is shaken with its quaking · and the earth discharges its burdens"},
+    {id:"B",v:[3,3],role:"body",label:"And man says: what is wrong with it?"},
+    {id:"X",v:[4,5],role:"pivot",label:"PIVOT — that Day it will report its news · because your Lord inspired it"},
+    {id:"B′",v:[6,6],role:"body",label:"That Day people will depart separated to be shown their deeds"},
+    {id:"A′",v:[7,8],role:"frame",label:"Whoever does an atom's weight of good will see it · whoever does an atom's weight of evil will see it"},
+  ],
+  100: [
+    {id:"A",v:[1,2],role:"frame",label:"By the racers panting · by those who strike sparks"},
+    {id:"B",v:[4,5],role:"body",label:"By those who raise dust · and penetrate into the midst of an army"},
+    {id:"X",v:[6,7],role:"pivot",label:"PIVOT — indeed man is ungrateful to his Lord · and indeed he is a witness to that"},
+    {id:"A′",v:[9,10],role:"body",label:"Does he not know · when what is in the graves is scattered"},
+    {id:"A″",v:[11,11],role:"frame",label:"Indeed their Lord that Day is fully aware of them"},
+  ],
+  101: [
+    {id:"A",v:[1,2],role:"frame",label:"The Striking Calamity · what is the Striking Calamity?"},
+    {id:"B",v:[4,5],role:"body",label:"The Day people will be like scattered moths · and the mountains like fluffed wool"},
+    {id:"C",v:[6,7],role:"body",label:"As for one whose scales are heavy: he will be in a pleasant life"},
+    {id:"C′",v:[8,9],role:"body",label:"But as for one whose scales are light: his refuge will be an abyss"},
+    {id:"A′",v:[10,11],role:"frame",label:"And what will make you realize what it is? · a blazing Fire"},
+  ],
+  102: [
+    {id:"A",v:[1,2],role:"frame",label:"Competition for more distracts you · until you visit the graves"},
+    {id:"B",v:[3,4],role:"body",label:"No indeed: you will know · then no indeed you will know"},
+    {id:"X",v:[5,5],role:"pivot",label:"PIVOT — no indeed: if you had knowledge of certainty"},
+    {id:"C",v:[6,7],role:"body",label:"You would certainly see the Hellfire · then you would certainly see it with the eye of certainty"},
+    {id:"A′",v:[8,8],role:"frame",label:"Then you will surely be asked that Day about the pleasures"},
+  ],
+  103: [
+    {id:"A",v:[1,1],role:"frame",label:"By time"},
+    {id:"X",v:[2,2],role:"pivot",label:"PIVOT — indeed mankind is in loss"},
+    {id:"A′",v:[3,3],role:"frame",label:"Except those who believe and do righteous deeds and enjoin truth and enjoin patience"},
+  ],
+};
+
+/* ═══════════════════════════════════════════════════════════════════════
    SECTION 3: VALIDATION — fail hard if anything is wrong
    ═══════════════════════════════════════════════════════════════════ */
 const VALID_CL = ["compound_seam","single_concentration","distributed_convergence","refrain_governed","terminal","multi_pivot"];
@@ -795,6 +1685,146 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .cl-badge {
   font-family: var(--f-mono); font-size: 10px; padding: 4px 8px; border-radius: 4px;
   display: inline-block; letter-spacing: 0.02em; opacity: 0.6;
+}
+
+/* === DETAIL TABS === */
+.detail-tabs {
+  display: flex; gap: 0; margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.detail-tab {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--t3); background: none; border: none; border-bottom: 2px solid transparent;
+  padding: 10px 20px 11px; margin-bottom: -1px; cursor: pointer; transition: all 0.2s;
+}
+.detail-tab:hover { color: var(--t2); }
+.detail-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.detail-tab:disabled { opacity: 0.25; cursor: default; }
+
+/* === STRUCTURE TAB === */
+.struct-section-label {
+  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--t3); margin-bottom: 16px;
+}
+
+/* Diagram */
+.struct-diagram-wrap { margin-bottom: 12px; position: relative; }
+.struct-pivot-marker {
+  position: absolute; top: 0; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  pointer-events: none; z-index: 3;
+}
+.struct-pivot-marker-label {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.14em;
+  color: rgba(201,166,82,0.75); text-transform: uppercase; line-height: 1;
+}
+.struct-pivot-marker-tick {
+  width: 1px; height: 8px; background: rgba(201,166,82,0.5); margin-top: 2px;
+}
+.struct-diagram {
+  display: flex; height: 88px; border-radius: 4px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.struct-block {
+  position: relative; height: 100%; min-width: 2px; cursor: pointer;
+  transition: filter 0.15s; display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid rgba(0,0,0,0.25);
+}
+.struct-block:last-child { border-right: none; }
+.struct-block:hover { filter: brightness(1.35); }
+.struct-block.pivot-block {
+  background: rgba(201,166,82,0.22) !important;
+  border-left: 1px solid rgba(201,166,82,0.45) !important;
+  border-right: 1px solid rgba(201,166,82,0.45) !important;
+}
+.struct-block.selected { outline: 2px solid rgba(255,255,255,0.22); outline-offset: -2px; z-index: 2; }
+.struct-block.mirror-lit { outline: 1.5px solid rgba(255,255,255,0.15); outline-offset: -1.5px; z-index: 1; filter: brightness(1.25); }
+.struct-block.pivot-block.selected { outline-color: rgba(201,166,82,0.7); box-shadow: 0 0 18px rgba(201,166,82,0.18); }
+.struct-block.dimmed { opacity: 0.28; filter: brightness(0.55); transition: opacity 0.2s, filter 0.2s; }
+.struct-block-row.dimmed { opacity: 0.35; transition: opacity 0.2s; }
+.struct-pivot-caption {
+  font-family: var(--f-body); font-size: 12px; color: var(--t3);
+  font-style: italic; margin-top: 4px; text-align: center;
+}
+.struct-block-id-label {
+  font-family: var(--f-mono); font-size: 9px; color: rgba(255,255,255,0.3);
+  pointer-events: none; white-space: nowrap; overflow: hidden; padding: 0 3px;
+  user-select: none;
+}
+.pivot-block .struct-block-id-label { color: rgba(201,166,82,0.75); }
+.struct-block.selected .struct-block-id-label { color: rgba(255,255,255,0.75); }
+
+.struct-diagram-hint {
+  height: 28px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-mono); font-size: 10px; color: var(--t3); letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+
+/* Structural sentence */
+.struct-sentence {
+  border-left: 2px solid rgba(201,166,82,0.25); padding-left: 14px;
+  font-family: var(--f-body); font-size: 14px; font-style: italic;
+  color: var(--t2); line-height: 1.7; font-weight: 300; margin-top: 8px; margin-bottom: 4px;
+}
+
+/* Intro pulse + pivot glow */
+@keyframes introPulse {
+  0% { filter: brightness(1); }
+  45% { filter: brightness(1.55); }
+  100% { filter: brightness(1); }
+}
+@keyframes pivotGlowPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(201,166,82,0); }
+  50% { box-shadow: 0 0 22px rgba(201,166,82,0.15); }
+}
+.struct-block.intro-pulse { animation: introPulse 0.9s ease both; }
+.struct-block.pivot-block { animation: pivotGlowPulse 3s ease-in-out infinite; }
+.struct-block.pivot-block.selected { animation: none; }
+
+/* Block list */
+.struct-block-list { margin-bottom: 48px; margin-top: 32px; }
+.struct-block-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 14px; border-radius: 6px; cursor: pointer;
+  border: 1px solid transparent; transition: all 0.15s; margin-bottom: 3px;
+}
+.struct-block-row:hover { background: var(--bg-card); border-color: var(--border); }
+.struct-block-row.selected { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+.struct-block-row.mirror-lit { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); }
+.struct-block-row.pivot-row { }
+.struct-block-row.pivot-row.selected { background: rgba(201,166,82,0.05); border-color: rgba(201,166,82,0.25); }
+.sbl-id {
+  font-family: var(--f-mono); font-size: 10px; font-weight: 500; flex-shrink: 0;
+  min-width: 36px; padding: 2px 6px; border-radius: 3px; text-align: center;
+  background: rgba(255,255,255,0.04); color: var(--t2); margin-top: 1px; letter-spacing: 0.02em;
+}
+.pivot-row .sbl-id { background: rgba(201,166,82,0.1); color: var(--gold); }
+.sbl-verses {
+  font-family: var(--f-mono); font-size: 10px; color: var(--t3);
+  flex-shrink: 0; min-width: 60px; margin-top: 3px; white-space: nowrap;
+}
+.sbl-role {
+  font-family: var(--f-mono); font-size: 10px; color: var(--t4);
+  flex-shrink: 0; min-width: 100px; margin-top: 3px;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.pivot-row .sbl-role { color: rgba(201,166,82,0.55); }
+.sbl-label {
+  font-family: var(--f-body); font-size: 13px; color: var(--t2); line-height: 1.7;
+  font-weight: 300; flex: 1;
+}
+.pivot-row .sbl-label { color: var(--t1); }
+
+.struct-no-map {
+  padding: 56px 0; text-align: center;
+  font-family: var(--f-mono); font-size: 11px; color: var(--t3); letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+  .struct-diagram { height: 64px; }
+  .sbl-role { display: none; }
+  .struct-block-row { gap: 8px; padding: 8px 10px; }
 }
 
 /* === PANORAMA === */
@@ -1295,6 +2325,266 @@ const BrowsePage = ({ onSelect, onBack }) => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
+   SECTION 10A: STRUCTURE TAB
+   Block map visualization — hero diagram + breakdown list.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const ROLE_HUMAN = {
+  outer_frame_open: "Opening Frame", outer_frame_close: "Closing Frame",
+  inner_frame_open: "Inner Frame", inner_frame_close: "Inner Frame",
+  frame: "Frame", pivot: "Pivot", center: "Center", center_block: "Center",
+  center_flank_left: "Central Section", center_flank_right: "Central Section",
+  center_upper: "Upper Center", center_lower: "Lower Center",
+  body: "Body",
+  narrative_1: "Narrative", narrative_2: "Narrative", narrative_3: "Narrative",
+  narrative_4: "Narrative", narrative_5: "Narrative",
+  narrative_6: "Narrative", narrative_7: "Narrative",
+  transition_1: "Transition", transition_2: "Transition", transition_3: "Transition",
+  seam: "Seam", hinge: "Hinge",
+  band_left: "Opening Band", band_right: "Closing Band",
+  inner: "Inner", addendum: "Addendum", close: "Close",
+};
+
+const PIVOT_ROLES = new Set(["pivot", "center", "seam", "hinge"]);
+
+// 8 saturated dark-luxury palette swatches — { base, hi } per family
+const BLOCK_PALETTE = [
+  { base: "rgba(38, 102, 120, 0.72)", hi: "rgba(38, 102, 120, 0.95)" },  // teal
+  { base: "rgba(52, 72, 118, 0.68)",  hi: "rgba(52, 72, 118, 0.92)"  },  // steel-blue
+  { base: "rgba(82, 58, 118, 0.65)",  hi: "rgba(82, 58, 118, 0.90)"  },  // violet
+  { base: "rgba(52, 98, 72, 0.65)",   hi: "rgba(52, 98, 72, 0.90)"   },  // sage-green
+  { base: "rgba(118, 72, 38, 0.65)",  hi: "rgba(118, 72, 38, 0.90)"  },  // amber-brown
+  { base: "rgba(98, 52, 72, 0.62)",   hi: "rgba(98, 52, 72, 0.88)"   },  // rose-plum
+  { base: "rgba(42, 88, 88, 0.60)",   hi: "rgba(42, 88, 88, 0.85)"   },  // seafoam
+  { base: "rgba(80, 80, 50, 0.58)",   hi: "rgba(80, 80, 50, 0.82)"   },  // olive
+];
+
+function blockFamily(id) {
+  return id
+    .replace(/[′'`]/g, "")
+    .replace(/_prime$/i, "")
+    .replace(/_$/, "")
+    .replace(/[₀₁₂₃₄₅₆₇₈₉]/g, "")
+    .replace(/\d+$/, "")
+    .toUpperCase();
+}
+
+function colorizeBlocks(blocks) {
+  const families = [];
+  for (const b of blocks) {
+    if (PIVOT_ROLES.has(b.role)) continue;
+    const fam = blockFamily(b.id);
+    if (!families.includes(fam)) families.push(fam);
+  }
+  return blocks.map(b => {
+    const isPivot = PIVOT_ROLES.has(b.role);
+    const famIdx = isPivot ? -1 : families.indexOf(blockFamily(b.id)) % BLOCK_PALETTE.length;
+    const pal = isPivot ? null : BLOCK_PALETTE[famIdx];
+    return { ...b, isPivot, famIdx, color: pal ? pal.base : null, colorHi: pal ? pal.hi : null };
+  });
+}
+
+const displayId = (id) => id.replace(/_$/, "′");
+
+const StructureTab = ({ surahNum, verseCount }) => {
+  const [sel, setSel] = useState(null);
+  const [pulseIdx, setPulseIdx] = useState(null);
+  const listRef = useRef(null);
+
+  const blocks = useMemo(() => {
+    const raw = BLOCK_MAP_DATA[surahNum];
+    return raw ? colorizeBlocks(raw) : null;
+  }, [surahNum]);
+
+  useEffect(() => setSel(null), [surahNum]);
+
+  // Intro pulse: fire once on first non-pivot block after 600ms delay
+  useEffect(() => {
+    setPulseIdx(null);
+    if (!blocks || blocks.length === 0) return;
+    const firstNonPivot = blocks.findIndex(b => !b.isPivot);
+    if (firstNonPivot === -1) return;
+    const timer = setTimeout(() => setPulseIdx(firstNonPivot), 600);
+    return () => clearTimeout(timer);
+  }, [surahNum, blocks]);
+
+  // Clear pulse class after animation completes
+  useEffect(() => {
+    if (pulseIdx === null) return;
+    const timer = setTimeout(() => setPulseIdx(null), 1000);
+    return () => clearTimeout(timer);
+  }, [pulseIdx]);
+
+  // Scroll selected list row into view
+  useEffect(() => {
+    if (sel === null || !listRef.current) return;
+    const rows = listRef.current.querySelectorAll(".struct-block-row");
+    if (rows[sel]) rows[sel].scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [sel]);
+
+  if (!blocks) {
+    return <div className="struct-no-map">Block map not yet available for this surah.</div>;
+  }
+
+  const handleDiagramClick = (i) => setSel(i === sel ? null : i);
+
+  // Bug 1 fix: use actual block span sum instead of verseCount for proportional widths
+  const totalSpan = blocks.reduce((sum, b) => sum + (b.v[1] - b.v[0] + 1), 0);
+
+  const selBlock = sel !== null ? blocks[sel] : null;
+
+  // Mirror-highlight: find all blocks sharing the selected block's family
+  const selFamily = selBlock && !selBlock.isPivot ? blockFamily(selBlock.id) : null;
+  const mirrorIndices = new Set();
+  if (selFamily) {
+    blocks.forEach((b, i) => {
+      if (i !== sel && !b.isPivot && blockFamily(b.id) === selFamily) mirrorIndices.add(i);
+    });
+  }
+  const mirrorIds = selFamily ? blocks.filter((b, i) => mirrorIndices.has(i)).map(b => b.id) : [];
+
+  // Hint text with mirror info (uses displayId for prime notation)
+  const hintText = selBlock
+    ? (() => {
+        const verseRange = selBlock.v[0] === selBlock.v[1] ? `v.${selBlock.v[0]}` : `v.${selBlock.v[0]}–${selBlock.v[1]}`;
+        const role = ROLE_HUMAN[selBlock.role] || selBlock.role;
+        const mirrorStr = mirrorIds.length > 0 ? ` · mirrors ${mirrorIds.map(id => displayId(id)).join(", ")}` : "";
+        return `${displayId(selBlock.id)} · ${verseRange} · ${role}${mirrorStr}`;
+      })()
+    : "Tap a block to reveal its mirror";
+
+  // Structural sentence: generated dynamically from block data
+  const structSentence = useMemo(() => {
+    if (!blocks) return null;
+    const surah = getSurahByNumber(surahNum);
+    const name = surah ? surah.surah_name_en : `Surah ${surahNum}`;
+    const total = blocks.length;
+    const hasPivot = blocks.some(b => b.isPivot);
+    const pivotBlock = blocks.find(b => b.isPivot);
+    const nonPivot = blocks.filter(b => !b.isPivot);
+
+    // Detect if IDs follow standard ring pattern (single letters like A, B, C, A′, B_)
+    const ringPattern = /^[A-H][′'`_]?$/;
+    const isRing = nonPivot.length > 0 && nonPivot.every(b => ringPattern.test(b.id));
+
+    // Detect mirrored families
+    const mirroredCount = nonPivot.filter(b => nonPivot.some(
+      other => other !== b && blockFamily(other.id) === blockFamily(b.id)
+    )).length;
+    const hasMirrors = mirroredCount > 0;
+
+    const frameBlocks = blocks.filter(b => b.role === "frame" || b.role === "outer_frame_open" || b.role === "outer_frame_close");
+    const bodyBlocks = blocks.filter(b => b.role === "body");
+    const innerCount = bodyBlocks.length;
+
+    if (!isRing) {
+      // Named-sequence surah (e.g. Q.54 with NOAH, AAD, THAMUD...)
+      const denialNames = ["NOAH", "AAD", "THAMUD", "LOT", "PHARAOH"];
+      const hasDenials = nonPivot.some(b => denialNames.includes(b.id));
+      const theme = hasDenials ? "denial narratives" : "thematic sections";
+      const pivotRef = pivotBlock ? displayId(pivotBlock.id) : "its center";
+      return `${name} builds a ${total}-part sequence of ${theme}, folding around ${pivotRef} as the structural center.`;
+    }
+
+    if (hasMirrors && frameBlocks.length > 0) {
+      // Standard ring: A B C D C′ B′ A′
+      const frameWord = frameBlocks.length > 1 ? "frames" : "a frame";
+      const innerDesc = innerCount > 0 ? ` ${innerCount === 1 ? "one section" : `${innerCount} sections`}` : "";
+      return `${name} forms a ${total}-part ring: mirrored ${frameWord} enclose${innerDesc} folding around a central pivot.`;
+    }
+
+    if (hasMirrors) {
+      return `${name} forms a ${total}-part ring: symmetric blocks fold around a central pivot.`;
+    }
+
+    return `${name} is composed of ${total} structural sections around a central pivot.`;
+  }, [blocks, surahNum]);
+
+  // Pivot marker position: compute % offset to center of pivot block
+  const pivotCenter = useMemo(() => {
+    if (!blocks) return null;
+    let cumVerses = 0;
+    for (const b of blocks) {
+      const span = b.v[1] - b.v[0] + 1;
+      if (b.isPivot) {
+        return ((cumVerses + span / 2) / totalSpan) * 100;
+      }
+      cumVerses += span;
+    }
+    return null;
+  }, [blocks, verseCount]);
+
+  return (
+    <div>
+      {/* ── HERO DIAGRAM ── */}
+      <div className="struct-diagram-wrap">
+        <div className="struct-section-label">Surah Map</div>
+        {pivotCenter !== null && (
+          <div className="struct-pivot-marker" style={{ left: `${pivotCenter}%` }}>
+            <span className="struct-pivot-marker-label">PIVOT</span>
+            <div className="struct-pivot-marker-tick" />
+          </div>
+        )}
+        <div className="struct-diagram" style={{ marginTop: pivotCenter !== null ? 22 : 0 }}>
+          {blocks.map((b, i) => {
+            const span = b.v[1] - b.v[0] + 1;
+            const widthPct = (span / totalSpan) * 100;
+            const isSelected = sel === i;
+            const isMirrorLit = mirrorIndices.has(i);
+            const isDimmed = sel !== null && !isSelected && !isMirrorLit && !b.isPivot && !(selBlock && selBlock.isPivot);
+            return (
+              <div
+                key={i}
+                className={`struct-block${b.isPivot ? " pivot-block" : ""}${isSelected ? " selected" : ""}${isMirrorLit ? " mirror-lit" : ""}${isDimmed ? " dimmed" : ""}${pulseIdx === i ? " intro-pulse" : ""}`}
+                style={{ width: `${widthPct}%`, background: (isSelected || isMirrorLit ? b.colorHi : b.color) || undefined }}
+                onClick={() => handleDiagramClick(i)}
+                title={`${b.id} · v.${b.v[0]}–${b.v[1]}`}
+              >
+                {widthPct > 3.5 && (
+                  <span className="struct-block-id-label">{displayId(b.id)}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="struct-diagram-hint" style={{ opacity: selBlock ? 1 : 0.45 }}>
+          {hintText}
+        </div>
+        {selBlock && selBlock.isPivot && (
+          <div className="struct-pivot-caption">Structural hinge — the surah turns here.</div>
+        )}
+        {structSentence && (
+          <div className="struct-sentence">{structSentence}</div>
+        )}
+      </div>
+
+      {/* ── BLOCK LIST ── */}
+      <div className="struct-block-list" ref={listRef}>
+        <div className="struct-section-label">Block Breakdown</div>
+        {blocks.map((b, i) => {
+          const isSelected = sel === i;
+          const isMirrorLit = mirrorIndices.has(i);
+          const isDimmed = sel !== null && !isSelected && !isMirrorLit && !b.isPivot && !(selBlock && selBlock.isPivot);
+          const verseStr = b.v[0] === b.v[1] ? `v.${b.v[0]}` : `v.${b.v[0]}–${b.v[1]}`;
+          return (
+            <div
+              key={i}
+              className={`struct-block-row${b.isPivot ? " pivot-row" : ""}${isSelected ? " selected" : ""}${isMirrorLit ? " mirror-lit" : ""}${isDimmed ? " dimmed" : ""}`}
+              onClick={() => setSel(i === sel ? null : i)}
+            >
+              <div className="sbl-id" style={b.color ? { background: (isSelected || isMirrorLit) ? b.colorHi : b.color } : undefined}>{displayId(b.id)}</div>
+              <div className="sbl-verses">{verseStr}</div>
+              <div className="sbl-role">{ROLE_HUMAN[b.role] || b.role}</div>
+              <div className="sbl-label">{b.label}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════════════════════
    SECTION 10: DETAIL PAGE
    Core product surface — shows the shape of a single surah.
    ═══════════════════════════════════════════════════════════════════ */
@@ -1343,9 +2633,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
   const verses = useMemo(() => getPivotVerses(surahNum), [surahNum]);
   const adj = useMemo(() => getAdjacentSurahs(surahNum), [surahNum]);
   const [pivotLit, setPivotLit] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
 
-  // Scroll to top on surah change
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); setPivotLit(false); }, [surahNum]);
+  // Reset state on surah change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setPivotLit(false);
+    setActiveTab("overview");
+  }, [surahNum]);
 
   if (!d) return null;
   const r = d.pivotRange;
@@ -1353,6 +2648,7 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
   const preCount = r.start - 1;
   const pivotCount = r.end - r.start + 1;
   const postCount = d.verse_count - r.end;
+  const hasBlockMap = !!BLOCK_MAP_DATA[surahNum];
 
   // Base delay for pivot cards (1.0s on desktop, reduced on mobile via CSS overrides on .pivot-card)
   const pivotCardBaseDelay = 1.05;
@@ -1378,86 +2674,114 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
         <div className="di-ar">{d.surah_name_ar}</div>
       </div>
 
-      {/* 2. STRUCTURAL BAR — THE hero, reveals at 0.4s */}
-      <div className="scaffold-section">
-        <div className="scaffold-label">Structural Blueprint</div>
-        <div className="detail-bar-object">
-          <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
-            onPivotInteract={(action) => {
-              if (action === "toggle") setPivotLit(p => !p);
-              else setPivotLit(action);
-            }}
-          />
-        </div>
-
-        <div className="scaffold-legend">
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(212,168,67,0.3)" }} />Pivot zone</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4a843" }} />Pivot midpoint</div>
-          <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
-        </div>
+      {/* 2. TAB BAR */}
+      <div className="detail-tabs">
+        <button
+          className={`detail-tab${activeTab === "overview" ? " active" : ""}`}
+          onClick={() => setActiveTab("overview")}
+        >
+          Overview
+        </button>
+        <button
+          className={`detail-tab${activeTab === "structure" ? " active" : ""}`}
+          onClick={() => setActiveTab("structure")}
+          disabled={!hasBlockMap}
+          title={!hasBlockMap ? "Block map pending for this surah" : undefined}
+        >
+          Structure
+        </button>
       </div>
 
-      {/* 3. METRICS STRIP — settles below bar at 0.6s */}
-      <div className="detail-strip">
-        <div className="strip-item">
-          <div className="strip-val">{d.verse_count}</div>
-          <div className="strip-label">Verses</div>
-        </div>
-        <div className="strip-item">
-          <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 16 : 14 }}>{d.pivot_verse}</div>
-          <div className="strip-label">Pivot</div>
-        </div>
-        <div className="strip-item">
-          <div className="strip-val">{fmt(d.pivot_offset)}</div>
-          <div className="strip-label">Offset</div>
-        </div>
-        <div className="strip-item">
-          <div className="strip-val">{d.absOffset.toFixed(4)}</div>
-          <div className="strip-label">|Offset|</div>
-        </div>
-        <div className="strip-item">
-          <div className="strip-val" style={{ fontSize: 13 }}>
-            <span className="cl-badge" style={{ background: d.clColor + "18", color: d.clColor }}>{d.clLabel}</span>
-          </div>
-          <div className="strip-label">Classification</div>
-        </div>
-      </div>
-
-      {/* 4. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
-      <div className="scaffold-breakdown">
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 48, gap: 8, flexWrap: "wrap" }}>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
-            Pre-pivot: <span style={{ color: "var(--t2)" }}>{preCount} verses</span>
-          </div>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.04em" }}>
-            Pivot zone: <span style={{ color: "var(--t1)" }}>{pivotCount === 1 ? `v.${r.start}` : `v.${r.start}–${r.end}`} ({pivotCount} {pivotCount === 1 ? 'verse' : 'verses'})</span>
-          </div>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
-            Post-pivot: <span style={{ color: "var(--t2)" }}>{postCount} verses</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 5. PIVOT VERSES — fade up from 1.0s, staggered 0.15s each */}
-      {verses.length > 0 && (
-        <div className="pivot-section">
-          <div className="pivot-section-title">
-            Pivot {verses.length === 1 ? "Verse" : "Verses"} — {r.start === r.end ? `${d.surah_number}:${r.start}` : `${d.surah_number}:${r.start}–${r.end}`}
-          </div>
-          {verses.map((v, i) => (
-            <div key={v.v} className="pivot-card" style={{
-              animationDelay: `${(pivotCardBaseDelay + i * 0.15).toFixed(2)}s`,
-              borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined,
-              boxShadow: pivotLit ? "0 0 20px rgba(212,168,67,0.06), inset 0 0 0 1px rgba(212,168,67,0.08)" : "none",
-              transition: "border-color 0.3s, box-shadow 0.3s",
-            }}>
-              <div className="pv-ref">{d.surah_number}:{v.v}</div>
-              <div className="pv-arabic">{renderArabicWithGold(v.ar, getGoldWords(d.surah_number, v.v), pivotLit)}</div>
-              <hr className="pv-separator" />
-              <div className="pv-english">{v.en}</div>
+      {/* ── OVERVIEW TAB ── */}
+      {activeTab === "overview" && (
+        <>
+          {/* 3. STRUCTURAL BAR — THE hero, reveals at 0.4s */}
+          <div className="scaffold-section">
+            <div className="scaffold-label">Structural Blueprint</div>
+            <div className="detail-bar-object">
+              <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
+                onPivotInteract={(action) => {
+                  if (action === "toggle") setPivotLit(p => !p);
+                  else setPivotLit(action);
+                }}
+              />
             </div>
-          ))}
-        </div>
+
+            <div className="scaffold-legend">
+              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(212,168,67,0.3)" }} />Pivot zone</div>
+              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4a843" }} />Pivot midpoint</div>
+              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
+            </div>
+          </div>
+
+          {/* 4. METRICS STRIP — settles below bar at 0.6s */}
+          <div className="detail-strip">
+            <div className="strip-item">
+              <div className="strip-val">{d.verse_count}</div>
+              <div className="strip-label">Verses</div>
+            </div>
+            <div className="strip-item">
+              <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 16 : 14 }}>{d.pivot_verse}</div>
+              <div className="strip-label">Pivot</div>
+            </div>
+            <div className="strip-item">
+              <div className="strip-val">{fmt(d.pivot_offset)}</div>
+              <div className="strip-label">Offset</div>
+            </div>
+            <div className="strip-item">
+              <div className="strip-val">{d.absOffset.toFixed(4)}</div>
+              <div className="strip-label">|Offset|</div>
+            </div>
+            <div className="strip-item">
+              <div className="strip-val" style={{ fontSize: 13 }}>
+                <span className="cl-badge" style={{ background: d.clColor + "18", color: d.clColor }}>{d.clLabel}</span>
+              </div>
+              <div className="strip-label">Classification</div>
+            </div>
+          </div>
+
+          {/* 5. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
+          <div className="scaffold-breakdown">
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 48, gap: 8, flexWrap: "wrap" }}>
+              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
+                Pre-pivot: <span style={{ color: "var(--t2)" }}>{preCount} verses</span>
+              </div>
+              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.04em" }}>
+                Pivot zone: <span style={{ color: "var(--t1)" }}>{pivotCount === 1 ? `v.${r.start}` : `v.${r.start}–${r.end}`} ({pivotCount} {pivotCount === 1 ? 'verse' : 'verses'})</span>
+              </div>
+              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
+                Post-pivot: <span style={{ color: "var(--t2)" }}>{postCount} verses</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 6. PIVOT VERSES — fade up from 1.0s, staggered 0.15s each */}
+          {verses.length > 0 && (
+            <div className="pivot-section">
+              <div className="pivot-section-title">
+                Pivot {verses.length === 1 ? "Verse" : "Verses"} — {r.start === r.end ? `${d.surah_number}:${r.start}` : `${d.surah_number}:${r.start}–${r.end}`}
+              </div>
+              {verses.map((v, i) => (
+                <div key={v.v} className="pivot-card" style={{
+                  animationDelay: `${(pivotCardBaseDelay + i * 0.15).toFixed(2)}s`,
+                  borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined,
+                  boxShadow: pivotLit ? "0 0 20px rgba(212,168,67,0.06), inset 0 0 0 1px rgba(212,168,67,0.08)" : "none",
+                  transition: "border-color 0.3s, box-shadow 0.3s",
+                }}>
+                  <div className="pv-ref">{d.surah_number}:{v.v}</div>
+                  <div className="pv-arabic">{renderArabicWithGold(v.ar, getGoldWords(d.surah_number, v.v), pivotLit)}</div>
+                  <hr className="pv-separator" />
+                  <div className="pv-english">{v.en}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      {/* ── STRUCTURE TAB ── */}
+      {activeTab === "structure" && (
+        <StructureTab surahNum={surahNum} verseCount={d.verse_count} />
       )}
     </div>
   );
