@@ -349,6 +349,13 @@ const GOLD_WORDS = {
    Each block: id, v[start,end], role, label
    ═══════════════════════════════════════════════════════════════════ */
 const BLOCK_MAP_DATA = {
+  1: [
+    {id:"A",v:[1,3],role:"outer_frame_open",label:"Praise and attributes of God"},
+    {id:"B",v:[4,4],role:"body",label:"The Day of Judgment declared"},
+    {id:"PIVOT",v:[5,5],role:"pivot",label:"Address shift — You alone we worship"},
+    {id:"B′",v:[6,6],role:"body",label:"Petition for the straight path"},
+    {id:"A′",v:[7,7],role:"outer_frame_close",label:"The three paths named"},
+  ],
   2: [
     {id:"A",v:[1,20],role:"frame",label:"الم · no doubt · guidance for the righteous · those who succeed"},
     {id:"B",v:[21,39],role:"body",label:"O Mankind: worship · disbeliever / hypocrite / believer portraits"},
@@ -1078,6 +1085,15 @@ const BLOCK_MAP_DATA = {
     {id:"X2",v:[26,26],role:"pivot",label:"SECONDARY PIVOT — then where are you going?"},
     {id:"E",v:[27,28],role:"frame",label:"It is only a reminder to the worlds · for whoever among you wills to go straight"},
   ],
+  82: [
+    {id:"A",v:[1,4],role:"outer_frame_open",label:"Cosmic unraveling — sky / stars / seas / graves"},
+    {id:"B",v:[5,5],role:"body",label:"The soul confronts what it sent forward"},
+    {id:"C",v:[6,8],role:"body",label:"O mankind — what deceived you?"},
+    {id:"PIVOT",v:[9,9],role:"pivot",label:"The denial named"},
+    {id:"C′",v:[10,12],role:"body",label:"Guardian angels recording every deed"},
+    {id:"B′",v:[13,14],role:"body",label:"Binary verdict — bliss or fire"},
+    {id:"A′",v:[15,19],role:"outer_frame_close",label:"The Day of Judgment — who owns it?"},
+  ],
   83: [
     {id:"A",v:[1,2],role:"frame",label:"Woe to those who defraud · those who when they take from people demand in full"},
     {id:"B",v:[7,8],role:"body",label:"The book of the wicked is in Sijjīn · what will make you realize what Sijjīn is?"},
@@ -1229,6 +1245,63 @@ const BLOCK_MAP_DATA = {
     {id:"A",v:[1,1],role:"frame",label:"By time"},
     {id:"X",v:[2,2],role:"pivot",label:"PIVOT — indeed mankind is in loss"},
     {id:"A′",v:[3,3],role:"frame",label:"Except those who believe and do righteous deeds and enjoin truth and enjoin patience"},
+  ],
+  104: [
+    {id:"A",v:[1,1],role:"outer_frame_open",label:"Woe to the slanderer"},
+    {id:"B",v:[2,3],role:"body",label:"Wealth hoarded — counted obsessively"},
+    {id:"PIVOT",v:[4,5],role:"pivot",label:"The delusion — wealth grants immortality"},
+    {id:"B′",v:[6,7],role:"body",label:"Al-Hutamah — the crushing fire"},
+    {id:"A′",v:[8,9],role:"outer_frame_close",label:"Sealed columns — no escape"},
+  ],
+  105: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"Have you not seen what your Lord did?"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"Birds sent in successive flights"},
+    {id:"A′",v:[4,5],role:"outer_frame_close",label:"Like consumed chaff"},
+  ],
+  106: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"The covenant of Quraysh — two journeys"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"Therefore worship the Lord of this House"},
+    {id:"A′",v:[4,4],role:"outer_frame_close",label:"Who fed them from hunger and gave security"},
+  ],
+  107: [
+    {id:"A",v:[1,3],role:"outer_frame_open",label:"The denier — orphan rejected, poor ignored"},
+    {id:"PIVOT",v:[4,4],role:"pivot",label:"Woe to those who pray"},
+    {id:"A′",v:[5,7],role:"outer_frame_close",label:"The hypocrite — heedless, refusing small kindness"},
+  ],
+  108: [
+    {id:"A",v:[1,1],role:"outer_frame_open",label:"We have given you Al-Kawthar"},
+    {id:"PIVOT",v:[2,2],role:"pivot",label:"Therefore pray and sacrifice"},
+    {id:"A′",v:[3,3],role:"outer_frame_close",label:"Your enemy — he is the one cut off"},
+  ],
+  109: [
+    {id:"A",v:[1,1],role:"outer_frame_open",label:"Address to the disbelievers"},
+    {id:"B",v:[2,3],role:"body",label:"I do not worship what you worship"},
+    {id:"B′",v:[4,5],role:"body",label:"Nor will you worship what I worship"},
+    {id:"PIVOT",v:[6,6],role:"pivot",label:"Final declaration — your way and mine"},
+  ],
+  110: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"When victory comes and people enter in multitudes"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"Glorify — He is ever accepting of repentance"},
+  ],
+  111: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"Abu Lahab — his hands and wealth will avail him nothing"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"He will burn in a flaming fire"},
+    {id:"A′",v:[4,5],role:"outer_frame_close",label:"His wife — carrier of firewood, rope of palm fiber"},
+  ],
+  112: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"God is One — the Eternal Refuge"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"He neither begets nor was begotten"},
+    {id:"A′",v:[4,4],role:"outer_frame_close",label:"And none is equal to Him"},
+  ],
+  113: [
+    {id:"A",v:[1,2],role:"outer_frame_open",label:"Seek refuge in the Lord of daybreak"},
+    {id:"PIVOT",v:[3,3],role:"pivot",label:"From the evil of darkness as it spreads"},
+    {id:"A′",v:[4,5],role:"outer_frame_close",label:"From the evil of those who blow and those who envy"},
+  ],
+  114: [
+    {id:"A",v:[1,3],role:"outer_frame_open",label:"Seek refuge — Lord / King / God of mankind"},
+    {id:"PIVOT",v:[4,4],role:"pivot",label:"From the evil of the retreating whisperer"},
+    {id:"A′",v:[5,6],role:"outer_frame_close",label:"Who whispers in the hearts of mankind — jinn and men"},
   ],
 };
 
