@@ -1,0 +1,6908 @@
+{
+  "1": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "outer_frame_open",
+      "label": "Praise of the Lord"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Lord of Judgment"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        5,
+        5
+      ],
+      "role": "pivot",
+      "label": "Worship and reliance"
+    },
+    {
+      "id": "B′",
+      "v": [
+        6,
+        6
+      ],
+      "role": "body",
+      "label": "Prayer for guidance"
+    },
+    {
+      "id": "A′",
+      "v": [
+        7,
+        7
+      ],
+      "role": "outer_frame_close",
+      "label": "The three paths"
+    }
+  ],
+  "2": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        20
+      ],
+      "role": "frame",
+      "label": "Three responses to revelation"
+    },
+    {
+      "id": "B",
+      "v": [
+        21,
+        39
+      ],
+      "role": "body",
+      "label": "Adam and mankind's beginning"
+    },
+    {
+      "id": "C",
+      "v": [
+        40,
+        103
+      ],
+      "role": "body",
+      "label": "Israel's covenant failure"
+    },
+    {
+      "id": "C₀",
+      "v": [
+        104,
+        141
+      ],
+      "role": "body",
+      "label": "Speech discipline"
+    },
+    {
+      "id": "D",
+      "v": [
+        142,
+        152
+      ],
+      "role": "pivot",
+      "label": "The qiblah pivot"
+    },
+    {
+      "id": "C₀′",
+      "v": [
+        153,
+        177
+      ],
+      "role": "body",
+      "label": "Community formation"
+    },
+    {
+      "id": "C′",
+      "v": [
+        178,
+        253
+      ],
+      "role": "body",
+      "label": "Law and social order"
+    },
+    {
+      "id": "B′",
+      "v": [
+        254,
+        260
+      ],
+      "role": "body",
+      "label": "Divine authority and faith"
+    },
+    {
+      "id": "A′",
+      "v": [
+        261,
+        286
+      ],
+      "role": "frame",
+      "label": "The final covenant"
+    }
+  ],
+  "3": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        32
+      ],
+      "role": "frame",
+      "label": "Revelation and truth"
+    },
+    {
+      "id": "B",
+      "v": [
+        33,
+        63
+      ],
+      "role": "body",
+      "label": "The chosen lineage"
+    },
+    {
+      "id": "C",
+      "v": [
+        64,
+        99
+      ],
+      "role": "body",
+      "label": "Call to unity"
+    },
+    {
+      "id": "D",
+      "v": [
+        100,
+        108
+      ],
+      "role": "pivot",
+      "label": "Hold fast to Allah"
+    },
+    {
+      "id": "C′",
+      "v": [
+        109,
+        120
+      ],
+      "role": "body",
+      "label": "Divine sovereignty"
+    },
+    {
+      "id": "B′",
+      "v": [
+        121,
+        175
+      ],
+      "role": "body",
+      "label": "Trial at Uhud"
+    },
+    {
+      "id": "A′",
+      "v": [
+        176,
+        200
+      ],
+      "role": "frame",
+      "label": "Final exhortation"
+    }
+  ],
+  "4": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        14
+      ],
+      "role": "frame",
+      "label": "Origin and inheritance"
+    },
+    {
+      "id": "B",
+      "v": [
+        15,
+        43
+      ],
+      "role": "body",
+      "label": "Social justice law"
+    },
+    {
+      "id": "C",
+      "v": [
+        44,
+        81
+      ],
+      "role": "body",
+      "label": "The hypocrites exposed"
+    },
+    {
+      "id": "D",
+      "v": [
+        82,
+        95
+      ],
+      "role": "pivot",
+      "label": "Reflect on the Quran"
+    },
+    {
+      "id": "C′",
+      "v": [
+        96,
+        134
+      ],
+      "role": "body",
+      "label": "Defend the weak"
+    },
+    {
+      "id": "B′",
+      "v": [
+        135,
+        152
+      ],
+      "role": "body",
+      "label": "Stand firm for justice"
+    },
+    {
+      "id": "A′",
+      "v": [
+        153,
+        176
+      ],
+      "role": "frame",
+      "label": "Final rulings"
+    }
+  ],
+  "5": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        11
+      ],
+      "role": "frame",
+      "label": "Fulfill your contracts"
+    },
+    {
+      "id": "B",
+      "v": [
+        12,
+        50
+      ],
+      "role": "body",
+      "label": "Israel's broken covenant"
+    },
+    {
+      "id": "D",
+      "v": [
+        51,
+        69
+      ],
+      "role": "pivot",
+      "label": "Loyalty to Allah above alliances"
+    },
+    {
+      "id": "B′",
+      "v": [
+        70,
+        100
+      ],
+      "role": "body",
+      "label": "Messengers and their message"
+    },
+    {
+      "id": "A′",
+      "v": [
+        101,
+        120
+      ],
+      "role": "frame",
+      "label": "Do not ask too much"
+    }
+  ],
+  "6": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        35
+      ],
+      "role": "frame",
+      "label": "Creator of darkness and light"
+    },
+    {
+      "id": "B",
+      "v": [
+        36,
+        73
+      ],
+      "role": "body",
+      "label": "Signs ignored"
+    },
+    {
+      "id": "D",
+      "v": [
+        74,
+        90
+      ],
+      "role": "pivot",
+      "label": "Abraham discovers pure tawhid"
+    },
+    {
+      "id": "B′",
+      "v": [
+        91,
+        135
+      ],
+      "role": "body",
+      "label": "Allah not truly appraised"
+    },
+    {
+      "id": "A′",
+      "v": [
+        136,
+        165
+      ],
+      "role": "frame",
+      "label": "Polytheists and their claims"
+    }
+  ],
+  "7": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "Follow the revealed Book"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        58
+      ],
+      "role": "body",
+      "label": "Adam, Iblis, the Garden"
+    },
+    {
+      "id": "C",
+      "v": [
+        59,
+        93
+      ],
+      "role": "body",
+      "label": "Five prophets — five rejections"
+    },
+    {
+      "id": "D",
+      "v": [
+        94,
+        102
+      ],
+      "role": "pivot",
+      "label": "The law of prophetic warning"
+    },
+    {
+      "id": "C′",
+      "v": [
+        103,
+        171
+      ],
+      "role": "body",
+      "label": "Moses and the great contest"
+    },
+    {
+      "id": "B′",
+      "v": [
+        172,
+        198
+      ],
+      "role": "body",
+      "label": "The primordial covenant"
+    },
+    {
+      "id": "A′",
+      "v": [
+        199,
+        206
+      ],
+      "role": "frame",
+      "label": "Enjoin good, avoid ignorance"
+    }
+  ],
+  "8": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        19
+      ],
+      "role": "frame",
+      "label": "Bounties belong to Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        20,
+        40
+      ],
+      "role": "body",
+      "label": "Obey and prepare"
+    },
+    {
+      "id": "D",
+      "v": [
+        41,
+        44
+      ],
+      "role": "pivot",
+      "label": "Victory belongs to Allah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        45,
+        71
+      ],
+      "role": "body",
+      "label": "Stand firm together"
+    },
+    {
+      "id": "A′",
+      "v": [
+        72,
+        75
+      ],
+      "role": "frame",
+      "label": "Brotherhood in migration"
+    }
+  ],
+  "9": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        28
+      ],
+      "role": "frame",
+      "label": "Treaty dissolution"
+    },
+    {
+      "id": "B",
+      "v": [
+        29,
+        37
+      ],
+      "role": "body",
+      "label": "Fight those who broke faith"
+    },
+    {
+      "id": "C",
+      "v": [
+        38,
+        72
+      ],
+      "role": "body",
+      "label": "The hypocrites hold back"
+    },
+    {
+      "id": "D",
+      "v": [
+        73,
+        80
+      ],
+      "role": "pivot",
+      "label": "Confront hypocrisy"
+    },
+    {
+      "id": "C′",
+      "v": [
+        81,
+        110
+      ],
+      "role": "body",
+      "label": "The expedition to Tabuk"
+    },
+    {
+      "id": "A′",
+      "v": [
+        111,
+        129
+      ],
+      "role": "frame",
+      "label": "Allah purchases believers' lives"
+    }
+  ],
+  "10": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        25
+      ],
+      "role": "frame",
+      "label": "The wise Book"
+    },
+    {
+      "id": "B",
+      "v": [
+        26,
+        56
+      ],
+      "role": "body",
+      "label": "The best reward"
+    },
+    {
+      "id": "D",
+      "v": [
+        57,
+        70
+      ],
+      "role": "pivot",
+      "label": "Healing has come to you"
+    },
+    {
+      "id": "B′",
+      "v": [
+        71,
+        103
+      ],
+      "role": "body",
+      "label": "Noah's people saved and drowned"
+    },
+    {
+      "id": "A′",
+      "v": [
+        104,
+        109
+      ],
+      "role": "frame",
+      "label": "I worship only Allah"
+    }
+  ],
+  "11": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        24
+      ],
+      "role": "frame",
+      "label": "The perfected Book revealed"
+    },
+    {
+      "id": "N1",
+      "v": [
+        25,
+        49
+      ],
+      "role": "narrative_1",
+      "label": "Noah's people and the flood"
+    },
+    {
+      "id": "N2",
+      "v": [
+        50,
+        60
+      ],
+      "role": "narrative_2",
+      "label": "Hud and the destroyed Aad"
+    },
+    {
+      "id": "D",
+      "v": [
+        61,
+        83
+      ],
+      "role": "pivot",
+      "label": "Salih and the she-camel"
+    },
+    {
+      "id": "N3",
+      "v": [
+        84,
+        99
+      ],
+      "role": "narrative_3",
+      "label": "Shuayb and just measure"
+    },
+    {
+      "id": "A′",
+      "v": [
+        100,
+        123
+      ],
+      "role": "frame",
+      "label": "Cities destroyed for denying"
+    }
+  ],
+  "12": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        7
+      ],
+      "role": "frame",
+      "label": "The best of stories"
+    },
+    {
+      "id": "B",
+      "v": [
+        8,
+        18
+      ],
+      "role": "body",
+      "label": "Brothers plot against Joseph"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        35
+      ],
+      "role": "body",
+      "label": "The palace and false accusation"
+    },
+    {
+      "id": "D",
+      "v": [
+        36,
+        57
+      ],
+      "role": "pivot",
+      "label": "Prison and the two dreams"
+    },
+    {
+      "id": "C′",
+      "v": [
+        58,
+        82
+      ],
+      "role": "body",
+      "label": "Brothers return to Egypt"
+    },
+    {
+      "id": "B′",
+      "v": [
+        83,
+        98
+      ],
+      "role": "body",
+      "label": "Jacob's grief and patience"
+    },
+    {
+      "id": "A′",
+      "v": [
+        99,
+        111
+      ],
+      "role": "frame",
+      "label": "Reunion and the bow"
+    }
+  ],
+  "13": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        7
+      ],
+      "role": "frame",
+      "label": "The Book and the truth"
+    },
+    {
+      "id": "B",
+      "v": [
+        8,
+        18
+      ],
+      "role": "body",
+      "label": "Allah knows the unseen"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        29
+      ],
+      "role": "pivot",
+      "label": "Hearts find rest in Allah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        30,
+        37
+      ],
+      "role": "body",
+      "label": "The message must be proclaimed"
+    },
+    {
+      "id": "A′",
+      "v": [
+        38,
+        43
+      ],
+      "role": "frame",
+      "label": "Messengers sent before you"
+    }
+  ],
+  "14": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        12
+      ],
+      "role": "frame",
+      "label": "From darkness to light"
+    },
+    {
+      "id": "B",
+      "v": [
+        13,
+        20
+      ],
+      "role": "body",
+      "label": "Nations threaten the messengers"
+    },
+    {
+      "id": "C",
+      "v": [
+        21,
+        27
+      ],
+      "role": "pivot",
+      "label": "Satan disowns his followers"
+    },
+    {
+      "id": "B′",
+      "v": [
+        28,
+        34
+      ],
+      "role": "body",
+      "label": "Nations reject Allah's favors"
+    },
+    {
+      "id": "A′",
+      "v": [
+        35,
+        52
+      ],
+      "role": "frame",
+      "label": "Abraham's prayer for Makkah"
+    }
+  ],
+  "15": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        25
+      ],
+      "role": "frame",
+      "label": "The Quran and the deniers"
+    },
+    {
+      "id": "B",
+      "v": [
+        26,
+        44
+      ],
+      "role": "body",
+      "label": "Creation of man and fall of Iblis"
+    },
+    {
+      "id": "C",
+      "v": [
+        45,
+        50
+      ],
+      "role": "pivot",
+      "label": "Enter in peace"
+    },
+    {
+      "id": "B′",
+      "v": [
+        51,
+        84
+      ],
+      "role": "body",
+      "label": "Judgment upon Lot's people"
+    },
+    {
+      "id": "A′",
+      "v": [
+        85,
+        99
+      ],
+      "role": "frame",
+      "label": "Created in truth"
+    }
+  ],
+  "16": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        25
+      ],
+      "role": "frame",
+      "label": "The command is coming"
+    },
+    {
+      "id": "B",
+      "v": [
+        26,
+        50
+      ],
+      "role": "body",
+      "label": "Plotters and their collapse"
+    },
+    {
+      "id": "C",
+      "v": [
+        51,
+        60
+      ],
+      "role": "body",
+      "label": "He is one God"
+    },
+    {
+      "id": "D",
+      "v": [
+        61,
+        70
+      ],
+      "role": "pivot",
+      "label": "Divine patience with wrongdoing"
+    },
+    {
+      "id": "C′",
+      "v": [
+        71,
+        83
+      ],
+      "role": "body",
+      "label": "Allah distributes provision"
+    },
+    {
+      "id": "B′",
+      "v": [
+        84,
+        100
+      ],
+      "role": "body",
+      "label": "Every nation has a witness"
+    },
+    {
+      "id": "A′",
+      "v": [
+        101,
+        128
+      ],
+      "role": "frame",
+      "label": "When verses are substituted"
+    }
+  ],
+  "17": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        21
+      ],
+      "role": "frame",
+      "label": "The Night Journey"
+    },
+    {
+      "id": "B",
+      "v": [
+        22,
+        39
+      ],
+      "role": "body",
+      "label": "Honor parents, do not waste"
+    },
+    {
+      "id": "C",
+      "v": [
+        40,
+        44
+      ],
+      "role": "body",
+      "label": "Has Allah taken sons?"
+    },
+    {
+      "id": "D",
+      "v": [
+        45,
+        52
+      ],
+      "role": "pivot",
+      "label": "The Quran and the partition"
+    },
+    {
+      "id": "C′",
+      "v": [
+        53,
+        60
+      ],
+      "role": "body",
+      "label": "Say what is best"
+    },
+    {
+      "id": "B′",
+      "v": [
+        61,
+        77
+      ],
+      "role": "body",
+      "label": "Satan's vow to mislead mankind"
+    },
+    {
+      "id": "A′",
+      "v": [
+        78,
+        111
+      ],
+      "role": "frame",
+      "label": "Establish prayer, glorify Allah"
+    }
+  ],
+  "18": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "The Book with no deviance"
+    },
+    {
+      "id": "N1",
+      "v": [
+        9,
+        26
+      ],
+      "role": "narrative_1",
+      "label": "People of the Cave"
+    },
+    {
+      "id": "T1",
+      "v": [
+        27,
+        31
+      ],
+      "role": "transition_1",
+      "label": "No changer of His words"
+    },
+    {
+      "id": "N2",
+      "v": [
+        32,
+        44
+      ],
+      "role": "narrative_2",
+      "label": "Two gardens — pride and humility"
+    },
+    {
+      "id": "T2",
+      "v": [
+        45,
+        53
+      ],
+      "role": "transition_2",
+      "label": "This world like passing rain"
+    },
+    {
+      "id": "D",
+      "v": [
+        54,
+        54
+      ],
+      "role": "pivot",
+      "label": "Humanity's tendency to dispute"
+    },
+    {
+      "id": "T3",
+      "v": [
+        55,
+        59
+      ],
+      "role": "transition_3",
+      "label": "Nothing prevents belief"
+    },
+    {
+      "id": "N3",
+      "v": [
+        60,
+        82
+      ],
+      "role": "narrative_3",
+      "label": "Moses and the wise servant"
+    },
+    {
+      "id": "N4",
+      "v": [
+        83,
+        98
+      ],
+      "role": "narrative_4",
+      "label": "Dhul-Qarnayn and the barrier"
+    },
+    {
+      "id": "A′",
+      "v": [
+        99,
+        110
+      ],
+      "role": "frame",
+      "label": "The Horn blown"
+    }
+  ],
+  "19": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        15
+      ],
+      "role": "frame",
+      "label": "Zechariah and John"
+    },
+    {
+      "id": "B",
+      "v": [
+        16,
+        40
+      ],
+      "role": "body",
+      "label": "Mary and the cradle speech"
+    },
+    {
+      "id": "C",
+      "v": [
+        41,
+        50
+      ],
+      "role": "body",
+      "label": "Abraham leaves his father"
+    },
+    {
+      "id": "D",
+      "v": [
+        51,
+        58
+      ],
+      "role": "pivot",
+      "label": "Moses — chosen and called"
+    },
+    {
+      "id": "C′",
+      "v": [
+        59,
+        65
+      ],
+      "role": "body",
+      "label": "Generations who neglected prayer"
+    },
+    {
+      "id": "B′",
+      "v": [
+        66,
+        82
+      ],
+      "role": "body",
+      "label": "Doubt about resurrection"
+    },
+    {
+      "id": "A′",
+      "v": [
+        83,
+        98
+      ],
+      "role": "frame",
+      "label": "Devils upon the disbelievers"
+    }
+  ],
+  "20": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Not revealed to distress you"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        76
+      ],
+      "role": "body",
+      "label": "Moses — bush, staff, court"
+    },
+    {
+      "id": "C",
+      "v": [
+        77,
+        82
+      ],
+      "role": "body",
+      "label": "Israel delivered through the sea"
+    },
+    {
+      "id": "D",
+      "v": [
+        83,
+        98
+      ],
+      "role": "pivot",
+      "label": "Moses and the golden calf"
+    },
+    {
+      "id": "C′",
+      "v": [
+        99,
+        112
+      ],
+      "role": "body",
+      "label": "We relate from the past"
+    },
+    {
+      "id": "B′",
+      "v": [
+        113,
+        123
+      ],
+      "role": "body",
+      "label": "The Quran in Arabic"
+    },
+    {
+      "id": "A′",
+      "v": [
+        124,
+        135
+      ],
+      "role": "frame",
+      "label": "Turn away from My remembrance"
+    }
+  ],
+  "21": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        29
+      ],
+      "role": "frame",
+      "label": "Their account has drawn near"
+    },
+    {
+      "id": "B",
+      "v": [
+        30,
+        47
+      ],
+      "role": "body",
+      "label": "Creation of the heavens and earth"
+    },
+    {
+      "id": "C",
+      "v": [
+        48,
+        50
+      ],
+      "role": "body",
+      "label": "Moses and Aaron given the criterion"
+    },
+    {
+      "id": "D",
+      "v": [
+        51,
+        73
+      ],
+      "role": "pivot",
+      "label": "Abraham smashes the idols"
+    },
+    {
+      "id": "C′",
+      "v": [
+        74,
+        91
+      ],
+      "role": "body",
+      "label": "Lot, Job, Jonah, Zechariah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        92,
+        103
+      ],
+      "role": "body",
+      "label": "This religion is one"
+    },
+    {
+      "id": "A′",
+      "v": [
+        104,
+        112
+      ],
+      "role": "frame",
+      "label": "The heavens rolled like a scroll"
+    }
+  ],
+  "22": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        17
+      ],
+      "role": "frame",
+      "label": "The convulsion of the Hour"
+    },
+    {
+      "id": "B",
+      "v": [
+        18,
+        24
+      ],
+      "role": "body",
+      "label": "Everything prostrates to Allah"
+    },
+    {
+      "id": "C",
+      "v": [
+        25,
+        37
+      ],
+      "role": "body",
+      "label": "The Hajj and the sacrifice"
+    },
+    {
+      "id": "D",
+      "v": [
+        38,
+        41
+      ],
+      "role": "pivot",
+      "label": "Permission to fight granted"
+    },
+    {
+      "id": "C′",
+      "v": [
+        42,
+        48
+      ],
+      "role": "body",
+      "label": "Former nations also denied"
+    },
+    {
+      "id": "B′",
+      "v": [
+        49,
+        62
+      ],
+      "role": "body",
+      "label": "Allah defends the believers"
+    },
+    {
+      "id": "A′",
+      "v": [
+        63,
+        78
+      ],
+      "role": "frame",
+      "label": "Rain falls, the earth revives"
+    }
+  ],
+  "23": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        22
+      ],
+      "role": "frame",
+      "label": "Traits of the believers"
+    },
+    {
+      "id": "B",
+      "v": [
+        23,
+        50
+      ],
+      "role": "body",
+      "label": "Prophets sent to their peoples"
+    },
+    {
+      "id": "C",
+      "v": [
+        51,
+        56
+      ],
+      "role": "body",
+      "label": "O messengers, one community"
+    },
+    {
+      "id": "D",
+      "v": [
+        57,
+        61
+      ],
+      "role": "pivot",
+      "label": "Fearful generosity"
+    },
+    {
+      "id": "C′",
+      "v": [
+        62,
+        77
+      ],
+      "role": "body",
+      "label": "No burden beyond capacity"
+    },
+    {
+      "id": "B′",
+      "v": [
+        78,
+        100
+      ],
+      "role": "body",
+      "label": "Hearing, sight, and hearts"
+    },
+    {
+      "id": "A′",
+      "v": [
+        101,
+        118
+      ],
+      "role": "frame",
+      "label": "The Horn blown, no ties remain"
+    }
+  ],
+  "24": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "Obligatory ordinances"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        26
+      ],
+      "role": "body",
+      "label": "The slander against the believers"
+    },
+    {
+      "id": "C",
+      "v": [
+        27,
+        34
+      ],
+      "role": "body",
+      "label": "Privacy and entry laws"
+    },
+    {
+      "id": "D",
+      "v": [
+        35,
+        40
+      ],
+      "role": "pivot",
+      "label": "Allah is the Light"
+    },
+    {
+      "id": "C′",
+      "v": [
+        41,
+        46
+      ],
+      "role": "body",
+      "label": "Everything exalts Allah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        47,
+        57
+      ],
+      "role": "body",
+      "label": "The hypocrites disobey"
+    },
+    {
+      "id": "A′",
+      "v": [
+        58,
+        64
+      ],
+      "role": "frame",
+      "label": "Permission and household rules"
+    }
+  ],
+  "25": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "The Criterion sent to all worlds"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        20
+      ],
+      "role": "body",
+      "label": "The Hour and the Blaze"
+    },
+    {
+      "id": "C",
+      "v": [
+        21,
+        34
+      ],
+      "role": "body",
+      "label": "Why no angels sent to us?"
+    },
+    {
+      "id": "D",
+      "v": [
+        35,
+        44
+      ],
+      "role": "pivot",
+      "label": "Moses sent, arrogant nations drowned"
+    },
+    {
+      "id": "C′",
+      "v": [
+        45,
+        60
+      ],
+      "role": "body",
+      "label": "Signs in shadow and sun"
+    },
+    {
+      "id": "B′",
+      "v": [
+        61,
+        71
+      ],
+      "role": "body",
+      "label": "Stars placed in the sky"
+    },
+    {
+      "id": "A′",
+      "v": [
+        72,
+        77
+      ],
+      "role": "frame",
+      "label": "Servants of the Most Merciful"
+    }
+  ],
+  "26": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        9
+      ],
+      "role": "frame",
+      "label": "Verses of the clear Book"
+    },
+    {
+      "id": "N1",
+      "v": [
+        10,
+        68
+      ],
+      "role": "narrative_1",
+      "label": "Moses and Pharaoh's court"
+    },
+    {
+      "id": "N2",
+      "v": [
+        69,
+        104
+      ],
+      "role": "narrative_2",
+      "label": "Abraham breaks from idols"
+    },
+    {
+      "id": "N3",
+      "v": [
+        105,
+        122
+      ],
+      "role": "pivot",
+      "label": "Noah's people deny"
+    },
+    {
+      "id": "N4",
+      "v": [
+        123,
+        140
+      ],
+      "role": "narrative_4",
+      "label": "Hud and the destroyed Aad"
+    },
+    {
+      "id": "N5",
+      "v": [
+        141,
+        159
+      ],
+      "role": "narrative_5",
+      "label": "Salih and the she-camel"
+    },
+    {
+      "id": "N6",
+      "v": [
+        160,
+        175
+      ],
+      "role": "narrative_6",
+      "label": "Lot's people destroyed"
+    },
+    {
+      "id": "N7",
+      "v": [
+        176,
+        191
+      ],
+      "role": "narrative_7",
+      "label": "Shuayb and the thicket people"
+    },
+    {
+      "id": "A′",
+      "v": [
+        192,
+        227
+      ],
+      "role": "frame",
+      "label": "Revealed by the Trustworthy Spirit"
+    }
+  ],
+  "27": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "Guidance for the believers"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        14
+      ],
+      "role": "body",
+      "label": "Moses — bush and white hand"
+    },
+    {
+      "id": "C",
+      "v": [
+        15,
+        44
+      ],
+      "role": "body",
+      "label": "Solomon, the ants, the hoopoe"
+    },
+    {
+      "id": "D",
+      "v": [
+        45,
+        58
+      ],
+      "role": "pivot",
+      "label": "Salih and the nine plotters"
+    },
+    {
+      "id": "B′",
+      "v": [
+        59,
+        75
+      ],
+      "role": "body",
+      "label": "Praise Allah, peace on His chosen"
+    },
+    {
+      "id": "A′",
+      "v": [
+        76,
+        93
+      ],
+      "role": "frame",
+      "label": "The Quran guides to truth"
+    }
+  ],
+  "28": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "Moses and Pharaoh — the story"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        21
+      ],
+      "role": "body",
+      "label": "Moses in the basket"
+    },
+    {
+      "id": "C",
+      "v": [
+        22,
+        28
+      ],
+      "role": "body",
+      "label": "Moses at the well in Madyan"
+    },
+    {
+      "id": "D",
+      "v": [
+        29,
+        35
+      ],
+      "role": "pivot",
+      "label": "The burning bush — the mission"
+    },
+    {
+      "id": "C′",
+      "v": [
+        36,
+        43
+      ],
+      "role": "body",
+      "label": "Moses comes with signs"
+    },
+    {
+      "id": "B′",
+      "v": [
+        44,
+        55
+      ],
+      "role": "body",
+      "label": "You were not there when We revealed"
+    },
+    {
+      "id": "A′",
+      "v": [
+        56,
+        88
+      ],
+      "role": "frame",
+      "label": "You do not guide whom you like"
+    }
+  ],
+  "29": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        13
+      ],
+      "role": "frame",
+      "label": "Do people think they won't be tested?"
+    },
+    {
+      "id": "B",
+      "v": [
+        14,
+        27
+      ],
+      "role": "body",
+      "label": "Noah — a thousand years minus fifty"
+    },
+    {
+      "id": "C",
+      "v": [
+        28,
+        35
+      ],
+      "role": "body",
+      "label": "Lot's people — unprecedented sin"
+    },
+    {
+      "id": "D",
+      "v": [
+        36,
+        44
+      ],
+      "role": "pivot",
+      "label": "Shuayb and Madyan"
+    },
+    {
+      "id": "C′",
+      "v": [
+        45,
+        51
+      ],
+      "role": "body",
+      "label": "Prayer prohibits immorality"
+    },
+    {
+      "id": "B′",
+      "v": [
+        52,
+        63
+      ],
+      "role": "body",
+      "label": "Allah sufficient as witness"
+    },
+    {
+      "id": "A′",
+      "v": [
+        64,
+        69
+      ],
+      "role": "frame",
+      "label": "This world is diversion"
+    }
+  ],
+  "30": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "Byzantines defeated then victorious"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        20
+      ],
+      "role": "body",
+      "label": "Allah begins and repeats creation"
+    },
+    {
+      "id": "C",
+      "v": [
+        21,
+        27
+      ],
+      "role": "body",
+      "label": "He created mates for tranquility"
+    },
+    {
+      "id": "D",
+      "v": [
+        28,
+        32
+      ],
+      "role": "pivot",
+      "label": "Do partners share your wealth?"
+    },
+    {
+      "id": "C′",
+      "v": [
+        33,
+        40
+      ],
+      "role": "body",
+      "label": "People call Allah in adversity"
+    },
+    {
+      "id": "B′",
+      "v": [
+        41,
+        53
+      ],
+      "role": "body",
+      "label": "Corruption appears on land and sea"
+    },
+    {
+      "id": "A′",
+      "v": [
+        54,
+        60
+      ],
+      "role": "frame",
+      "label": "From weakness to strength to weakness"
+    }
+  ],
+  "31": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        11
+      ],
+      "role": "frame",
+      "label": "The wise Book — guidance for the good"
+    },
+    {
+      "id": "B",
+      "v": [
+        12,
+        15
+      ],
+      "role": "body",
+      "label": "Luqman given wisdom"
+    },
+    {
+      "id": "D",
+      "v": [
+        16,
+        19
+      ],
+      "role": "pivot",
+      "label": "The mustard seed — Allah sees all"
+    },
+    {
+      "id": "B′",
+      "v": [
+        20,
+        24
+      ],
+      "role": "body",
+      "label": "Allah made all things subject to you"
+    },
+    {
+      "id": "A′",
+      "v": [
+        25,
+        34
+      ],
+      "role": "frame",
+      "label": "Knowledge of the Hour belongs to Allah"
+    }
+  ],
+  "32": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        9
+      ],
+      "role": "frame",
+      "label": "No doubt in this Book"
+    },
+    {
+      "id": "B",
+      "v": [
+        10,
+        14
+      ],
+      "role": "body",
+      "label": "Will we really be raised?"
+    },
+    {
+      "id": "D",
+      "v": [
+        15,
+        17
+      ],
+      "role": "pivot",
+      "label": "Those who prostrate and exalt"
+    },
+    {
+      "id": "B′",
+      "v": [
+        18,
+        22
+      ],
+      "role": "body",
+      "label": "Believer and sinner are not equal"
+    },
+    {
+      "id": "A′",
+      "v": [
+        23,
+        30
+      ],
+      "role": "frame",
+      "label": "We also gave Moses the Scripture"
+    }
+  ],
+  "33": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Fear Allah, not the disbelievers"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        27
+      ],
+      "role": "body",
+      "label": "The Battle of the Trench"
+    },
+    {
+      "id": "C",
+      "v": [
+        28,
+        34
+      ],
+      "role": "body",
+      "label": "O Prophet, say to your wives"
+    },
+    {
+      "id": "D",
+      "v": [
+        35,
+        40
+      ],
+      "role": "pivot",
+      "label": "Muslim men and women are equal"
+    },
+    {
+      "id": "C′",
+      "v": [
+        41,
+        48
+      ],
+      "role": "body",
+      "label": "O believers, remember Allah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        49,
+        62
+      ],
+      "role": "body",
+      "label": "When you divorce believing women"
+    },
+    {
+      "id": "A′",
+      "v": [
+        63,
+        73
+      ],
+      "role": "frame",
+      "label": "People ask about the Hour"
+    }
+  ],
+  "34": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        9
+      ],
+      "role": "frame",
+      "label": "Praise to Allah — all belongs to Him"
+    },
+    {
+      "id": "B",
+      "v": [
+        10,
+        21
+      ],
+      "role": "body",
+      "label": "David and Solomon — bounty given"
+    },
+    {
+      "id": "C",
+      "v": [
+        22,
+        27
+      ],
+      "role": "body",
+      "label": "Invoke those besides Allah — they own nothing"
+    },
+    {
+      "id": "D",
+      "v": [
+        28,
+        30
+      ],
+      "role": "pivot",
+      "label": "Sent as messenger to all mankind"
+    },
+    {
+      "id": "C′",
+      "v": [
+        31,
+        42
+      ],
+      "role": "body",
+      "label": "We will never believe in this Quran"
+    },
+    {
+      "id": "B′",
+      "v": [
+        43,
+        50
+      ],
+      "role": "body",
+      "label": "When Our verses are recited they mock"
+    },
+    {
+      "id": "A′",
+      "v": [
+        51,
+        54
+      ],
+      "role": "frame",
+      "label": "When they are terrified — no escape"
+    }
+  ],
+  "35": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Creator of heavens, earth, and angels"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        14
+      ],
+      "role": "body",
+      "label": "He sends winds, revives dead earth"
+    },
+    {
+      "id": "C",
+      "v": [
+        15,
+        18
+      ],
+      "role": "body",
+      "label": "O mankind, you need Allah"
+    },
+    {
+      "id": "D",
+      "v": [
+        19,
+        22
+      ],
+      "role": "pivot",
+      "label": "Not equal — blind and seeing"
+    },
+    {
+      "id": "C′",
+      "v": [
+        23,
+        26
+      ],
+      "role": "body",
+      "label": "You are only a warner"
+    },
+    {
+      "id": "B′",
+      "v": [
+        27,
+        38
+      ],
+      "role": "body",
+      "label": "Allah sends rain — varied fruits"
+    },
+    {
+      "id": "A′",
+      "v": [
+        39,
+        45
+      ],
+      "role": "frame",
+      "label": "He made you successors on earth"
+    }
+  ],
+  "36": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        12
+      ],
+      "role": "frame",
+      "label": "By the wise Quran — you are a messenger"
+    },
+    {
+      "id": "B",
+      "v": [
+        13,
+        32
+      ],
+      "role": "body",
+      "label": "People of the city — three messengers"
+    },
+    {
+      "id": "C",
+      "v": [
+        33,
+        44
+      ],
+      "role": "body",
+      "label": "Dead earth revived — signs of creation"
+    },
+    {
+      "id": "D",
+      "v": [
+        45,
+        47
+      ],
+      "role": "pivot",
+      "label": "Turn back — perhaps you will receive mercy"
+    },
+    {
+      "id": "C′",
+      "v": [
+        48,
+        54
+      ],
+      "role": "body",
+      "label": "One blast seizes them all"
+    },
+    {
+      "id": "B′",
+      "v": [
+        55,
+        68
+      ],
+      "role": "body",
+      "label": "Companions of Paradise at rest"
+    },
+    {
+      "id": "A′",
+      "v": [
+        69,
+        83
+      ],
+      "role": "frame",
+      "label": "Not befitting to teach him poetry"
+    }
+  ],
+  "37": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "By those lined up in rows"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        40
+      ],
+      "role": "body",
+      "label": "Is your creation harder than the heavens?"
+    },
+    {
+      "id": "C",
+      "v": [
+        41,
+        74
+      ],
+      "role": "body",
+      "label": "The righteous — provision and gardens"
+    },
+    {
+      "id": "D",
+      "v": [
+        75,
+        113
+      ],
+      "role": "pivot",
+      "label": "Noah called — best of responders"
+    },
+    {
+      "id": "C′",
+      "v": [
+        114,
+        148
+      ],
+      "role": "body",
+      "label": "Moses, Aaron, Elijah — all saved"
+    },
+    {
+      "id": "B′",
+      "v": [
+        149,
+        170
+      ],
+      "role": "body",
+      "label": "Has your Lord daughters, you sons?"
+    },
+    {
+      "id": "A′",
+      "v": [
+        171,
+        182
+      ],
+      "role": "frame",
+      "label": "Victory promised to Our messengers"
+    }
+  ],
+  "38": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        16
+      ],
+      "role": "frame",
+      "label": "By the Quran — they are in pride"
+    },
+    {
+      "id": "B",
+      "v": [
+        17,
+        29
+      ],
+      "role": "body",
+      "label": "David — the two men who climbed"
+    },
+    {
+      "id": "C",
+      "v": [
+        30,
+        40
+      ],
+      "role": "body",
+      "label": "Solomon — the horses at evening"
+    },
+    {
+      "id": "D",
+      "v": [
+        41,
+        44
+      ],
+      "role": "pivot",
+      "label": "Job — Satan touched me with harm"
+    },
+    {
+      "id": "C′",
+      "v": [
+        45,
+        48
+      ],
+      "role": "body",
+      "label": "Abraham, Isaac, Jacob — men of vision"
+    },
+    {
+      "id": "B′",
+      "v": [
+        49,
+        64
+      ],
+      "role": "body",
+      "label": "The righteous — gardens of return"
+    },
+    {
+      "id": "A′",
+      "v": [
+        65,
+        88
+      ],
+      "role": "frame",
+      "label": "I am only a warner — no god but Allah"
+    }
+  ],
+  "39": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Worship Allah with sincere devotion"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        18
+      ],
+      "role": "body",
+      "label": "The devout and the heedless — not equal"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        35
+      ],
+      "role": "body",
+      "label": "He who deserves punishment — can he be saved?"
+    },
+    {
+      "id": "D",
+      "v": [
+        36,
+        40
+      ],
+      "role": "pivot",
+      "label": "Is not Allah sufficient for His servant?"
+    },
+    {
+      "id": "C′",
+      "v": [
+        41,
+        52
+      ],
+      "role": "body",
+      "label": "Whoever is guided — it is for his soul"
+    },
+    {
+      "id": "B′",
+      "v": [
+        53,
+        66
+      ],
+      "role": "body",
+      "label": "Do not despair of Allah's mercy"
+    },
+    {
+      "id": "A′",
+      "v": [
+        67,
+        75
+      ],
+      "role": "frame",
+      "label": "They did not appraise Allah truly"
+    }
+  ],
+  "40": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        9
+      ],
+      "role": "frame",
+      "label": "The Forgiver, Acceptor of repentance"
+    },
+    {
+      "id": "B",
+      "v": [
+        10,
+        22
+      ],
+      "role": "body",
+      "label": "Allah's hatred greater than theirs"
+    },
+    {
+      "id": "C",
+      "v": [
+        23,
+        27
+      ],
+      "role": "body",
+      "label": "Moses sent to Pharaoh and Haman"
+    },
+    {
+      "id": "D",
+      "v": [
+        28,
+        44
+      ],
+      "role": "pivot",
+      "label": "The believing man of Pharaoh's family"
+    },
+    {
+      "id": "C′",
+      "v": [
+        45,
+        50
+      ],
+      "role": "body",
+      "label": "Allah protected him — Pharaoh enveloped"
+    },
+    {
+      "id": "B′",
+      "v": [
+        51,
+        68
+      ],
+      "role": "body",
+      "label": "We support Our messengers and believers"
+    },
+    {
+      "id": "A′",
+      "v": [
+        69,
+        85
+      ],
+      "role": "frame",
+      "label": "Those who dispute the signs of Allah"
+    }
+  ],
+  "41": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Revelation from the Most Merciful"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        18
+      ],
+      "role": "body",
+      "label": "Did you disbelieve in the Creator?"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        25
+      ],
+      "role": "body",
+      "label": "Enemies gathered to the Fire"
+    },
+    {
+      "id": "D",
+      "v": [
+        26,
+        29
+      ],
+      "role": "pivot",
+      "label": "Do not listen to the Quran — make noise"
+    },
+    {
+      "id": "C′",
+      "v": [
+        30,
+        36
+      ],
+      "role": "body",
+      "label": "Those who said our Lord is Allah"
+    },
+    {
+      "id": "B′",
+      "v": [
+        37,
+        46
+      ],
+      "role": "body",
+      "label": "Signs — night, day, sun, moon"
+    },
+    {
+      "id": "A′",
+      "v": [
+        47,
+        54
+      ],
+      "role": "frame",
+      "label": "The Hour known only to Him"
+    }
+  ],
+  "42": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        9
+      ],
+      "role": "frame",
+      "label": "Revealed to you and those before"
+    },
+    {
+      "id": "B",
+      "v": [
+        10,
+        18
+      ],
+      "role": "body",
+      "label": "All dispute — ruling belongs to Allah"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        26
+      ],
+      "role": "body",
+      "label": "Allah subtle — gives to whom He wills"
+    },
+    {
+      "id": "D",
+      "v": [
+        27,
+        29
+      ],
+      "role": "pivot",
+      "label": "If provision extended — tyranny would spread"
+    },
+    {
+      "id": "C′",
+      "v": [
+        30,
+        35
+      ],
+      "role": "body",
+      "label": "Disaster is for what your hands earned"
+    },
+    {
+      "id": "B′",
+      "v": [
+        36,
+        46
+      ],
+      "role": "body",
+      "label": "What you have is temporary — Allah's is better"
+    },
+    {
+      "id": "A′",
+      "v": [
+        47,
+        53
+      ],
+      "role": "frame",
+      "label": "Respond before the Day arrives"
+    }
+  ],
+  "43": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        14
+      ],
+      "role": "frame",
+      "label": "By the clear Book in Arabic"
+    },
+    {
+      "id": "B",
+      "v": [
+        15,
+        25
+      ],
+      "role": "body",
+      "label": "They attribute daughters to Allah"
+    },
+    {
+      "id": "C",
+      "v": [
+        26,
+        44
+      ],
+      "role": "body",
+      "label": "Abraham disowns his people's idols"
+    },
+    {
+      "id": "D",
+      "v": [
+        45,
+        45
+      ],
+      "role": "pivot",
+      "label": "Ask the messengers sent before you"
+    },
+    {
+      "id": "C′",
+      "v": [
+        46,
+        65
+      ],
+      "role": "body",
+      "label": "Moses sent to Pharaoh with signs"
+    },
+    {
+      "id": "B′",
+      "v": [
+        66,
+        78
+      ],
+      "role": "body",
+      "label": "Close friends become enemies that Day"
+    },
+    {
+      "id": "A′",
+      "v": [
+        79,
+        89
+      ],
+      "role": "frame",
+      "label": "We are devising — do they think We hear not?"
+    }
+  ],
+  "44": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "Sent down on a blessed night"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        16
+      ],
+      "role": "body",
+      "label": "Watch for the Day of visible smoke"
+    },
+    {
+      "id": "C",
+      "v": [
+        17,
+        29
+      ],
+      "role": "body",
+      "label": "Pharaoh's people and the noble messenger"
+    },
+    {
+      "id": "D",
+      "v": [
+        30,
+        33
+      ],
+      "role": "pivot",
+      "label": "Israel delivered from Pharaoh"
+    },
+    {
+      "id": "C′",
+      "v": [
+        34,
+        42
+      ],
+      "role": "body",
+      "label": "There is only our first death"
+    },
+    {
+      "id": "B′",
+      "v": [
+        43,
+        50
+      ],
+      "role": "body",
+      "label": "The tree of zaqqum — food for sinners"
+    },
+    {
+      "id": "A′",
+      "v": [
+        51,
+        59
+      ],
+      "role": "frame",
+      "label": "The righteous in security and gardens"
+    }
+  ],
+  "45": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "Signs in heavens and earth"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        11
+      ],
+      "role": "body",
+      "label": "Woe to every sinful liar"
+    },
+    {
+      "id": "C",
+      "v": [
+        12,
+        15
+      ],
+      "role": "body",
+      "label": "Allah subjected the sea to you"
+    },
+    {
+      "id": "D",
+      "v": [
+        16,
+        20
+      ],
+      "role": "pivot",
+      "label": "Israel given Scripture and prophethood"
+    },
+    {
+      "id": "C′",
+      "v": [
+        21,
+        26
+      ],
+      "role": "body",
+      "label": "Do evildoers think they equal believers?"
+    },
+    {
+      "id": "B′",
+      "v": [
+        27,
+        35
+      ],
+      "role": "body",
+      "label": "The Day the falsifiers will lose"
+    },
+    {
+      "id": "A′",
+      "v": [
+        36,
+        37
+      ],
+      "role": "frame",
+      "label": "To Allah belongs all majesty"
+    }
+  ],
+  "46": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "We did not create this in vain"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        12
+      ],
+      "role": "body",
+      "label": "When Our verses are recited they say — magic"
+    },
+    {
+      "id": "C",
+      "v": [
+        13,
+        16
+      ],
+      "role": "body",
+      "label": "Those who said our Lord is Allah"
+    },
+    {
+      "id": "D",
+      "v": [
+        17,
+        19
+      ],
+      "role": "pivot",
+      "label": "The son who mocks his parents"
+    },
+    {
+      "id": "C′",
+      "v": [
+        20,
+        25
+      ],
+      "role": "body",
+      "label": "Pleasures exhausted in worldly life"
+    },
+    {
+      "id": "B′",
+      "v": [
+        26,
+        32
+      ],
+      "role": "body",
+      "label": "We established them then destroyed them"
+    },
+    {
+      "id": "A′",
+      "v": [
+        33,
+        35
+      ],
+      "role": "frame",
+      "label": "Allah able to raise the dead"
+    }
+  ],
+  "47": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "Believers' deeds accepted, disbelievers' wasted"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        11
+      ],
+      "role": "body",
+      "label": "If you support Allah He supports you"
+    },
+    {
+      "id": "C",
+      "v": [
+        12,
+        15
+      ],
+      "role": "body",
+      "label": "Gardens for believers, Fire for disbelievers"
+    },
+    {
+      "id": "D",
+      "v": [
+        16,
+        19
+      ],
+      "role": "pivot",
+      "label": "Among them those who listen then forget"
+    },
+    {
+      "id": "C′",
+      "v": [
+        20,
+        24
+      ],
+      "role": "body",
+      "label": "Those who believe ask — why no chapter?"
+    },
+    {
+      "id": "B′",
+      "v": [
+        25,
+        31
+      ],
+      "role": "body",
+      "label": "Those who reverted after guidance"
+    },
+    {
+      "id": "A′",
+      "v": [
+        32,
+        38
+      ],
+      "role": "frame",
+      "label": "Those who oppose will have deeds wasted"
+    }
+  ],
+  "48": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "frame",
+      "label": "A clear conquest given to you"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        7
+      ],
+      "role": "body",
+      "label": "Tranquility sent into believers' hearts"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        10
+      ],
+      "role": "body",
+      "label": "Sent as witness and bringer of glad tidings"
+    },
+    {
+      "id": "D",
+      "v": [
+        11,
+        17
+      ],
+      "role": "pivot",
+      "label": "Those who stayed behind — excuses"
+    },
+    {
+      "id": "C′",
+      "v": [
+        18,
+        21
+      ],
+      "role": "body",
+      "label": "Allah pleased at the pledge under the tree"
+    },
+    {
+      "id": "B′",
+      "v": [
+        22,
+        26
+      ],
+      "role": "body",
+      "label": "If they had fought you they would have fled"
+    },
+    {
+      "id": "A′",
+      "v": [
+        27,
+        29
+      ],
+      "role": "frame",
+      "label": "You will enter al-Masjid al-Haram"
+    }
+  ],
+  "49": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        5
+      ],
+      "role": "frame",
+      "label": "Do not put yourself before Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        8
+      ],
+      "role": "body",
+      "label": "Verify what the disobedient brings you"
+    },
+    {
+      "id": "C",
+      "v": [
+        9,
+        10
+      ],
+      "role": "pivot",
+      "label": "Make peace between fighting believers"
+    },
+    {
+      "id": "B′",
+      "v": [
+        11,
+        12
+      ],
+      "role": "body",
+      "label": "Do not mock or defame each other"
+    },
+    {
+      "id": "A′",
+      "v": [
+        13,
+        18
+      ],
+      "role": "frame",
+      "label": "Created from one male and female"
+    }
+  ],
+  "50": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        5
+      ],
+      "role": "frame",
+      "label": "By the honored Quran"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        11
+      ],
+      "role": "body",
+      "label": "Signs in the sky and the earth"
+    },
+    {
+      "id": "C",
+      "v": [
+        12,
+        14
+      ],
+      "role": "body",
+      "label": "Former nations who denied"
+    },
+    {
+      "id": "D",
+      "v": [
+        15,
+        29
+      ],
+      "role": "pivot",
+      "label": "First creation proves resurrection"
+    },
+    {
+      "id": "C′",
+      "v": [
+        30,
+        37
+      ],
+      "role": "body",
+      "label": "Hell filled — is there more?"
+    },
+    {
+      "id": "B′",
+      "v": [
+        38,
+        40
+      ],
+      "role": "body",
+      "label": "We created heavens and earth in six days"
+    },
+    {
+      "id": "A′",
+      "v": [
+        41,
+        45
+      ],
+      "role": "frame",
+      "label": "The Horn blown — the final gathering"
+    }
+  ],
+  "51": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "By the scattering winds"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        14
+      ],
+      "role": "body",
+      "label": "By the heaven of pathways"
+    },
+    {
+      "id": "C",
+      "v": [
+        15,
+        23
+      ],
+      "role": "body",
+      "label": "The righteous in gardens and springs"
+    },
+    {
+      "id": "D",
+      "v": [
+        24,
+        37
+      ],
+      "role": "pivot",
+      "label": "Guests of Abraham — Lot's people warned"
+    },
+    {
+      "id": "C′",
+      "v": [
+        38,
+        49
+      ],
+      "role": "body",
+      "label": "Moses sent to Pharaoh"
+    },
+    {
+      "id": "B′",
+      "v": [
+        50,
+        55
+      ],
+      "role": "body",
+      "label": "Flee to Allah"
+    },
+    {
+      "id": "A′",
+      "v": [
+        56,
+        60
+      ],
+      "role": "frame",
+      "label": "Created only to worship Allah"
+    }
+  ],
+  "52": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "By the mount and the inscribed Book"
+    },
+    {
+      "id": "B",
+      "v": [
+        9,
+        16
+      ],
+      "role": "body",
+      "label": "The Day the heaven will sway"
+    },
+    {
+      "id": "C",
+      "v": [
+        17,
+        24
+      ],
+      "role": "body",
+      "label": "The righteous in gardens and pleasure"
+    },
+    {
+      "id": "D",
+      "v": [
+        25,
+        28
+      ],
+      "role": "pivot",
+      "label": "We were fearful among our people"
+    },
+    {
+      "id": "C′",
+      "v": [
+        29,
+        34
+      ],
+      "role": "body",
+      "label": "You are not a soothsayer or madman"
+    },
+    {
+      "id": "B′",
+      "v": [
+        35,
+        43
+      ],
+      "role": "body",
+      "label": "Were they created from nothing?"
+    },
+    {
+      "id": "A′",
+      "v": [
+        44,
+        49
+      ],
+      "role": "frame",
+      "label": "Be patient for your Lord's decision"
+    }
+  ],
+  "53": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        18
+      ],
+      "role": "frame",
+      "label": "By the star — he does not speak from desire"
+    },
+    {
+      "id": "B",
+      "v": [
+        19,
+        25
+      ],
+      "role": "body",
+      "label": "Al-Lat, Al-Uzza — false goddesses"
+    },
+    {
+      "id": "C",
+      "v": [
+        26,
+        28
+      ],
+      "role": "body",
+      "label": "Intercession only by Allah's permission"
+    },
+    {
+      "id": "D",
+      "v": [
+        29,
+        32
+      ],
+      "role": "pivot",
+      "label": "Turn away from worldly desire"
+    },
+    {
+      "id": "C′",
+      "v": [
+        33,
+        42
+      ],
+      "role": "body",
+      "label": "He who turned away and withheld"
+    },
+    {
+      "id": "B′",
+      "v": [
+        43,
+        54
+      ],
+      "role": "body",
+      "label": "He creates, He causes death and life"
+    },
+    {
+      "id": "A′",
+      "v": [
+        55,
+        62
+      ],
+      "role": "frame",
+      "label": "Prostrate to Allah and worship Him"
+    }
+  ],
+  "54": [
+    {
+      "id": "OPEN",
+      "v": [
+        1,
+        8
+      ],
+      "role": "frame",
+      "label": "The Hour near — moon split"
+    },
+    {
+      "id": "NOAH",
+      "v": [
+        9,
+        17
+      ],
+      "role": "body",
+      "label": "Noah's people deny"
+    },
+    {
+      "id": "AAD",
+      "v": [
+        18,
+        22
+      ],
+      "role": "body",
+      "label": "Aad destroyed by screaming wind"
+    },
+    {
+      "id": "THAMUD",
+      "v": [
+        23,
+        32
+      ],
+      "role": "pivot",
+      "label": "Thamud and the she-camel"
+    },
+    {
+      "id": "LOT",
+      "v": [
+        33,
+        40
+      ],
+      "role": "body",
+      "label": "Lot's people destroyed"
+    },
+    {
+      "id": "PHARAOH",
+      "v": [
+        41,
+        42
+      ],
+      "role": "body",
+      "label": "Pharaoh's people seized"
+    },
+    {
+      "id": "BRIDGE",
+      "v": [
+        43,
+        45
+      ],
+      "role": "body",
+      "label": "Are your deniers any better?"
+    },
+    {
+      "id": "HOUR_DECREE",
+      "v": [
+        46,
+        53
+      ],
+      "role": "body",
+      "label": "The Hour their appointed time"
+    },
+    {
+      "id": "CLOSE",
+      "v": [
+        54,
+        55
+      ],
+      "role": "frame",
+      "label": "The righteous near a sovereign"
+    }
+  ],
+  "55": [
+    {
+      "id": "OPEN",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "The Most Merciful"
+    },
+    {
+      "id": "BOUNTY_WORLD",
+      "v": [
+        2,
+        12
+      ],
+      "role": "body",
+      "label": "Taught the Quran — created man"
+    },
+    {
+      "id": "DUAL_CREATION",
+      "v": [
+        14,
+        15
+      ],
+      "role": "body",
+      "label": "Man from clay, jinn from fire"
+    },
+    {
+      "id": "COSMIC_DUALS",
+      "v": [
+        17,
+        24
+      ],
+      "role": "body",
+      "label": "Lord of the two sunrises"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        26,
+        27
+      ],
+      "role": "pivot",
+      "label": "All on earth will perish"
+    },
+    {
+      "id": "UNIVERSAL_DEPENDENCE",
+      "v": [
+        29,
+        30
+      ],
+      "role": "body",
+      "label": "All creation depends on Him"
+    },
+    {
+      "id": "ESCHATOLOGICAL_CENTER",
+      "v": [
+        31,
+        45
+      ],
+      "role": "body",
+      "label": "O company of jinn and men"
+    },
+    {
+      "id": "PARADISE_UPPER",
+      "v": [
+        46,
+        61
+      ],
+      "role": "body",
+      "label": "Two gardens for those who feared"
+    },
+    {
+      "id": "PARADISE_LOWER",
+      "v": [
+        62,
+        77
+      ],
+      "role": "body",
+      "label": "Two more gardens below them"
+    },
+    {
+      "id": "CLOSE",
+      "v": [
+        78,
+        78
+      ],
+      "role": "frame",
+      "label": "Blessed — Owner of Majesty"
+    }
+  ],
+  "56": [
+    {
+      "id": "OPEN",
+      "v": [
+        1,
+        7
+      ],
+      "role": "frame",
+      "label": "When the Occurrence occurs"
+    },
+    {
+      "id": "COSMIC_A",
+      "v": [
+        8,
+        26
+      ],
+      "role": "body",
+      "label": "Three groups of humanity"
+    },
+    {
+      "id": "COSMIC_B",
+      "v": [
+        27,
+        40
+      ],
+      "role": "body",
+      "label": "Companions of the right rewarded"
+    },
+    {
+      "id": "COSMIC_C",
+      "v": [
+        41,
+        56
+      ],
+      "role": "body",
+      "label": "Companions of the left punished"
+    },
+    {
+      "id": "BRIDGE_1",
+      "v": [
+        57,
+        74
+      ],
+      "role": "pivot",
+      "label": "We created you — why not believe?"
+    },
+    {
+      "id": "BRIDGE_2",
+      "v": [
+        75,
+        82
+      ],
+      "role": "body",
+      "label": "I swear by the setting of stars"
+    },
+    {
+      "id": "BRIDGE_3",
+      "v": [
+        83,
+        87
+      ],
+      "role": "body",
+      "label": "When the soul reaches the throat"
+    },
+    {
+      "id": "DEATH_A",
+      "v": [
+        88,
+        89
+      ],
+      "role": "body",
+      "label": "The foremost — rest and bounty"
+    },
+    {
+      "id": "DEATH_B",
+      "v": [
+        90,
+        91
+      ],
+      "role": "body",
+      "label": "Companions of the right — peace"
+    },
+    {
+      "id": "DEATH_C",
+      "v": [
+        92,
+        94
+      ],
+      "role": "body",
+      "label": "The deniers — scalding water"
+    },
+    {
+      "id": "CLOSE",
+      "v": [
+        95,
+        96
+      ],
+      "role": "frame",
+      "label": "This is the true certainty"
+    }
+  ],
+  "57": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "Everything exalts Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        10
+      ],
+      "role": "body",
+      "label": "Believe and spend — great reward"
+    },
+    {
+      "id": "C",
+      "v": [
+        11,
+        15
+      ],
+      "role": "body",
+      "label": "Loan Allah a goodly loan"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        16,
+        18
+      ],
+      "role": "pivot",
+      "label": "Has the time not come for hearts?"
+    },
+    {
+      "id": "C_prime",
+      "v": [
+        19,
+        21
+      ],
+      "role": "body",
+      "label": "Those who believe in the messengers"
+    },
+    {
+      "id": "B_prime",
+      "v": [
+        22,
+        24
+      ],
+      "role": "body",
+      "label": "Disaster only by Allah's permission"
+    },
+    {
+      "id": "A_prime",
+      "v": [
+        25,
+        27
+      ],
+      "role": "frame",
+      "label": "Messengers sent with Scripture"
+    },
+    {
+      "id": "CLOSE",
+      "v": [
+        28,
+        29
+      ],
+      "role": "close",
+      "label": "Fear Allah, believe in His messenger"
+    }
+  ],
+  "58": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Allah heard the woman who argued"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        4
+      ],
+      "role": "body",
+      "label": "The zihar oath — expiation required"
+    },
+    {
+      "id": "C",
+      "v": [
+        5,
+        6
+      ],
+      "role": "body",
+      "label": "Those who oppose Allah are abased"
+    },
+    {
+      "id": "D",
+      "v": [
+        7,
+        7
+      ],
+      "role": "body",
+      "label": "Allah knows every private conversation"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        8,
+        10
+      ],
+      "role": "pivot",
+      "label": "Secret meetings and forbidden whispers"
+    },
+    {
+      "id": "D_prime",
+      "v": [
+        11,
+        13
+      ],
+      "role": "body",
+      "label": "Space yourselves in assemblies"
+    },
+    {
+      "id": "C_prime",
+      "v": [
+        14,
+        16
+      ],
+      "role": "body",
+      "label": "Those who ally with Allah's enemies"
+    },
+    {
+      "id": "B_prime",
+      "v": [
+        17,
+        19
+      ],
+      "role": "body",
+      "label": "Their wealth will not avail them"
+    },
+    {
+      "id": "A_prime",
+      "v": [
+        20,
+        22
+      ],
+      "role": "frame",
+      "label": "Allah's party will prevail"
+    }
+  ],
+  "59": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Everything exalts Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        5
+      ],
+      "role": "body",
+      "label": "The expelled People of the Book"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "What Allah restored to the messenger"
+    },
+    {
+      "id": "D",
+      "v": [
+        8,
+        10
+      ],
+      "role": "body",
+      "label": "For the poor emigrants"
+    },
+    {
+      "id": "SEAM",
+      "v": [
+        12,
+        13
+      ],
+      "role": "seam",
+      "label": "Hypocrites abandon their allies"
+    },
+    {
+      "id": "D_",
+      "v": [
+        11,
+        14
+      ],
+      "role": "body",
+      "label": "The hypocrites deceive the Jews"
+    },
+    {
+      "id": "C_",
+      "v": [
+        15,
+        17
+      ],
+      "role": "body",
+      "label": "Like those who tasted ruin before"
+    },
+    {
+      "id": "B_",
+      "v": [
+        18,
+        21
+      ],
+      "role": "body",
+      "label": "Fear Allah — look to tomorrow"
+    },
+    {
+      "id": "A_",
+      "v": [
+        22,
+        24
+      ],
+      "role": "frame",
+      "label": "He is Allah — no deity but Him"
+    }
+  ],
+  "60": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Do not take My enemies as allies"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "If they overpower you they will harm you"
+    },
+    {
+      "id": "C",
+      "v": [
+        4,
+        6
+      ],
+      "role": "body",
+      "label": "An excellent pattern in Abraham"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        7,
+        7
+      ],
+      "role": "pivot",
+      "label": "Perhaps Allah will put affection between you"
+    },
+    {
+      "id": "C_",
+      "v": [
+        8,
+        10
+      ],
+      "role": "body",
+      "label": "Allah forbids not those who did not fight you"
+    },
+    {
+      "id": "B_",
+      "v": [
+        11,
+        12
+      ],
+      "role": "body",
+      "label": "If wives flee to disbelievers — compensate"
+    },
+    {
+      "id": "A_",
+      "v": [
+        13,
+        13
+      ],
+      "role": "frame",
+      "label": "Do not ally with those Allah is angry with"
+    }
+  ],
+  "61": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "All creation glorifies Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "Why say what you do not do?"
+    },
+    {
+      "id": "C",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Allah loves those who fight in rows"
+    },
+    {
+      "id": "D",
+      "v": [
+        5,
+        7
+      ],
+      "role": "pivot",
+      "label": "Moses — why do you harm me?"
+    },
+    {
+      "id": "D_",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "They want to extinguish Allah's light"
+    },
+    {
+      "id": "B_",
+      "v": [
+        10,
+        13
+      ],
+      "role": "body",
+      "label": "Shall I guide you to a saving trade?"
+    },
+    {
+      "id": "A_",
+      "v": [
+        14,
+        14
+      ],
+      "role": "frame",
+      "label": "Be helpers of Allah's cause"
+    }
+  ],
+  "62": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "Everything exalts Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        5
+      ],
+      "role": "body",
+      "label": "Like a donkey carrying scripture"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        6,
+        6
+      ],
+      "role": "pivot",
+      "label": "Wish for death if you are truthful"
+    },
+    {
+      "id": "B_",
+      "v": [
+        7,
+        8
+      ],
+      "role": "body",
+      "label": "They will never wish for it"
+    },
+    {
+      "id": "A_",
+      "v": [
+        9,
+        11
+      ],
+      "role": "frame",
+      "label": "When Friday prayer is called — hasten"
+    }
+  ],
+  "63": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Hypocrites claim to believe"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        4
+      ],
+      "role": "body",
+      "label": "They use oaths as cover"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        5,
+        6
+      ],
+      "role": "pivot",
+      "label": "They refuse to seek forgiveness"
+    },
+    {
+      "id": "B_",
+      "v": [
+        7,
+        8
+      ],
+      "role": "body",
+      "label": "Do not spend on the messenger's companions"
+    },
+    {
+      "id": "A_",
+      "v": [
+        9,
+        11
+      ],
+      "role": "frame",
+      "label": "Do not let wealth distract from Allah"
+    }
+  ],
+  "64": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "Everything exalts Allah"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        6
+      ],
+      "role": "body",
+      "label": "Former nations disbelieved"
+    },
+    {
+      "id": "C",
+      "v": [
+        7,
+        7
+      ],
+      "role": "body",
+      "label": "They claim no resurrection"
+    },
+    {
+      "id": "D",
+      "v": [
+        8,
+        8
+      ],
+      "role": "body",
+      "label": "Believe in Allah and His messenger"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        9,
+        10
+      ],
+      "role": "pivot",
+      "label": "The Day of Gathering — the Day of Loss"
+    },
+    {
+      "id": "D_",
+      "v": [
+        11,
+        11
+      ],
+      "role": "body",
+      "label": "No disaster except by Allah's permission"
+    },
+    {
+      "id": "C_",
+      "v": [
+        12,
+        13
+      ],
+      "role": "body",
+      "label": "Obey Allah and His messenger"
+    },
+    {
+      "id": "B_",
+      "v": [
+        14,
+        15
+      ],
+      "role": "body",
+      "label": "Among your wives and children are enemies"
+    },
+    {
+      "id": "A_",
+      "v": [
+        16,
+        18
+      ],
+      "role": "frame",
+      "label": "Fear Allah as much as you are able"
+    }
+  ],
+  "65": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Divorce at the start of waiting period"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "When they fulfill their term — retain or part"
+    },
+    {
+      "id": "C",
+      "v": [
+        4,
+        5
+      ],
+      "role": "body",
+      "label": "Waiting period for the elderly"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        6,
+        7
+      ],
+      "role": "pivot",
+      "label": "House them and do not harm them"
+    },
+    {
+      "id": "C_",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "Cities punished for disobeying Allah"
+    },
+    {
+      "id": "B_",
+      "v": [
+        10,
+        11
+      ],
+      "role": "body",
+      "label": "Fear Allah — He sent a messenger"
+    },
+    {
+      "id": "A_",
+      "v": [
+        12,
+        12
+      ],
+      "role": "frame",
+      "label": "Allah's command governs the seven heavens"
+    }
+  ],
+  "66": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Why forbid what Allah made lawful?"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        5
+      ],
+      "role": "body",
+      "label": "The Prophet confided to a wife"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        6,
+        8
+      ],
+      "role": "pivot",
+      "label": "Protect yourselves and your families"
+    },
+    {
+      "id": "A_",
+      "v": [
+        9,
+        12
+      ],
+      "role": "frame",
+      "label": "Strive against disbelievers and hypocrites"
+    }
+  ],
+  "67": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Dominion and the test of deeds"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        5
+      ],
+      "role": "body",
+      "label": "Seven heavens — no inconsistency"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        11
+      ],
+      "role": "body",
+      "label": "Hell — did no warner come to you?"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        12,
+        15
+      ],
+      "role": "pivot",
+      "label": "Those who fear Allah unseen"
+    },
+    {
+      "id": "C_",
+      "v": [
+        16,
+        22
+      ],
+      "role": "body",
+      "label": "Do you feel safe from Allah's punishment?"
+    },
+    {
+      "id": "B_",
+      "v": [
+        23,
+        27
+      ],
+      "role": "body",
+      "label": "He gave you hearing, sight, and hearts"
+    },
+    {
+      "id": "A_",
+      "v": [
+        28,
+        30
+      ],
+      "role": "frame",
+      "label": "Say — have you considered your water?"
+    }
+  ],
+  "68": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "By the pen — you are not mad"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        7
+      ],
+      "role": "body",
+      "label": "You will see — which of you is afflicted"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        16
+      ],
+      "role": "body",
+      "label": "Do not obey the arrogant slanderer"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        17,
+        32
+      ],
+      "role": "pivot",
+      "label": "The companions of the garden"
+    },
+    {
+      "id": "C_",
+      "v": [
+        33,
+        34
+      ],
+      "role": "body",
+      "label": "Such is the punishment of this world"
+    },
+    {
+      "id": "B_",
+      "v": [
+        35,
+        43
+      ],
+      "role": "body",
+      "label": "Will We treat Muslims like criminals?"
+    },
+    {
+      "id": "D_",
+      "v": [
+        44,
+        47
+      ],
+      "role": "body",
+      "label": "Leave Me with those who deny"
+    },
+    {
+      "id": "A_",
+      "v": [
+        48,
+        52
+      ],
+      "role": "frame",
+      "label": "Be patient like Jonah"
+    }
+  ],
+  "69": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "frame",
+      "label": "The Inevitable Reality"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        10
+      ],
+      "role": "body",
+      "label": "Thamud and Aad destroyed"
+    },
+    {
+      "id": "C",
+      "v": [
+        11,
+        12
+      ],
+      "role": "body",
+      "label": "Noah's people — carried in the ship"
+    },
+    {
+      "id": "D",
+      "v": [
+        13,
+        18
+      ],
+      "role": "body",
+      "label": "The Horn blown — earth leveled"
+    },
+    {
+      "id": "CTR",
+      "v": [
+        19,
+        29
+      ],
+      "role": "pivot",
+      "label": "Record in right hand or behind back"
+    },
+    {
+      "id": "D_",
+      "v": [
+        30,
+        34
+      ],
+      "role": "body",
+      "label": "Seize him, shackle him, burn him"
+    },
+    {
+      "id": "C_",
+      "v": [
+        35,
+        37
+      ],
+      "role": "body",
+      "label": "No devoted friend — no food but wounds"
+    },
+    {
+      "id": "B_",
+      "v": [
+        38,
+        47
+      ],
+      "role": "body",
+      "label": "I swear by what you see and do not see"
+    },
+    {
+      "id": "A_",
+      "v": [
+        48,
+        52
+      ],
+      "role": "frame",
+      "label": "A reminder for the righteous"
+    }
+  ],
+  "70": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "Punishment bound to happen"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        7
+      ],
+      "role": "body",
+      "label": "Be patient with gracious patience"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        14
+      ],
+      "role": "body",
+      "label": "The Day — a man flees his brother"
+    },
+    {
+      "id": "D",
+      "v": [
+        15,
+        18
+      ],
+      "role": "body",
+      "label": "Hell — invites those who turned away"
+    },
+    {
+      "id": "D_",
+      "v": [
+        19,
+        21
+      ],
+      "role": "body",
+      "label": "Man created anxious and withholding"
+    },
+    {
+      "id": "H",
+      "v": [
+        22,
+        35
+      ],
+      "role": "pivot",
+      "label": "Except those devoted to prayer"
+    },
+    {
+      "id": "C_",
+      "v": [
+        36,
+        38
+      ],
+      "role": "body",
+      "label": "Disbelievers rushing before you"
+    },
+    {
+      "id": "B_",
+      "v": [
+        39,
+        41
+      ],
+      "role": "body",
+      "label": "We created them — I swear by the Lord"
+    },
+    {
+      "id": "A_",
+      "v": [
+        42,
+        44
+      ],
+      "role": "frame",
+      "label": "Leave them until they meet their Day"
+    }
+  ],
+  "71": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "Noah sent to warn his people"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        9
+      ],
+      "role": "body",
+      "label": "I called them night and day"
+    },
+    {
+      "id": "C",
+      "v": [
+        10,
+        12
+      ],
+      "role": "body",
+      "label": "Seek forgiveness — rain will come"
+    },
+    {
+      "id": "D",
+      "v": [
+        13,
+        15
+      ],
+      "role": "pivot",
+      "label": "Why do you not honor Allah?"
+    },
+    {
+      "id": "D_",
+      "v": [
+        16,
+        18
+      ],
+      "role": "pivot",
+      "label": "He created you in stages"
+    },
+    {
+      "id": "C_",
+      "v": [
+        19,
+        20
+      ],
+      "role": "body",
+      "label": "Allah made earth an expanse for you"
+    },
+    {
+      "id": "B_",
+      "v": [
+        21,
+        24
+      ],
+      "role": "body",
+      "label": "They followed those who increased them in loss"
+    },
+    {
+      "id": "X",
+      "v": [
+        25,
+        25
+      ],
+      "role": "hinge",
+      "label": "Drowned for their sins"
+    },
+    {
+      "id": "A_",
+      "v": [
+        26,
+        28
+      ],
+      "role": "frame",
+      "label": "Leave not one disbeliever on earth"
+    }
+  ],
+  "72": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Jinn heard the Quran and believed"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        7
+      ],
+      "role": "body",
+      "label": "Allah has no partner or son"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        10
+      ],
+      "role": "body",
+      "label": "We sought the heaven — found it guarded"
+    },
+    {
+      "id": "D",
+      "v": [
+        11,
+        15
+      ],
+      "role": "pivot",
+      "label": "Among us righteous and otherwise"
+    },
+    {
+      "id": "C_",
+      "v": [
+        16,
+        17
+      ],
+      "role": "body",
+      "label": "If they stay straight — abundant water"
+    },
+    {
+      "id": "B_",
+      "v": [
+        18,
+        23
+      ],
+      "role": "body",
+      "label": "Masjids are for Allah alone"
+    },
+    {
+      "id": "A_",
+      "v": [
+        24,
+        28
+      ],
+      "role": "frame",
+      "label": "Until they see what they were promised"
+    }
+  ],
+  "73": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "frame",
+      "label": "Arise and pray the night"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        7
+      ],
+      "role": "body",
+      "label": "We will cast a heavy word on you"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "Remember your Lord with devotion"
+    },
+    {
+      "id": "D",
+      "v": [
+        10,
+        11
+      ],
+      "role": "pivot",
+      "label": "Be patient — leave Me with the deniers"
+    },
+    {
+      "id": "C_",
+      "v": [
+        12,
+        13
+      ],
+      "role": "body",
+      "label": "Shackles and burning fire await them"
+    },
+    {
+      "id": "B_",
+      "v": [
+        14,
+        16
+      ],
+      "role": "body",
+      "label": "The Day earth convulses like mountains"
+    },
+    {
+      "id": "A_",
+      "v": [
+        17,
+        19
+      ],
+      "role": "frame",
+      "label": "Your Lord knows you stand in prayer"
+    },
+    {
+      "id": "ADD",
+      "v": [
+        20,
+        20
+      ],
+      "role": "addendum",
+      "label": "Concession for the community"
+    }
+  ],
+  "74": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        7
+      ],
+      "role": "frame",
+      "label": "Arise and warn"
+    },
+    {
+      "id": "B",
+      "v": [
+        8,
+        10
+      ],
+      "role": "body",
+      "label": "The Day the trumpet is blown"
+    },
+    {
+      "id": "C",
+      "v": [
+        11,
+        17
+      ],
+      "role": "body",
+      "label": "Leave Me with the one I created alone"
+    },
+    {
+      "id": "D",
+      "v": [
+        18,
+        25
+      ],
+      "role": "body",
+      "label": "He deliberated and rejected"
+    },
+    {
+      "id": "E",
+      "v": [
+        26,
+        31
+      ],
+      "role": "pivot",
+      "label": "I will drive him into Saqar"
+    },
+    {
+      "id": "F",
+      "v": [
+        32,
+        37
+      ],
+      "role": "body",
+      "label": "By the moon — the warning is real"
+    },
+    {
+      "id": "B_",
+      "v": [
+        38,
+        48
+      ],
+      "role": "body",
+      "label": "Every soul retained for what it earned"
+    },
+    {
+      "id": "D_",
+      "v": [
+        49,
+        53
+      ],
+      "role": "body",
+      "label": "What is wrong — why do they turn away?"
+    },
+    {
+      "id": "A_",
+      "v": [
+        49,
+        56
+      ],
+      "role": "frame",
+      "label": "It is only a reminder for those who will"
+    }
+  ],
+  "75": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        6
+      ],
+      "role": "frame",
+      "label": "I swear by the Day of Resurrection"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        6
+      ],
+      "role": "body",
+      "label": "Does man think bones will not be gathered?"
+    },
+    {
+      "id": "C",
+      "v": [
+        7,
+        10
+      ],
+      "role": "body",
+      "label": "When sight is dazzled — the moon darkens"
+    },
+    {
+      "id": "D",
+      "v": [
+        11,
+        15
+      ],
+      "role": "body",
+      "label": "No refuge — to your Lord that Day"
+    },
+    {
+      "id": "E",
+      "v": [
+        16,
+        19
+      ],
+      "role": "body",
+      "label": "Do not rush the recitation"
+    },
+    {
+      "id": "F",
+      "v": [
+        20,
+        21
+      ],
+      "role": "pivot",
+      "label": "You love the present life"
+    },
+    {
+      "id": "G",
+      "v": [
+        22,
+        25
+      ],
+      "role": "body",
+      "label": "Faces radiant — faces contorted"
+    },
+    {
+      "id": "H",
+      "v": [
+        26,
+        30
+      ],
+      "role": "body",
+      "label": "When the soul reaches the collar bones"
+    },
+    {
+      "id": "B_",
+      "v": [
+        31,
+        35
+      ],
+      "role": "body",
+      "label": "He denied and turned away"
+    },
+    {
+      "id": "A_",
+      "v": [
+        36,
+        40
+      ],
+      "role": "frame",
+      "label": "Was he not once a sperm drop?"
+    }
+  ],
+  "76": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "frame",
+      "label": "Man created from a mixed drop"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Chains and shackles for disbelievers"
+    },
+    {
+      "id": "C",
+      "v": [
+        5,
+        22
+      ],
+      "role": "body",
+      "label": "The righteous drink from Kafur springs"
+    },
+    {
+      "id": "X",
+      "v": [
+        22,
+        23
+      ],
+      "role": "pivot",
+      "label": "Your effort is rewarded"
+    },
+    {
+      "id": "C_",
+      "v": [
+        24,
+        26
+      ],
+      "role": "body",
+      "label": "Be patient — do not obey sinners"
+    },
+    {
+      "id": "B_",
+      "v": [
+        27,
+        27
+      ],
+      "role": "body",
+      "label": "Disbelievers love the immediate"
+    },
+    {
+      "id": "A_",
+      "v": [
+        28,
+        31
+      ],
+      "role": "frame",
+      "label": "We created them — We can change them"
+    }
+  ],
+  "77": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        7
+      ],
+      "role": "frame",
+      "label": "By the winds sent in gusts"
+    },
+    {
+      "id": "B",
+      "v": [
+        8,
+        14
+      ],
+      "role": "body",
+      "label": "When stars are obliterated"
+    },
+    {
+      "id": "X_refrain",
+      "v": [
+        15,
+        49
+      ],
+      "role": "pivot",
+      "label": "Woe that Day to the deniers"
+    },
+    {
+      "id": "D",
+      "v": [
+        16,
+        18
+      ],
+      "role": "body",
+      "label": "Did We not destroy former peoples?"
+    },
+    {
+      "id": "E",
+      "v": [
+        20,
+        23
+      ],
+      "role": "body",
+      "label": "Did We not create you from fluid?"
+    },
+    {
+      "id": "F",
+      "v": [
+        25,
+        27
+      ],
+      "role": "pivot",
+      "label": "Have We not made earth a container?"
+    },
+    {
+      "id": "G",
+      "v": [
+        29,
+        33
+      ],
+      "role": "body",
+      "label": "Proceed to the shadow of smoke"
+    },
+    {
+      "id": "H",
+      "v": [
+        35,
+        39
+      ],
+      "role": "body",
+      "label": "This is a Day they will not speak"
+    },
+    {
+      "id": "D_",
+      "v": [
+        41,
+        44
+      ],
+      "role": "body",
+      "label": "The righteous in shade and springs"
+    },
+    {
+      "id": "A_",
+      "v": [
+        48,
+        50
+      ],
+      "role": "frame",
+      "label": "If you do not bow — woe to the deniers"
+    }
+  ],
+  "78": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        5
+      ],
+      "role": "frame",
+      "label": "What do they dispute about?"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        16
+      ],
+      "role": "body",
+      "label": "Signs — earth, mountains, sleep, day"
+    },
+    {
+      "id": "C",
+      "v": [
+        17,
+        20
+      ],
+      "role": "body",
+      "label": "The Day of Judgment appointed"
+    },
+    {
+      "id": "X",
+      "v": [
+        21,
+        30
+      ],
+      "role": "pivot",
+      "label": "Hell waiting for the transgressors"
+    },
+    {
+      "id": "C′",
+      "v": [
+        31,
+        36
+      ],
+      "role": "body",
+      "label": "Gardens and pleasure for the righteous"
+    },
+    {
+      "id": "B′",
+      "v": [
+        37,
+        38
+      ],
+      "role": "body",
+      "label": "Lord of heavens — they cannot speak"
+    },
+    {
+      "id": "A′",
+      "v": [
+        39,
+        40
+      ],
+      "role": "frame",
+      "label": "The day the wrongdoer will say — I wish"
+    }
+  ],
+  "79": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        5
+      ],
+      "role": "frame",
+      "label": "By the angels who extract souls"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        14
+      ],
+      "role": "body",
+      "label": "Hearts fearful on that Day"
+    },
+    {
+      "id": "C",
+      "v": [
+        15,
+        26
+      ],
+      "role": "body",
+      "label": "Moses and Pharaoh — the warning"
+    },
+    {
+      "id": "X",
+      "v": [
+        26,
+        27
+      ],
+      "role": "pivot",
+      "label": "Moses warns — a lesson for those who fear"
+    },
+    {
+      "id": "C′",
+      "v": [
+        27,
+        33
+      ],
+      "role": "body",
+      "label": "Is your creation harder than the heaven?"
+    },
+    {
+      "id": "B′",
+      "v": [
+        34,
+        41
+      ],
+      "role": "body",
+      "label": "The Day man remembers what he strove for"
+    },
+    {
+      "id": "A′",
+      "v": [
+        42,
+        46
+      ],
+      "role": "frame",
+      "label": "They ask about the Hour — when?"
+    }
+  ],
+  "80": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        10
+      ],
+      "role": "frame",
+      "label": "The Prophet frowned at the blind man"
+    },
+    {
+      "id": "B",
+      "v": [
+        11,
+        16
+      ],
+      "role": "body",
+      "label": "These verses are a reminder"
+    },
+    {
+      "id": "C",
+      "v": [
+        17,
+        22
+      ],
+      "role": "body",
+      "label": "Man — how ungrateful he is"
+    },
+    {
+      "id": "X",
+      "v": [
+        23,
+        23
+      ],
+      "role": "pivot",
+      "label": "Man has not done what He commanded"
+    },
+    {
+      "id": "C′",
+      "v": [
+        24,
+        32
+      ],
+      "role": "body",
+      "label": "Let man look at his food"
+    },
+    {
+      "id": "B′",
+      "v": [
+        33,
+        37
+      ],
+      "role": "body",
+      "label": "When the Deafening Blast comes"
+    },
+    {
+      "id": "A′",
+      "v": [
+        38,
+        42
+      ],
+      "role": "frame",
+      "label": "Faces bright — faces dust-covered"
+    }
+  ],
+  "81": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Cosmic collapse — sun darkened"
+    },
+    {
+      "id": "X",
+      "v": [
+        14,
+        15
+      ],
+      "role": "pivot",
+      "label": "A soul will know what it brought"
+    },
+    {
+      "id": "B",
+      "v": [
+        15,
+        16
+      ],
+      "role": "body",
+      "label": "By the retreating stars"
+    },
+    {
+      "id": "C",
+      "v": [
+        19,
+        20
+      ],
+      "role": "body",
+      "label": "The Quran — word of a noble messenger"
+    },
+    {
+      "id": "D",
+      "v": [
+        22,
+        23
+      ],
+      "role": "body",
+      "label": "Your companion is not mad"
+    },
+    {
+      "id": "X2",
+      "v": [
+        26,
+        26
+      ],
+      "role": "pivot",
+      "label": "So where are you going?"
+    },
+    {
+      "id": "E",
+      "v": [
+        27,
+        28
+      ],
+      "role": "frame",
+      "label": "A reminder for those who will"
+    }
+  ],
+  "82": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "outer_frame_open",
+      "label": "Cosmic unraveling — sky and graves"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        5
+      ],
+      "role": "body",
+      "label": "A soul confronts what it sent forward"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        8
+      ],
+      "role": "body",
+      "label": "O mankind — what deceived you?"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        9,
+        9
+      ],
+      "role": "pivot",
+      "label": "You deny the Recompense"
+    },
+    {
+      "id": "C′",
+      "v": [
+        10,
+        12
+      ],
+      "role": "body",
+      "label": "Angels recording every deed"
+    },
+    {
+      "id": "B′",
+      "v": [
+        13,
+        14
+      ],
+      "role": "body",
+      "label": "The righteous in pleasure — wicked in fire"
+    },
+    {
+      "id": "A′",
+      "v": [
+        15,
+        19
+      ],
+      "role": "outer_frame_close",
+      "label": "The Day of Recompense — who owns it?"
+    }
+  ],
+  "83": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Woe to those who give short measure"
+    },
+    {
+      "id": "B",
+      "v": [
+        7,
+        8
+      ],
+      "role": "body",
+      "label": "Record of the wicked in Sijjeen"
+    },
+    {
+      "id": "C",
+      "v": [
+        10,
+        11
+      ],
+      "role": "body",
+      "label": "Woe to the deniers of Judgment Day"
+    },
+    {
+      "id": "X",
+      "v": [
+        17,
+        18
+      ],
+      "role": "pivot",
+      "label": "This is what you used to deny"
+    },
+    {
+      "id": "C′",
+      "v": [
+        18,
+        19
+      ],
+      "role": "body",
+      "label": "Record of the righteous in Illiyyun"
+    },
+    {
+      "id": "B′",
+      "v": [
+        22,
+        23
+      ],
+      "role": "body",
+      "label": "The righteous on adorned couches"
+    },
+    {
+      "id": "A′",
+      "v": [
+        29,
+        30
+      ],
+      "role": "frame",
+      "label": "Believers mocked by criminals"
+    }
+  ],
+  "84": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "When the sky splits open"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        6
+      ],
+      "role": "body",
+      "label": "O mankind — laboring toward your Lord"
+    },
+    {
+      "id": "C",
+      "v": [
+        7,
+        8
+      ],
+      "role": "body",
+      "label": "Record in right hand — easy account"
+    },
+    {
+      "id": "D",
+      "v": [
+        10,
+        11
+      ],
+      "role": "body",
+      "label": "Record behind back — crying for destruction"
+    },
+    {
+      "id": "X",
+      "v": [
+        13,
+        14
+      ],
+      "role": "pivot",
+      "label": "He thought he would never return to Allah"
+    },
+    {
+      "id": "C′",
+      "v": [
+        16,
+        17
+      ],
+      "role": "body",
+      "label": "Oath by twilight and night"
+    },
+    {
+      "id": "B′",
+      "v": [
+        20,
+        21
+      ],
+      "role": "body",
+      "label": "Why do they not believe?"
+    },
+    {
+      "id": "A′",
+      "v": [
+        22,
+        23
+      ],
+      "role": "frame",
+      "label": "Disbelievers deny — Allah knows all"
+    }
+  ],
+  "85": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "outer_frame_open",
+      "label": "Cosmic oath — sky, Day, witness"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        9
+      ],
+      "role": "inner_frame_open",
+      "label": "People of the Trench"
+    },
+    {
+      "id": "C",
+      "v": [
+        10,
+        11
+      ],
+      "role": "center_flank_left",
+      "label": "Binary verdict — fire and gardens"
+    },
+    {
+      "id": "D",
+      "v": [
+        12,
+        16
+      ],
+      "role": "pivot",
+      "label": "Divine sovereignty declared"
+    },
+    {
+      "id": "C′",
+      "v": [
+        17,
+        18
+      ],
+      "role": "center_flank_right",
+      "label": "Pharaoh and Thamud"
+    },
+    {
+      "id": "B′",
+      "v": [
+        19,
+        20
+      ],
+      "role": "inner_frame_close",
+      "label": "Disbelievers encompassed"
+    },
+    {
+      "id": "A′",
+      "v": [
+        21,
+        22
+      ],
+      "role": "outer_frame_close",
+      "label": "Honored Quran in Preserved Slate"
+    }
+  ],
+  "86": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        4
+      ],
+      "role": "outer_frame_open",
+      "label": "Cosmic oath — sky, star, guardian"
+    },
+    {
+      "id": "B",
+      "v": [
+        5,
+        8
+      ],
+      "role": "inner_frame_open",
+      "label": "Human creation and resurrection"
+    },
+    {
+      "id": "X",
+      "v": [
+        9,
+        10
+      ],
+      "role": "pivot",
+      "label": "Day of Judgment — secrets tried"
+    },
+    {
+      "id": "B′",
+      "v": [
+        11,
+        12
+      ],
+      "role": "inner_frame_close",
+      "label": "Returning sky and cracking earth"
+    },
+    {
+      "id": "A′",
+      "v": [
+        13,
+        17
+      ],
+      "role": "outer_frame_close",
+      "label": "Quran decisive — Allah's plan prevails"
+    }
+  ],
+  "87": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Exalt the name of your Lord Most High"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "He created and guided"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "We will make you recite — you will not forget"
+    },
+    {
+      "id": "X",
+      "v": [
+        9,
+        10
+      ],
+      "role": "pivot",
+      "label": "Remind — if reminder benefits"
+    },
+    {
+      "id": "C′",
+      "v": [
+        14,
+        15
+      ],
+      "role": "body",
+      "label": "He who purifies himself succeeds"
+    },
+    {
+      "id": "B′",
+      "v": [
+        16,
+        17
+      ],
+      "role": "body",
+      "label": "You prefer the worldly life"
+    },
+    {
+      "id": "A′",
+      "v": [
+        18,
+        19
+      ],
+      "role": "frame",
+      "label": "In the scriptures of Abraham and Moses"
+    }
+  ],
+  "88": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Has the report of the Overwhelming reached you?"
+    },
+    {
+      "id": "B1",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "Faces humbled — working and exhausted"
+    },
+    {
+      "id": "C",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "Faces pleased — their effort rewarded"
+    },
+    {
+      "id": "D",
+      "v": [
+        17,
+        18
+      ],
+      "role": "pivot",
+      "label": "Do they not look at the camel and sky?"
+    },
+    {
+      "id": "B2",
+      "v": [
+        21,
+        22
+      ],
+      "role": "body",
+      "label": "You are only a reminder"
+    },
+    {
+      "id": "B3",
+      "v": [
+        23,
+        24
+      ],
+      "role": "body",
+      "label": "He who turns away — greatest punishment"
+    },
+    {
+      "id": "A′",
+      "v": [
+        25,
+        26
+      ],
+      "role": "frame",
+      "label": "To Us is their return and reckoning"
+    }
+  ],
+  "89": [
+    {
+      "id": "A1",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the dawn and ten nights"
+    },
+    {
+      "id": "A2",
+      "v": [
+        5,
+        5
+      ],
+      "role": "frame",
+      "label": "Is there not an oath for one of perception?"
+    },
+    {
+      "id": "B",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "How your Lord dealt with Aad and Thamud"
+    },
+    {
+      "id": "C",
+      "v": [
+        15,
+        16
+      ],
+      "role": "body",
+      "label": "Man thinks honor and trial are the same"
+    },
+    {
+      "id": "X",
+      "v": [
+        17,
+        18
+      ],
+      "role": "pivot",
+      "label": "You do not honor the orphan"
+    },
+    {
+      "id": "Y",
+      "v": [
+        21,
+        22
+      ],
+      "role": "body",
+      "label": "When earth is leveled — your Lord comes"
+    },
+    {
+      "id": "A′",
+      "v": [
+        27,
+        28
+      ],
+      "role": "frame",
+      "label": "O reassured soul — return to your Lord"
+    }
+  ],
+  "90": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "I swear by this city"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Man created into hardship"
+    },
+    {
+      "id": "C",
+      "v": [
+        5,
+        6
+      ],
+      "role": "body",
+      "label": "He thinks none can overpower him"
+    },
+    {
+      "id": "D",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "Have We not given him two eyes?"
+    },
+    {
+      "id": "X",
+      "v": [
+        11,
+        12
+      ],
+      "role": "pivot",
+      "label": "He has not attempted the difficult pass"
+    },
+    {
+      "id": "E",
+      "v": [
+        13,
+        14
+      ],
+      "role": "body",
+      "label": "Freeing a slave or feeding the hungry"
+    },
+    {
+      "id": "F",
+      "v": [
+        17,
+        17
+      ],
+      "role": "body",
+      "label": "Being among those who believed"
+    },
+    {
+      "id": "G",
+      "v": [
+        18,
+        19
+      ],
+      "role": "frame",
+      "label": "Companions of the right and left"
+    }
+  ],
+  "91": [
+    {
+      "id": "A1",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the sun and the moon"
+    },
+    {
+      "id": "A2",
+      "v": [
+        5,
+        6
+      ],
+      "role": "frame",
+      "label": "By the sky and the earth"
+    },
+    {
+      "id": "A3",
+      "v": [
+        7,
+        7
+      ],
+      "role": "frame",
+      "label": "By the soul and its fashioning"
+    },
+    {
+      "id": "B",
+      "v": [
+        8,
+        8
+      ],
+      "role": "body",
+      "label": "The soul inspired with right and wrong"
+    },
+    {
+      "id": "X",
+      "v": [
+        9,
+        10
+      ],
+      "role": "pivot",
+      "label": "He who purifies the soul succeeds"
+    },
+    {
+      "id": "C",
+      "v": [
+        11,
+        12
+      ],
+      "role": "body",
+      "label": "Thamud denied — the she-camel hamstrung"
+    },
+    {
+      "id": "A′",
+      "v": [
+        15,
+        15
+      ],
+      "role": "frame",
+      "label": "He does not fear the consequence"
+    }
+  ],
+  "92": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the night and the day"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Your efforts are diverse"
+    },
+    {
+      "id": "C",
+      "v": [
+        5,
+        6
+      ],
+      "role": "body",
+      "label": "He who gives and fears Allah"
+    },
+    {
+      "id": "D",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "He who withholds and feels self-sufficient"
+    },
+    {
+      "id": "X",
+      "v": [
+        11,
+        11
+      ],
+      "role": "pivot",
+      "label": "What will his wealth avail when he falls?"
+    },
+    {
+      "id": "B′",
+      "v": [
+        12,
+        13
+      ],
+      "role": "body",
+      "label": "Upon Us is guidance"
+    },
+    {
+      "id": "D′",
+      "v": [
+        14,
+        15
+      ],
+      "role": "body",
+      "label": "The most wretched will burn"
+    },
+    {
+      "id": "C′",
+      "v": [
+        17,
+        18
+      ],
+      "role": "body",
+      "label": "The righteous will avoid it"
+    }
+  ],
+  "93": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the morning brightness"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        4
+      ],
+      "role": "body",
+      "label": "Your Lord has not forsaken you"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "He found you orphaned and guided you"
+    },
+    {
+      "id": "X",
+      "v": [
+        8,
+        9
+      ],
+      "role": "pivot",
+      "label": "He found you poor and enriched you"
+    },
+    {
+      "id": "B′",
+      "v": [
+        9,
+        10
+      ],
+      "role": "body",
+      "label": "Do not oppress the orphan"
+    },
+    {
+      "id": "A′",
+      "v": [
+        11,
+        11
+      ],
+      "role": "frame",
+      "label": "Proclaim the favor of your Lord"
+    }
+  ],
+  "94": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "Did We not expand your breast?"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "We removed your burden from you"
+    },
+    {
+      "id": "C",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "We raised high your repute"
+    },
+    {
+      "id": "X",
+      "v": [
+        5,
+        6
+      ],
+      "role": "pivot",
+      "label": "With hardship comes ease — twice"
+    },
+    {
+      "id": "B′",
+      "v": [
+        7,
+        7
+      ],
+      "role": "body",
+      "label": "When finished — stand for worship"
+    },
+    {
+      "id": "A′",
+      "v": [
+        8,
+        8
+      ],
+      "role": "frame",
+      "label": "Direct your longing to your Lord"
+    }
+  ],
+  "95": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the fig, olive, and Sinai"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Man created in the best stature"
+    },
+    {
+      "id": "X",
+      "v": [
+        5,
+        5
+      ],
+      "role": "pivot",
+      "label": "Then returned to the lowest of the low"
+    },
+    {
+      "id": "B′",
+      "v": [
+        6,
+        6
+      ],
+      "role": "body",
+      "label": "Except those who believe and do good"
+    },
+    {
+      "id": "A′",
+      "v": [
+        7,
+        8
+      ],
+      "role": "frame",
+      "label": "Is Allah not the most just of judges?"
+    }
+  ],
+  "96": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Recite — your Lord created"
+    },
+    {
+      "id": "D",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "Man transgresses — sees himself sufficient"
+    },
+    {
+      "id": "E",
+      "v": [
+        9,
+        10
+      ],
+      "role": "center",
+      "label": "He who forbids a servant from prayer"
+    },
+    {
+      "id": "D′",
+      "v": [
+        15,
+        16
+      ],
+      "role": "body",
+      "label": "If he does not desist — We will drag him"
+    },
+    {
+      "id": "A′",
+      "v": [
+        19,
+        19
+      ],
+      "role": "frame",
+      "label": "Do not obey — prostrate and draw near"
+    }
+  ],
+  "97": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "We sent it down on the Night of Decree"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        2
+      ],
+      "role": "body",
+      "label": "What can make you know this night?"
+    },
+    {
+      "id": "X",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "Better than a thousand months"
+    },
+    {
+      "id": "B′",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "Angels descend by their Lord's permission"
+    },
+    {
+      "id": "A′",
+      "v": [
+        5,
+        5
+      ],
+      "role": "frame",
+      "label": "Peace until the emergence of dawn"
+    }
+  ],
+  "98": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Disbelievers would not desist until proof came"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        4
+      ],
+      "role": "body",
+      "label": "People of the Book divided after proof"
+    },
+    {
+      "id": "X",
+      "v": [
+        5,
+        5
+      ],
+      "role": "pivot",
+      "label": "Commanded only to worship sincerely"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "Disbelievers — worst of creatures"
+    },
+    {
+      "id": "A′",
+      "v": [
+        8,
+        8
+      ],
+      "role": "frame",
+      "label": "Believers who do good — best of creatures"
+    }
+  ],
+  "99": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Earth shaken with its earthquake"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        3
+      ],
+      "role": "body",
+      "label": "Man says — what is wrong with it?"
+    },
+    {
+      "id": "X",
+      "v": [
+        4,
+        5
+      ],
+      "role": "pivot",
+      "label": "The earth testifies to deeds"
+    },
+    {
+      "id": "B′",
+      "v": [
+        6,
+        6
+      ],
+      "role": "body",
+      "label": "People depart in categories"
+    },
+    {
+      "id": "A′",
+      "v": [
+        7,
+        8
+      ],
+      "role": "frame",
+      "label": "Atom's weight of good or evil seen"
+    }
+  ],
+  "100": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "By the charging warhorses"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        5
+      ],
+      "role": "body",
+      "label": "Charging into the center"
+    },
+    {
+      "id": "X",
+      "v": [
+        6,
+        7
+      ],
+      "role": "pivot",
+      "label": "Man is ungrateful to his Lord"
+    },
+    {
+      "id": "A′",
+      "v": [
+        9,
+        10
+      ],
+      "role": "body",
+      "label": "Contents of graves scattered"
+    },
+    {
+      "id": "A″",
+      "v": [
+        11,
+        11
+      ],
+      "role": "frame",
+      "label": "Their Lord fully acquainted that Day"
+    }
+  ],
+  "101": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "The Striking Calamity"
+    },
+    {
+      "id": "B",
+      "v": [
+        4,
+        5
+      ],
+      "role": "body",
+      "label": "People like scattered moths"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "Heavy scales — pleasant life"
+    },
+    {
+      "id": "C′",
+      "v": [
+        8,
+        9
+      ],
+      "role": "body",
+      "label": "Light scales — abyss of fire"
+    },
+    {
+      "id": "A′",
+      "v": [
+        10,
+        11
+      ],
+      "role": "frame",
+      "label": "A fire intensely hot"
+    }
+  ],
+  "102": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "frame",
+      "label": "Competition diverts you to the graves"
+    },
+    {
+      "id": "B",
+      "v": [
+        3,
+        4
+      ],
+      "role": "body",
+      "label": "No — you are going to know"
+    },
+    {
+      "id": "X",
+      "v": [
+        5,
+        5
+      ],
+      "role": "pivot",
+      "label": "If only you knew with certainty"
+    },
+    {
+      "id": "C",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "You will surely see Hellfire"
+    },
+    {
+      "id": "A′",
+      "v": [
+        8,
+        8
+      ],
+      "role": "frame",
+      "label": "Asked that Day about pleasure"
+    }
+  ],
+  "103": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "frame",
+      "label": "By time"
+    },
+    {
+      "id": "X",
+      "v": [
+        2,
+        2
+      ],
+      "role": "pivot",
+      "label": "Mankind is in loss"
+    },
+    {
+      "id": "A′",
+      "v": [
+        3,
+        3
+      ],
+      "role": "frame",
+      "label": "Except those who believe and advise"
+    }
+  ],
+  "104": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "outer_frame_open",
+      "label": "Woe to every slanderer and mocker"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "Wealth counted — he thinks it makes him immortal"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        4,
+        5
+      ],
+      "role": "pivot",
+      "label": "Thrown into the Crusher"
+    },
+    {
+      "id": "B′",
+      "v": [
+        6,
+        7
+      ],
+      "role": "body",
+      "label": "The fire of Allah mounted at hearts"
+    },
+    {
+      "id": "A′",
+      "v": [
+        8,
+        9
+      ],
+      "role": "outer_frame_close",
+      "label": "Sealed in extended columns"
+    }
+  ],
+  "105": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "Have you not seen the elephant army?"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "Birds sent in successive flights"
+    },
+    {
+      "id": "A′",
+      "v": [
+        4,
+        5
+      ],
+      "role": "outer_frame_close",
+      "label": "Made like eaten straw"
+    }
+  ],
+  "106": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "The covenant of the two journeys"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "Worship the Lord of this House"
+    },
+    {
+      "id": "A′",
+      "v": [
+        4,
+        4
+      ],
+      "role": "outer_frame_close",
+      "label": "Who fed them and gave them security"
+    }
+  ],
+  "107": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "outer_frame_open",
+      "label": "The denier rejects the orphan"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        4,
+        4
+      ],
+      "role": "pivot",
+      "label": "Woe to those who pray"
+    },
+    {
+      "id": "A′",
+      "v": [
+        5,
+        7
+      ],
+      "role": "outer_frame_close",
+      "label": "Heedless prayer — refusing small kindness"
+    }
+  ],
+  "108": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "outer_frame_open",
+      "label": "We have given you Al-Kawthar"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        2,
+        2
+      ],
+      "role": "pivot",
+      "label": "Pray and sacrifice to Him alone"
+    },
+    {
+      "id": "A′",
+      "v": [
+        3,
+        3
+      ],
+      "role": "outer_frame_close",
+      "label": "Your enemy is the one cut off"
+    }
+  ],
+  "109": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        1
+      ],
+      "role": "outer_frame_open",
+      "label": "Address to the disbelievers"
+    },
+    {
+      "id": "B",
+      "v": [
+        2,
+        3
+      ],
+      "role": "body",
+      "label": "I do not worship what you worship"
+    },
+    {
+      "id": "B′",
+      "v": [
+        4,
+        5
+      ],
+      "role": "body",
+      "label": "Nor will you worship what I worship"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        6,
+        6
+      ],
+      "role": "pivot",
+      "label": "Your way and mine are separate"
+    }
+  ],
+  "110": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "Victory and the great conquest"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "Glorify and seek His forgiveness"
+    }
+  ],
+  "111": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "Abu Lahab — wealth will not avail him"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "He will burn in a flaming fire"
+    },
+    {
+      "id": "A′",
+      "v": [
+        4,
+        5
+      ],
+      "role": "outer_frame_close",
+      "label": "His wife — carrier of firewood"
+    }
+  ],
+  "112": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "He is Allah — One, the Eternal Refuge"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "He neither begets nor was begotten"
+    },
+    {
+      "id": "A′",
+      "v": [
+        4,
+        4
+      ],
+      "role": "outer_frame_close",
+      "label": "None is equal to Him"
+    }
+  ],
+  "113": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        2
+      ],
+      "role": "outer_frame_open",
+      "label": "Seek refuge in the Lord of daybreak"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        3,
+        3
+      ],
+      "role": "pivot",
+      "label": "Refuge from the evil of darkness"
+    },
+    {
+      "id": "A′",
+      "v": [
+        4,
+        5
+      ],
+      "role": "outer_frame_close",
+      "label": "From envy and those who blow on knots"
+    }
+  ],
+  "114": [
+    {
+      "id": "A",
+      "v": [
+        1,
+        3
+      ],
+      "role": "outer_frame_open",
+      "label": "Lord, King, and God of mankind"
+    },
+    {
+      "id": "PIVOT",
+      "v": [
+        4,
+        4
+      ],
+      "role": "pivot",
+      "label": "From the retreating whisperer"
+    },
+    {
+      "id": "A′",
+      "v": [
+        5,
+        6
+      ],
+      "role": "outer_frame_close",
+      "label": "Who whispers in the hearts of mankind"
+    }
+  ]
+}
