@@ -1527,6 +1527,46 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   border-left-color: var(--gold);
   color: var(--gold);
 }
+.hifz-mirror-hint {
+  background: rgba(212,168,67,0.06);
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.hifz-mirror-hint-label {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hifz-mirror-hint-id {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--t1);
+  letter-spacing: 0.06em;
+}
+.hifz-mirror-hint-text {
+  font-family: var(--f-body);
+  font-size: 14px;
+  color: var(--t1);
+  line-height: 1.4;
+}
+.hifz-mirror-hint-range {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+}
+.hifz-mirror-hint-note {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--t2);
+  font-style: italic;
+}
 .hifz-begin-btn {
   display: block;
   width: 100%;
@@ -1658,6 +1698,29 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .hifz-complete-summary {
   text-align: center;
   padding: 32px 0;
+}
+.hifz-complete-headline-label {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.hifz-complete-headline-id {
+  font-family: var(--f-head);
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.hifz-complete-headline-name {
+  font-family: var(--f-head);
+  font-size: 1.6rem;
+  color: var(--t1);
+  font-weight: 400;
+  margin-bottom: 8px;
 }
 .hifz-complete-label {
   font-family: var(--f-head);
@@ -2951,13 +3014,28 @@ const HifzSession = ({ mode, block, blocks, blockVerses, surahNum, progress, rev
             Verses {activeBlock.v[0]}–{activeBlock.v[1]} · {totalVerses} verse{totalVerses !== 1 ? "s" : ""}
           </div>
           {mirrorBlock && (
-            <div className="hifz-intro-note">
-              Mirrors Block {displayId(mirrorBlock.id)} (v.{mirrorBlock.v[0]}–{mirrorBlock.v[1]})
+            <div className="hifz-mirror-hint">
+              <div className="hifz-mirror-hint-label">
+                {activeBlock.id.endsWith("_") ? "Returns to" : "Mirrors"}
+              </div>
+              <div className="hifz-mirror-hint-id" style={mirrorBlock.isPivot ? { color: "var(--gold)" } : mirrorBlock.color ? { color: mirrorBlock.color } : {}}>
+                Block {displayId(mirrorBlock.id)}
+              </div>
+              <div className="hifz-mirror-hint-text">{mirrorBlock.label}</div>
+              <div className="hifz-mirror-hint-range">v.{mirrorBlock.v[0]}–{mirrorBlock.v[1]}</div>
+              <div className="hifz-mirror-hint-note">
+                {activeBlock.id.endsWith("_")
+                  ? "This block answers its opening pair."
+                  : "You will encounter its return later in the surah."}
+              </div>
             </div>
           )}
-          {activeBlock.isPivot && (
-            <div className="hifz-intro-pivot-note">
-              This is the structural pivot of the surah
+          {activeBlock.isPivot && !mirrorBlock && (
+            <div className="hifz-mirror-hint">
+              <div className="hifz-mirror-hint-label">Structural center</div>
+              <div className="hifz-mirror-hint-note">
+                Everything before and after folds around this point.
+              </div>
             </div>
           )}
           <button className="hifz-begin-btn" onClick={() => setPhase("verses")}>
@@ -3037,8 +3115,11 @@ const HifzSession = ({ mode, block, blocks, blockVerses, surahNum, progress, rev
           <ChevronLeft size={12} /> Back to Hifz
         </button>
         <div className="hifz-complete-summary">
-          <div className="hifz-complete-label">{activeBlock.label}</div>
-          <div className="hifz-complete-id">Block {displayId(activeBlock.id)}</div>
+          <div className="hifz-complete-headline-label">You now know</div>
+          <div className="hifz-complete-headline-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            {displayId(activeBlock.id)}
+          </div>
+          <div className="hifz-complete-headline-name">{activeBlock.label}</div>
           <div className="hifz-complete-meta">
             {humanRole(activeBlock.role)} · Verses {activeBlock.v[0]}–{activeBlock.v[1]} · {totalVerses} verse{totalVerses !== 1 ? "s" : ""}
           </div>
