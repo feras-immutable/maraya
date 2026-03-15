@@ -661,6 +661,167 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .corpus-val { font-family: var(--f-mono); font-size: 16px; color: var(--gold); font-weight: 400; opacity: 0.8; }
 .corpus-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
 
+/* === LANDING GRID === */
+.landing-grid-section {
+  padding: 32px 0 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.landing-grid-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.landing-grid-title-sm {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t2);
+  margin-bottom: 8px;
+}
+.landing-grid-title-lg {
+  font-family: var(--f-head);
+  font-size: 20px;
+  color: var(--t1);
+  font-weight: 400;
+  font-style: italic;
+}
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  max-width: 880px;
+}
+.landing-grid-cell {
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.landing-grid-cell:hover {
+  background: rgba(255,255,255,0.04);
+}
+.landing-grid-cell:hover .landing-grid-name {
+  color: var(--t1);
+}
+.landing-grid-cell:hover .landing-grid-pivot {
+  background: var(--gold-bright);
+  box-shadow: 0 0 4px rgba(212,168,67,0.3);
+}
+.landing-grid-num {
+  font-family: var(--f-mono);
+  font-size: 8px;
+  color: var(--t3);
+  margin-bottom: 2px;
+}
+.landing-grid-bar {
+  position: relative;
+  height: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  overflow: visible;
+}
+.landing-grid-pivot {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 20px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.landing-grid-center {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  border-left: 1px dashed rgba(255,255,255,0.12);
+}
+.landing-grid-name {
+  font-family: var(--f-mono);
+  font-size: 8px;
+  color: var(--t3);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+.landing-grid-footer {
+  text-align: center;
+  margin-top: 32px;
+}
+.landing-grid-rule {
+  height: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 12px;
+}
+.landing-grid-note {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  color: var(--t3);
+  letter-spacing: 0.04em;
+}
+.landing-closing {
+  font-family: var(--f-head);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--t2);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* === LANDING CARDS === */
+.landing-cards-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.landing-cards-title {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 24px;
+}
+.landing-cards-row {
+  display: flex;
+  gap: 12px;
+}
+.landing-card {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 24px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.landing-card:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+.landing-card-label {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.landing-card-body {
+  font-family: var(--f-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--t2);
+}
+@media (max-width: 640px) {
+  .landing-cards-row { flex-direction: column; }
+}
+
 /* === BROWSE === */
 .browse { padding: 32px 0; }
 .browse-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
@@ -2012,11 +2173,8 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 /* ═══════════════════════════════════════════════════════════════════════
    SECTION 7: LANDING PAGE
    ═══════════════════════════════════════════════════════════════════ */
-const FEATURED = [2, 18, 110]; // Al-Baqarah (near-perfect center), Al-Kahf (single point), An-Nasr (terminal pivot)
-
-const LandingPage = ({ onExplore, onSelect }) => {
+const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
   const stats = useMemo(() => getCorpusStats(), []);
-  const featured = useMemo(() => FEATURED.map(n => getSurahByNumber(n)), []);
 
   // Hero bar uses Al-Baqarah — near-perfect center, the most striking first impression
   const hero = useMemo(() => getSurahByNumber(2), []);
@@ -2050,7 +2208,7 @@ const LandingPage = ({ onExplore, onSelect }) => {
         {/* 4. The subtitle */}
         <p className="landing-tagline">
           Every surah has a shape.<br />
-          Maraya reveals where it turns.
+          Discover its structure. Memorise its blocks.
         </p>
 
         {/* 5. The CTA — quiet invitation */}
@@ -2059,29 +2217,48 @@ const LandingPage = ({ onExplore, onSelect }) => {
         </button>
       </div>
 
-      <div className="feature-surahs">
-        <div className="feature-label">Three surahs, three shapes</div>
-        {featured.map(s => {
-          const pivotDesc = s.pivot_center_logic === "terminal" ? "Terminal pivot"
-            : s.absOffset <= 0.01 ? "Pivot centered"
-            : s.absOffset <= 0.05 ? "Pivot near center"
-            : "Pivot off-center";
-          return (
-            <div key={s.surah_number} className="feature-card" onClick={() => onSelect(s.surah_number)}>
-              <div className="feature-card-head">
-                <div className="feature-card-name">
-                  <span className="num">Q.{s.surah_number}</span>{s.surah_name_en}
-                  <span className="feature-card-ar">{s.surah_name_ar}</span>
+      <div className="landing-cards-section">
+        <div className="landing-cards-title">Three ways to explore a surah</div>
+        <div className="landing-cards-row">
+          <div className="landing-card" onClick={onExplore}>
+            <div className="landing-card-label">Discover</div>
+            <div className="landing-card-body">See where pivots fall across all 114 surahs.</div>
+          </div>
+          <div className="landing-card" onClick={() => onSelectTab(2, "structure")}>
+            <div className="landing-card-label">Map</div>
+            <div className="landing-card-body">Explore the structural blocks that divide each surah into meaningful sections.</div>
+          </div>
+          <div className="landing-card" onClick={() => onSelectTab(2, "hifz")}>
+            <div className="landing-card-label">Memorise</div>
+            <div className="landing-card-body">Learn and test verses using the block structure as your memory guide.</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="landing-grid-section">
+        <div className="landing-grid-header">
+          <div className="landing-grid-title-sm">114 surahs · one pattern</div>
+          <div className="landing-grid-title-lg">Most pivots fall near the center.</div>
+        </div>
+        <div className="landing-grid">
+          {getAllSurahs().map(s => {
+            const pivotPct = (s.pivotRange.mid / s.verse_count) * 100;
+            return (
+              <div key={s.surah_number} className="landing-grid-cell" onClick={() => onSelect(s.surah_number)}>
+                <div className="landing-grid-num">{s.surah_number}</div>
+                <div className="landing-grid-bar">
+                  <div className="landing-grid-center" />
+                  <div className="landing-grid-pivot" style={{ left: `${pivotPct}%` }} />
                 </div>
-                <div className="feature-card-meta">
-                  <span>{s.verse_count} verses</span>
-                  <span>{pivotDesc}</span>
-                </div>
+                <div className="landing-grid-name">{s.surah_name_en}</div>
               </div>
-              <StructuralBar surah={s} height={48} />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        <div className="landing-grid-footer">
+          <div className="landing-grid-rule" />
+          <div className="landing-grid-note">Dashed line marks geometric center of each surah.</div>
+        </div>
       </div>
 
       <div className="corpus-strip">
@@ -2089,6 +2266,7 @@ const LandingPage = ({ onExplore, onSelect }) => {
         <div className="corpus-stat"><div className="corpus-val">{stats.totalVerses.toLocaleString()}</div><div className="corpus-label">Verses</div></div>
         <div className="corpus-stat"><div className="corpus-val">{stats.within5}</div><div className="corpus-label">Pivots near center</div></div>
       </div>
+      <div className="landing-closing">The Qur'an has a shape. Now you can learn it.</div>
     </div>
   );
 };
@@ -3880,12 +4058,12 @@ const HifzTab = ({ surahNum, surahName, blocks, verseCache }) => {
   );
 };
 
-const DetailPage = ({ surahNum, onBack, onNavigate }) => {
+const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
   const d = useMemo(() => getSurahByNumber(surahNum), [surahNum]);
   const verses = useMemo(() => getPivotVerses(surahNum), [surahNum]);
   const adj = useMemo(() => getAdjacentSurahs(surahNum), [surahNum]);
   const [pivotLit, setPivotLit] = useState(false);
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState(initialTab || "overview");
   const verseCache = useRef({});
   const blocks = useMemo(() => {
     const raw = BLOCK_MAP_DATA[surahNum];
@@ -4110,6 +4288,7 @@ export default function App() {
   const [view, setView] = useState("landing");
   const [selectedSurah, setSelectedSurah] = useState(null);
   const [prevView, setPrevView] = useState("panorama");
+  const [initialTab, setInitialTab] = useState(null);
   const stats = useMemo(() => getCorpusStats(), []);
 
   if (VALIDATION_ERRORS.length > 0) {
@@ -4122,8 +4301,9 @@ export default function App() {
     );
   }
 
-  const handleSelect = (n, from) => {
+  const handleSelect = (n, from, tab) => {
     setSelectedSurah(n);
+    setInitialTab(tab || null);
     if (from) setPrevView(from);
     else if (view !== "detail") setPrevView(view === "landing" ? "panorama" : view);
     setView("detail");
@@ -4135,10 +4315,10 @@ export default function App() {
   return (
     <><style>{STYLE}</style>
     <div className="maraya-root">
-      {view === "landing" && <LandingPage onExplore={handleExplore} onSelect={(n) => handleSelect(n, "panorama")} />}
+      {view === "landing" && <LandingPage onExplore={handleExplore} onSelect={(n) => handleSelect(n, "panorama")} onSelectTab={(n, tab) => handleSelect(n, "landing", tab)} />}
       {view === "panorama" && <PanoramaPage onSelect={(n) => handleSelect(n, "panorama")} onBack={() => setView("landing")} onBrowse={() => setView("browse")} />}
       {view === "browse" && <BrowsePage onSelect={(n) => handleSelect(n, "browse")} onBack={() => setView("panorama")} />}
-      {view === "detail" && <DetailPage key={selectedSurah} surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} />}
+      {view === "detail" && <DetailPage key={`${selectedSurah}-${initialTab}`} surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} initialTab={initialTab} />}
       {view === "about" && <AboutPage onBack={() => setView(prevView || "landing")} />}
 
       <footer className="maraya-footer">
