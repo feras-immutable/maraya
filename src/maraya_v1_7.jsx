@@ -1185,33 +1185,33 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 }
 .panorama-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
   max-width: 1200px;
 }
 .panorama-grid.pan-sorting { animation: panSortFade 0.35s ease-in-out; }
 .pan-cell {
-  position: relative; padding: 8px 8px 8px; border-radius: 4px;
+  position: relative; padding: 8px 4px; border-radius: 4px;
   border: 1px solid transparent; cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
   background: transparent;
   opacity: 0; animation: panCellReveal 0.3s ease both;
 }
 .pan-cell:hover { background: var(--bg-card); border-color: rgba(255,255,255,0.06); }
-.pan-cell:hover .pan-name { opacity: 1; }
+.pan-cell:hover .pan-name { color: var(--t1); }
 .pan-cell:hover .pan-num { color: var(--gold); }
-.pan-cell:hover .pan-bar-wrap { border-color: rgba(255,255,255,0.08); }
+.pan-cell:hover .pan-bar-wrap { border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); }
 .pan-cell:hover .pan-pz { background: rgba(212,168,67,0.5); box-shadow: 0 0 10px rgba(212,168,67,0.15); }
 .pan-cell:hover .pan-pm { background: #e2c05c; box-shadow: 0 0 6px rgba(212,168,67,0.4); }
 .pan-cell:hover .pan-meta { opacity: 1; }
 .pan-cell.breathing .pan-pz { animation: panGlow 3s ease-in-out; }
 .pan-num {
-  font-family: var(--f-mono); font-size: 9px; color: var(--t3); letter-spacing: 0.03em;
+  font-family: var(--f-mono); font-size: 0.6rem; color: var(--t3); letter-spacing: 0.03em;
   margin-bottom: 4px; transition: color 0.2s;
 }
 .pan-name {
-  font-family: var(--f-mono); font-size: 9px; color: var(--t3); letter-spacing: 0.02em;
-  margin-top: 4px; opacity: 0.35; transition: opacity 0.2s;
+  font-family: var(--f-mono); font-size: 0.65rem; color: var(--t2); letter-spacing: 0.02em;
+  margin-top: 4px; transition: color 0.2s;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .pan-meta {
@@ -1326,10 +1326,10 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   .detail-strip { animation-delay: 0.36s; }
   .scaffold-breakdown { animation-delay: 0.48s; }
   .pivot-section-title { animation-delay: 0.6s; }
-  .panorama-grid { grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 4px; }
-  .pan-bar-wrap { height: 24px; }
-  .pan-cell { padding: 4px; }
-  .pan-name { display: none; }
+  .panorama-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 6px; }
+  .pan-bar-wrap { height: 20px; }
+  .pan-cell { padding: 6px 4px; }
+  .pan-name { font-size: 0.55rem; }
   .pan-meta { display: none; }
   .panorama-header { flex-direction: column; align-items: flex-start; }
   /* Tighter animation timing on mobile — reduce delays by ~30% */
