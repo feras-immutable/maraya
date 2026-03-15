@@ -1195,6 +1195,755 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   .hero-bar { height: 40px; }
   .sc-stats { flex-wrap: wrap; gap: 8px; }
 }
+
+/* === HIFZ TAB === */
+
+.hifz-home { padding: 0 0 64px; }
+
+.hifz-header {
+  margin-bottom: 24px;
+}
+.hifz-header h3 {
+  font-family: var(--f-head);
+  font-size: 22px;
+  color: var(--t1);
+  margin: 0 0 4px;
+  font-weight: 400;
+}
+.hifz-header .hifz-sub {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.hifz-summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+.hifz-summary-stat {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--t2);
+}
+.hifz-summary-stat strong {
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.hifz-bar-wrap {
+  margin-bottom: 24px;
+}
+
+.hifz-modes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.hifz-mode-btn {
+  flex: 1;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--t2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hifz-mode-btn:hover {
+  border-color: var(--border-h);
+  color: var(--t1);
+}
+.hifz-mode-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212,168,67,0.06);
+}
+.hifz-mode-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.hifz-recommend {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--t3);
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-left: 2px solid var(--gold-dim);
+  background: rgba(212,168,67,0.03);
+}
+
+.hifz-block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.hifz-block-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.hifz-block-row:hover {
+  background: var(--bg-card-h);
+}
+.hifz-block-row.selected {
+  background: var(--bg-card-h);
+  border-left: 2px solid var(--gold);
+  padding-left: 12px;
+}
+.hifz-block-row.is-pivot {
+  background: rgba(201,166,82,0.06);
+}
+
+.hifz-block-id {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--t3);
+  min-width: 36px;
+}
+.hifz-block-info {
+  flex: 1;
+  min-width: 0;
+}
+.hifz-block-label {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--t1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hifz-block-meta {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hifz-status-badge {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.hifz-status-badge.new {
+  color: var(--t4);
+  border: 1px solid var(--border);
+}
+.hifz-status-badge.learning {
+  color: var(--teal);
+  border: 1px solid rgba(107,157,173,0.3);
+}
+.hifz-status-badge.weak {
+  color: #c47a5a;
+  border: 1px solid rgba(196,122,90,0.3);
+}
+.hifz-status-badge.strong {
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+}
+.hifz-status-badge.mastered {
+  color: var(--gold-bright);
+  border: 1px solid var(--gold);
+  background: rgba(212,168,67,0.08);
+}
+
+.hifz-start-btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hifz-start-btn:hover { background: var(--gold-bright); }
+.hifz-start-btn:disabled { opacity: 0.3; cursor: default; }
+
+.hifz-session {
+  padding: 0 0 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 120px);
+}
+.hifz-session-placeholder {
+  padding: 32px 20px;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--t3);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  margin-top: 16px;
+}
+.hifz-session-back {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hifz-session-back:hover { color: var(--gold); }
+
+.hifz-modes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.hifz-mode-btn.primary {
+  flex: 1 1 100%;
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+  font-size: 11px;
+  padding: 12px 16px;
+}
+.hifz-mode-btn.primary:hover { background: var(--gold-bright); }
+.hifz-mode-btn.primary-outline {
+  flex: 1 1 100%;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  font-size: 11px;
+  padding: 12px 24px;
+}
+.hifz-mode-btn.primary-outline:hover { background: rgba(212,168,67,0.08); }
+.hifz-mode-btn.secondary {
+  flex: 1 1 45%;
+}
+.hifz-disabled-hint {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  color: var(--t4);
+  text-align: center;
+  margin-top: -12px;
+  margin-bottom: 16px;
+}
+
+.hifz-cta {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 18px 24px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+.hifz-cta:hover { background: var(--gold-bright); }
+
+/* Learn session styles */
+.hifz-intro {
+  padding: 0;
+}
+.hifz-intro-bar {
+  margin-bottom: 24px;
+}
+.hifz-intro-block-id {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.hifz-intro-role {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.hifz-intro-label {
+  font-family: var(--f-head);
+  font-size: 22px;
+  color: var(--t1);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.hifz-intro-range {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  margin-bottom: 20px;
+}
+.hifz-intro-note {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--t2);
+  padding: 8px 12px;
+  border-left: 2px solid var(--gold-dim);
+  margin-bottom: 16px;
+}
+.hifz-intro-pivot-note {
+  border-left-color: var(--gold);
+  color: var(--gold);
+}
+.hifz-begin-btn {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hifz-begin-btn:hover { background: var(--gold-bright); }
+
+.hifz-session-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+.hifz-session-hdr-id {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--gold);
+}
+.hifz-session-hdr-role {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hifz-session-hdr-progress {
+  margin-left: auto;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t2);
+}
+
+.hifz-verse-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 68vh;
+}
+.hifz-verse-zone-top {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 24px;
+}
+.hifz-verse-zone-mid {
+  flex: 0 0 auto;
+}
+.hifz-verse-zone-bot {
+  flex: 0 0 auto;
+  padding-bottom: 8px;
+}
+.hifz-verse-card {
+  width: 100%;
+}
+.hifz-verse-num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.hifz-verse-ar {
+  font-family: var(--f-ar);
+  font-size: 28px;
+  line-height: 1.8;
+  color: #fff;
+  direction: rtl;
+  text-align: right;
+  margin-bottom: 12px;
+}
+.hifz-verse-en {
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+.hifz-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 24px 0 16px;
+  align-items: center;
+}
+.hifz-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--t3);
+  transition: all 0.2s;
+}
+.hifz-dot.seen { background: var(--gold); border-color: var(--gold); }
+.hifz-dot.current { width: 10px; height: 10px; background: var(--gold-bright); border-color: var(--gold-bright); }
+
+.hifz-next-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hifz-next-btn:hover { background: var(--gold-bright); }
+
+.hifz-complete-summary {
+  text-align: center;
+  padding: 32px 0;
+}
+.hifz-complete-label {
+  font-family: var(--f-head);
+  font-size: 22px;
+  color: var(--t1);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.hifz-complete-id {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.hifz-complete-meta {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.hifz-complete-mirror {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--t2);
+  padding: 10px 14px;
+  border-left: 2px solid var(--gold-dim);
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.hifz-rating-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.hifz-ratings {
+  display: flex;
+  gap: 8px;
+}
+.hifz-rating-btn {
+  flex: 1;
+  padding: 12px 8px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--t2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hifz-rating-btn:hover { border-color: var(--border-h); color: var(--t1); }
+.hifz-rating-btn.solid:hover { border-color: var(--gold); color: var(--gold); }
+.hifz-rating-btn.shaky:hover { border-color: var(--teal); color: var(--teal); }
+.hifz-rating-btn.needs-work:hover { border-color: #c47a5a; color: #c47a5a; }
+
+/* Review mode styles */
+.hifz-review-select-title {
+  font-family: var(--f-head);
+  font-size: 20px;
+  color: var(--t1);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.hifz-block-row.is-weak {
+  border-left: 2px solid #c47a5a;
+}
+.hifz-recall-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.hifz-recall-center {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  padding: 24px 0;
+}
+.hifz-recall-card {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0;
+}
+.hifz-recall-context {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t2);
+  letter-spacing: 0.04em;
+}
+.hifz-recall-instruction {
+  font-family: var(--f-body);
+  font-size: 16px;
+  color: var(--t1);
+  line-height: 1.5;
+}
+.hifz-hidden-verse {
+  width: 100%;
+  min-height: 6rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--t4);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 16px 20px;
+}
+.hifz-hidden-baseline {
+  height: 0;
+  border-bottom: 1px solid var(--t4);
+}
+.hifz-reveal-button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hifz-reveal-button:hover { background: rgba(212,168,67,0.08); }
+.hifz-outcome-buttons {
+  display: flex;
+  gap: 8px;
+}
+.hifz-outcome-btn {
+  flex: 1;
+  padding: 14px 8px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hifz-outcome-btn.remembered {
+  background: var(--gold);
+  color: var(--bg);
+  border: 1px solid var(--gold);
+}
+.hifz-outcome-btn.remembered:hover { background: var(--gold-bright); }
+.hifz-outcome-btn.partial {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,0.5);
+}
+.hifz-outcome-btn.partial:hover { border-color: var(--gold); }
+.hifz-outcome-btn.missed {
+  background: transparent;
+  color: var(--t2);
+  border: 1px solid var(--t3);
+}
+.hifz-outcome-btn.missed:hover { border-color: var(--t2); color: var(--t1); }
+.hifz-partial-link {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hifz-partial-link:hover { color: var(--t1); }
+.hifz-recall-card .hifz-verse-ar,
+.hifz-check-card .hifz-verse-ar {
+  font-family: var(--f-ar);
+  font-size: 2rem;
+  text-align: center;
+  direction: rtl;
+  line-height: 2;
+  width: 100%;
+  display: block;
+  padding: 24px 0;
+}
+.hifz-show-translation {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 4px;
+}
+.hifz-show-translation:hover { color: var(--t2); }
+.hifz-review-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Test mode styles */
+.hifz-test-recite-card {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 0;
+  text-align: center;
+}
+.hifz-block-badge-large {
+  font-family: var(--f-head);
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 400;
+  line-height: 1;
+}
+.hifz-recite-range {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t2);
+  letter-spacing: 0.04em;
+}
+.hifz-recite-instruction {
+  font-family: var(--f-body);
+  font-size: 16px;
+  color: var(--t1);
+  line-height: 1.6;
+  max-width: 360px;
+}
+.hifz-check-card {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0;
+}
+.hifz-accuracy-display {
+  font-family: var(--f-head);
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.hifz-accuracy-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.hifz-mastered-note {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--gold);
+  text-align: center;
+  padding: 8px 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hifz-block-row.is-caution .hifz-block-meta {
+  color: var(--gold-dim);
+}
 `;
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -1583,6 +2332,99 @@ const shortLabel = (label) => {
   return s || label.slice(0, 52);
 };
 
+/* ── Hifz localStorage helpers ── */
+const HIFZ_KEY = "maraya_hifz_v1";
+
+function loadHifzProgress(surahNum) {
+  try {
+    const raw = localStorage.getItem(HIFZ_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return (data && data.surahs && data.surahs[surahNum]) || null;
+  } catch { return null; }
+}
+
+function saveHifzProgress(surahNum, blockId, score, mode) {
+  let data;
+  try {
+    const raw = localStorage.getItem(HIFZ_KEY);
+    data = raw ? JSON.parse(raw) : null;
+  } catch { data = null; }
+  if (!data || data.version !== 1) {
+    data = { version: 1, surahs: {} };
+  }
+  if (!data.surahs[surahNum]) {
+    data.surahs[surahNum] = {
+      lastMode: mode,
+      lastBlockIdx: 0,
+      reviewCueLevel: "label_role",
+      updatedAt: new Date().toISOString(),
+      blockStatus: {}
+    };
+  }
+  const surah = data.surahs[surahNum];
+  surah.lastMode = mode;
+  surah.updatedAt = new Date().toISOString();
+
+  if (!surah.blockStatus[blockId]) {
+    surah.blockStatus[blockId] = {
+      status: "new",
+      learnCount: 0,
+      reviewCount: 0,
+      testCount: 0,
+      lastScore: null,
+      lastReviewedAt: null
+    };
+  }
+  const bs = surah.blockStatus[blockId];
+  const prevStatus = bs.status;
+  bs.lastScore = score;
+  bs.lastReviewedAt = new Date().toISOString();
+  if (mode === "learn") bs.learnCount++;
+  else if (mode === "review") bs.reviewCount++;
+  else if (mode === "test") bs.testCount++;
+  // Test mode uses numeric accuracy to determine status directly
+  if (mode === "test" && typeof score === "number") {
+    if (score >= 100) bs.status = "mastered";
+    else if (score >= 80) bs.status = "strong";
+    else if (score >= 50) bs.status = "learning";
+    else bs.status = "weak";
+    // If was previously strong+ and scored below 80, downgrade to at most "learning"
+    if ((prevStatus === "strong" || prevStatus === "mastered") && score < 80 && score >= 50) {
+      bs.status = "weak";
+    }
+  } else {
+    bs.status = deriveBlockStatus(bs.learnCount, bs.reviewCount, bs.testCount, bs.lastScore);
+    // Do not downgrade from "mastered" via review alone
+    if (prevStatus === "mastered" && mode === "review" && bs.status !== "mastered") {
+      bs.status = "strong";
+    }
+  }
+
+  try { localStorage.setItem(HIFZ_KEY, JSON.stringify(data)); } catch {}
+}
+
+function humanRole(role) {
+  if (!role) return "";
+  if (role.includes("pivot") || role.includes("center") || role.includes("seam")) return "Pivot";
+  if (role.includes("hinge")) return "Pivot";
+  if (role.includes("frame")) return "Frame";
+  if (role.includes("body")) return "Body";
+  if (role === "addendum") return "Addendum";
+  return role;
+}
+
+function deriveBlockStatus(learnCount, reviewCount, testCount, lastScore) {
+  if (learnCount === 0) return "new";
+  // "strong" and "mastered" require review or test sessions
+  if (lastScore === "solid" && (reviewCount + testCount) >= 2) return "mastered";
+  if (lastScore === "solid" && (reviewCount + testCount) >= 1) return "strong";
+  if (lastScore === "needs_work") return "weak";
+  if (lastScore === "partial") return "learning";
+  // "shaky" or "solid" from learn-only → "learning"
+  return "learning";
+}
+
 const BlockReader = ({ blockIdx, blocks, surahNum, surahName, verseCache, onBack, onNavigate }) => {
   const [verses, setVerses] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1706,17 +2548,11 @@ const BlockReader = ({ blockIdx, blocks, surahNum, surahName, verseCache, onBack
   );
 };
 
-const StructureTab = ({ surahNum, verseCount }) => {
+const StructureTab = ({ surahNum, verseCount, blocks, verseCache }) => {
   const [sel, setSel] = useState(null);
   const [pulseIdx, setPulseIdx] = useState(null);
   const [readerBlockIdx, setReaderBlockIdx] = useState(null);
-  const verseCache = useRef({});
   const listRef = useRef(null);
-
-  const blocks = useMemo(() => {
-    const raw = BLOCK_MAP_DATA[surahNum];
-    return raw ? colorizeBlocks(raw) : null;
-  }, [surahNum]);
 
   useEffect(() => { setSel(null); setReaderBlockIdx(null); }, [surahNum]);
 
@@ -1967,18 +2803,1020 @@ function renderArabicWithGold(arabicText, goldWords, lit) {
   return <>{segments}</>;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   SECTION 10B: HIFZ TAB
+   Memorisation tracking: HifzTab (controller) → HifzHome / HifzSession
+   ═══════════════════════════════════════════════════════════════════ */
+
+const HifzSession = ({ mode, block, blocks, blockVerses, surahNum, progress, reviewCueLevel, onComplete, onBack, onUpdateCueLevel }) => {
+  // ── Shared state ──
+  const [phase, setPhase] = useState(() => {
+    if (mode === "review") return "block_select";
+    if (mode === "test") return "test_block_select";
+    return "intro";
+  });
+  const [verseIdx, setVerseIdx] = useState(0);
+  // Review/Test mode: which block is active (may differ from initial block prop)
+  const [reviewBlock, setReviewBlock] = useState(null);
+  const [revealed, setRevealed] = useState(false);
+  const [showTranslation, setShowTranslation] = useState(false);
+  const [outcomes, setOutcomes] = useState([]); // review: "remembered" | "missed" | "partial"; test: "correct" | "incorrect"
+
+  // Reset revealed + showTranslation on verse change
+  useEffect(() => {
+    setRevealed(false);
+    setShowTranslation(false);
+  }, [verseIdx]);
+
+  // The active block for the current session (review may change it)
+  const activeBlock = reviewBlock || block;
+
+  // Build verse list for active block
+  const verseNums = useMemo(() => {
+    const nums = [];
+    for (let i = activeBlock.v[0]; i <= activeBlock.v[1]; i++) nums.push(i);
+    return nums;
+  }, [activeBlock]);
+
+  const totalVerses = verseNums.length;
+
+  // Find mirror block (same family, different position)
+  const mirrorBlock = useMemo(() => {
+    const fam = blockFamily(activeBlock.id);
+    return blocks.find((b, i) =>
+      i !== blocks.indexOf(activeBlock) && blockFamily(b.id) === fam && !b.isPivot && !activeBlock.isPivot
+    ) || null;
+  }, [activeBlock, blocks]);
+
+  const surah = useMemo(() => getSurahByNumber(surahNum), [surahNum]);
+
+  // Block statuses for review block_select
+  const blockStatuses = useMemo(() => {
+    const out = {};
+    for (const b of blocks) {
+      const bs = progress && progress.blockStatus && progress.blockStatus[b.id];
+      out[b.id] = bs ? bs.status : "new";
+    }
+    return out;
+  }, [blocks, progress]);
+
+  // Helper to start recall phase on a specific block
+  const startRecall = useCallback((b) => {
+    // Redirect "new" blocks to learn
+    if (blockStatuses[b.id] === "new") return;
+    setReviewBlock(b);
+    setVerseIdx(0);
+    setOutcomes([]);
+    setRevealed(false);
+    setShowTranslation(false);
+    setPhase("recall");
+  }, [blockStatuses]);
+
+  // Find weakest/first reviewable block for CTA
+  const weakestBlock = useMemo(() => {
+    // Prefer "weak" first
+    const weak = blocks.find(b => blockStatuses[b.id] === "weak");
+    if (weak) return weak;
+    // Then "learning"
+    const learning = blocks.find(b => blockStatuses[b.id] === "learning");
+    if (learning) return learning;
+    // Then "strong"
+    const strong = blocks.find(b => blockStatuses[b.id] === "strong");
+    if (strong) return strong;
+    // Then "mastered"
+    return blocks.find(b => blockStatuses[b.id] === "mastered") || null;
+  }, [blocks, blockStatuses]);
+
+  // Derive review score from outcomes
+  const deriveReviewScore = useCallback((outcomesArr) => {
+    if (outcomesArr.some(o => o === "missed")) return "needs_work";
+    if (outcomesArr.some(o => o === "partial")) return "shaky";
+    return "solid";
+  }, []);
+
+  // Find next reviewable block after active block (for review complete)
+  const nextReviewable = useMemo(() => {
+    const currentIdx = blocks.indexOf(activeBlock);
+    for (let i = 1; i < blocks.length; i++) {
+      const idx = (currentIdx + i) % blocks.length;
+      const s = blockStatuses[blocks[idx].id];
+      if (s !== "new") return blocks[idx];
+    }
+    return null;
+  }, [activeBlock, blocks, blockStatuses]);
+
+  // Helper to start test check phase on a specific block
+  const startTestBlock = useCallback((b) => {
+    if (blockStatuses[b.id] === "new") return;
+    setReviewBlock(b);
+    setVerseIdx(0);
+    setOutcomes([]);
+    setRevealed(false);
+    setShowTranslation(false);
+    setPhase("recite");
+  }, [blockStatuses]);
+
+  // Find strongest block for test CTA
+  const strongestBlock = useMemo(() => {
+    const strong = blocks.find(b => blockStatuses[b.id] === "strong");
+    if (strong) return strong;
+    const mastered = blocks.find(b => blockStatuses[b.id] === "mastered");
+    if (mastered) return mastered;
+    return blocks.find(b => blockStatuses[b.id] === "learning") || null;
+  }, [blocks, blockStatuses]);
+
+  // ══════════════════════════════════════════════
+  //  LEARN MODE
+  // ══════════════════════════════════════════════
+
+  // ── INTRO PHASE ──
+  if (mode === "learn" && phase === "intro") {
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-intro">
+          <div className="hifz-intro-bar">
+            <StructuralBar surah={surah} height={48} />
+          </div>
+          <div className="hifz-intro-block-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            Block {displayId(activeBlock.id)}
+          </div>
+          {humanRole(activeBlock.role) && (
+            <div className="hifz-intro-role">{humanRole(activeBlock.role)}</div>
+          )}
+          <div className="hifz-intro-label">{activeBlock.label}</div>
+          <div className="hifz-intro-range">
+            Verses {activeBlock.v[0]}–{activeBlock.v[1]} · {totalVerses} verse{totalVerses !== 1 ? "s" : ""}
+          </div>
+          {mirrorBlock && (
+            <div className="hifz-intro-note">
+              Mirrors Block {displayId(mirrorBlock.id)} (v.{mirrorBlock.v[0]}–{mirrorBlock.v[1]})
+            </div>
+          )}
+          {activeBlock.isPivot && (
+            <div className="hifz-intro-pivot-note">
+              This is the structural pivot of the surah
+            </div>
+          )}
+          <button className="hifz-begin-btn" onClick={() => setPhase("verses")}>
+            Begin reading →
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ── VERSES PHASE ──
+  if (mode === "learn" && phase === "verses") {
+    const currentVerseNum = verseNums[verseIdx];
+    const isLast = verseIdx === totalVerses - 1;
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-session-hdr">
+          <span className="hifz-session-hdr-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            {displayId(activeBlock.id)}
+          </span>
+          <span className="hifz-session-hdr-role">{shortLabel(activeBlock.label)}</span>
+          <span className="hifz-session-hdr-progress">{verseIdx + 1} / {totalVerses}</span>
+        </div>
+
+        <div className="hifz-verse-screen">
+          <div className="hifz-verse-zone-top">
+            <div className="hifz-verse-card">
+              <div className="hifz-verse-num">{currentVerseNum}</div>
+              {blockVerses && blockVerses.ar[currentVerseNum] && (
+                <div className="hifz-verse-ar">{blockVerses.ar[currentVerseNum]}</div>
+              )}
+              {blockVerses && blockVerses.en[currentVerseNum] && (
+                <div className="hifz-verse-en">{blockVerses.en[currentVerseNum]}</div>
+              )}
+            </div>
+          </div>
+
+          <div className="hifz-verse-zone-mid">
+            <div className="hifz-dots">
+              {verseNums.map((vn, i) => (
+                <span
+                  key={vn}
+                  className={`hifz-dot${i < verseIdx ? " seen" : ""}${i === verseIdx ? " current" : ""}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="hifz-verse-zone-bot">
+            <button
+              className="hifz-next-btn"
+              onClick={() => {
+                if (isLast) {
+                  setPhase("complete");
+                } else {
+                  setVerseIdx(prev => prev + 1);
+                }
+              }}
+            >
+              {isLast ? "Complete block →" : "Next →"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── COMPLETE PHASE ──
+  if (mode === "learn" && phase === "complete") {
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-complete-summary">
+          <div className="hifz-complete-label">{activeBlock.label}</div>
+          <div className="hifz-complete-id">Block {displayId(activeBlock.id)}</div>
+          <div className="hifz-complete-meta">
+            {humanRole(activeBlock.role)} · Verses {activeBlock.v[0]}–{activeBlock.v[1]} · {totalVerses} verse{totalVerses !== 1 ? "s" : ""}
+          </div>
+          {mirrorBlock && (
+            <div className="hifz-complete-mirror">
+              Mirrors Block {displayId(mirrorBlock.id)} — {shortLabel(mirrorBlock.label)}
+            </div>
+          )}
+        </div>
+
+        <div className="hifz-rating-label">How did that feel?</div>
+        <div className="hifz-ratings">
+          <button className="hifz-rating-btn solid" onClick={() => onComplete(activeBlock.id, "solid")}>
+            Solid
+          </button>
+          <button className="hifz-rating-btn shaky" onClick={() => onComplete(activeBlock.id, "shaky")}>
+            Shaky
+          </button>
+          <button className="hifz-rating-btn needs-work" onClick={() => onComplete(activeBlock.id, "needs_work")}>
+            Needs work
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ══════════════════════════════════════════════
+  //  REVIEW MODE
+  // ══════════════════════════════════════════════
+
+  // ── BLOCK SELECT PHASE ──
+  if (mode === "review" && phase === "block_select") {
+    // Sort blocks: weak first, then learning/strong/mastered, new last
+    const statusOrder = { weak: 0, learning: 1, strong: 2, mastered: 3, new: 4 };
+    const sortedBlocks = [...blocks].sort((a, b) =>
+      (statusOrder[blockStatuses[a.id]] ?? 4) - (statusOrder[blockStatuses[b.id]] ?? 4)
+    );
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-review-select-title">Which block would you like to review?</div>
+
+        {weakestBlock && (
+          <button className="hifz-cta" style={{ marginBottom: 24 }} onClick={() => startRecall(weakestBlock)}>
+            Review weakest block →
+          </button>
+        )}
+
+        <div className="hifz-block-list">
+          {sortedBlocks.map((b) => {
+            const status = blockStatuses[b.id];
+            const isNew = status === "new";
+            return (
+              <div
+                key={b.id}
+                className={`hifz-block-row${b.isPivot ? " is-pivot" : ""}${isNew ? " is-dimmed" : ""}${status === "weak" ? " is-weak" : ""}`}
+                onClick={() => !isNew && startRecall(b)}
+                style={isNew ? { opacity: 0.35, cursor: "default" } : {}}
+              >
+                <div className="hifz-block-id">{displayId(b.id)}</div>
+                <div className="hifz-block-info">
+                  <div className="hifz-block-label">{b.label}</div>
+                  <div className="hifz-block-meta">
+                    {humanRole(b.role)} · v.{b.v[0]}–{b.v[1]}
+                    {isNew && " · learn first"}
+                  </div>
+                </div>
+                <span className={`hifz-status-badge ${status}`}>{status}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // ── RECALL PHASE ──
+  if (mode === "review" && phase === "recall") {
+    const currentVerseNum = verseNums[verseIdx];
+    const isLast = verseIdx === totalVerses - 1;
+
+    const handleOutcome = (outcome) => {
+      const newOutcomes = [...outcomes, outcome];
+      setOutcomes(newOutcomes);
+      if (isLast) {
+        setPhase("complete");
+      } else {
+        setVerseIdx(prev => prev + 1);
+      }
+    };
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={() => setPhase("block_select")}>
+          <ChevronLeft size={12} /> Back to block list
+        </button>
+        <div className="hifz-session-hdr">
+          <span className="hifz-session-hdr-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            {displayId(activeBlock.id)}
+          </span>
+          <span className="hifz-session-hdr-role">{humanRole(activeBlock.role)}</span>
+          <span className="hifz-session-hdr-progress">verse {verseIdx + 1} of {totalVerses}</span>
+        </div>
+
+        <div className="hifz-recall-screen">
+          <div className="hifz-recall-center">
+            <div className="hifz-recall-card">
+              <div className="hifz-verse-num">{currentVerseNum}</div>
+
+              <div className="hifz-recall-context">
+                {activeBlock.label} · {humanRole(activeBlock.role)}
+              </div>
+
+              <div className="hifz-recall-instruction">
+                Recite verse {currentVerseNum} from memory.
+              </div>
+
+              {!revealed && (
+                <>
+                  <div className="hifz-hidden-verse">
+                    <div className="hifz-hidden-baseline" />
+                    <div className="hifz-hidden-baseline" />
+                    <div className="hifz-hidden-baseline" />
+                  </div>
+                  <button className="hifz-reveal-button" onClick={() => setRevealed(true)}>
+                    Reveal →
+                  </button>
+                </>
+              )}
+
+              {revealed && (
+                <>
+                  {blockVerses && blockVerses.ar[currentVerseNum] && (
+                    <div className="hifz-verse-ar">{blockVerses.ar[currentVerseNum]}</div>
+                  )}
+
+                  {!showTranslation && (
+                    <button className="hifz-show-translation" onClick={() => setShowTranslation(true)}>
+                      Show translation
+                    </button>
+                  )}
+
+                  {showTranslation && blockVerses && blockVerses.en[currentVerseNum] && (
+                    <div className="hifz-verse-en">{blockVerses.en[currentVerseNum]}</div>
+                  )}
+
+                  <div className="hifz-outcome-buttons">
+                    <button className="hifz-outcome-btn remembered" onClick={() => handleOutcome("remembered")}>
+                      Remembered ✓
+                    </button>
+                    <button className="hifz-outcome-btn partial" onClick={() => handleOutcome("partial")}>
+                      Partial ◑
+                    </button>
+                    <button className="hifz-outcome-btn missed" onClick={() => handleOutcome("missed")}>
+                      Missed ✗
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="hifz-dots">
+            {verseNums.map((vn, i) => (
+              <span
+                key={vn}
+                className={`hifz-dot${i < verseIdx ? " seen" : ""}${i === verseIdx ? " current" : ""}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── REVIEW COMPLETE PHASE ──
+  if (mode === "review" && phase === "complete") {
+    const remembered = outcomes.filter(o => o === "remembered").length;
+    const missed = outcomes.filter(o => o === "missed").length;
+    const partial = outcomes.filter(o => o === "partial").length;
+    const score = deriveReviewScore(outcomes);
+    const hasMissedOrPartial = missed > 0 || partial > 0;
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-complete-summary">
+          <div className="hifz-complete-label">{activeBlock.label}</div>
+          <div className="hifz-complete-id">Block {displayId(activeBlock.id)}</div>
+          <div className="hifz-complete-meta">
+            {remembered} remembered · {missed} missed · {partial} partial
+          </div>
+        </div>
+
+        <div className="hifz-review-actions">
+          {hasMissedOrPartial && (
+            <button className="hifz-next-btn" onClick={() => {
+              setVerseIdx(0);
+              setOutcomes([]);
+              setRevealed(false);
+              setShowTranslation(false);
+              setPhase("recall");
+            }}>
+              Review again
+            </button>
+          )}
+          {nextReviewable && (
+            <button
+              className="hifz-reveal-button"
+              style={{ marginTop: 8 }}
+              onClick={() => {
+                onComplete(activeBlock.id, score);
+                startRecall(nextReviewable);
+              }}
+            >
+              Next block →
+            </button>
+          )}
+          <button
+            className="hifz-partial-link"
+            style={{ marginTop: 12 }}
+            onClick={() => onComplete(activeBlock.id, score)}
+          >
+            Back to Hifz home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ══════════════════════════════════════════════
+  //  TEST MODE
+  // ══════════════════════════════════════════════
+
+  // ── TEST BLOCK SELECT ──
+  if (mode === "test" && phase === "test_block_select") {
+    const statusOrder = { strong: 0, mastered: 1, learning: 2, weak: 3, new: 4 };
+    const sortedBlocks = [...blocks].sort((a, b) =>
+      (statusOrder[blockStatuses[a.id]] ?? 4) - (statusOrder[blockStatuses[b.id]] ?? 4)
+    );
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-review-select-title">Test your memorisation</div>
+
+        {strongestBlock && (
+          <button className="hifz-cta" style={{ marginBottom: 24 }} onClick={() => startTestBlock(strongestBlock)}>
+            Test strongest block →
+          </button>
+        )}
+
+        <div className="hifz-block-list">
+          {sortedBlocks.map((b) => {
+            const status = blockStatuses[b.id];
+            const isNew = status === "new";
+            const isLearning = status === "learning";
+            return (
+              <div
+                key={b.id}
+                className={`hifz-block-row${b.isPivot ? " is-pivot" : ""}${isNew ? " is-dimmed" : ""}${isLearning ? " is-caution" : ""}`}
+                onClick={() => !isNew && startTestBlock(b)}
+                style={isNew ? { opacity: 0.35, cursor: "default" } : {}}
+              >
+                <div className="hifz-block-id">{displayId(b.id)}</div>
+                <div className="hifz-block-info">
+                  <div className="hifz-block-label">{b.label}</div>
+                  <div className="hifz-block-meta">
+                    {humanRole(b.role)} · v.{b.v[0]}–{b.v[1]}
+                    {isNew && " · learn first"}
+                    {isLearning && " · consider reviewing first"}
+                  </div>
+                </div>
+                <span className={`hifz-status-badge ${status}`}>{status}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // ── RECITE PHASE (Test only) ──
+  if (mode === "test" && phase === "recite") {
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={() => setPhase("test_block_select")}>
+          <ChevronLeft size={12} /> Back to block list
+        </button>
+        <div className="hifz-session-hdr">
+          <span className="hifz-session-hdr-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            {displayId(activeBlock.id)}
+          </span>
+          <span className="hifz-session-hdr-progress">{totalVerses} verses</span>
+        </div>
+
+        <div className="hifz-recall-screen">
+          <div className="hifz-recall-center">
+            <div className="hifz-test-recite-card">
+              <div className="hifz-block-badge-large">{displayId(activeBlock.id)}</div>
+              <div className="hifz-recite-range">
+                Verses {activeBlock.v[0]}–{activeBlock.v[1]}
+              </div>
+              <div className="hifz-recite-instruction">
+                Recite this entire block from memory. Tap when ready to check.
+              </div>
+              <button className="hifz-begin-btn" onClick={() => setPhase("check")}>
+                Begin checking →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── CHECK PHASE (Test only) ──
+  if (mode === "test" && phase === "check") {
+    const currentVerseNum = verseNums[verseIdx];
+    const isLast = verseIdx === totalVerses - 1;
+
+    const handleCheckOutcome = (outcome) => {
+      const newOutcomes = [...outcomes, outcome];
+      setOutcomes(newOutcomes);
+      if (isLast) {
+        setPhase("complete");
+      } else {
+        setVerseIdx(prev => prev + 1);
+      }
+    };
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={() => setPhase("test_block_select")}>
+          <ChevronLeft size={12} /> Back to block list
+        </button>
+        <div className="hifz-session-hdr">
+          <span className="hifz-session-hdr-id" style={activeBlock.isPivot ? { color: "var(--gold)" } : activeBlock.color ? { color: activeBlock.color } : {}}>
+            {displayId(activeBlock.id)}
+          </span>
+          <span className="hifz-session-hdr-progress">checking verse {verseIdx + 1} of {totalVerses}</span>
+        </div>
+
+        <div className="hifz-recall-screen">
+          <div className="hifz-recall-center">
+            <div className="hifz-check-card">
+              <div className="hifz-verse-num">{currentVerseNum}</div>
+
+              {blockVerses && blockVerses.ar[currentVerseNum] && (
+                <div className="hifz-verse-ar">{blockVerses.ar[currentVerseNum]}</div>
+              )}
+
+              {!showTranslation && (
+                <button className="hifz-show-translation" onClick={() => setShowTranslation(true)}>
+                  Show translation
+                </button>
+              )}
+
+              {showTranslation && blockVerses && blockVerses.en[currentVerseNum] && (
+                <div className="hifz-verse-en">{blockVerses.en[currentVerseNum]}</div>
+              )}
+
+              <div className="hifz-outcome-buttons">
+                <button className="hifz-outcome-btn remembered" onClick={() => handleCheckOutcome("correct")}>
+                  Correct ✓
+                </button>
+                <button className="hifz-outcome-btn partial" onClick={() => handleCheckOutcome("partial")}>
+                  Partial ◑
+                </button>
+                <button className="hifz-outcome-btn missed" onClick={() => handleCheckOutcome("incorrect")}>
+                  Incorrect ✗
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="hifz-dots">
+            {verseNums.map((vn, i) => (
+              <span
+                key={vn}
+                className={`hifz-dot${i < verseIdx ? " seen" : ""}${i === verseIdx ? " current" : ""}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── TEST COMPLETE PHASE ──
+  if (mode === "test" && phase === "complete") {
+    const correctCount = outcomes.filter(o => o === "correct").length;
+    const partialCount = outcomes.filter(o => o === "partial").length;
+    const incorrectCount = outcomes.filter(o => o === "incorrect").length;
+    const total = outcomes.length;
+    const points = correctCount + (partialCount * 0.5);
+    const accuracy = total > 0 ? Math.round((points / total) * 100) : 0;
+
+    let statusLabel = "";
+    let recommendation = "";
+    if (accuracy >= 100) { statusLabel = "Block marked Mastered"; recommendation = "Review another block"; }
+    else if (accuracy >= 80) { statusLabel = "Block marked Strong"; recommendation = "Test again tomorrow"; }
+    else if (accuracy >= 50) { statusLabel = "Block marked Learning"; recommendation = "Review this block first"; }
+    else { statusLabel = "Block marked Weak"; recommendation = "Review this block first"; }
+
+    return (
+      <div className="hifz-session">
+        <button className="hifz-session-back" onClick={onBack}>
+          <ChevronLeft size={12} /> Back to Hifz
+        </button>
+        <div className="hifz-complete-summary">
+          <div className="hifz-complete-label">{activeBlock.label}</div>
+          <div className="hifz-complete-id">Block {displayId(activeBlock.id)}</div>
+          <div className="hifz-complete-meta">
+            {correctCount} of {total} verses{partialCount > 0 ? ` · ${partialCount} partial` : ""}{incorrectCount > 0 ? ` · ${incorrectCount} incorrect` : ""}
+          </div>
+        </div>
+
+        <div className="hifz-accuracy-display">{accuracy}%</div>
+        <div className="hifz-accuracy-label">{statusLabel}</div>
+        <div className="hifz-complete-meta" style={{ textAlign: "center", marginBottom: 24 }}>{recommendation}</div>
+
+        <div className="hifz-review-actions">
+          <button className="hifz-next-btn" onClick={() => {
+            saveHifzProgress(surahNum, activeBlock.id, accuracy, "test");
+            setVerseIdx(0);
+            setOutcomes([]);
+            setShowTranslation(false);
+            setPhase("recite");
+          }}>
+            Test again
+          </button>
+          {accuracy < 100 && (
+            <button
+              className="hifz-reveal-button"
+              style={{ marginTop: 8 }}
+              onClick={() => onComplete(activeBlock.id, accuracy)}
+            >
+              Review this block
+            </button>
+          )}
+          <button
+            className="hifz-partial-link"
+            style={{ marginTop: 12 }}
+            onClick={() => onComplete(activeBlock.id, accuracy)}
+          >
+            Back to Hifz home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback
+  return null;
+};
+
+const HifzHome = ({ surahNum, surahName, blocks, progress, onStartSession }) => {
+  const blockStatuses = useMemo(() => {
+    if (!blocks) return {};
+    const out = {};
+    for (const b of blocks) {
+      const bs = progress && progress.blockStatus && progress.blockStatus[b.id];
+      out[b.id] = bs ? bs.status : "new";
+    }
+    return out;
+  }, [blocks, progress]);
+
+  const learnedCount = useMemo(() =>
+    blocks ? blocks.filter(b => blockStatuses[b.id] !== "new").length : 0
+  , [blocks, blockStatuses]);
+
+  const hasReviewable = useMemo(() =>
+    blocks ? blocks.some(b => {
+      const s = blockStatuses[b.id];
+      return s === "learning" || s === "weak" || s === "strong" || s === "mastered";
+    }) : false
+  , [blocks, blockStatuses]);
+
+  const hasTestable = useMemo(() =>
+    blocks ? blocks.some(b => {
+      const s = blockStatuses[b.id];
+      return s === "strong" || s === "mastered";
+    }) : false
+  , [blocks, blockStatuses]);
+
+  const allMastered = useMemo(() =>
+    blocks ? blocks.every(b => blockStatuses[b.id] === "mastered") : false
+  , [blocks, blockStatuses]);
+
+  // Find the next target block for the primary CTA
+  const ctaTarget = useMemo(() => {
+    if (!blocks) return { idx: 0, label: blocks?.[0]?.label || "" };
+    // Find most recently completed block (by lastReviewedAt)
+    let lastIdx = -1;
+    let lastTime = 0;
+    blocks.forEach((b, i) => {
+      const bs = progress && progress.blockStatus && progress.blockStatus[b.id];
+      if (bs && bs.lastReviewedAt) {
+        const t = new Date(bs.lastReviewedAt).getTime();
+        if (t > lastTime) { lastTime = t; lastIdx = i; }
+      }
+    });
+    if (lastIdx >= 0) {
+      // Prefer next incomplete block after the most recently completed
+      for (let i = lastIdx + 1; i < blocks.length; i++) {
+        if (blockStatuses[blocks[i].id] === "new") return { idx: i, label: blocks[i].label };
+      }
+      // Wrap around
+      for (let i = 0; i < blocks.length; i++) {
+        if (blockStatuses[blocks[i].id] === "new") return { idx: i, label: blocks[i].label };
+      }
+      // All started — find first weak/learning
+      for (let i = 0; i < blocks.length; i++) {
+        const s = blockStatuses[blocks[i].id];
+        if (s === "weak" || s === "learning") return { idx: i, label: blocks[i].label };
+      }
+    }
+    return { idx: 0, label: blocks[0]?.label || "" };
+  }, [blocks, progress, blockStatuses]);
+
+  // Summary copy
+  const summaryText = allMastered
+    ? "Surah complete"
+    : learnedCount === 0
+      ? "Begin with the opening frame"
+      : `${learnedCount} of ${blocks.length} blocks · in progress`;
+
+  // CTA label
+  const ctaLabel = learnedCount === 0
+    ? `Start with Block ${displayId(blocks[0]?.id || "A")} →`
+    : allMastered
+      ? "Review all blocks"
+      : `Continue — ${ctaTarget.label} →`;
+
+  if (!blocks) return null;
+
+  return (
+    <div className="hifz-home">
+      <div className="hifz-header">
+        <h3>{surahName}</h3>
+        <div className="hifz-sub">Memorisation · {blocks.length} structural blocks</div>
+      </div>
+
+      <div className="hifz-summary">
+        <div className="hifz-summary-stat">
+          <strong>{learnedCount}</strong> / {blocks.length} blocks
+        </div>
+        <div className="hifz-summary-stat" style={{ color: "var(--t3)" }}>
+          {summaryText}
+        </div>
+      </div>
+
+      <div className="hifz-bar-wrap">
+        <StructuralBar surah={getSurahByNumber(surahNum)} height={48} />
+      </div>
+
+      {learnedCount > 0 && !allMastered && (
+        <button className="hifz-cta" onClick={() => onStartSession("learn", ctaTarget.idx)}>
+          {ctaLabel}
+        </button>
+      )}
+      {learnedCount === 0 && (
+        <button className="hifz-cta" onClick={() => onStartSession("learn", 0)}>
+          {`Start with Block ${displayId(blocks[0]?.id || "A")} →`}
+        </button>
+      )}
+      {allMastered && (
+        <button className="hifz-cta" onClick={() => onStartSession("review", 0)}>
+          Review all blocks
+        </button>
+      )}
+
+      <div className="hifz-modes">
+        <button
+          className="hifz-mode-btn primary-outline"
+          onClick={() => onStartSession("learn", 0)}
+        >Learn from beginning</button>
+        <button
+          className="hifz-mode-btn secondary"
+          disabled={!hasReviewable}
+          onClick={() => hasReviewable && onStartSession("review", ctaTarget.idx)}
+        >Review</button>
+        <button
+          className="hifz-mode-btn secondary"
+          disabled={!hasTestable}
+          onClick={() => hasTestable && onStartSession("test", ctaTarget.idx)}
+        >Test</button>
+      </div>
+      {!hasReviewable && (
+        <div className="hifz-disabled-hint">Complete a block in Learn first</div>
+      )}
+
+      <div className="hifz-block-list">
+        {blocks.map((b, i) => {
+          const status = blockStatuses[b.id];
+          return (
+            <div
+              key={b.id}
+              className={`hifz-block-row${b.isPivot ? " is-pivot" : ""}`}
+              onClick={() => onStartSession("learn", i)}
+            >
+              <div className="hifz-block-id">{displayId(b.id)}</div>
+              <div className="hifz-block-info">
+                <div className="hifz-block-label">{b.label}</div>
+                <div className="hifz-block-meta">
+                  {humanRole(b.role)} · v.{b.v[0]}–{b.v[1]}
+                </div>
+              </div>
+              <span className={`hifz-status-badge ${status}`}>{status}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const HifzTab = ({ surahNum, surahName, blocks, verseCache }) => {
+  const [hifzMode, setHifzMode] = useState(null);
+  const [selectedBlockIdx, setSelectedBlockIdx] = useState(null);
+  const [sessionActive, setSessionActive] = useState(false);
+  const [blockVerses, setBlockVerses] = useState(null);
+  const [loadingVerses, setLoadingVerses] = useState(false);
+  const [loadError, setLoadError] = useState(null);
+  const [progress, setProgress] = useState(() => loadHifzProgress(surahNum));
+  const [reviewCueLevel, setReviewCueLevel] = useState(() => {
+    const p = loadHifzProgress(surahNum);
+    return (p && p.reviewCueLevel) || "label_role";
+  });
+
+  useEffect(() => {
+    setProgress(loadHifzProgress(surahNum));
+    setHifzMode(null);
+    setSelectedBlockIdx(null);
+    setSessionActive(false);
+    setBlockVerses(null);
+    setLoadError(null);
+    const p = loadHifzProgress(surahNum);
+    setReviewCueLevel((p && p.reviewCueLevel) || "label_role");
+  }, [surahNum]);
+
+  // Fetch verses when session starts
+  useEffect(() => {
+    if (!sessionActive) return;
+    if (verseCache.current[surahNum]) {
+      setBlockVerses(verseCache.current[surahNum]);
+      setLoadingVerses(false);
+      return;
+    }
+    const controller = new AbortController();
+    setLoadingVerses(true);
+    setLoadError(null);
+    fetch(
+      `https://api.alquran.cloud/v1/surah/${surahNum}/editions/quran-uthmani,en.sahih`,
+      { signal: controller.signal }
+    )
+      .then(r => r.json())
+      .then(json => {
+        if (json.code !== 200) throw new Error("API error");
+        const ar = {}, en = {};
+        for (const a of json.data[0].ayahs) ar[a.numberInSurah] = a.text;
+        for (const a of json.data[1].ayahs) en[a.numberInSurah] = a.text;
+        const cached = { ar, en };
+        verseCache.current[surahNum] = cached;
+        setBlockVerses(cached);
+        setLoadingVerses(false);
+      })
+      .catch(e => {
+        if (e.name !== "AbortError") {
+          setLoadError("Failed to load verses");
+          setLoadingVerses(false);
+        }
+      });
+    return () => controller.abort();
+  }, [sessionActive, surahNum, verseCache]);
+
+  const handleStartSession = useCallback((mode, blockIdx) => {
+    setHifzMode(mode);
+    setSelectedBlockIdx(blockIdx);
+    setSessionActive(true);
+  }, []);
+
+  const handleSessionComplete = useCallback((blockId, score) => {
+    saveHifzProgress(surahNum, blockId, score, hifzMode);
+    setProgress(loadHifzProgress(surahNum));
+    setSessionActive(false);
+  }, [surahNum, hifzMode]);
+
+  const handleBackFromSession = useCallback(() => {
+    setSessionActive(false);
+  }, []);
+
+  const handleUpdateCueLevel = useCallback((level) => {
+    setReviewCueLevel(level);
+    try {
+      const raw = localStorage.getItem(HIFZ_KEY);
+      const data = raw ? JSON.parse(raw) : { version: 1, surahs: {} };
+      if (!data.surahs[surahNum]) {
+        data.surahs[surahNum] = {
+          lastMode: null, lastBlockIdx: 0, reviewCueLevel: level,
+          updatedAt: new Date().toISOString(), blockStatus: {}
+        };
+      } else {
+        data.surahs[surahNum].reviewCueLevel = level;
+      }
+      localStorage.setItem(HIFZ_KEY, JSON.stringify(data));
+    } catch {}
+  }, [surahNum]);
+
+  if (!blocks) return null;
+
+  if (sessionActive && selectedBlockIdx !== null) {
+    if (loadingVerses) {
+      return <div className="hifz-session"><div className="hifz-session-placeholder">Loading verses…</div></div>;
+    }
+    if (loadError) {
+      return (
+        <div className="hifz-session">
+          <div className="hifz-session-placeholder">
+            {loadError}
+            <br /><button className="hifz-session-back" onClick={handleBackFromSession} style={{ margin: "12px auto 0", display: "inline-flex" }}>← Back</button>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <HifzSession
+        mode={hifzMode}
+        block={blocks[selectedBlockIdx]}
+        blocks={blocks}
+        blockVerses={blockVerses}
+        surahNum={surahNum}
+        progress={progress}
+        reviewCueLevel={reviewCueLevel}
+        onComplete={handleSessionComplete}
+        onBack={handleBackFromSession}
+        onUpdateCueLevel={handleUpdateCueLevel}
+      />
+    );
+  }
+
+  return (
+    <HifzHome
+      surahNum={surahNum}
+      surahName={surahName}
+      blocks={blocks}
+      progress={progress}
+      onStartSession={handleStartSession}
+    />
+  );
+};
+
 const DetailPage = ({ surahNum, onBack, onNavigate }) => {
   const d = useMemo(() => getSurahByNumber(surahNum), [surahNum]);
   const verses = useMemo(() => getPivotVerses(surahNum), [surahNum]);
   const adj = useMemo(() => getAdjacentSurahs(surahNum), [surahNum]);
   const [pivotLit, setPivotLit] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
+  const verseCache = useRef({});
+  const blocks = useMemo(() => {
+    const raw = BLOCK_MAP_DATA[surahNum];
+    return raw ? colorizeBlocks(raw) : null;
+  }, [surahNum]);
 
   // Reset state on surah change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setPivotLit(false);
     setActiveTab("overview");
+    verseCache.current = {};
   }, [surahNum]);
 
   if (!d) return null;
@@ -2028,6 +3866,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
           title={!hasBlockMap ? "Block map pending for this surah" : undefined}
         >
           Structure
+        </button>
+        <button
+          className={`detail-tab${activeTab === "hifz" ? " active" : ""}`}
+          onClick={() => setActiveTab("hifz")}
+          disabled={!hasBlockMap}
+          title={!hasBlockMap ? "Block map pending for this surah" : undefined}
+        >
+          Hifz
         </button>
       </div>
 
@@ -2120,7 +3966,12 @@ const DetailPage = ({ surahNum, onBack, onNavigate }) => {
 
       {/* ── STRUCTURE TAB ── */}
       {activeTab === "structure" && (
-        <StructureTab surahNum={surahNum} verseCount={d.verse_count} />
+        <StructureTab surahNum={surahNum} verseCount={d.verse_count} blocks={blocks} verseCache={verseCache} />
+      )}
+
+      {/* ── HIFZ TAB ── */}
+      {activeTab === "hifz" && (
+        <HifzTab surahNum={surahNum} surahName={d.surah_name_en} blocks={blocks} verseCache={verseCache} />
       )}
     </div>
   );
