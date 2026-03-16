@@ -4232,14 +4232,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
                 {d.pivotFnDisputed && <span className="disputed-dot"> ·</span>}
               </div>
               <div className="strip-label">Pivot function</div>
-              {fnTooltipOpen && d.pivotFnTooltip && fnTooltipPos && (
-                <div className="fn-tooltip" style={{ top: fnTooltipPos.top - 6, left: fnTooltipPos.left }}>
-                  {d.pivotFnTooltip}
-                  {d.pivotFnDisputed && "\nTwo readings identified"}
-                </div>
-              )}
             </div>
           </div>
+          {fnTooltipOpen && d.pivotFnTooltip && fnTooltipPos && (
+            <div className="fn-tooltip" style={{ top: fnTooltipPos.top - 6, left: fnTooltipPos.left }}>
+              {d.pivotFnTooltip}
+              {d.pivotFnDisputed && "\nTwo readings identified"}
+            </div>
+          )}
 
           {/* 5. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
           <div className="scaffold-breakdown">
