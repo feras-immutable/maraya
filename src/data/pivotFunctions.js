@@ -131,6 +131,16 @@ const PIVOT_FUNCTIONS = {
   114: { fn: "COMMAND_LEGISLATION", disputed: DISPUTED.has(114) },
 };
 
+export const FN_TOOLTIPS = {
+  COMMAND_LEGISLATION: "The pivot gives a directive or law",
+  THEOLOGICAL_DECLARATION: "The pivot states a core truth about Allah",
+  WARNING_CONSEQUENCE: "The pivot invokes judgment or consequence",
+  NARRATIVE_RECOLLECTION: "The pivot uses a story as moral evidence",
+  SIGN_EVIDENTIARY: "The pivot points to creation as proof",
+  COMMUNAL_ADDRESS: "The pivot speaks directly to believers",
+  POLEMIC_APOLOGETIC: "The pivot challenges opponents or defends revelation",
+};
+
 export const FN_LABELS = {
   COMMAND_LEGISLATION: "Command",
   THEOLOGICAL_DECLARATION: "Declaration",

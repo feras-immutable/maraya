@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X, Eye, ArrowUpDown, BookOpen } from "lucide-react";
 import BLOCK_MAP_DATA from './data/blockMap.json';
-import PIVOT_FUNCTIONS, { FN_LABELS, getPivotFunction, getPivotFunctionLabel, getPivotFunctionCounts } from './data/pivotFunctions.js';
+import PIVOT_FUNCTIONS, { FN_LABELS, FN_TOOLTIPS, getPivotFunction, getPivotFunctionLabel, getPivotFunctionCounts } from './data/pivotFunctions.js';
 
 /*
  * MARAYA DESIGN RULES
@@ -411,7 +411,8 @@ const SURAHS = RAW_DATASET.map(d => {
     pivotFn: pf ? pf.fn : null,
     pivotFnLabel: pf ? (FN_LABELS[pf.fn] || pf.fn) : "—",
     pivotFnDisputed: pf ? pf.disputed : false,
-    pivotFnSecondary: pf && pf.secondary ? (FN_LABELS[pf.secondary] || pf.secondary) : null };
+    pivotFnSecondary: pf && pf.secondary ? (FN_LABELS[pf.secondary] || pf.secondary) : null,
+    pivotFnTooltip: pf ? (FN_TOOLTIPS[pf.fn] || null) : null };
 });
 
 function getAllSurahs() { return SURAHS; }
@@ -936,6 +937,16 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .strip-val.gold { color: var(--gold); }
 .strip-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
 .disputed-dot { color: var(--gold); font-size: 18px; line-height: 0; vertical-align: middle; cursor: help; margin-left: 2px; }
+.strip-fn-wrap { position: relative; cursor: pointer; }
+.fn-tooltip {
+  display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  background: #1a1a1c; border: 1px solid var(--border); border-radius: 4px;
+  padding: 8px 12px; font-family: var(--f-mono); font-size: 10px; color: var(--t2);
+  white-space: pre-line; text-align: center; z-index: 10; pointer-events: none;
+  min-width: 180px; line-height: 1.5; margin-bottom: 6px;
+}
+.strip-fn-wrap.fn-open .fn-tooltip { display: block; }
+@media (hover: hover) { .strip-fn-wrap:hover .fn-tooltip { display: block; } }
 
 /* Breakdown text — fades in at 0.8s */
 .scaffold-breakdown {
@@ -4081,6 +4092,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
   const adj = useMemo(() => getAdjacentSurahs(surahNum), [surahNum]);
   const [pivotLit, setPivotLit] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab || "overview");
+  const [fnTooltipOpen, setFnTooltipOpen] = useState(false);
+  const fnWrapRef = useRef(null);
+  useEffect(() => {
+    if (!fnTooltipOpen) return;
+    const dismiss = (e) => { if (fnWrapRef.current && !fnWrapRef.current.contains(e.target)) setFnTooltipOpen(false); };
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, [fnTooltipOpen]);
   const verseCache = useRef({});
   const blocks = useMemo(() => {
     const raw = BLOCK_MAP_DATA[surahNum];
@@ -4199,12 +4218,18 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               </div>
               <div className="strip-label">Classification</div>
             </div>
-            <div className="strip-item">
+            <div ref={fnWrapRef} className={`strip-item strip-fn-wrap${fnTooltipOpen ? " fn-open" : ""}`} onClick={() => setFnTooltipOpen(p => !p)}>
               <div className="strip-val" style={{ fontSize: 14, color: d.pivotFnDisputed ? "var(--t3)" : "var(--t2)" }}>
                 {d.pivotFnLabel}
-                {d.pivotFnDisputed && <span className="disputed-dot" title="Two readings identified"> ·</span>}
+                {d.pivotFnDisputed && <span className="disputed-dot"> ·</span>}
               </div>
               <div className="strip-label">Pivot function</div>
+              {d.pivotFnTooltip && (
+                <div className="fn-tooltip">
+                  {d.pivotFnTooltip}
+                  {d.pivotFnDisputed && "\nTwo readings identified"}
+                </div>
+              )}
             </div>
           </div>
 
@@ -4250,7 +4275,7 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
                 textAlign: "center",
                 marginTop: 16,
               }}>
-                At its center, this surah turns through {d.pivotFnLabel}{d.pivotFnDisputed && d.pivotFnSecondary ? ` — or ${d.pivotFnSecondary}` : ""}.
+                Here, the surah turns through {d.pivotFnLabel.toLowerCase()}{d.pivotFnDisputed && d.pivotFnSecondary ? ` — or ${d.pivotFnSecondary.toLowerCase()}` : ""}.
               </div>
             </div>
           )}
