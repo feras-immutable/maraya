@@ -939,14 +939,12 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .disputed-dot { color: var(--gold); font-size: 18px; line-height: 0; vertical-align: middle; cursor: help; margin-left: 2px; }
 .strip-fn-wrap { position: relative; cursor: pointer; }
 .fn-tooltip {
-  display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  position: fixed; transform: translate(-50%, -100%);
   background: #1a1a1c; border: 1px solid var(--border); border-radius: 4px;
   padding: 8px 12px; font-family: var(--f-mono); font-size: 10px; color: var(--t2);
-  white-space: pre-line; text-align: center; z-index: 10; pointer-events: none;
-  min-width: 180px; line-height: 1.5; margin-bottom: 6px;
+  white-space: pre-line; text-align: center; z-index: 9999; pointer-events: none;
+  min-width: 180px; line-height: 1.5;
 }
-.strip-fn-wrap.fn-open .fn-tooltip { display: block; }
-@media (hover: hover) { .strip-fn-wrap:hover .fn-tooltip { display: block; } }
 
 /* Breakdown text — fades in at 0.8s */
 .scaffold-breakdown {
@@ -4093,7 +4091,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
   const [pivotLit, setPivotLit] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab || "overview");
   const [fnTooltipOpen, setFnTooltipOpen] = useState(false);
+  const [fnTooltipPos, setFnTooltipPos] = useState(null);
   const fnWrapRef = useRef(null);
+  const updateFnTooltipPos = useCallback(() => {
+    if (fnWrapRef.current) {
+      const rect = fnWrapRef.current.getBoundingClientRect();
+      setFnTooltipPos({ top: rect.top, left: rect.left + rect.width / 2 });
+    }
+  }, []);
   useEffect(() => {
     if (!fnTooltipOpen) return;
     const dismiss = (e) => { if (fnWrapRef.current && !fnWrapRef.current.contains(e.target)) setFnTooltipOpen(false); };
@@ -4218,14 +4223,17 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               </div>
               <div className="strip-label">Classification</div>
             </div>
-            <div ref={fnWrapRef} className={`strip-item strip-fn-wrap${fnTooltipOpen ? " fn-open" : ""}`} onClick={() => setFnTooltipOpen(p => !p)}>
+            <div ref={fnWrapRef} className="strip-item strip-fn-wrap"
+              onClick={() => { updateFnTooltipPos(); setFnTooltipOpen(p => !p); }}
+              onMouseEnter={() => { updateFnTooltipPos(); setFnTooltipOpen(true); }}
+              onMouseLeave={() => setFnTooltipOpen(false)}>
               <div className="strip-val" style={{ fontSize: 14, color: d.pivotFnDisputed ? "var(--t3)" : "var(--t2)" }}>
                 {d.pivotFnLabel}
                 {d.pivotFnDisputed && <span className="disputed-dot"> ·</span>}
               </div>
               <div className="strip-label">Pivot function</div>
-              {d.pivotFnTooltip && (
-                <div className="fn-tooltip">
+              {fnTooltipOpen && d.pivotFnTooltip && fnTooltipPos && (
+                <div className="fn-tooltip" style={{ top: fnTooltipPos.top - 6, left: fnTooltipPos.left }}>
                   {d.pivotFnTooltip}
                   {d.pivotFnDisputed && "\nTwo readings identified"}
                 </div>
