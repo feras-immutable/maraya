@@ -1,0 +1,8 @@
+extract_pivot_zones.py — run log
+==================================================
+Total surahs processed: 114
+Single-verse pivots: 36
+Range pivots: 78
+Control zones skipped: 0
+
+No errors.

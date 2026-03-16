@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X, Eye, ArrowUpDown, BookOpen } from "lucide-react";
 import BLOCK_MAP_DATA from './data/blockMap.json';
+import PIVOT_FUNCTIONS, { FN_LABELS, getPivotFunction, getPivotFunctionLabel, getPivotFunctionCounts } from './data/pivotFunctions.js';
 
 /*
  * MARAYA DESIGN RULES
@@ -403,9 +404,14 @@ function parsePivotRange(pv) {
 
 const SURAHS = RAW_DATASET.map(d => {
   const range = parsePivotRange(d.pivot_verse);
+  const pf = getPivotFunction(d.surah_number);
   return { ...d, absOffset: Math.abs(d.pivot_offset), pivotRange: range,
     clLabel: CL_LABELS[d.pivot_center_logic] || d.pivot_center_logic,
-    clColor: CL_COLORS[d.pivot_center_logic] || "#666" };
+    clColor: CL_COLORS[d.pivot_center_logic] || "#666",
+    pivotFn: pf ? pf.fn : null,
+    pivotFnLabel: pf ? (FN_LABELS[pf.fn] || pf.fn) : "—",
+    pivotFnDisputed: pf ? pf.disputed : false,
+    pivotFnSecondary: pf && pf.secondary ? (FN_LABELS[pf.secondary] || pf.secondary) : null };
 });
 
 function getAllSurahs() { return SURAHS; }
@@ -929,6 +935,7 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .strip-val { font-family: var(--f-mono); font-size: 16px; color: var(--t2); font-weight: 400; }
 .strip-val.gold { color: var(--gold); }
 .strip-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
+.disputed-dot { color: var(--gold); font-size: 18px; line-height: 0; vertical-align: middle; cursor: help; margin-left: 2px; }
 
 /* Breakdown text — fades in at 0.8s */
 .scaffold-breakdown {
@@ -2394,8 +2401,10 @@ const BrowsePage = ({ onSelect, onBack }) => {
   const [sortKey, setSortKey] = useState("surah_number");
   const [sortAsc, setSortAsc] = useState(true);
   const [filterCl, setFilterCl] = useState(null);
+  const [filterFn, setFilterFn] = useState(null);
   const data = useMemo(() => getAllSurahs(), []);
   const clCounts = useMemo(() => getClassificationCounts(), []);
+  const fnCounts = useMemo(() => getPivotFunctionCounts(), []);
 
   const handleSort = (opt) => {
     if (opt.key === sortKey) { setSortAsc(!sortAsc); }
@@ -2417,12 +2426,13 @@ const BrowsePage = ({ onSelect, onBack }) => {
       );
     }
     if (filterCl) f = f.filter(d => d.pivot_center_logic === filterCl);
+    if (filterFn) f = f.filter(d => d.pivotFn === filterFn);
     return [...f].sort((a, b) => {
       let va = a[sortKey], vb = b[sortKey];
       if (typeof va === "string") { va = va.toLowerCase(); vb = vb.toLowerCase(); }
       return va < vb ? (sortAsc ? -1 : 1) : va > vb ? (sortAsc ? 1 : -1) : 0;
     });
-  }, [data, sortKey, sortAsc, search, filterCl]);
+  }, [data, sortKey, sortAsc, search, filterCl, filterFn]);
 
   const fmt = v => v === 0 ? "0.0000" : v > 0 ? `+${v.toFixed(4)}` : v.toFixed(4);
 
@@ -2453,6 +2463,13 @@ const BrowsePage = ({ onSelect, onBack }) => {
         {Object.entries(CL_LABELS).map(([k, l]) => (
           <button key={k} className={`chip ${filterCl === k ? "active" : ""}`} onClick={() => toggleFilter(k)}>
             {l} ({clCounts[k] || 0})
+          </button>
+        ))}
+      </div>
+      <div className="filter-chips">
+        {Object.entries(FN_LABELS).map(([k, l]) => (
+          <button key={k} className={`chip ${filterFn === k ? "active" : ""}`} onClick={() => setFilterFn(prev => prev === k ? null : k)}>
+            {l} ({fnCounts[k] || 0})
           </button>
         ))}
       </div>
@@ -4182,6 +4199,13 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               </div>
               <div className="strip-label">Classification</div>
             </div>
+            <div className="strip-item">
+              <div className="strip-val" style={{ fontSize: 14, color: d.pivotFnDisputed ? "var(--t3)" : "var(--t2)" }}>
+                {d.pivotFnLabel}
+                {d.pivotFnDisputed && <span className="disputed-dot" title="Two readings identified"> ·</span>}
+              </div>
+              <div className="strip-label">Pivot function</div>
+            </div>
           </div>
 
           {/* 5. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
@@ -4218,6 +4242,16 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
                   <div className="pv-english">{v.en}</div>
                 </div>
               ))}
+              <div style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 12,
+                fontStyle: "italic",
+                color: "#666",
+                textAlign: "center",
+                marginTop: 16,
+              }}>
+                At its center, this surah turns through {d.pivotFnLabel}{d.pivotFnDisputed && d.pivotFnSecondary ? ` — or ${d.pivotFnSecondary}` : ""}.
+              </div>
             </div>
           )}
         </>
