@@ -2,6 +2,7 @@ import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X, Eye, ArrowUpDown, BookOpen } from "lucide-react";
 import BLOCK_MAP_DATA from './data/blockMap.json';
 import PIVOT_FUNCTIONS, { FN_LABELS, FN_TOOLTIPS, getPivotFunction, getPivotFunctionLabel, getPivotFunctionCounts } from './data/pivotFunctions.js';
+import SEMANTIC_PROFILES from './data/semantic_profiles.json';
 
 /*
  * MARAYA DESIGN RULES
@@ -440,7 +441,7 @@ function getClassificationCounts() {
    SECTION 5: STRUCTURAL BAR COMPONENT
    The core visual of Maraya — shows the shape of a surah.
    ═══════════════════════════════════════════════════════════════════ */
-const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false, pivotHighlighted = false, onPivotInteract }) => {
+const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false, pivotHighlighted = false, onPivotInteract, semanticProfile }) => {
   const vc = surah.verse_count;
   const r = surah.pivotRange;
   const pivotStartPct = ((r.start - 0.5) / vc) * 100;
@@ -455,7 +456,7 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
       <div style={{
         position: "relative", height, borderRadius: 4, overflow: "hidden",
         background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)"
-      }}>
+      }} title={semanticProfile ? "Semantic field — where this surah's characteristic vocabulary is most active" : undefined}>
         {/* Pre-pivot region */}
         <div style={{
           position: "absolute", top: 0, left: 0, height: "100%",
@@ -468,6 +469,27 @@ const StructuralBar = ({ surah, height = 40, showLabels = false, compact = false
           width: `${100 - pivotEndPct}%`,
           background: "rgba(107,157,173,0.08)",
         }} />
+        {/* Semantic field overlay — only in non-pivot portions */}
+        {semanticProfile && (
+          <>
+            <div style={{ position: "absolute", top: 0, left: 0, height: "100%",
+              width: `${Math.min(25, pivotStartPct)}%`,
+              background: `rgba(201,166,82,${(semanticProfile.early * 0.12).toFixed(4)})`, pointerEvents: "none" }} />
+            {pivotStartPct > 25 && (
+              <div style={{ position: "absolute", top: 0, left: "25%", height: "100%",
+                width: `${pivotStartPct - 25}%`,
+                background: `rgba(201,166,82,${(semanticProfile.pivot * 0.12).toFixed(4)})`, pointerEvents: "none" }} />
+            )}
+            {pivotEndPct < 75 && (
+              <div style={{ position: "absolute", top: 0, left: `${Math.max(pivotEndPct, 25)}%`, height: "100%",
+                width: `${75 - Math.max(pivotEndPct, 25)}%`,
+                background: `rgba(201,166,82,${(semanticProfile.pivot * 0.12).toFixed(4)})`, pointerEvents: "none" }} />
+            )}
+            <div style={{ position: "absolute", top: 0, left: `${Math.max(75, pivotEndPct)}%`, height: "100%",
+              width: `${100 - Math.max(75, pivotEndPct)}%`,
+              background: `rgba(201,166,82,${(semanticProfile.late * 0.12).toFixed(4)})`, pointerEvents: "none" }} />
+          </>
+        )}
         {/* Pivot zone — interactive when handler provided */}
         <div
           style={{
@@ -4149,6 +4171,14 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
         <div className="di-num">SURAH {d.surah_number} OF 114</div>
         <h2>{d.surah_name_en}</h2>
         <div className="di-ar">{d.surah_name_ar}</div>
+        {SEMANTIC_PROFILES[d.surah_number] && (
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif", fontSize: 11, fontStyle: "italic",
+            color: "#555", textAlign: "center", letterSpacing: "0.05em", marginTop: 6,
+          }}>
+            {SEMANTIC_PROFILES[d.surah_number].type === "compressed" ? "Compressed form" : "Distributed form"}
+          </div>
+        )}
       </div>
 
       {/* 2. TAB BAR */}
@@ -4185,6 +4215,7 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
             <div className="scaffold-label">Structural Blueprint</div>
             <div className="detail-bar-object">
               <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
+                semanticProfile={SEMANTIC_PROFILES[d.surah_number]}
                 onPivotInteract={(action) => {
                   if (action === "toggle") setPivotLit(p => !p);
                   else setPivotLit(action);
