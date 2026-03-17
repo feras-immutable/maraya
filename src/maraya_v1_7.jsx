@@ -555,7 +555,7 @@ const STYLE = `
  */
 
 /* — Hero assembly animation keyframes — */
-@keyframes heroMarkFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroMarkFade { from { opacity: 0; } to { opacity: 0.5; } }
 @keyframes heroBarContainer { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroRegionLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes heroRegionRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
@@ -594,20 +594,20 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .maraya-root { max-width: 1080px; margin: 0 auto; padding: 0 20px; min-height: 100vh; }
 
 /* === LANDING === */
-.landing { padding: 128px 0 48px; }
-.landing-hero { text-align: center; margin-bottom: 96px; }
+.landing { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 80px); padding: 0; }
+.landing-hero { text-align: center; width: 100%; max-width: 760px; margin: 0 auto; }
 
-/* — Mark — */
+/* — Mark — appears last, subtle */
 .landing-mark {
-  font-family: var(--f-ar); font-size: 20px; color: var(--gold); opacity: 0;
-  direction: rtl; margin-bottom: 24px; font-weight: 400; letter-spacing: 0.02em;
-  animation: heroMarkFade 0.3s ease 0s both;
+  font-family: var(--f-ar); font-size: 16px; color: var(--gold); opacity: 0;
+  direction: rtl; margin-top: 48px; font-weight: 400; letter-spacing: 0.02em;
+  animation: heroMarkFade 0.6s ease 1.8s both;
 }
 
-/* — Hero bar — */
+/* — Hero bar — loads immediately */
 .hero-bar-wrap {
   position: relative; max-width: 660px; margin: 0 auto 48px; opacity: 0;
-  animation: heroBarContainer 0.5s ease 0.2s both;
+  animation: heroBarContainer 0.5s ease 0s both;
 }
 .hero-bar {
   position: relative; height: 88px; border-radius: 4px; overflow: hidden;
@@ -616,49 +616,50 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .hero-bar .hb-pre {
   position: absolute; top: 0; height: 100%; opacity: 0;
   background: rgba(212,168,67,0.07);
-  animation: heroRegionLeft 0.4s ease 0.55s both;
+  animation: heroRegionLeft 0.4s ease 0.2s both;
 }
 .hero-bar .hb-post {
   position: absolute; top: 0; height: 100%; opacity: 0;
   background: rgba(107,157,173,0.07);
-  animation: heroRegionRight 0.4s ease 0.7s both;
+  animation: heroRegionRight 0.4s ease 0.35s both;
 }
 .hero-bar .hb-pivot {
   position: absolute; top: 0; height: 100%; opacity: 0;
   background: rgba(212,168,67,0.3);
   border-left: 1.5px solid rgba(212,168,67,0.7);
   border-right: 1.5px solid rgba(212,168,67,0.7);
-  animation: heroPivotZone 0.3s ease 0.95s both;
+  animation: heroPivotZone 0.3s ease 0.55s both;
 }
 .hero-bar .hb-mid {
   position: absolute; top: 0; height: 100%; width: 2px; opacity: 0;
   background: #d4a843;
-  animation: heroPivotLine 0.3s ease 1.1s both;
+  animation: heroPivotLine 0.3s ease 0.7s both;
 }
 .hero-bar .hb-center {
   position: absolute; top: 0; left: 50%; height: 100%; width: 0; opacity: 0;
   border-left: 1.5px dashed rgba(200,200,200,0.25);
-  animation: heroCenterLine 0.3s ease 0.8s both;
+  animation: heroCenterLine 0.3s ease 0.45s both;
 }
 
 /* — Headline and subtitle below bar — */
 .landing-hero h1 {
-  font-family: var(--f-head); font-size: 48px; font-weight: 300; letter-spacing: -0.025em;
-  line-height: 1.1; color: var(--t1); margin-bottom: 20px; opacity: 0;
-  animation: revealUp 0.4s ease 1.35s both;
+  font-family: var(--f-head); font-size: 36px; font-weight: 300; letter-spacing: -0.02em;
+  line-height: 1.2; color: var(--t1); margin-bottom: 16px; opacity: 0;
+  max-width: 520px; margin-left: auto; margin-right: auto;
+  animation: revealUp 0.4s ease 1.0s both;
 }
 .landing-tagline {
-  font-family: var(--f-head); font-size: 20px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
-  margin-bottom: 40px; font-style: italic; max-width: 440px; margin-left: auto; margin-right: auto;
-  line-height: 1.65; opacity: 0;
-  animation: revealUp 0.3s ease 1.5s both;
+  font-family: var(--f-head); font-size: 18px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
+  margin-bottom: 40px; font-style: italic;
+  line-height: 1.5; opacity: 0;
+  animation: revealUp 0.3s ease 1.2s both;
 }
 .landing-cta {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gold); border: 0.5px solid rgba(212,168,67,0.25); border-radius: 4px;
   padding: 12px 24px; background: transparent; cursor: pointer; transition: all 0.2s;
-  opacity: 0; animation: revealUp 0.3s ease 1.65s both;
+  opacity: 0; animation: revealUp 0.3s ease 1.4s both;
 }
 .landing-cta:hover { background: rgba(212,168,67,0.04); box-shadow: 0 0 20px rgba(212,168,67,0.08); border-color: rgba(212,168,67,0.35); }
 
@@ -1343,13 +1344,12 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 /* === MOBILE === */
 @media (max-width: 640px) {
   .maraya-root { padding: 0 16px; }
-  .landing { padding: 64px 0 24px; }
-  .landing-mark { font-size: 16px; margin-bottom: 20px; }
-  .hero-bar-wrap { margin-bottom: 32px; }
+  .landing { min-height: calc(100vh - 60px); }
+  .landing-mark { font-size: 14px; margin-top: 32px; }
+  .hero-bar-wrap { margin-bottom: 28px; }
   .hero-bar { height: 48px; }
-  .landing-hero h1 { font-size: 28px; }
-  .landing-tagline { font-size: 16px; }
-  .landing-hero { margin-bottom: 48px; }
+  .landing-hero h1 { font-size: 24px; }
+  .landing-tagline { font-size: 15px; }
   .feature-card { padding: 20px 16px; }
   .feature-card-head { flex-direction: column; gap: 4px; }
   .feature-card-meta { gap: 8px; }
@@ -1377,27 +1377,22 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   .pan-name { font-size: 0.55rem; }
   .pan-meta { display: none; }
   .panorama-header { flex-direction: column; align-items: flex-start; }
-  /* Tighter animation timing on mobile — reduce delays by ~30% */
-  .landing-mark { animation-delay: 0s; }
-  .hero-bar-wrap { animation-delay: 0.14s; }
-  .hero-bar .hb-pre { animation-delay: 0.38s; }
-  .hero-bar .hb-post { animation-delay: 0.49s; }
-  .hero-bar .hb-center { animation-delay: 0.56s; }
-  .hero-bar .hb-pivot { animation-delay: 0.66s; }
-  .hero-bar .hb-mid { animation-delay: 0.77s; }
-  .landing-hero h1 { animation-delay: 0.95s; }
-  .landing-tagline { animation-delay: 1.05s; }
-  .landing-cta { animation-delay: 1.15s; }
-  .feature-label { animation-delay: 1.3s; }
-  .feature-card:nth-child(2) { animation-delay: 1.4s; }
-  .feature-card:nth-child(3) { animation-delay: 1.5s; }
-  .feature-card:nth-child(4) { animation-delay: 1.6s; }
-  .corpus-strip { animation-delay: 1.7s; }
+  /* Tighter animation timing on mobile */
+  .hero-bar-wrap { animation-delay: 0s; }
+  .hero-bar .hb-pre { animation-delay: 0.15s; }
+  .hero-bar .hb-post { animation-delay: 0.25s; }
+  .hero-bar .hb-center { animation-delay: 0.35s; }
+  .hero-bar .hb-pivot { animation-delay: 0.45s; }
+  .hero-bar .hb-mid { animation-delay: 0.55s; }
+  .landing-hero h1 { animation-delay: 0.8s; }
+  .landing-tagline { animation-delay: 0.9s; }
+  .landing-cta { animation-delay: 1.0s; }
+  .landing-mark { animation-delay: 1.3s; }
 }
 
 @media (max-width: 380px) {
   .landing-hero h1 { font-size: 20px; }
-  .landing-mark { font-size: 16px; }
+  .landing-mark { font-size: 13px; }
   .hero-bar { height: 40px; }
   .sc-stats { flex-wrap: wrap; gap: 8px; }
 }
@@ -2218,9 +2213,7 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 /* ═══════════════════════════════════════════════════════════════════════
    SECTION 7: LANDING PAGE
    ═══════════════════════════════════════════════════════════════════ */
-const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
-  const stats = useMemo(() => getCorpusStats(), []);
-
+const LandingPage = ({ onExplore }) => {
   // Hero bar uses Al-Baqarah — near-perfect center, the most striking first impression
   const hero = useMemo(() => getSurahByNumber(2), []);
   const heroR = hero.pivotRange;
@@ -2233,10 +2226,7 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
   return (
     <div className="landing">
       <div className="landing-hero">
-        {/* 1. The mark — quiet, gold, a breath before the object */}
-        <div className="landing-mark">مرايا</div>
-
-        {/* 2. THE object — the hero structural bar */}
+        {/* 1. THE object — the hero structural bar loads first */}
         <div className="hero-bar-wrap">
           <div className="hero-bar">
             <div className="hb-pre" style={{ left: 0, width: `${heroPivotStartPct}%` }} />
@@ -2247,71 +2237,20 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
           </div>
         </div>
 
-        {/* 3. The headline — explains what the user just saw */}
-        <h1>The architecture of revelation</h1>
+        {/* 2. The headline — explains what the user just saw */}
+        <h1>See the shape of a surah before you read it.</h1>
 
-        {/* 4. The subtitle */}
-        <p className="landing-tagline">
-          Every surah has a shape.<br />
-          Discover its structure. Memorise its blocks.
-        </p>
+        {/* 3. The tagline — one idea only */}
+        <p className="landing-tagline">Every surah has a shape.</p>
 
-        {/* 5. The CTA — quiet invitation */}
+        {/* 4. The CTA — quiet invitation */}
         <button className="landing-cta" onClick={onExplore}>
           <Eye size={13} /> Explore all 114 surahs
         </button>
-      </div>
 
-      <div className="landing-cards-section">
-        <div className="landing-cards-title">Three ways to explore a surah</div>
-        <div className="landing-cards-row">
-          <div className="landing-card" onClick={onExplore}>
-            <div className="landing-card-label">Discover</div>
-            <div className="landing-card-body">See where pivots fall across all 114 surahs.</div>
-          </div>
-          <div className="landing-card" onClick={() => onSelectTab(2, "structure")}>
-            <div className="landing-card-label">Map</div>
-            <div className="landing-card-body">Explore the structural blocks that divide each surah into meaningful sections.</div>
-          </div>
-          <div className="landing-card" onClick={() => onSelectTab(2, "hifz")}>
-            <div className="landing-card-label">Memorise</div>
-            <div className="landing-card-body">Learn and test verses using the block structure as your memory guide.</div>
-          </div>
-        </div>
+        {/* 5. The mark — subtle, appears after everything else */}
+        <div className="landing-mark">مرايا</div>
       </div>
-
-      <div className="landing-grid-section">
-        <div className="landing-grid-header">
-          <div className="landing-grid-title-sm">114 surahs · one pattern</div>
-          <div className="landing-grid-title-lg">Most pivots fall near the center.</div>
-        </div>
-        <div className="landing-grid">
-          {getAllSurahs().map(s => {
-            const pivotPct = (s.pivotRange.mid / s.verse_count) * 100;
-            return (
-              <div key={s.surah_number} className="landing-grid-cell" onClick={() => onSelect(s.surah_number)}>
-                <div className="landing-grid-num">{s.surah_number}</div>
-                <div className="landing-grid-bar">
-                  <div className="landing-grid-center" />
-                  <div className="landing-grid-pivot" style={{ left: `${pivotPct}%` }} />
-                </div>
-                <div className="landing-grid-name">{s.surah_name_en}</div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="landing-grid-footer">
-          <div className="landing-grid-rule" />
-          <div className="landing-grid-note">Dashed line marks geometric center of each surah.</div>
-        </div>
-      </div>
-
-      <div className="corpus-strip">
-        <div className="corpus-stat"><div className="corpus-val">{stats.n}</div><div className="corpus-label">Surahs</div></div>
-        <div className="corpus-stat"><div className="corpus-val">{stats.totalVerses.toLocaleString()}</div><div className="corpus-label">Verses</div></div>
-        <div className="corpus-stat"><div className="corpus-val">{stats.within5}</div><div className="corpus-label">Pivots near center</div></div>
-      </div>
-      <div className="landing-closing">The Qur'an has a shape. Now you can learn it.</div>
     </div>
   );
 };
@@ -4469,7 +4408,7 @@ export default function App() {
   return (
     <><style>{STYLE}</style>
     <div className="maraya-root">
-      {view === "landing" && <LandingPage onExplore={handleExplore} onSelect={(n) => handleSelect(n, "panorama")} onSelectTab={(n, tab) => handleSelect(n, "landing", tab)} />}
+      {view === "landing" && <LandingPage onExplore={handleExplore} />}
       {view === "panorama" && <PanoramaPage onSelect={(n) => handleSelect(n, "panorama")} onBack={() => setView("landing")} onBrowse={() => setView("browse")} />}
       {view === "browse" && <BrowsePage onSelect={(n) => handleSelect(n, "browse")} onBack={() => setView("panorama")} />}
       {view === "detail" && <DetailPage key={`${selectedSurah}-${initialTab}`} surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} initialTab={initialTab} />}
