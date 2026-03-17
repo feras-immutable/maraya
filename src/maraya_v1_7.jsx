@@ -3,6 +3,13 @@ import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X, Eye, ArrowUpDo
 import BLOCK_MAP_DATA from './data/blockMap.json';
 import PIVOT_FUNCTIONS, { FN_LABELS, FN_TOOLTIPS, getPivotFunction, getPivotFunctionLabel, getPivotFunctionCounts } from './data/pivotFunctions.js';
 import SEMANTIC_PROFILES from './data/semantic_profiles.json';
+import SURAH_METADATA_RAW from './data/surah_metadata.json';
+import SURAH_FAMILIES_RAW from './data/surah_families.json';
+
+const SURAH_META = {};
+for (const m of SURAH_METADATA_RAW) SURAH_META[m.surah_number] = m;
+const SURAH_FAMILIES = {};
+for (const f of SURAH_FAMILIES_RAW) SURAH_FAMILIES[f.surah_number] = f;
 
 /*
  * MARAYA DESIGN RULES
@@ -385,9 +392,9 @@ const VALIDATION_ERRORS = validateDataset(RAW_DATASET);
    No component touches RAW_DATASET or PIVOT_VERSES directly.
    ═══════════════════════════════════════════════════════════════════ */
 const CL_LABELS = {
-  compound_seam: "Compound Seam", single_concentration: "Single Concentration",
-  distributed_convergence: "Distributed Convergence", refrain_governed: "Refrain-Governed",
-  terminal: "Terminal", multi_pivot: "Multi-Pivot",
+  compound_seam: "Broad center", single_concentration: "Single center",
+  distributed_convergence: "Layered center", refrain_governed: "Refrain structure",
+  terminal: "Terminal structure", multi_pivot: "Multiple centers",
 };
 const CL_COLORS = {
   compound_seam: "#6b9dad", single_concentration: "#d4a843",
@@ -955,7 +962,7 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 .strip-item {
   background: var(--bg2); padding: 16px 20px; flex: 1; min-width: 100px; text-align: center;
 }
-.strip-val { font-family: var(--f-mono); font-size: 16px; color: var(--t2); font-weight: 400; }
+.strip-val { font-family: var(--f-mono); font-size: 18px; color: var(--t2); font-weight: 400; }
 .strip-val.gold { color: var(--gold); }
 .strip-label { font-family: var(--f-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); margin-top: 4px; }
 .disputed-dot { color: var(--gold); font-size: 18px; line-height: 0; vertical-align: middle; cursor: help; margin-left: 2px; }
@@ -4127,6 +4134,23 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
     document.addEventListener("pointerdown", dismiss);
     return () => document.removeEventListener("pointerdown", dismiss);
   }, [fnTooltipOpen]);
+  const [excTooltipOpen, setExcTooltipOpen] = useState(false);
+  const [excTooltipPos, setExcTooltipPos] = useState(null);
+  const excRef = useRef(null);
+  const updateExcTooltipPos = useCallback(() => {
+    if (excRef.current) {
+      const rect = excRef.current.getBoundingClientRect();
+      setExcTooltipPos({ top: rect.top, left: rect.left + rect.width / 2 });
+    }
+  }, []);
+  useEffect(() => {
+    if (!excTooltipOpen) return;
+    const dismiss = (e) => { if (excRef.current && !excRef.current.contains(e.target)) setExcTooltipOpen(false); };
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, [excTooltipOpen]);
+  const meta = SURAH_META[surahNum];
+  const family = SURAH_FAMILIES[surahNum];
   const verseCache = useRef({});
   const blocks = useMemo(() => {
     const raw = BLOCK_MAP_DATA[surahNum];
@@ -4171,12 +4195,47 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
         <div className="di-num">SURAH {d.surah_number} OF 114</div>
         <h2>{d.surah_name_en}</h2>
         <div className="di-ar">{d.surah_name_ar}</div>
-        {SEMANTIC_PROFILES[d.surah_number] && (
+        {meta && meta.name_meaning && (
           <div style={{
-            fontFamily: "'Cormorant Garamond', serif", fontSize: 11, fontStyle: "italic",
-            color: "#555", textAlign: "center", letterSpacing: "0.05em", marginTop: 6,
+            fontFamily: "'Cormorant Garamond', serif", fontSize: 13, fontStyle: "italic",
+            color: "#888", textAlign: "center", marginTop: 4,
           }}>
-            {SEMANTIC_PROFILES[d.surah_number].type === "compressed" ? "Compressed form" : "Distributed form"}
+            {meta.name_meaning}
+          </div>
+        )}
+        <div style={{
+          fontFamily: "'Cormorant Garamond', serif", fontSize: 11, fontStyle: "italic",
+          color: "#555", textAlign: "center", letterSpacing: "0.05em", marginTop: 6,
+          display: "flex", justifyContent: "center", alignItems: "center", gap: 0, flexWrap: "wrap",
+        }}>
+          {meta && (
+            <span style={{ display: "inline-flex", alignItems: "center" }}>
+              {meta.phase}
+              {meta.has_exceptions && (
+                <span ref={excRef} style={{ cursor: "help", marginLeft: 1, fontSize: 9, verticalAlign: "super", color: "#777" }}
+                  onClick={(e) => { e.stopPropagation(); updateExcTooltipPos(); setExcTooltipOpen(p => !p); }}
+                  onMouseEnter={() => { updateExcTooltipPos(); setExcTooltipOpen(true); }}
+                  onMouseLeave={() => setExcTooltipOpen(false)}
+                >ⁱ</span>
+              )}
+              <span style={{ margin: "0 6px", color: "#444" }}>·</span>
+            </span>
+          )}
+          {SEMANTIC_PROFILES[d.surah_number] && (
+            <span>
+              {SEMANTIC_PROFILES[d.surah_number].type === "compressed" ? "Compressed form" : "Distributed form"}
+            </span>
+          )}
+          {family && (
+            <span>
+              <span style={{ margin: "0 6px", color: "#444" }}>·</span>
+              {family.family_name}
+            </span>
+          )}
+        </div>
+        {excTooltipOpen && meta && meta.exceptions && excTooltipPos && (
+          <div className="fn-tooltip" style={{ top: excTooltipPos.top - 6, left: excTooltipPos.left }}>
+            {meta.exceptions}
           </div>
         )}
       </div>
@@ -4237,19 +4296,11 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               <div className="strip-label">Verses</div>
             </div>
             <div className="strip-item">
-              <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 16 : 14 }}>{d.pivot_verse}</div>
+              <div className="strip-val gold" style={{ fontSize: r.start === r.end ? 18 : 16 }}>{d.pivot_verse}</div>
               <div className="strip-label">Pivot</div>
             </div>
             <div className="strip-item">
-              <div className="strip-val">{fmt(d.pivot_offset)}</div>
-              <div className="strip-label">Offset</div>
-            </div>
-            <div className="strip-item">
-              <div className="strip-val">{d.absOffset.toFixed(4)}</div>
-              <div className="strip-label">|Offset|</div>
-            </div>
-            <div className="strip-item">
-              <div className="strip-val" style={{ fontSize: 13 }}>
+              <div className="strip-val" style={{ fontSize: 15 }}>
                 <span className="cl-badge" style={{ background: d.clColor + "18", color: d.clColor }}>{d.clLabel}</span>
               </div>
               <div className="strip-label">Classification</div>
@@ -4258,12 +4309,17 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               onClick={() => { updateFnTooltipPos(); setFnTooltipOpen(p => !p); }}
               onMouseEnter={() => { updateFnTooltipPos(); setFnTooltipOpen(true); }}
               onMouseLeave={() => setFnTooltipOpen(false)}>
-              <div className="strip-val" style={{ fontSize: 14, color: d.pivotFnDisputed ? "var(--t3)" : "var(--t2)" }}>
-                {d.pivotFnLabel}
-                {d.pivotFnDisputed && <span className="disputed-dot"> ·</span>}
+              <div className="strip-val" style={{ fontSize: 16, color: d.pivotFnDisputed ? "var(--t3)" : "var(--t2)" }}>
+                {d.pivotFnLabel}{d.pivotFnDisputed && <sup style={{ color: "var(--gold)", fontSize: 9, marginLeft: 1 }}>·</sup>}
               </div>
               <div className="strip-label">Pivot function</div>
             </div>
+            {meta && (
+              <div className="strip-item">
+                <div className="strip-val">{meta.juz}</div>
+                <div className="strip-label">Juz</div>
+              </div>
+            )}
           </div>
           {fnTooltipOpen && d.pivotFnTooltip && fnTooltipPos && (
             <div className="fn-tooltip" style={{ top: fnTooltipPos.top - 6, left: fnTooltipPos.left }}>
