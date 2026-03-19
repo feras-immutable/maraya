@@ -5,7 +5,7 @@ import PIVOT_FUNCTIONS, { FN_LABELS, FN_TOOLTIPS, getPivotFunction, getPivotFunc
 import SEMANTIC_PROFILES from './data/semantic_profiles.json';
 import SURAH_METADATA_RAW from './data/surah_metadata.json';
 import SURAH_FAMILIES_RAW from './data/surah_families.json';
-import { SURAH_INSIGHTS } from './data/surahInsights.js';
+import { SURAH_INSIGHTS, HERO_VERSE_OVERRIDE } from './data/surahInsights.js';
 
 const SURAH_META = {};
 for (const m of SURAH_METADATA_RAW) SURAH_META[m.surah_number] = m;
@@ -4276,14 +4276,17 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
         </div>
       </div>
 
-      {/* 2b. HERO PIVOT VERSE — show the first pivot verse above tabs for immediate impact */}
-      {verses.length > 0 && (
+      {/* 2b. HERO PIVOT VERSE — show one pivot verse above tabs for immediate impact */}
+      {verses.length > 0 && (() => {
+        const heroOverride = HERO_VERSE_OVERRIDE[d.surah_number];
+        const heroVerse = heroOverride ? verses.find(v => v.v === heroOverride) || verses[0] : verses[0];
+        return (
         <div style={{ maxWidth: 600, margin: "0 auto 40px", padding: "0 20px" }}>
           <div className="pivot-card" style={{ animationDelay: "0.6s", borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined }}>
-            <div className="pv-ref">{d.surah_number}:{verses[0].v}</div>
-            <div className="pv-arabic">{renderArabicWithGold(verses[0].ar, getGoldWords(d.surah_number, verses[0].v), pivotLit)}</div>
+            <div className="pv-ref">{d.surah_number}:{heroVerse.v}</div>
+            <div className="pv-arabic">{renderArabicWithGold(heroVerse.ar, getGoldWords(d.surah_number, heroVerse.v), pivotLit)}</div>
             <hr className="pv-separator" />
-            <div className="pv-english">{verses[0].en}</div>
+            <div className="pv-english">{heroVerse.en}</div>
           </div>
           {verses.length > 1 && (
             <div style={{
@@ -4294,7 +4297,8 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
             </div>
           )}
         </div>
-      )}
+        );
+      })()}
 
       {/* 3. TAB BAR */}
       <div className="detail-tabs">
