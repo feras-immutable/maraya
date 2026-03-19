@@ -4244,7 +4244,7 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
       {/* 1b. INSIGHT — curated one-liner, only if defined */}
       {SURAH_INSIGHTS[d.surah_number] && (
         <div style={{
-          maxWidth: 540, margin: "0 auto 40px", textAlign: "center", padding: "0 20px",
+          maxWidth: 540, margin: "0 auto 32px", textAlign: "center", padding: "0 20px",
           fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic",
           lineHeight: 1.7, color: "rgba(212,168,67,0.75)", letterSpacing: "0.01em",
         }}>
@@ -4252,7 +4252,51 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
         </div>
       )}
 
-      {/* 2. TAB BAR */}
+      {/* 2a. STRUCTURAL BAR — above tabs, the hero moment */}
+      <div className="scaffold-section">
+        <div className="detail-bar-object">
+          <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
+            semanticProfile={SEMANTIC_PROFILES[d.surah_number]}
+            onPivotInteract={(action) => {
+              if (action === "toggle") setPivotLit(p => !p);
+              else setPivotLit(action);
+            }}
+          />
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", margin: "12px 0 0", gap: 8, flexWrap: "wrap" }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
+            Pre-pivot: <span style={{ color: "var(--t2)" }}>{preCount} verses</span>
+          </div>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.04em" }}>
+            Pivot: <span style={{ color: "var(--t1)" }}>{pivotCount === 1 ? `v.${r.start}` : `v.${r.start}–${r.end}`}</span>
+          </div>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
+            Post-pivot: <span style={{ color: "var(--t2)" }}>{postCount} verses</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 2b. HERO PIVOT VERSE — show the first pivot verse above tabs for immediate impact */}
+      {verses.length > 0 && (
+        <div style={{ maxWidth: 600, margin: "0 auto 40px", padding: "0 20px" }}>
+          <div className="pivot-card" style={{ animationDelay: "0.6s", borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined }}>
+            <div className="pv-ref">{d.surah_number}:{verses[0].v}</div>
+            <div className="pv-arabic">{renderArabicWithGold(verses[0].ar, getGoldWords(d.surah_number, verses[0].v), pivotLit)}</div>
+            <hr className="pv-separator" />
+            <div className="pv-english">{verses[0].en}</div>
+          </div>
+          {verses.length > 1 && (
+            <div style={{
+              fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)",
+              textAlign: "center", marginTop: 12, letterSpacing: "0.05em",
+            }}>
+              + {verses.length - 1} more pivot {verses.length - 1 === 1 ? "verse" : "verses"} below
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 3. TAB BAR */}
       <div className="detail-tabs">
         <button
           className={`detail-tab${activeTab === "overview" ? " active" : ""}`}
@@ -4281,27 +4325,7 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
       {/* ── OVERVIEW TAB ── */}
       {activeTab === "overview" && (
         <>
-          {/* 3. STRUCTURAL BAR — THE hero, reveals at 0.4s */}
-          <div className="scaffold-section">
-            <div className="scaffold-label">Structural Blueprint</div>
-            <div className="detail-bar-object">
-              <StructuralBar surah={d} height={72} showLabels pivotHighlighted={pivotLit}
-                semanticProfile={SEMANTIC_PROFILES[d.surah_number]}
-                onPivotInteract={(action) => {
-                  if (action === "toggle") setPivotLit(p => !p);
-                  else setPivotLit(action);
-                }}
-              />
-            </div>
-
-            <div className="scaffold-legend">
-              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(212,168,67,0.3)" }} />Pivot zone</div>
-              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "#d4a843" }} />Pivot midpoint</div>
-              <div className="scaffold-legend-item"><div className="legend-swatch" style={{ background: "rgba(200,200,200,0.3)", borderTop: "1px dashed rgba(200,200,200,0.5)", height: 0 }} />Geometric center</div>
-            </div>
-          </div>
-
-          {/* 4. METRICS STRIP — settles below bar at 0.6s */}
+          {/* Metrics strip */}
           <div className="detail-strip">
             <div className="strip-item">
               <div className="strip-val">{d.verse_count}</div>
@@ -4340,30 +4364,15 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
             </div>
           )}
 
-          {/* 5. STRUCTURAL BREAKDOWN — fades in at 0.8s */}
-          <div className="scaffold-breakdown">
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 48, gap: 8, flexWrap: "wrap" }}>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
-                Pre-pivot: <span style={{ color: "var(--t2)" }}>{preCount} verses</span>
-              </div>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--gold)", letterSpacing: "0.04em" }}>
-                Pivot zone: <span style={{ color: "var(--t1)" }}>{pivotCount === 1 ? `v.${r.start}` : `v.${r.start}–${r.end}`} ({pivotCount} {pivotCount === 1 ? 'verse' : 'verses'})</span>
-              </div>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--t3)", letterSpacing: "0.04em" }}>
-                Post-pivot: <span style={{ color: "var(--t2)" }}>{postCount} verses</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 6. PIVOT VERSES — fade up from 1.0s, staggered 0.15s each */}
-          {verses.length > 0 && (
+          {/* All pivot verses (full list) */}
+          {verses.length > 1 && (
             <div className="pivot-section">
               <div className="pivot-section-title">
-                Pivot {verses.length === 1 ? "Verse" : "Verses"} — {r.start === r.end ? `${d.surah_number}:${r.start}` : `${d.surah_number}:${r.start}–${r.end}`}
+                All Pivot Verses — {r.start === r.end ? `${d.surah_number}:${r.start}` : `${d.surah_number}:${r.start}–${r.end}`}
               </div>
               {verses.map((v, i) => (
                 <div key={v.v} className="pivot-card" style={{
-                  animationDelay: `${(pivotCardBaseDelay + i * 0.15).toFixed(2)}s`,
+                  animationDelay: `${(0.2 + i * 0.1).toFixed(2)}s`,
                   borderColor: pivotLit ? "rgba(212,168,67,0.3)" : undefined,
                   boxShadow: pivotLit ? "0 0 20px rgba(212,168,67,0.06), inset 0 0 0 1px rgba(212,168,67,0.08)" : "none",
                   transition: "border-color 0.3s, box-shadow 0.3s",
@@ -4384,6 +4393,18 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
               }}>
                 Here, the surah turns through {d.pivotFnLabel.toLowerCase()}{d.pivotFnDisputed && d.pivotFnSecondary ? ` — or ${d.pivotFnSecondary.toLowerCase()}` : ""}.
               </div>
+            </div>
+          )}
+          {verses.length === 1 && (
+            <div style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 12,
+              fontStyle: "italic",
+              color: "#666",
+              textAlign: "center",
+              marginTop: 8, marginBottom: 32,
+            }}>
+              Here, the surah turns through {d.pivotFnLabel.toLowerCase()}{d.pivotFnDisputed && d.pivotFnSecondary ? ` — or ${d.pivotFnSecondary.toLowerCase()}` : ""}.
             </div>
           )}
         </>
