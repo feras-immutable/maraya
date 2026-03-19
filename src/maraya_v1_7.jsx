@@ -2248,13 +2248,13 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
           </div>
         </div>
 
-        {/* 3. The headline — explains what the user just saw */}
-        <h1>The architecture of revelation</h1>
+        {/* 3. The headline — a specific moment, not an abstract tagline */}
+        <h1>286 verses. The word "middle" is at the middle.</h1>
 
         {/* 4. The subtitle */}
         <p className="landing-tagline">
-          Every surah has a shape.<br />
-          Discover its structure. Memorise its blocks.
+          Every surah has a structural turning point.<br />
+          In most, it falls near the exact center.
         </p>
 
         {/* 5. The CTA — quiet invitation */}
@@ -2264,19 +2264,19 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
       </div>
 
       <div className="landing-cards-section">
-        <div className="landing-cards-title">Three ways to explore a surah</div>
+        <div className="landing-cards-title">Three surahs. Three shapes.</div>
         <div className="landing-cards-row">
-          <div className="landing-card" onClick={onExplore}>
-            <div className="landing-card-label">Discover</div>
-            <div className="landing-card-body">See where pivots fall across all 114 surahs.</div>
+          <div className="landing-card" onClick={() => onSelect(2)}>
+            <div className="landing-card-label">Al-Baqarah</div>
+            <div className="landing-card-body">The word "middle" at the middle of the Quran's longest surah.</div>
           </div>
-          <div className="landing-card" onClick={() => onSelectTab(2, "structure")}>
-            <div className="landing-card-label">Map</div>
-            <div className="landing-card-body">Explore the structural blocks that divide each surah into meaningful sections.</div>
+          <div className="landing-card" onClick={() => onSelect(29)}>
+            <div className="landing-card-label">Al-Ankabut</div>
+            <div className="landing-card-body">The spider sits at the structural center of the spider surah.</div>
           </div>
-          <div className="landing-card" onClick={() => onSelectTab(2, "hifz")}>
-            <div className="landing-card-label">Memorise</div>
-            <div className="landing-card-body">Learn and test verses using the block structure as your memory guide.</div>
+          <div className="landing-card" onClick={() => onSelect(110)}>
+            <div className="landing-card-label">An-Nasr</div>
+            <div className="landing-card-body">One of only two surahs that build to the end instead of centering.</div>
           </div>
         </div>
       </div>
@@ -2303,7 +2303,7 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
         </div>
         <div className="landing-grid-footer">
           <div className="landing-grid-rule" />
-          <div className="landing-grid-note">Dashed line marks geometric center of each surah.</div>
+          <div className="landing-grid-note">Dashed line = geometric center. Gold mark = structural turning point.</div>
         </div>
       </div>
 
@@ -2312,7 +2312,7 @@ const LandingPage = ({ onExplore, onSelect, onSelectTab }) => {
         <div className="corpus-stat"><div className="corpus-val">{stats.totalVerses.toLocaleString()}</div><div className="corpus-label">Verses</div></div>
         <div className="corpus-stat"><div className="corpus-val">{stats.within5}</div><div className="corpus-label">Pivots near center</div></div>
       </div>
-      <div className="landing-closing">The Qur'an has a shape. Now you can learn it.</div>
+      <div className="landing-closing">Every surah has a shape.</div>
     </div>
   );
 };
