@@ -5,6 +5,7 @@ import PIVOT_FUNCTIONS, { FN_LABELS, FN_TOOLTIPS, getPivotFunction, getPivotFunc
 import SEMANTIC_PROFILES from './data/semantic_profiles.json';
 import SURAH_METADATA_RAW from './data/surah_metadata.json';
 import SURAH_FAMILIES_RAW from './data/surah_families.json';
+import { SURAH_INSIGHTS } from './data/surahInsights.js';
 
 const SURAH_META = {};
 for (const m of SURAH_METADATA_RAW) SURAH_META[m.surah_number] = m;
@@ -4240,6 +4241,17 @@ const DetailPage = ({ surahNum, onBack, onNavigate, initialTab }) => {
         )}
       </div>
 
+      {/* 1b. INSIGHT — curated one-liner, only if defined */}
+      {SURAH_INSIGHTS[d.surah_number] && (
+        <div style={{
+          maxWidth: 540, margin: "0 auto 40px", textAlign: "center", padding: "0 20px",
+          fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic",
+          lineHeight: 1.7, color: "rgba(212,168,67,0.75)", letterSpacing: "0.01em",
+        }}>
+          {SURAH_INSIGHTS[d.surah_number]}
+        </div>
+      )}
+
       {/* 2. TAB BAR */}
       <div className="detail-tabs">
         <button
@@ -4438,12 +4450,118 @@ const AboutPage = ({ onBack }) => {
 /* ═══════════════════════════════════════════════════════════════════════
    SECTION 12: APP SHELL
    ═══════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════════
+   URL ROUTING
+   Parses window.location.pathname → { view, surahNum?, tab? }
+   Supports: / | /explore | /browse | /surah/:id | /about
+   :id can be a number (1-114) or a slug (al-baqarah)
+   ═══════════════════════════════════════════════════════════════════ */
+
+function toSlug(name) {
+  return name
+    .toLowerCase()
+    .replace(/[\u0100-\u024F]/g, c => {
+      const map = { 'ā': 'a', 'ī': 'i', 'ū': 'u', 'ṭ': 't', 'ḥ': 'h', 'ṣ': 's', 'ḍ': 'd', 'ẓ': 'z', 'ʿ': '', 'ʾ': '' };
+      return map[c] || c;
+    })
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Build slug lookup: "al-baqarah" → 2, etc.
+const SLUG_MAP = {};
+for (const s of SURAHS) {
+  SLUG_MAP[toSlug(s.surah_name_en)] = s.surah_number;
+}
+
+function getRoute() {
+  const path = window.location.pathname;
+  if (path === '/' || path === '') return { view: 'landing' };
+  if (path === '/explore') return { view: 'panorama' };
+  if (path === '/browse') return { view: 'browse' };
+  if (path === '/about') return { view: 'about' };
+
+  const surahMatch = path.match(/^\/surah\/(.+)$/);
+  if (surahMatch) {
+    const param = surahMatch[1];
+    // Try numeric first
+    const num = parseInt(param);
+    if (!isNaN(num) && num >= 1 && num <= 114) return { view: 'detail', surahNum: num };
+    // Try slug
+    const slugNum = SLUG_MAP[param.toLowerCase()];
+    if (slugNum) return { view: 'detail', surahNum: slugNum };
+  }
+
+  return { view: 'landing' };
+}
+
+function updateMetaTags(route) {
+  // Title
+  if (route.view === 'landing') document.title = 'Maraya — Structural Qurʾān Reader';
+  else if (route.view === 'panorama') document.title = 'Explore — Maraya';
+  else if (route.view === 'browse') document.title = 'Browse — Maraya';
+  else if (route.view === 'about') document.title = 'About — Maraya';
+  else if (route.view === 'detail' && route.surahNum) {
+    const s = getSurahByNumber(route.surahNum);
+    if (s) document.title = `${s.surah_name_en} — Maraya`;
+  }
+
+  // OG tags (dynamic — works for in-app, not for social crawlers without SSR)
+  if (route.view === 'detail' && route.surahNum) {
+    const s = getSurahByNumber(route.surahNum);
+    if (s) {
+      const insight = SURAH_INSIGHTS[route.surahNum];
+      const desc = insight || `${s.verse_count} verses · Structural pivot at ${s.pivot_verse}`;
+      setMeta('og:title', `${s.surah_name_en} (${s.surah_name_ar}) — Maraya`);
+      setMeta('og:description', desc);
+      setMeta('og:url', `https://maraya.app/surah/${route.surahNum}`);
+      setMeta('description', desc);
+    }
+  } else {
+    setMeta('og:title', 'Maraya — Structural Qurʾān Reader');
+    setMeta('og:description', 'Every surah has a shape. Discover its structure. Memorise its blocks.');
+    setMeta('og:url', 'https://maraya.app');
+    setMeta('description', 'Every surah has a shape. Discover its structure. Memorise its blocks.');
+  }
+}
+
+function setMeta(property, content) {
+  const isOg = property.startsWith('og:');
+  const selector = isOg ? `meta[property="${property}"]` : `meta[name="${property}"]`;
+  let el = document.querySelector(selector);
+  if (!el) {
+    el = document.createElement('meta');
+    if (isOg) el.setAttribute('property', property);
+    else el.setAttribute('name', property);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
+
 export default function App() {
-  const [view, setView] = useState("landing");
-  const [selectedSurah, setSelectedSurah] = useState(null);
-  const [prevView, setPrevView] = useState("panorama");
+  const [route, setRoute] = useState(getRoute);
+  const prevPath = useRef('/explore');
   const [initialTab, setInitialTab] = useState(null);
   const stats = useMemo(() => getCorpusStats(), []);
+
+  function navigate(path, tab) {
+    window.history.pushState({}, '', path);
+    setInitialTab(tab || null);
+    setRoute(getRoute());
+  }
+
+  // Back/forward browser buttons
+  useEffect(() => {
+    const handlePop = () => { setInitialTab(null); setRoute(getRoute()); };
+    window.addEventListener('popstate', handlePop);
+    return () => window.removeEventListener('popstate', handlePop);
+  }, []);
+
+  // Scroll to top and update meta on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateMetaTags(route);
+  }, [route]);
 
   if (VALIDATION_ERRORS.length > 0) {
     return (
@@ -4455,29 +4573,25 @@ export default function App() {
     );
   }
 
-  const handleSelect = (n, from, tab) => {
-    setSelectedSurah(n);
-    setInitialTab(tab || null);
-    if (from) setPrevView(from);
-    else if (view !== "detail") setPrevView(view === "landing" ? "panorama" : view);
-    setView("detail");
+  const handleSelectFrom = (from) => (n, tab) => {
+    prevPath.current = from;
+    navigate(`/surah/${n}`, tab);
   };
-  const handleExplore = () => setView("panorama");
-  const handleBack = () => setView(view === "detail" ? prevView : "landing");
-  const handleNavigate = (n) => setSelectedSurah(n);
+
+  const handleBack = () => navigate(prevPath.current);
 
   return (
     <><style>{STYLE}</style>
     <div className="maraya-root">
-      {view === "landing" && <LandingPage onExplore={handleExplore} onSelect={(n) => handleSelect(n, "panorama")} onSelectTab={(n, tab) => handleSelect(n, "landing", tab)} />}
-      {view === "panorama" && <PanoramaPage onSelect={(n) => handleSelect(n, "panorama")} onBack={() => setView("landing")} onBrowse={() => setView("browse")} />}
-      {view === "browse" && <BrowsePage onSelect={(n) => handleSelect(n, "browse")} onBack={() => setView("panorama")} />}
-      {view === "detail" && <DetailPage key={`${selectedSurah}-${initialTab}`} surahNum={selectedSurah} onBack={handleBack} onNavigate={handleNavigate} initialTab={initialTab} />}
-      {view === "about" && <AboutPage onBack={() => setView(prevView || "landing")} />}
+      {route.view === "landing" && <LandingPage onExplore={() => navigate('/explore')} onSelect={handleSelectFrom('/explore')} onSelectTab={(n, tab) => { prevPath.current = '/'; navigate(`/surah/${n}`, tab); }} />}
+      {route.view === "panorama" && <PanoramaPage onSelect={handleSelectFrom('/explore')} onBack={() => navigate('/')} onBrowse={() => navigate('/browse')} />}
+      {route.view === "browse" && <BrowsePage onSelect={handleSelectFrom('/browse')} onBack={() => navigate('/explore')} />}
+      {route.view === "detail" && route.surahNum && <DetailPage key={`${route.surahNum}-${initialTab}`} surahNum={route.surahNum} onBack={handleBack} onNavigate={(n) => navigate(`/surah/${n}`)} initialTab={initialTab} />}
+      {route.view === "about" && <AboutPage onBack={() => navigate(prevPath.current)} />}
 
       <footer className="maraya-footer">
         <div className="footer-mark">مرايا</div>
-        <div className="footer-credit">Ayah Labs · <button className="footer-link" onClick={() => { setPrevView(view); setView("about"); }}>About</button></div>
+        <div className="footer-credit">Ayah Labs · <button className="footer-link" onClick={() => { prevPath.current = window.location.pathname; navigate('/about'); }}>About</button></div>
       </footer>
     </div></>
   );
