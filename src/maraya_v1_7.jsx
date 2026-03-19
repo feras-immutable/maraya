@@ -644,13 +644,13 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 
 /* — Headline and subtitle below bar — */
 .landing-hero h1 {
-  font-family: var(--f-head); font-size: 48px; font-weight: 300; letter-spacing: -0.025em;
-  line-height: 1.1; color: var(--t1); margin-bottom: 20px; opacity: 0;
-  animation: revealUp 0.4s ease 1.35s both;
+  font-family: var(--f-head); font-size: 56px; font-weight: 300; letter-spacing: -0.025em;
+  line-height: 1.15; color: var(--t1); margin-bottom: 24px; opacity: 0;
+  animation: revealUp 0.4s ease 1.35s both; max-width: 720px; margin-left: auto; margin-right: auto;
 }
 .landing-tagline {
-  font-family: var(--f-head); font-size: 20px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
-  margin-bottom: 40px; font-style: italic; max-width: 440px; margin-left: auto; margin-right: auto;
+  font-family: var(--f-head); font-size: 22px; font-weight: 300; color: var(--t2); letter-spacing: 0.01em;
+  margin-bottom: 40px; font-style: italic; max-width: 500px; margin-left: auto; margin-right: auto;
   line-height: 1.65; opacity: 0;
   animation: revealUp 0.3s ease 1.5s both;
 }
@@ -1348,8 +1348,8 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
   .landing-mark { font-size: 16px; margin-bottom: 20px; }
   .hero-bar-wrap { margin-bottom: 32px; }
   .hero-bar { height: 48px; }
-  .landing-hero h1 { font-size: 28px; }
-  .landing-tagline { font-size: 16px; }
+  .landing-hero h1 { font-size: 32px; }
+  .landing-tagline { font-size: 18px; }
   .landing-hero { margin-bottom: 48px; }
   .feature-card { padding: 20px 16px; }
   .feature-card-head { flex-direction: column; gap: 4px; }
@@ -1397,7 +1397,7 @@ body { background: var(--bg); color: var(--t1); font-family: var(--f-body); font
 }
 
 @media (max-width: 380px) {
-  .landing-hero h1 { font-size: 20px; }
+  .landing-hero h1 { font-size: 24px; }
   .landing-mark { font-size: 16px; }
   .hero-bar { height: 40px; }
   .sc-stats { flex-wrap: wrap; gap: 8px; }
