@@ -1195,7 +1195,7 @@ const LandingPage = ({ onExplore, onSelect }) => {
         </div>
 
         {/* 3. The headline — explains what the user just saw */}
-        <h1>The architecture of revelation</h1>
+        <h1>The architecture of the Qurʾān</h1>
 
         {/* 4. The subtitle */}
         <p className="landing-tagline">
