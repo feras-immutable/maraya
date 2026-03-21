@@ -10,16 +10,6 @@
  * someone stop and think.
  */
 
-/**
- * Override which verse to show as the hero pivot verse.
- * By default the first verse in the pivot range is shown.
- * Use this when a later verse in the range is more recognizable.
- * Key = surah number, value = verse number within the surah.
- */
-export const HERO_VERSE_OVERRIDE = {
-  2: 143,  // "ummatan wasatan" — the word "middle" at the middle
-};
-
 export const SURAH_INSIGHTS = {
   // Category A: Perfect Center (offset = 0.000)
   1: "The shift from describing God to speaking directly to Him — at the structural center of the surah you read 17 times a day.",
